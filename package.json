@@ -1,7 +1,7 @@
 {
   "name": "ic-tech-4901",
   "version": "0.0.0",
-  "main": "src/components/App.js",
+  "main": "src/views/App.js",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
