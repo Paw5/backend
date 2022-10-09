@@ -16,7 +16,7 @@ import NewsTab from './News';
 import CommunityTab from './Community';
 import HealthTab from './Health';
 
-const { width } = Dimensions.get('window');
+const { width } = Dimensions.get('window').width;
 const TABBAR_WIDTH = width;
 const TAB_WIDTH = TABBAR_WIDTH / 5;
 
@@ -56,6 +56,16 @@ const styles = StyleSheet.create({
     height: 30,
     borderRadius: 10,
     backgroundColor: '#000000',
+  },
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  map: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
   },
 });
 
