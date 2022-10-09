@@ -25,13 +25,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#FFFFFF',
     flexDirection: 'row',
     position: 'absolute',
-    width: TABBAR_WIDTH,
+    width: Dimensions.get('window').width,
     height: 68,
     borderRadius: 5,
     bottom: -5,
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'space-around',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 100,
+    shadowRadius: 20,
+    elevation: 1,
   },
   circleAnimated: {
     width: TAB_WIDTH,
@@ -45,8 +50,23 @@ const styles = StyleSheet.create({
     borderRadius: 45,
     backgroundColor: '#FFFFFF',
     bottom: 30,
-    borderWidth: 7,
+    borderWidth: 0,
     borderColor: '#69A297', // all pages will be one color so,,, just set it to that color
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 100,
+    shadowRadius: 20,
+    elevation: 1,
+  },
+  circle2: {
+    position: 'absolute',
+    width: 95,
+    height: 95,
+    borderRadius: 47.5,
+    backgroundColor: '#FFFFFF',
+    bottom: 5,
+    borderWidth: 7,
+    borderColor: '#69A297',
   },
   popupButton: {
     position: 'absolute',
@@ -78,6 +98,7 @@ function MyTabBar({ state, descriptors, navigation }) {
         style={[styles.circleAnimated, { transform: [{ translateX }] }]}
       >
         <View style={styles.circle} />
+        <View style={styles.circle2} />
       </Animated.View>
       {state.routes.map((route, index) => {
         const { options } = descriptors[route.key];
