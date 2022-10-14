@@ -2,6 +2,7 @@ import {
   Pressable, View, Image, Text, Dimensions, ScrollView, StyleSheet,
 } from 'react-native';
 import React from 'react';
+// import Constants from 'expo-constants';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 const StatusBarHeight = getStatusBarHeight();
