@@ -1,5 +1,3 @@
-/* eslint-disable max-len */
-/* eslint-disable react/prop-types */
 // Required imports
 import React, { useState, useEffect } from 'react';
 import {
@@ -56,16 +54,6 @@ const styles = StyleSheet.create({
     height: 30,
     borderRadius: 10,
     backgroundColor: '#000000',
-  },
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  map: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
   },
 });
 
