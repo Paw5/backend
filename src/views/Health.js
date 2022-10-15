@@ -3,9 +3,11 @@ import {
   Pressable, View, Image, Text, Dimensions, ScrollView, StyleSheet,
 } from 'react-native';
 import React from 'react';
-import Constants from 'expo-constants';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { useFonts } from 'expo-font';
 import DropShadow from 'react-native-drop-shadow';
+
+const StatusBarHeight = getStatusBarHeight();
 
 const miso = require('../../assets/miso.jpg');
 
@@ -89,10 +91,13 @@ export default function HealthTab() {
   }
 
   return (
+
     <View style={{
-      flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#69A297', paddingTop: Constants.statusBarHeight,
+      flex: 1, backgroundColor: '#69A297',
     }}
     >
+
+      <View style={{ backgroundColor: '#e0777d', height: StatusBarHeight }} />
 
       <ScrollView contentInset={{ bottom: 50 }} style={{ marginTop: 20 }}>
         <ScrollView
