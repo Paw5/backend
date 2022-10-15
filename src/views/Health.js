@@ -4,12 +4,8 @@ import {
 } from 'react-native';
 import React from 'react';
 import Constants from 'expo-constants';
-// import Constants from 'expo-constants';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { useFonts } from 'expo-font';
 import DropShadow from 'react-native-drop-shadow';
-
-const StatusBarHeight = getStatusBarHeight();
 
 const miso = require('../../assets/miso.jpg');
 
@@ -97,7 +93,113 @@ export default function HealthTab() {
       flex: 1, justifyContent: 'center', alignItems: 'center', backgroundColor: '#69A297', paddingTop: Constants.statusBarHeight,
     }}
     >
-      <Text>Hello Grae</Text>
+
+      <ScrollView contentInset={{ bottom: 50 }} style={{ marginTop: 20 }}>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          snapToAlignment="center"
+          snapToInterval={180}
+          contentOffset={{ x: -110 }}
+          decelerationRate="fast"
+          disableIntervalMomentum
+          directionalLockEnabled
+          pagingEnabled
+          contentInset={{ left: 100, right: 100 }}
+          style={{
+            width: Dimensions.get('window').width, paddingBottom: 60,
+          }}
+        >
+
+          <DropShadow style={styles.shadowProp}>
+            <Pressable style={styles.petCard}>
+              <Image
+                style={styles.petImage}
+                source={miso}
+              />
+              <Text style={styles.petHeader}>Miso</Text>
+
+            </Pressable>
+          </DropShadow>
+          <DropShadow style={styles.shadowProp}>
+            <Pressable style={styles.petCard}>
+              <Image
+                style={styles.petImage}
+                source={miso}
+              />
+              <Text style={styles.petHeader}>Miso</Text>
+
+            </Pressable>
+          </DropShadow>
+          <DropShadow style={styles.shadowProp}>
+            <Pressable style={styles.petCard}>
+              <Image
+                style={styles.petImage}
+                source={miso}
+              />
+              <Text style={styles.petHeader}>Miso</Text>
+
+            </Pressable>
+          </DropShadow>
+          <DropShadow style={styles.shadowProp}>
+            <Pressable style={styles.petCard}>
+              <Image
+                style={styles.petImage}
+                source={miso}
+              />
+              <Text style={styles.petHeader}>Miso</Text>
+
+            </Pressable>
+          </DropShadow>
+        </ScrollView>
+
+        <DropShadow style={styles.shadowProp}>
+          <Pressable style={[styles.healthContainer, { height: 200 }]}>
+            <Text style={styles.healthHeader}>Upcoming Appointments</Text>
+            <View
+              style={{
+                borderBottomColor: '#e0777d',
+                borderBottomWidth: 3,
+                borderRadius: 50,
+                marginLeft: 10,
+                marginRight: 10,
+              }}
+            />
+          </Pressable>
+
+        </DropShadow>
+        <DropShadow style={styles.shadowProp}>
+          <Pressable style={[styles.healthContainer, { height: 150 }]}>
+            <Text style={styles.healthHeader}>Did you feed the dog today?</Text>
+            <View
+              style={{
+                borderBottomColor: '#e0777d',
+                borderBottomWidth: 3,
+                borderRadius: 50,
+                marginLeft: 10,
+                marginRight: 10,
+              }}
+            />
+          </Pressable>
+
+        </DropShadow>
+        <DropShadow style={styles.shadowProp}>
+          <Pressable style={[styles.healthContainer, { height: 300 }]}>
+            <Text style={styles.healthHeader}>Walk Tracker</Text>
+            <View
+              style={{
+                borderBottomColor: '#e0777d',
+                borderBottomWidth: 3,
+                borderRadius: 50,
+                marginLeft: 10,
+                marginRight: 10,
+              }}
+            />
+          </Pressable>
+
+        </DropShadow>
+
+      </ScrollView>
     </View>
   );
 }
