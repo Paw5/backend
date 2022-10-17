@@ -5,7 +5,7 @@
 // Required imports
 import React, { useState, useEffect } from 'react';
 import {
-  View, TouchableOpacity, StyleSheet, Dimensions, Animated, Modal, Pressable,
+  View, TouchableOpacity, StyleSheet, Dimensions, Animated, Modal, Pressable, Platform,
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     position: 'absolute',
     width: Dimensions.get('window').width + 6,
-    height: 73,
+    height: Platform.OS === 'ios' ? 80 : 73,
     borderRadius: 5,
     zIndex: 5,
     // borderWidth: 4,
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     height: 95,
     borderRadius: 47.5,
     backgroundColor: '#FFFFFF',
-    bottom: 8,
+    bottom: Platform.OS === 'ios' ? 15 : 8,
     borderWidth: 7,
     borderColor: '#69A297',
     elevation: 24,
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
     marginLeft: (((Dimensions.get('window').width) / 5) * 3.5) - 25, // 55 normally
-    bottom: 110, // 0 normally
+    bottom: Platform.OS === 'ios' ? 117 : 110, // 0 normally
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 12,
@@ -125,8 +125,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     flex: 1,
     backgroundColor: '#FFFFFF',
-    marginLeft: (((Dimensions.get('window').width) / 5) * 3.5) + 30,
-    bottom: 85,
+    marginLeft: (((Dimensions.get('window').width) / 5) * 3.5) + 32,
+    bottom: Platform.OS === 'ios' ? 92 : 85,
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 12,
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     height: 45,
     borderRadius: 22.5,
     marginLeft: (((Dimensions.get('window').width) / 5) * 4.5) - 95,
-    bottom: 75,
+    bottom: Platform.OS === 'ios' ? 82 : 75,
     borderWidth: 7,
     borderColor: '#69A297',
     shadowColor: '#000',
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
     marginLeft: (((Dimensions.get('window').width) / 5) * 4.5) - 55, // 55 normally
-    bottom: 105, // 0 normally
+    bottom: Platform.OS === 'ios' ? 112 : 105, // 0 normally
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 12,
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
     marginLeft: (((Dimensions.get('window').width) / 5) * 4.5) - 5,
-    bottom: 106,
+    bottom: Platform.OS === 'ios' ? 113 : 106,
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 12,
@@ -293,7 +293,7 @@ function MyTabBar({ state, descriptors, navigation }) {
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            onFocus={isFocused ? buttonRaise = 15 : buttonRaise = 0}
+            onFocus={isFocused ? buttonRaise = (Platform.OS === 'ios' ? 22 : 15) : buttonRaise = 0}
             style={{ flex: 1, alignItems: 'center', bottom: buttonRaise }}
             hitSlop={{
               top: 20, bottom: 20, left: 20, right: 20,
