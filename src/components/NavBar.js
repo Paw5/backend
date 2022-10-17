@@ -88,7 +88,7 @@ const styles = StyleSheet.create({
     height: 45,
     borderRadius: 22.5,
     marginLeft: (((Dimensions.get('window').width) / 5) * 3.5) - 81,
-    bottom: 85,
+    bottom: Platform.OS === 'ios' ? 102 : 85,
     borderWidth: 7,
     borderColor: '#69A297',
     shadowColor: '#000',
@@ -104,7 +104,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
     marginLeft: (((Dimensions.get('window').width) / 5) * 3.5) - 25, // 55 normally
-    bottom: Platform.OS === 'ios' ? 117 : 110, // 0 normally
+    bottom: Platform.OS === 'ios' ? 127 : 110, // 0 normally
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 12,
@@ -126,7 +126,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
     marginLeft: (((Dimensions.get('window').width) / 5) * 3.5) + 32,
-    bottom: Platform.OS === 'ios' ? 92 : 85,
+    bottom: Platform.OS === 'ios' ? 102 : 85,
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 12,
@@ -159,7 +159,7 @@ const styles = StyleSheet.create({
     height: 45,
     borderRadius: 22.5,
     marginLeft: (((Dimensions.get('window').width) / 5) * 4.5) - 95,
-    bottom: Platform.OS === 'ios' ? 82 : 75,
+    bottom: Platform.OS === 'ios' ? 92 : 75,
     borderWidth: 7,
     borderColor: '#69A297',
     shadowColor: '#000',
@@ -175,7 +175,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
     marginLeft: (((Dimensions.get('window').width) / 5) * 4.5) - 55, // 55 normally
-    bottom: Platform.OS === 'ios' ? 112 : 105, // 0 normally
+    bottom: Platform.OS === 'ios' ? 122 : 105, // 0 normally
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 12,
@@ -197,7 +197,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FFFFFF',
     marginLeft: (((Dimensions.get('window').width) / 5) * 4.5) - 5,
-    bottom: Platform.OS === 'ios' ? 113 : 106,
+    bottom: Platform.OS === 'ios' ? 123 : 106,
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 12,
