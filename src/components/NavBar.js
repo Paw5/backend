@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     height: 95,
     borderRadius: 47.5,
     backgroundColor: '#FFFFFF',
-    bottom: Platform.OS === 'ios' ? 15 : 8,
+    bottom: Platform.OS === 'ios' ? 25 : 8,
     borderWidth: 7,
     borderColor: '#69A297',
     elevation: 24,
