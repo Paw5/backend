@@ -17,7 +17,7 @@ export default function ServNode() {
   return (
     <View>
       <DropShadow style={styles.shadowProp}>
-        <Pressable style={[styles.servContainer, { height: 100 }]}>
+        <Pressable style={[styles.servContainer, { height: 125 }]}>
           <View
             style={styles.servLeft}
           >
@@ -30,7 +30,7 @@ export default function ServNode() {
             >
               <Feather
                 name="check"
-                size={14}
+                size={24}
                 color="black"
                 style={{ alignSelf: 'center' }}
               />
@@ -41,31 +41,31 @@ export default function ServNode() {
           <Text style={styles.servHeader2}>Service Type</Text>
           <Feather
             name="star"
-            size={15}
+            size={20}
             color="black"
             style={styles.servStar1}
           />
           <Feather
             name="star"
-            size={15}
+            size={20}
             color="black"
             style={styles.servStar2}
           />
           <Feather
             name="star"
-            size={15}
+            size={20}
             color="black"
             style={styles.servStar3}
           />
           <Feather
             name="star"
-            size={15}
+            size={20}
             color="black"
             style={styles.servStar4}
           />
           <Feather
             name="star"
-            size={15}
+            size={20}
             color="black"
             style={styles.servStar5}
           />
@@ -74,6 +74,8 @@ export default function ServNode() {
               borderBottomColor: '#e0777d',
               borderBottomWidth: 3,
               borderRadius: 50,
+              marginTop: 5,
+              marginBottom: 5,
               marginLeft: 100,
               marginRight: 10,
             }}

@@ -52,49 +52,7 @@ export default StyleSheet.create({
     borderColor: '#e0777d',
   },
 
-  servImage: {
-    height: 70,
-    width: 70,
-    top: 5,
-    justifyContent: 'center',
-    borderWidth: 3,
-    borderRadius: 35,
-    alignSelf: 'center',
-    position: 'absolute',
-    borderColor: '#e0777d',
-  },
-
-  servLeft: {
-    height: 110,
-    width: 90,
-    borderRightWidth: 3,
-    position: 'absolute',
-    justifyContent: 'center',
-    alignContent: 'center',
-    borderColor: '#e0777d',
-  },
-
-  servCheck: {
-    height: 25,
-    width: 90,
-    top: 80,
-    position: 'absolute',
-    borderRightWidth: 3,
-    borderTopWidth: 3,
-    backgroundColor: 'white',
-    borderColor: '#e0777d',
-  },
-
   healthContainer: {
-    alignSelf: 'center',
-    width: (Dimensions.get('window').width - 20),
-    backgroundColor: 'white',
-    borderRadius: 25,
-    overflow: 'hidden',
-    marginBottom: 20,
-  },
-
-  servContainer: {
     alignSelf: 'center',
     width: (Dimensions.get('window').width - 20),
     backgroundColor: 'white',
@@ -115,8 +73,50 @@ export default StyleSheet.create({
     color: '#333333',
   },
   /* services styles */
+  servImage: {
+    height: 160,
+    width: 95,
+    top: -30,
+    left: -5,
+    justifyContent: 'center',
+    borderWidth: 3,
+    borderRadius: 25,
+    alignSelf: 'center',
+    position: 'absolute',
+    borderColor: '#e0777d',
+  },
+
+  servLeft: {
+    height: 160,
+    width: 90,
+    borderRightWidth: 3,
+    position: 'absolute',
+    justifyContent: 'center',
+    alignContent: 'center',
+    borderColor: '#e0777d',
+  },
+
+  servCheck: {
+    height: 25,
+    width: 90,
+    top: 100,
+    position: 'absolute',
+    borderRightWidth: 3,
+    borderTopWidth: 3,
+    backgroundColor: 'white',
+    borderColor: '#e0777d',
+  },
+  servContainer: {
+    alignSelf: 'center',
+    width: (Dimensions.get('window').width - 20),
+    backgroundColor: 'white',
+    borderRadius: 25,
+    overflow: 'hidden',
+    marginBottom: 20,
+  },
+
   servHeader: {
-    fontSize: 12,
+    fontSize: 15,
     fontWeight: '600',
     letterSpacing: 1,
     marginLeft: 105,
@@ -126,7 +126,7 @@ export default StyleSheet.create({
   },
 
   servHeader2: {
-    fontSize: 8,
+    fontSize: 11,
     fontWeight: '600',
     letterSpacing: 1,
     marginLeft: 105,
@@ -141,27 +141,90 @@ export default StyleSheet.create({
   },
 
   servStar2: {
-    marginLeft: 275,
+    marginLeft: 280,
     marginTop: 10,
     position: 'absolute',
   },
 
   servStar3: {
-    marginLeft: 290,
+    marginLeft: 300,
     marginTop: 10,
     position: 'absolute',
   },
 
   servStar4: {
-    marginLeft: 305,
+    marginLeft: 320,
     marginTop: 10,
     position: 'absolute',
   },
 
   servStar5: {
-    marginLeft: 320,
+    marginLeft: 340,
     marginTop: 10,
     position: 'absolute',
+  },
+  /* PawPic styles */
+  picImage: {
+    height: 300,
+    width: (Dimensions.get('window').width - 18),
+    top: 0,
+    left: 0,
+    justifyContent: 'center',
+    borderRadius: 25,
+    alignSelf: 'center',
+    position: 'absolute',
+  },
+
+  picContainer: {
+    alignSelf: 'center',
+    width: (Dimensions.get('window').width - 20),
+    backgroundColor: 'white',
+    borderRadius: 25,
+    overflow: 'hidden',
+    marginBottom: 20,
+  },
+
+  ppProfileImage: {
+    height: 60,
+    width: 60,
+    top: 245,
+    left: 0,
+    borderRadius: 100,
+    borderWidth: 3,
+    position: 'absolute',
+    borderColor: '#e0777d',
+  },
+
+  ppProfileNameNode: {
+    height: 25,
+    width: 160,
+    top: 275,
+    left: 37.5,
+    borderRadius: 100,
+    borderWidth: 3,
+    justifyContent: 'center',
+    position: 'absolute',
+    borderColor: '#e0777d',
+    backgroundColor: 'white',
+  },
+
+  picHeader: {
+    fontSize: 15,
+    fontWeight: '600',
+    letterSpacing: 1,
+    marginLeft: 105,
+    marginTop: 5,
+    fontFamily: 'QuicksandBold',
+    color: '#333333',
+  },
+
+  picHeader2: {
+    fontSize: 11,
+    fontWeight: '600',
+    letterSpacing: 1,
+    marginLeft: 20,
+    fontFamily: 'QuicksandBold',
+    color: '#333333',
   },
   /* news/events styles */
   eventTab: {
