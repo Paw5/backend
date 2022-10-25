@@ -52,7 +52,49 @@ export default StyleSheet.create({
     borderColor: '#e0777d',
   },
 
+  servImage: {
+    height: 70,
+    width: 70,
+    top: 5,
+    justifyContent: 'center',
+    borderWidth: 3,
+    borderRadius: 35,
+    alignSelf: 'center',
+    position: 'absolute',
+    borderColor: '#e0777d',
+  },
+
+  servLeft: {
+    height: 110,
+    width: 90,
+    borderRightWidth: 3,
+    position: 'absolute',
+    justifyContent: 'center',
+    alignContent: 'center',
+    borderColor: '#e0777d',
+  },
+
+  servCheck: {
+    height: 25,
+    width: 90,
+    top: 80,
+    position: 'absolute',
+    borderRightWidth: 3,
+    borderTopWidth: 3,
+    backgroundColor: 'white',
+    borderColor: '#e0777d',
+  },
+
   healthContainer: {
+    alignSelf: 'center',
+    width: (Dimensions.get('window').width - 20),
+    backgroundColor: 'white',
+    borderRadius: 25,
+    overflow: 'hidden',
+    marginBottom: 20,
+  },
+
+  servContainer: {
     alignSelf: 'center',
     width: (Dimensions.get('window').width - 20),
     backgroundColor: 'white',
@@ -71,6 +113,55 @@ export default StyleSheet.create({
     marginBottom: 5,
     fontFamily: 'QuicksandBold',
     color: '#333333',
+  },
+/* services styles */
+  servHeader: {
+    fontSize: 12,
+    fontWeight: '600',
+    letterSpacing: 1,
+    marginLeft: 105,
+    marginTop: 5,
+    fontFamily: 'QuicksandBold',
+    color: '#333333',
+  },
+
+  servHeader2: {
+    fontSize: 8,
+    fontWeight: '600',
+    letterSpacing: 1,
+    marginLeft: 105,
+    fontFamily: 'QuicksandBold',
+    color: '#333333',
+  },
+
+  servStar1: {
+    marginLeft: 260,
+    marginTop: 10,
+    position: 'absolute',
+  },
+
+  servStar2: {
+    marginLeft: 275,
+    marginTop: 10,
+    position: 'absolute',
+  },
+
+  servStar3: {
+    marginLeft: 290,
+    marginTop: 10,
+    position: 'absolute',
+  },
+
+  servStar4: {
+    marginLeft: 305,
+    marginTop: 10,
+    position: 'absolute',
+  },
+
+  servStar5: {
+    marginLeft: 320,
+    marginTop: 10,
+    position: 'absolute',
   },
   /* news/events styles */
   eventTab: {
