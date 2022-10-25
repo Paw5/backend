@@ -1,11 +1,12 @@
 /* eslint-disable global-require */
 import {
-  Pressable, View, Image, Text, Dimensions, ScrollView, StyleSheet,
+  Pressable, View, Image, Text, Dimensions, Animated, ScrollView,
 } from 'react-native';
 import React from 'react';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { useFonts } from 'expo-font';
 import DropShadow from 'react-native-drop-shadow';
+import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
 import styles from '../constants/Styles';
 
 const StatusBarHeight = getStatusBarHeight();
@@ -25,6 +26,8 @@ export default function HealthTab() {
     return null;
   }
 
+  const scrollX = new Animated.Value(0);
+
   return (
 
     <View style={{
@@ -34,20 +37,27 @@ export default function HealthTab() {
 
       <View style={{ backgroundColor: '#e0777d', height: StatusBarHeight }} />
 
-      <ScrollView contentInset={{ bottom: 150 }} style={{ marginTop: 20 }}>
-        <ScrollView
+      <ScrollView
+        contentInset={{ bottom: 100 }}
+      >
+        <Animated.ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
           snapToAlignment="center"
           snapToInterval={180}
           contentOffset={{ x: -110 }}
-          decelerationRate="fast"
+          decelerationRate="0"
           disableIntervalMomentum
           directionalLockEnabled
           pagingEnabled
+          scrollEventThrottle={14}
           contentInset={{ left: 100, right: 100 }}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+            { useNativeDriver: true },
+          )}
           style={{
-            width: Dimensions.get('window').width, paddingBottom: 60,
+            width: Dimensions.get('window').width, height: 220, marginTop: 20,
           }}
         >
 
@@ -91,7 +101,29 @@ export default function HealthTab() {
 
             </Pressable>
           </DropShadow>
-        </ScrollView>
+        </Animated.ScrollView>
+
+        <View style={{
+          marginBottom: 20,
+          borderWidth: 2,
+          borderColor: 'white',
+          borderRadius: 10,
+          padding: 5,
+          width: 115,
+          alignSelf: 'center',
+        }}
+        >
+          <RNAnimatedScrollIndicators
+            numberOfCards={4}
+            scrollWidth={115}
+            activeColor="#e0777d"
+            inActiveColor="white"
+            scrollAnimatedValue={scrollX}
+            style={{
+
+            }}
+          />
+        </View>
 
         <DropShadow style={styles.shadowProp}>
           <Pressable style={[styles.healthContainer, { height: 200 }]}>

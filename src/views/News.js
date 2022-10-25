@@ -1,71 +1,16 @@
 /* eslint-disable global-require */
 import {
-  Pressable, View, Text, Dimensions, ScrollView, StyleSheet,
+  Pressable, View, Text, Dimensions, ScrollView, Animated,
 } from 'react-native';
 import React from 'react';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { useFonts } from 'expo-font';
 import DropShadow from 'react-native-drop-shadow';
 import { Feather } from '@expo/vector-icons';
+import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
+import styles from '../constants/Styles';
 
 const StatusBarHeight = getStatusBarHeight();
-
-const styles = StyleSheet.create({
-  shadowProp: {
-    shadowColor: '#333333',
-    shadowOffset: { width: 5, height: 5 },
-    shadowOpacity: 0.4,
-    shadowRadius: 2,
-  },
-  eventTab: {
-    alignSelf: 'center',
-    height: 'auto',
-    width: Dimensions.get('window').width - 30,
-    backgroundColor: 'white',
-    borderRadius: 50,
-    overflow: 'hidden',
-    padding: 35,
-    paddingBottom: 30,
-    paddingTop: 25,
-    marginRight: 15,
-    marginLeft: 15,
-  },
-  eventHeader: {
-    fontFamily: 'QuicksandBold',
-    fontSize: 26,
-  },
-  eventDate: {
-    fontFamily: 'QuicksandSemiBold',
-    fontSize: 20,
-    paddingTop: 5,
-  },
-  eventText: {
-    fontFamily: 'QuicksandRegular',
-    fontSize: 20,
-    paddingLeft: 5,
-    paddingRight: 30,
-    textAlign: 'justify',
-  },
-  newsTab: {
-    alignSelf: 'center',
-    marginTop: 20,
-    height: 'auto',
-    width: Dimensions.get('window').width - 30,
-    backgroundColor: 'white',
-    borderRadius: 50,
-    overflow: 'hidden',
-    padding: 35,
-    paddingBottom: 30,
-    paddingTop: 25,
-    marginRight: 15,
-    marginLeft: 15,
-  },
-  newsHeader: {
-    fontFamily: 'QuicksandBold',
-    fontSize: 26,
-    textAlign: 'center',
-  },
-});
 
 export default function HealthTab() {
   const [loaded] = useFonts({
@@ -80,6 +25,8 @@ export default function HealthTab() {
     return null;
   }
 
+  const scrollX = new Animated.Value(0);
+
   return (
 
     <View style={{
@@ -93,16 +40,21 @@ export default function HealthTab() {
         contentInset={{ bottom: 150 }}
         style={{ marginTop: 20, paddingTop: 20 }}
       >
-        <ScrollView
+        <Animated.ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
           contentInset={{ left: 50, right: 50 }}
           snapToAlignment="center"
           snapToInterval={Dimensions.get('window').width}
-          decelerationRate="fast"
+          decelerationRate="0"
           disableIntervalMomentum
           directionalLockEnabled
           pagingEnabled
+          scrollEventThrottle={14}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+            { useNativeDriver: true },
+          )}
           style={{
             width: Dimensions.get('window').width, paddingBottom: 20, marginTop: -20,
           }}
@@ -229,14 +181,28 @@ export default function HealthTab() {
               </View>
             </Pressable>
           </DropShadow>
-        </ScrollView>
+        </Animated.ScrollView>
 
-        <View
-          style={{
-            borderBottomColor: 'white',
-            borderBottomWidth: 10,
-          }}
-        />
+        <View style={{
+          borderWidth: 2,
+          borderColor: 'white',
+          borderRadius: 10,
+          padding: 5,
+          width: 115,
+          alignSelf: 'center',
+        }}
+        >
+          <RNAnimatedScrollIndicators
+            numberOfCards={3}
+            scrollWidth={Dimensions.get('window').width}
+            activeColor="#e0777d"
+            inActiveColor="white"
+            scrollAnimatedValue={scrollX}
+            style={{
+
+            }}
+          />
+        </View>
 
         <DropShadow style={styles.shadowProp}>
           <Pressable style={styles.newsTab}>

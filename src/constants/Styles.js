@@ -8,6 +8,7 @@ const TAB_WIDTH = TABBAR_WIDTH / 5;
 
 // eslint-disable-next-line no-unused-vars
 export default StyleSheet.create({
+  /* health styles */
   petCard: {
     height: 200,
     width: 160,
@@ -71,6 +72,56 @@ export default StyleSheet.create({
     fontFamily: 'QuicksandBold',
     color: '#333333',
   },
+  /* news/events styles */
+  eventTab: {
+    alignSelf: 'center',
+    height: 'auto',
+    width: Dimensions.get('window').width - 30,
+    backgroundColor: 'white',
+    borderRadius: 50,
+    overflow: 'hidden',
+    padding: 35,
+    paddingBottom: 30,
+    paddingTop: 25,
+    marginRight: 15,
+    marginLeft: 15,
+  },
+  eventHeader: {
+    fontFamily: 'QuicksandBold',
+    fontSize: 26,
+  },
+  eventDate: {
+    fontFamily: 'QuicksandSemiBold',
+    fontSize: 20,
+    paddingTop: 5,
+  },
+  eventText: {
+    fontFamily: 'QuicksandRegular',
+    fontSize: 20,
+    paddingLeft: 5,
+    paddingRight: 30,
+    textAlign: 'justify',
+  },
+  newsTab: {
+    alignSelf: 'center',
+    marginTop: 20,
+    height: 'auto',
+    width: Dimensions.get('window').width - 30,
+    backgroundColor: 'white',
+    borderRadius: 50,
+    overflow: 'hidden',
+    padding: 35,
+    paddingBottom: 30,
+    paddingTop: 25,
+    marginRight: 15,
+    marginLeft: 15,
+  },
+  newsHeader: {
+    fontFamily: 'QuicksandBold',
+    fontSize: 26,
+    textAlign: 'center',
+  },
+  /* map styles */
   containerMap: {
     flex: 1,
     backgroundColor: '#fff',
@@ -192,7 +243,7 @@ export default StyleSheet.create({
     height: 95,
     borderRadius: 47.5,
     backgroundColor: '#FFFFFF',
-    bottom: Platform.OS === 'ios' ? 25 : 8,
+    bottom: Platform.OS === 'ios' ? 16 : 8,
     borderWidth: 7,
     borderColor: '#69A297',
     elevation: 24,
