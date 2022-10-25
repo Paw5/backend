@@ -1,12 +1,18 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable global-require */
 import {
-  View, Text, ScrollView, Dimensions,
+  View, Text, ScrollView, Pressable, Image,
 } from 'react-native';
 import React from 'react';
 import { useFonts } from 'expo-font';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import Styles from '../constants/Styles';
+import DropShadow from 'react-native-drop-shadow';
+import { Feather } from '@expo/vector-icons';
+import SearchBar from '../components/SearchBarServ';
+import styles from '../constants/Styles';
+import ServNode from '../components/ServiceNode';
+
+const miso = require('../../assets/miso.jpg');
 
 const StatusBarHeight = getStatusBarHeight();
 
@@ -30,8 +36,17 @@ export default function ServicesTab() {
     >
 
       <View style={{ backgroundColor: '#e0777d', height: StatusBarHeight }} />
-      <ScrollView contentInset={{ bottom: 50 }} style={{ marginTop: 20 }}>
-        <Text style={Styles.healthHeader}>Services</Text>
+      <View style={styles.search}>
+        <SearchBar />
+      </View>
+      <ScrollView contentInset={{ bottom: 150 }} style={{ marginTop: 90 }}>
+        <ServNode />
+        <ServNode />
+        <ServNode />
+        <ServNode />
+        <ServNode />
+        <ServNode />
+        <ServNode />
       </ScrollView>
     </View>
   );
