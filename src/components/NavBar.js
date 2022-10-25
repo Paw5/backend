@@ -5,7 +5,7 @@
 // Required imports
 import React, { useState, useEffect } from 'react';
 import {
-  View, TouchableOpacity, StyleSheet, Dimensions, Animated, Modal, Pressable, Platform,
+  View, TouchableOpacity, Dimensions, Animated, Modal, Pressable, Platform,
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -21,200 +21,7 @@ import AccountPage from '../views/Account';
 import PawPics from '../views/PawPics';
 import PawPosts from '../views/PawPosts';
 import PMs from '../views/PMs';
-
-const TABBAR_WIDTH = Dimensions.get('window').width;
-const TAB_WIDTH = TABBAR_WIDTH / 5;
-
-const styles = StyleSheet.create({
-  tabBarContainer: {
-    backgroundColor: '#FFFFFF',
-    flexDirection: 'row',
-    position: 'absolute',
-    width: Dimensions.get('window').width + 6,
-    height: Platform.OS === 'ios' ? 80 : 73,
-    borderRadius: 5,
-    zIndex: 5,
-    // borderWidth: 4,
-    borderColor: 'rgba(158, 150, 150, .25)',
-    bottom: -5,
-    alignSelf: 'center',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 100,
-    shadowRadius: 20,
-    elevation: 24,
-  },
-  circleAnimated: {
-    width: TAB_WIDTH,
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: '#FFFFFF',
-    alignItems: 'center',
-  },
-  circle: {
-    width: 90,
-    height: 90,
-    borderRadius: 45,
-    backgroundColor: '#FFFFFF',
-    bottom: 30,
-    borderWidth: 0,
-    borderColor: '#69A297', // all pages will be one color so,,, just set it to that color
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 100,
-    shadowRadius: 20,
-    elevation: 24,
-  },
-  circle2: {
-    position: 'absolute',
-    width: 95,
-    height: 95,
-    borderRadius: 47.5,
-    backgroundColor: '#FFFFFF',
-    bottom: Platform.OS === 'ios' ? 25 : 8,
-    borderWidth: 7,
-    borderColor: '#69A297',
-    elevation: 24,
-  },
-  pawPupPic: {
-    position: 'absolute',
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 12,
-    width: 45,
-    height: 45,
-    borderRadius: 22.5,
-    marginLeft: (((Dimensions.get('window').width) / 5) * 3.5) - 81,
-    bottom: Platform.OS === 'ios' ? 102 : 85,
-    borderWidth: 7,
-    borderColor: '#69A297',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-  },
-  pawPupPost: {
-    position: 'absolute',
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-    marginLeft: (((Dimensions.get('window').width) / 5) * 3.5) - 25, // 55 normally
-    bottom: Platform.OS === 'ios' ? 127 : 110, // 0 normally
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 12,
-    width: 45,
-    height: 45,
-    borderRadius: 22.5,
-    borderWidth: 7,
-    borderColor: '#69A297',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-  },
-  pawPupPM: {
-    position: 'absolute',
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-    marginLeft: (((Dimensions.get('window').width) / 5) * 3.5) + 32,
-    bottom: Platform.OS === 'ios' ? 102 : 85,
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 12,
-    width: 45,
-    height: 45,
-    borderRadius: 22.5,
-    borderWidth: 7,
-    borderColor: '#69A297',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-  },
-  modalView: {
-    justifyContent: 'space-evenly',
-    backgroundColor: '#FFFFF',
-    alignSelf: 'center',
-  },
-  pawPupHealth: {
-    position: 'absolute',
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 12,
-    width: 45,
-    height: 45,
-    borderRadius: 22.5,
-    marginLeft: (((Dimensions.get('window').width) / 5) * 4.5) - 95,
-    bottom: Platform.OS === 'ios' ? 92 : 75,
-    borderWidth: 7,
-    borderColor: '#69A297',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-  },
-  pawPupAccount: {
-    position: 'absolute',
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-    marginLeft: (((Dimensions.get('window').width) / 5) * 4.5) - 55, // 55 normally
-    bottom: Platform.OS === 'ios' ? 122 : 105, // 0 normally
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 12,
-    width: 45,
-    height: 45,
-    borderRadius: 22.5,
-    borderWidth: 7,
-    borderColor: '#69A297',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-  },
-  pawPupSettings: {
-    position: 'absolute',
-    flex: 1,
-    backgroundColor: '#FFFFFF',
-    marginLeft: (((Dimensions.get('window').width) / 5) * 4.5) - 5,
-    bottom: Platform.OS === 'ios' ? 123 : 106,
-    justifyContent: 'center',
-    alignItems: 'center',
-    elevation: 12,
-    width: 45,
-    height: 45,
-    borderRadius: 22.5,
-    borderWidth: 7,
-    borderColor: '#69A297',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-  },
-});
+import styles from '../constants/Styles';
 
 function MyTabBar({ state, descriptors, navigation }) {
   const [translateX] = useState(new Animated.Value(0));
@@ -313,7 +120,7 @@ function MyTabBar({ state, descriptors, navigation }) {
           </TouchableOpacity>
         );
       })}
-      <View style={styles.modalView}>
+      <View style={styles.modalView1}>
         <Modal
           animationType="fade"
           transparent
