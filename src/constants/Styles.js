@@ -114,7 +114,7 @@ export default StyleSheet.create({
     fontFamily: 'QuicksandBold',
     color: '#333333',
   },
-/* services styles */
+  /* services styles */
   servHeader: {
     fontSize: 12,
     fontWeight: '600',
