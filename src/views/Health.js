@@ -99,7 +99,7 @@ export default function HealthTab() {
 
       <View style={{ backgroundColor: '#e0777d', height: StatusBarHeight }} />
 
-      <ScrollView contentInset={{ bottom: 50 }} style={{ marginTop: 20 }}>
+      <ScrollView contentInset={{ bottom: 150 }} style={{ marginTop: 20 }}>
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
