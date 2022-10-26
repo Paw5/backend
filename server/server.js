@@ -1,8 +1,7 @@
-import express from 'express';
+import express from 'express'; // library for creating server
 const app = express();
-import mongoose from "mongoose";
-//require("dotenv").config();
-import dotenv from "dotenv";
+import mongoose from "mongoose"; // library for connecting to MongoDB
+import dotenv from "dotenv"; // library for processing .env files
 
 dotenv.config();
 
@@ -18,15 +17,16 @@ app.use(function (req, res, next) {
     next();
   });
 
-const port = 3001;
-const uri = process.env.MONGODB_CONNECTION_STRING;
+const port = 3001; // port to listen on
+const uri = process.env.MONGODB_CONNECTION_STRING; // connection string used to connect to Atlas
 
+// establishes connection to database
 mongoose
     .connect(uri, { useNewUrlParser: true })
     .then(() => console.log("MongoDb Connected"));
 
-const db = mongoose.connection;
+const db = mongoose.connection; // holds the connection to database
 
 db.on("error", console.error.bind(console, "MongoDB connection error:"));
 
-app.listen(port, () => {console.log("Listening on port 3001")});
+app.listen(port, () => {console.log("Listening on port 3001")}); // has server listen for requests
