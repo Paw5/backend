@@ -46,6 +46,8 @@ export default function ServicesTab() {
           <ServNode />
           <ServNode />
           <ServNode />
+          <ServNode />
+          <ServNode />
         </ScrollView>
         <View style={styles.search}>
           <SearchBar />

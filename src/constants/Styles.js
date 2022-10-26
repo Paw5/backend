@@ -27,7 +27,7 @@ export default StyleSheet.create({
     alignSelf: 'center',
     margin: 10,
     marginTop: 0,
-    marginBottom: -30,
+    marginBottom: 10,
     borderRadius: 25,
   },
 

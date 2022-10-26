@@ -58,7 +58,7 @@ export default function HealthTab() {
             { useNativeDriver: true },
           )}
           style={{
-            width: Dimensions.get('window').width, height: 220, marginTop: 20,
+            width: Dimensions.get('window').width, height: 220, marginTop: 10,
           }}
         >
 

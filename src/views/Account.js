@@ -394,7 +394,7 @@ export default function ServicesTab() {
               pagingEnabled
               contentInset={{ left: 100, right: 100 }}
               style={{
-                width: Dimensions.get('window').width, paddingBottom: 100, marginTop: 100,
+                width: Dimensions.get('window').width, paddingBottom: 100, marginTop: 100, marginBottom: 50,
               }}
             >
 
