@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 /* eslint-disable no-unused-vars */
 import {
   View, Text, ScrollView, Pressable, Image, Dimensions,
@@ -16,110 +17,111 @@ const miso = require('../../assets/miso.jpg');
 const StatusBarHeight = getStatusBarHeight();
 
 export default function PawPostPost() {
-  const [isPicVisible, setPicVisible] = useState(false);
-  const togglePic = () => {
-    setPicVisible(!isPicVisible);
+  const [isPostVisible, setPostVisible] = useState(false);
+  const togglePost = () => {
+    setPostVisible(!isPostVisible);
   };
-
   return (
     <View>
       {/* <DropShadow style={styles.shadowProp}> */}
-      <Pressable style={[styles.picContainer, { height: 400 }]} onPress={togglePic}>
-        <Image
-          style={styles.picImage}
-          source={miso}
-        />
-        <View
-          style={styles.picBottomBand}
-        />
-        <Pressable>
-          <Feather
-            name="heart"
-            size={24}
-            color="#e0777d"
-            style={styles.likeLoc1}
-          />
+      <Pressable style={[styles.postContainer, { height: 200, marginTop: 30 }]} onPress={togglePost}>
+        <Text style={[styles.postDescription, {
+          paddingLeft: 0, top: 30, paddingBottom: 50, paddingRight: 10,
+        }]}
+        >
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor
+          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute i
+          dolor in reprehenderit in voluptate velit esse cillum dolore eu fiat nulla paatur.
+          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+          mollit anim id est laborum.
 
-        </Pressable>
-        <Pressable style={styles.ppProfileNameNode}>
-          <Text style={styles.picHeader2}>@user-name</Text>
-        </Pressable>
-        <Image
-          style={styles.ppProfileImage}
-          source={miso}
-        />
-        <Text style={[styles.picDescription, { left: 2, top: 290 }]}>Descriptive Text</Text>
-        <View
-          style={{
-            borderBottomColor: '#e0777d',
-            borderBottomWidth: 1,
-            borderRadius: 50,
-            top: 330,
-            marginTop: 5,
-            marginBottom: 5,
-            marginLeft: 20,
-            marginRight: 20,
-          }}
-        />
-        <Text style={[styles.picTag, { left: 2, top: 325 }]}>Tags</Text>
+        </Text>
       </Pressable>
+      <Pressable style={[styles.ppoProfileNameNode, { zIndex: 48, alignSelf: 'center' }]}>
+        <Text style={[styles.postHeader2, { zIndex: 49 }]}>@user-name</Text>
+      </Pressable>
+      <Image
+        style={[styles.ppoProfileImage, { zIndex: 50 }]}
+        source={miso}
+      />
 
       {/* </DropShadow> */}
       <Modal
-        isVisible={isPicVisible}
+        isVisible={isPostVisible}
         animationIn="slideInRight"
         animationOut="slideOutRight"
         hasBackdrop={false}
-        style={styles.picsModal}
+        style={styles.postModal}
       >
         <View>
-          <Image
-            style={styles.inspicImage}
-            source={miso}
-          />
-          <View
-            style={styles.inspicBottomBand}
-          />
-          <View style={styles.inspicContainer} />
+          <Text style={[styles.postDescription, {
+            paddingLeft: 0, top: 70, paddingBottom: 50, paddingRight: 10, position: 'absolute',
+          }]}
+          >
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute i
+            dolor in reprehenderit in voluptate velit esse cillum dolore eu fiat nulla paatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.
+
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute i
+            dolor in reprehenderit in voluptate velit esse cillum dolore eu fiat nulla paatur.
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.
+          </Text>
+          <View style={styles.inspostContainer} />
           <Pressable>
             <Feather
               name="heart"
               size={24}
               color="#e0777d"
-              style={styles.likeLoc2}
+              style={styles.likeLocPost}
             />
 
           </Pressable>
-          <Pressable style={styles.insppProfileNameNode}>
-            <Text style={styles.inspicHeader2}>@user-name</Text>
+          <Pressable>
+            <Feather
+              name="send"
+              size={24}
+              color="#e0777d"
+              style={styles.commLocPost}
+            />
+
+          </Pressable>
+          <Pressable style={styles.insppoProfileNameNode}>
+            <Text style={styles.inspostHeader2}>@user-name</Text>
           </Pressable>
           <Image
-            style={styles.insppProfileImage}
+            style={styles.insppoProfileImage}
             source={miso}
           />
-          <Text style={[styles.inspicDescription, { left: -8, top: (Dimensions.get('window').width - 20) }]}>Descriptive Text</Text>
+
           <View
             style={{
               borderBottomColor: '#e0777d',
               borderBottomWidth: 1,
               borderRadius: 50,
-              top: (Dimensions.get('window').width + 20),
+              top: (Dimensions.get('window').width + 60),
               marginTop: 5,
               marginBottom: 5,
               marginLeft: 10,
               marginRight: 20,
             }}
           />
-          <Text style={[styles.inspicTag, { left: -8, top: (Dimensions.get('window').width + 15) }]}>Tags</Text>
+          <Text style={[styles.inspostTag, { left: -8, top: (Dimensions.get('window').width + 60) }]}>Tags</Text>
           <Pressable
-            onPress={togglePic}
-            style={{ alignSelf: 'flex-start', zIndex: 45, top: -60 }}
+            onPress={togglePost}
+            style={{ alignSelf: 'flex-start', zIndex: 45, top: -15 }}
           >
             <Feather
               name="chevron-left"
               size={30}
-              color="#333333"
-              style={styles.exitPicButton}
+              color="white"
+              style={styles.exitPostButton}
             />
 
           </Pressable>
@@ -139,7 +141,7 @@ export default function PawPostPost() {
             position: 'absolute',
           }}
         />
-        <ScrollView contentInset={{ bottom: 150 }} style={{ marginLeft: 20, marginTop: (Dimensions.get('window').width - 20), marginBottom: 30 }}>
+        <ScrollView contentInset={{ bottom: 150 }} style={{ marginLeft: 20, marginTop: (Dimensions.get('window').width + 22), marginBottom: 30 }}>
           {/* REMOVE FROM HERE */}
           <View
             style={{

@@ -1,10 +1,14 @@
+/* eslint-disable no-unused-vars */
 import {
   StyleSheet, Dimensions, Platform,
 } from 'react-native';
 import Constants from 'expo-constants';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
 
 const TABBAR_WIDTH = Dimensions.get('window').width;
 const TAB_WIDTH = TABBAR_WIDTH / 5;
+
+const StatusBarHeight = getStatusBarHeight();
 
 // eslint-disable-next-line no-unused-vars
 export default StyleSheet.create({
@@ -163,6 +167,83 @@ export default StyleSheet.create({
     marginTop: 10,
     position: 'absolute',
   },
+  /* PawPost styles */
+  postContainer: {
+    alignSelf: 'center',
+    width: (Dimensions.get('window').width - 20),
+    backgroundColor: 'white',
+    borderRadius: 25,
+    overflow: 'hidden',
+    marginBottom: 20,
+  },
+
+  ppoProfileImage: {
+    height: 60,
+    width: 60,
+    top: 0,
+    left: ((Dimensions.get('window').width - 20) / 2) - (60 + 37.5),
+    borderRadius: 100,
+    borderWidth: 3,
+    position: 'absolute',
+    borderColor: '#e0777d',
+  },
+  postTopBand: {
+    height: 100,
+    width: 200,
+    borderRadius: 25,
+    borderColor: '#e0777d',
+    borderWidth: 300,
+    zIndex: 51,
+  },
+
+  ppoProfileNameNode: {
+    height: 30,
+    width: 160,
+    top: 15,
+    left: ((Dimensions.get('window').width - 20) / 2) - 60,
+    borderRadius: 100,
+    borderWidth: 3,
+    justifyContent: 'center',
+    position: 'absolute',
+    borderColor: '#e0777d',
+    backgroundColor: 'white',
+  },
+
+  postHeader: {
+    fontSize: 15,
+    fontWeight: '600',
+    letterSpacing: 1,
+    marginLeft: 105,
+    marginTop: 5,
+    fontFamily: 'QuicksandBold',
+    color: '#333333',
+  },
+
+  postHeader2: {
+    fontSize: 11,
+    fontWeight: '600',
+    letterSpacing: 1,
+    marginLeft: 20,
+    fontFamily: 'QuicksandBold',
+    color: '#333333',
+  },
+
+  postDescription: {
+    fontSize: 13,
+    fontWeight: '600',
+    letterSpacing: 1,
+    marginLeft: 20,
+    fontFamily: 'QuicksandBold',
+    color: '#333333',
+  },
+  postTag: {
+    fontSize: 11,
+    fontWeight: '600',
+    letterSpacing: 1,
+    marginLeft: 20,
+    fontFamily: 'QuicksandBold',
+    color: '#333333',
+  },
   /* PawPic styles */
   picImage: {
     height: 300,
@@ -173,6 +254,25 @@ export default StyleSheet.create({
     borderRadius: 25,
     alignSelf: 'center',
     position: 'absolute',
+  },
+
+  picBottomBand: {
+    height: 300,
+    width: (Dimensions.get('window').width - 18),
+    top: 0,
+    left: 3,
+    justifyContent: 'center',
+    borderRadius: 25,
+    borderColor: '#e0777d',
+    borderBottomWidth: 3,
+    borderRightWidth: 3,
+    alignSelf: 'center',
+    position: 'absolute',
+  },
+
+  likeLoc1: {
+    left: (Dimensions.get('window').width - 18) - 40,
+    top: 310,
   },
 
   picContainer: {
@@ -219,6 +319,23 @@ export default StyleSheet.create({
   },
 
   picHeader2: {
+    fontSize: 11,
+    fontWeight: '600',
+    letterSpacing: 1,
+    marginLeft: 20,
+    fontFamily: 'QuicksandBold',
+    color: '#333333',
+  },
+
+  picDescription: {
+    fontSize: 13,
+    fontWeight: '600',
+    letterSpacing: 1,
+    marginLeft: 20,
+    fontFamily: 'QuicksandBold',
+    color: '#333333',
+  },
+  picTag: {
     fontSize: 11,
     fontWeight: '600',
     letterSpacing: 1,
@@ -281,8 +398,6 @@ export default StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: Constants.statusBarHeight,
-    padding: 8,
   },
   map: {
     width: Dimensions.get('window').width,
@@ -390,6 +505,7 @@ export default StyleSheet.create({
     shadowOpacity: 100,
     shadowRadius: 20,
     elevation: 24,
+    zIndex: 99,
   },
   circle2: {
     position: 'absolute',
@@ -401,6 +517,7 @@ export default StyleSheet.create({
     borderWidth: 7,
     borderColor: '#69A297',
     elevation: 24,
+    zIndex: 99,
   },
   pawPupPic: {
     position: 'absolute',
@@ -538,5 +655,233 @@ export default StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
+  },
+  /* inspect pic styles */
+  picsModal: {
+    backgroundColor: '#69A297',
+    width: Dimensions.get('window').width,
+    marginLeft: 0,
+    height: Dimensions.get('window').height,
+    marginTop: StatusBarHeight - 28,
+    marginBottom: -20,
+    justifyContent: 'flex-start',
+    alignContent: 'center',
+    paddingLeft: 10,
+    zIndex: 1,
+  },
+  exitPicButton: {
+    alignSelf: 'center',
+    backgroundColor: 'white',
+    borderRadius: 25,
+    overflow: 'hidden',
+    zIndex: 45,
+    padding: 9,
+  },
+  inspicImage: {
+    height: (Dimensions.get('window').width),
+    width: (Dimensions.get('window').width),
+    top: 0,
+    left: -10,
+    justifyContent: 'center',
+    borderRadius: 25,
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+    alignSelf: 'center',
+    position: 'absolute',
+  },
+
+  inspicBottomBand: {
+    height: (Dimensions.get('window').width) + 200,
+    width: (Dimensions.get('window').width),
+    top: -200,
+    left: -10,
+    justifyContent: 'center',
+    borderRadius: 25,
+    borderColor: '#e0777d',
+    borderWidth: 3,
+    alignSelf: 'center',
+    position: 'absolute',
+  },
+
+  likeLoc2: {
+    left: (Dimensions.get('window').width - 18) - 40,
+    top: (Dimensions.get('window').width) + 5,
+  },
+
+  inspicContainer: {
+    alignSelf: 'center',
+    width: (Dimensions.get('window').width),
+    height: (Dimensions.get('window').width),
+    backgroundColor: 'white',
+    borderRadius: 25,
+    overflow: 'hidden',
+    left: -10,
+    top: 95,
+    position: 'absolute',
+    zIndex: -1,
+  },
+
+  insppProfileImage: {
+    height: 60,
+    width: 60,
+    top: (Dimensions.get('window').width - 55),
+    left: -10,
+    borderRadius: 100,
+    borderWidth: 3,
+    position: 'absolute',
+    borderColor: '#e0777d',
+  },
+
+  insppProfileNameNode: {
+    height: 25,
+    width: 160,
+    top: (Dimensions.get('window').width - 25),
+    left: 25.5,
+    borderRadius: 100,
+    borderWidth: 3,
+    justifyContent: 'center',
+    position: 'absolute',
+    borderColor: '#e0777d',
+    backgroundColor: 'white',
+  },
+
+  inspicHeader: {
+    fontSize: 15,
+    fontWeight: '600',
+    letterSpacing: 1,
+    marginLeft: 105,
+    marginTop: 5,
+    fontFamily: 'QuicksandBold',
+    color: '#333333',
+  },
+
+  inspicHeader2: {
+    fontSize: 11,
+    fontWeight: '600',
+    letterSpacing: 1,
+    marginLeft: 20,
+    fontFamily: 'QuicksandBold',
+    color: '#333333',
+  },
+
+  inspicDescription: {
+    fontSize: 13,
+    fontWeight: '600',
+    letterSpacing: 1,
+    marginLeft: 20,
+    fontFamily: 'QuicksandBold',
+    color: '#333333',
+  },
+  inspicTag: {
+    fontSize: 11,
+    fontWeight: '600',
+    letterSpacing: 1,
+    marginLeft: 20,
+    fontFamily: 'QuicksandBold',
+    color: '#333333',
+  },
+  /* inspect post styles */
+  postModal: {
+    backgroundColor: '#69A297',
+    width: Dimensions.get('window').width,
+    marginLeft: 0,
+    height: Dimensions.get('window').height,
+    marginTop: StatusBarHeight - 28,
+    marginBottom: -20,
+    justifyContent: 'flex-start',
+    alignContent: 'center',
+    paddingLeft: 10,
+    zIndex: 1,
+  },
+  exitPostButton: {
+    alignSelf: 'center',
+    backgroundColor: '#333333',
+    borderRadius: 25,
+    overflow: 'hidden',
+    zIndex: 45,
+    padding: 9,
+  },
+
+  inspostContainer: {
+    alignSelf: 'center',
+    width: (Dimensions.get('window').width),
+    height: (Dimensions.get('window').width) + 125,
+    backgroundColor: 'white',
+    borderRadius: 25,
+    overflow: 'hidden',
+    left: -10,
+    top: -30,
+    position: 'absolute',
+    zIndex: -1,
+  },
+
+  insppoProfileImage: {
+    height: 60,
+    width: 60,
+    top: 8,
+    left: ((Dimensions.get('window').width - 20) / 2) - (60 + 37.5),
+    borderRadius: 100,
+    borderWidth: 3,
+    position: 'absolute',
+    borderColor: '#e0777d',
+  },
+
+  insppoProfileNameNode: {
+    height: 25,
+    width: 160,
+    top: 25,
+    left: ((Dimensions.get('window').width - 20) / 2) - 60,
+    borderRadius: 100,
+    borderWidth: 3,
+    justifyContent: 'center',
+    position: 'absolute',
+    borderColor: '#e0777d',
+    backgroundColor: 'white',
+  },
+
+  inspostHeader: {
+    fontSize: 15,
+    fontWeight: '600',
+    letterSpacing: 1,
+    marginLeft: 105,
+    marginTop: 5,
+    fontFamily: 'QuicksandBold',
+    color: '#333333',
+  },
+
+  inspostHeader2: {
+    fontSize: 11,
+    fontWeight: '600',
+    letterSpacing: 1,
+    marginLeft: 20,
+    fontFamily: 'QuicksandBold',
+    color: '#333333',
+  },
+
+  inspostDescription: {
+    fontSize: 13,
+    fontWeight: '600',
+    letterSpacing: 1,
+    marginLeft: 20,
+    fontFamily: 'QuicksandBold',
+    color: '#333333',
+  },
+  likeLocPost: {
+    left: (Dimensions.get('window').width - 18) - 30,
+    top: 30,
+    position: 'absolute',
+  },
+  commLocPost: {
+    left: (Dimensions.get('window').width - 18) - 70,
+    top: 30,
+    position: 'absolute',
+  },
+  inspostTag: {
+    fontSize: 11,
+    fontWeight: '600',
+    letterSpacing: 1,
+    marginLeft: 20,
+    fontFamily: 'QuicksandBold',
+    color: '#333333',
   },
 });

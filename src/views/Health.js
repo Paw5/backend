@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable global-require */
 import {
   Pressable, View, Image, Text, Dimensions, Animated, ScrollView,
@@ -46,7 +47,7 @@ export default function HealthTab() {
           snapToAlignment="center"
           snapToInterval={180}
           contentOffset={{ x: -110 }}
-          decelerationRate="0"
+          // decelerationRate="0"
           disableIntervalMomentum
           directionalLockEnabled
           pagingEnabled
@@ -61,46 +62,46 @@ export default function HealthTab() {
           }}
         >
 
-          <DropShadow style={styles.shadowProp}>
-            <Pressable style={styles.petCard}>
-              <Image
-                style={styles.petImage}
-                source={miso}
-              />
-              <Text style={styles.petHeader}>Miso</Text>
+          {/* <DropShadow style={styles.shadowProp}> */}
+          <Pressable style={styles.petCard}>
+            <Image
+              style={styles.petImage}
+              source={miso}
+            />
+            <Text style={styles.petHeader}>Miso</Text>
 
-            </Pressable>
-          </DropShadow>
-          <DropShadow style={styles.shadowProp}>
-            <Pressable style={styles.petCard}>
-              <Image
-                style={styles.petImage}
-                source={miso}
-              />
-              <Text style={styles.petHeader}>Miso</Text>
+          </Pressable>
+          {/* </DropShadow> */}
+          {/* <DropShadow style={styles.shadowProp}> */}
+          <Pressable style={styles.petCard}>
+            <Image
+              style={styles.petImage}
+              source={miso}
+            />
+            <Text style={styles.petHeader}>Miso</Text>
 
-            </Pressable>
-          </DropShadow>
-          <DropShadow style={styles.shadowProp}>
-            <Pressable style={styles.petCard}>
-              <Image
-                style={styles.petImage}
-                source={miso}
-              />
-              <Text style={styles.petHeader}>Miso</Text>
+          </Pressable>
+          {/* </DropShadow> */}
+          {/* <DropShadow style={styles.shadowProp}> */}
+          <Pressable style={styles.petCard}>
+            <Image
+              style={styles.petImage}
+              source={miso}
+            />
+            <Text style={styles.petHeader}>Miso</Text>
 
-            </Pressable>
-          </DropShadow>
-          <DropShadow style={styles.shadowProp}>
-            <Pressable style={styles.petCard}>
-              <Image
-                style={styles.petImage}
-                source={miso}
-              />
-              <Text style={styles.petHeader}>Miso</Text>
+          </Pressable>
+          {/* </DropShadow> */}
+          {/* <DropShadow style={styles.shadowProp}> */}
+          <Pressable style={styles.petCard}>
+            <Image
+              style={styles.petImage}
+              source={miso}
+            />
+            <Text style={styles.petHeader}>Miso</Text>
 
-            </Pressable>
-          </DropShadow>
+          </Pressable>
+          {/* </DropShadow> */}
         </Animated.ScrollView>
 
         <View style={{
@@ -125,51 +126,51 @@ export default function HealthTab() {
           />
         </View>
 
-        <DropShadow style={styles.shadowProp}>
-          <Pressable style={[styles.healthContainer, { height: 200 }]}>
-            <Text style={styles.healthHeader}>Upcoming Appointments</Text>
-            <View
-              style={{
-                borderBottomColor: '#e0777d',
-                borderBottomWidth: 3,
-                borderRadius: 50,
-                marginLeft: 10,
-                marginRight: 10,
-              }}
-            />
-          </Pressable>
+        {/* <DropShadow style={styles.shadowProp}> */}
+        <Pressable style={[styles.healthContainer, { height: 200 }]}>
+          <Text style={styles.healthHeader}>Upcoming Appointments</Text>
+          <View
+            style={{
+              borderBottomColor: '#e0777d',
+              borderBottomWidth: 3,
+              borderRadius: 50,
+              marginLeft: 10,
+              marginRight: 10,
+            }}
+          />
+        </Pressable>
 
-        </DropShadow>
-        <DropShadow style={styles.shadowProp}>
-          <Pressable style={[styles.healthContainer, { height: 150 }]}>
-            <Text style={styles.healthHeader}>Did you feed the dog today?</Text>
-            <View
-              style={{
-                borderBottomColor: '#e0777d',
-                borderBottomWidth: 3,
-                borderRadius: 50,
-                marginLeft: 10,
-                marginRight: 10,
-              }}
-            />
-          </Pressable>
+        {/* </DropShadow> */}
+        {/* <DropShadow style={styles.shadowProp}> */}
+        <Pressable style={[styles.healthContainer, { height: 150 }]}>
+          <Text style={styles.healthHeader}>Did you feed the dog today?</Text>
+          <View
+            style={{
+              borderBottomColor: '#e0777d',
+              borderBottomWidth: 3,
+              borderRadius: 50,
+              marginLeft: 10,
+              marginRight: 10,
+            }}
+          />
+        </Pressable>
 
-        </DropShadow>
-        <DropShadow style={styles.shadowProp}>
-          <Pressable style={[styles.healthContainer, { height: 300 }]}>
-            <Text style={styles.healthHeader}>Walk Tracker</Text>
-            <View
-              style={{
-                borderBottomColor: '#e0777d',
-                borderBottomWidth: 3,
-                borderRadius: 50,
-                marginLeft: 10,
-                marginRight: 10,
-              }}
-            />
-          </Pressable>
+        {/* </DropShadow> */}
+        {/* <DropShadow style={styles.shadowProp}> */}
+        <Pressable style={[styles.healthContainer, { height: 300 }]}>
+          <Text style={styles.healthHeader}>Walk Tracker</Text>
+          <View
+            style={{
+              borderBottomColor: '#e0777d',
+              borderBottomWidth: 3,
+              borderRadius: 50,
+              marginLeft: 10,
+              marginRight: 10,
+            }}
+          />
+        </Pressable>
 
-        </DropShadow>
+        {/* </DropShadow> */}
 
       </ScrollView>
     </View>

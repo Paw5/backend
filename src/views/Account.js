@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable global-require */
 import {
   View, Text, Dimensions, StyleSheet, Pressable, Image, ScrollView,
@@ -176,47 +177,47 @@ export default function ServicesTab() {
 
       <View style={{ backgroundColor: '#e0777d', height: StatusBarHeight, marginBottom: 30 }} />
       <View>
-        <DropShadow style={styles.shadowProp}>
-          <View style={styles.profileBorder}>
-            <Image
-              style={styles.profileImage}
-              source={miso}
-            />
-          </View>
-        </DropShadow>
-      </View>
-      <DropShadow style={styles.shadowProp}>
-        <View style={[styles.menuItem, { marginBottom: 50, justifyContent: 'center', backgroundColor: '#e0777d' }]}>
-          <Text
-            adjustsFontSizeToFit
-            numberOfLines={1}
-            style={[styles.menuText, { width: 'auto', fontSize: 32, color: 'white' }]}
-          >
-            UserName
-          </Text>
-
-        </View>
-
-      </DropShadow>
-      <DropShadow style={styles.shadowProp}>
-        <Pressable onPress={toggleProfile} style={styles.menuItem}>
-          <Text
-            adjustsFontSizeToFit
-            numberOfLines={1}
-            style={styles.menuText}
-          >
-            Edit Profile
-          </Text>
-          <Feather
-            name="chevron-right"
-            size={30}
-            color="#333333"
-            style={{ marginRight: -5 }}
+        {/* <DropShadow style={styles.shadowProp}> */}
+        <View style={styles.profileBorder}>
+          <Image
+            style={styles.profileImage}
+            source={miso}
           />
+        </View>
+        {/* </DropShadow> */}
+      </View>
+      {/* <DropShadow style={styles.shadowProp}> */}
+      <View style={[styles.menuItem, { marginBottom: 50, justifyContent: 'center', backgroundColor: '#e0777d' }]}>
+        <Text
+          adjustsFontSizeToFit
+          numberOfLines={1}
+          style={[styles.menuText, { width: 'auto', fontSize: 32, color: 'white' }]}
+        >
+          UserName
+        </Text>
 
-        </Pressable>
+      </View>
 
-      </DropShadow>
+      {/* </DropShadow> */}
+      {/* <DropShadow style={styles.shadowProp}> */}
+      <Pressable onPress={toggleProfile} style={styles.menuItem}>
+        <Text
+          adjustsFontSizeToFit
+          numberOfLines={1}
+          style={styles.menuText}
+        >
+          Edit Profile
+        </Text>
+        <Feather
+          name="chevron-right"
+          size={30}
+          color="#333333"
+          style={{ marginRight: -5 }}
+        />
+
+      </Pressable>
+
+      {/* </DropShadow> */}
 
       {/* profile options modal */}
       <Modal
@@ -241,122 +242,122 @@ export default function ServicesTab() {
           </Pressable>
 
           <View>
-            <DropShadow style={styles.shadowProp}>
-              <View style={{ justifyContent: 'flex-end' }}>
-                <Image
-                  resizeMode="cover"
-                  style={styles.profileIcon}
-                  source={miso}
+            {/* <DropShadow style={styles.shadowProp}> */}
+            <View style={{ justifyContent: 'flex-end' }}>
+              <Image
+                resizeMode="cover"
+                style={styles.profileIcon}
+                source={miso}
+              />
+              <Pressable>
+                <Feather
+                  name="camera"
+                  size={30}
+                  color="#e0777d"
+                  style={styles.cameraIcon}
                 />
-                <Pressable>
-                  <Feather
-                    name="camera"
-                    size={30}
-                    color="#e0777d"
-                    style={styles.cameraIcon}
-                  />
-                </Pressable>
-              </View>
-            </DropShadow>
+              </Pressable>
+            </View>
+            {/* </DropShadow> */}
           </View>
 
-          <DropShadow style={styles.shadowProp}>
-            <Pressable style={[styles.menuItem, { width: Dimensions.get('window').width - 40 }]}>
-              <Text
-                style={[styles.menuText, { fontSize: 18, width: 'auto', color: '#e0777d' }]}
-              >
-                Username
-              </Text>
-              <Text
-                style={[styles.menuText, { fontSize: 22, width: 'auto' }]}
-              >
-                Users name
-              </Text>
-            </Pressable>
-          </DropShadow>
+          {/* <DropShadow style={styles.shadowProp}> */}
+          <Pressable style={[styles.menuItem, { width: Dimensions.get('window').width - 40 }]}>
+            <Text
+              style={[styles.menuText, { fontSize: 18, width: 'auto', color: '#e0777d' }]}
+            >
+              Username
+            </Text>
+            <Text
+              style={[styles.menuText, { fontSize: 22, width: 'auto' }]}
+            >
+              Users name
+            </Text>
+          </Pressable>
+          {/* </DropShadow> */}
 
-          <DropShadow style={styles.shadowProp}>
-            <Pressable style={[styles.menuItem, { width: Dimensions.get('window').width - 40 }]}>
-              <Text
-                style={[styles.menuText, { fontSize: 18, width: 'auto', color: '#e0777d' }]}
-              >
-                First Name
-              </Text>
-              <Text
-                style={[styles.menuText, { fontSize: 22, width: 'auto' }]}
-              >
-                Users name
-              </Text>
-            </Pressable>
-          </DropShadow>
+          {/* <DropShadow style={styles.shadowProp}> */}
+          <Pressable style={[styles.menuItem, { width: Dimensions.get('window').width - 40 }]}>
+            <Text
+              style={[styles.menuText, { fontSize: 18, width: 'auto', color: '#e0777d' }]}
+            >
+              First Name
+            </Text>
+            <Text
+              style={[styles.menuText, { fontSize: 22, width: 'auto' }]}
+            >
+              Users name
+            </Text>
+          </Pressable>
+          {/* </DropShadow> */}
 
-          <DropShadow style={styles.shadowProp}>
-            <Pressable style={[styles.menuItem, { width: Dimensions.get('window').width - 40 }]}>
-              <Text
-                style={[styles.menuText, { fontSize: 18, width: 'auto', color: '#e0777d' }]}
-              >
-                Last Name
-              </Text>
-              <Text
-                style={[styles.menuText, { fontSize: 22, width: 'auto' }]}
-              >
-                Users name
-              </Text>
-            </Pressable>
-          </DropShadow>
+          {/* <DropShadow style={styles.shadowProp}> */}
+          <Pressable style={[styles.menuItem, { width: Dimensions.get('window').width - 40 }]}>
+            <Text
+              style={[styles.menuText, { fontSize: 18, width: 'auto', color: '#e0777d' }]}
+            >
+              Last Name
+            </Text>
+            <Text
+              style={[styles.menuText, { fontSize: 22, width: 'auto' }]}
+            >
+              Users name
+            </Text>
+          </Pressable>
+          {/* </DropShadow> */}
 
-          <DropShadow style={styles.shadowProp}>
-            <Pressable style={[styles.menuItem, { width: Dimensions.get('window').width - 40 }]}>
-              <Text
-                style={[styles.menuText, { fontSize: 18, width: 'auto', color: '#e0777d' }]}
-              >
-                Date of Birth
-              </Text>
-              <Text
-                style={[styles.menuText, { fontSize: 22, width: 'auto' }]}
-              >
-                Date
-              </Text>
-            </Pressable>
-          </DropShadow>
+          {/* <DropShadow style={styles.shadowProp}> */}
+          <Pressable style={[styles.menuItem, { width: Dimensions.get('window').width - 40 }]}>
+            <Text
+              style={[styles.menuText, { fontSize: 18, width: 'auto', color: '#e0777d' }]}
+            >
+              Date of Birth
+            </Text>
+            <Text
+              style={[styles.menuText, { fontSize: 22, width: 'auto' }]}
+            >
+              Date
+            </Text>
+          </Pressable>
+          {/* </DropShadow> */}
 
-          <DropShadow style={styles.shadowProp}>
-            <Pressable style={[styles.menuItem, { width: Dimensions.get('window').width - 40 }]}>
-              <Text
-                style={[styles.menuText, { fontSize: 18, width: 'auto', color: '#e0777d' }]}
-              >
-                Location
-              </Text>
-              <Text
-                style={[styles.menuText, { fontSize: 22, width: 'auto' }]}
-              >
-                Location Data
-              </Text>
-            </Pressable>
-          </DropShadow>
+          {/* <DropShadow style={styles.shadowProp}> */}
+          <Pressable style={[styles.menuItem, { width: Dimensions.get('window').width - 40 }]}>
+            <Text
+              style={[styles.menuText, { fontSize: 18, width: 'auto', color: '#e0777d' }]}
+            >
+              Location
+            </Text>
+            <Text
+              style={[styles.menuText, { fontSize: 22, width: 'auto' }]}
+            >
+              Location Data
+            </Text>
+          </Pressable>
+          {/* </DropShadow> */}
 
         </View>
       </Modal>
 
-      <DropShadow style={styles.shadowProp}>
-        <Pressable onPress={togglePets} style={styles.menuItem}>
-          <Text
-            adjustsFontSizeToFit
-            numberOfLines={1}
-            style={styles.menuText}
-          >
-            Edit Pets
-          </Text>
-          <Feather
-            name="chevron-right"
-            size={30}
-            color="#333333"
-            style={{ marginRight: -5 }}
-          />
+      {/* <DropShadow style={styles.shadowProp}> */}
+      <Pressable onPress={togglePets} style={styles.menuItem}>
+        <Text
+          adjustsFontSizeToFit
+          numberOfLines={1}
+          style={styles.menuText}
+        >
+          Edit Pets
+        </Text>
+        <Feather
+          name="chevron-right"
+          size={30}
+          color="#333333"
+          style={{ marginRight: -5 }}
+        />
 
-        </Pressable>
+      </Pressable>
 
-      </DropShadow>
+      {/* </DropShadow> */}
 
       {/* pets options modal */}
       <Modal
@@ -387,7 +388,7 @@ export default function ServicesTab() {
               snapToAlignment="center"
               snapToInterval={180}
               contentOffset={{ x: -110 }}
-              decelerationRate="fast"
+              // decelerationRate="fast"
               disableIntervalMomentum
               directionalLockEnabled
               pagingEnabled
@@ -397,138 +398,138 @@ export default function ServicesTab() {
               }}
             >
 
-              <DropShadow style={styles.shadowProp}>
-                <Pressable style={styles.petCard}>
-                  <Image
-                    style={styles.petImage}
-                    source={miso}
-                  />
-                  <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Text
-                      style={styles.petHeader}
-                    >
-                      Miso
-                    </Text>
-                    <Pressable>
-                      <Feather
-                        name="x-circle"
-                        size={30}
-                        color="#e0777d"
-                        style={{ alignSelf: 'center', paddingLeft: 10, paddingTop: 10 }}
-                      />
-                    </Pressable>
-                  </View>
-                </Pressable>
-              </DropShadow>
+              {/* <DropShadow style={styles.shadowProp}> */}
+              <Pressable style={styles.petCard}>
+                <Image
+                  style={styles.petImage}
+                  source={miso}
+                />
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                  <Text
+                    style={styles.petHeader}
+                  >
+                    Miso
+                  </Text>
+                  <Pressable>
+                    <Feather
+                      name="x-circle"
+                      size={30}
+                      color="#e0777d"
+                      style={{ alignSelf: 'center', paddingLeft: 10, paddingTop: 10 }}
+                    />
+                  </Pressable>
+                </View>
+              </Pressable>
+              {/* </DropShadow> */}
 
-              <DropShadow style={styles.shadowProp}>
-                <Pressable style={styles.petCard}>
-                  <Image
-                    style={styles.petImage}
-                    source={miso}
-                  />
-                  <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Text
-                      style={styles.petHeader}
-                    >
-                      Miso
-                    </Text>
-                    <Pressable>
-                      <Feather
-                        name="x-circle"
-                        size={30}
-                        color="#e0777d"
-                        style={{ alignSelf: 'center', paddingLeft: 10, paddingTop: 10 }}
-                      />
-                    </Pressable>
-                  </View>
-                </Pressable>
-              </DropShadow>
+              {/* <DropShadow style={styles.shadowProp}> */}
+              <Pressable style={styles.petCard}>
+                <Image
+                  style={styles.petImage}
+                  source={miso}
+                />
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                  <Text
+                    style={styles.petHeader}
+                  >
+                    Miso
+                  </Text>
+                  <Pressable>
+                    <Feather
+                      name="x-circle"
+                      size={30}
+                      color="#e0777d"
+                      style={{ alignSelf: 'center', paddingLeft: 10, paddingTop: 10 }}
+                    />
+                  </Pressable>
+                </View>
+              </Pressable>
+              {/* </DropShadow> */}
 
-              <DropShadow style={styles.shadowProp}>
-                <Pressable style={styles.petCard}>
-                  <Image
-                    style={styles.petImage}
-                    source={miso}
-                  />
-                  <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Text
-                      style={styles.petHeader}
-                    >
-                      Miso
-                    </Text>
-                    <Pressable>
-                      <Feather
-                        name="x-circle"
-                        size={30}
-                        color="#e0777d"
-                        style={{ alignSelf: 'center', paddingLeft: 10, paddingTop: 10 }}
-                      />
-                    </Pressable>
-                  </View>
-                </Pressable>
-              </DropShadow>
+              {/* <DropShadow style={styles.shadowProp}> */}
+              <Pressable style={styles.petCard}>
+                <Image
+                  style={styles.petImage}
+                  source={miso}
+                />
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                  <Text
+                    style={styles.petHeader}
+                  >
+                    Miso
+                  </Text>
+                  <Pressable>
+                    <Feather
+                      name="x-circle"
+                      size={30}
+                      color="#e0777d"
+                      style={{ alignSelf: 'center', paddingLeft: 10, paddingTop: 10 }}
+                    />
+                  </Pressable>
+                </View>
+              </Pressable>
+              {/* </DropShadow> */}
 
-              <DropShadow style={styles.shadowProp}>
-                <Pressable style={styles.petCard}>
-                  <Image
-                    style={styles.petImage}
-                    source={miso}
-                  />
-                  <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                    <Text
-                      style={styles.petHeader}
-                    >
-                      Miso
-                    </Text>
-                    <Pressable>
-                      <Feather
-                        name="x-circle"
-                        size={30}
-                        color="#e0777d"
-                        style={{ alignSelf: 'center', paddingLeft: 10, paddingTop: 10 }}
-                      />
-                    </Pressable>
-                  </View>
-                </Pressable>
-              </DropShadow>
+              {/* <DropShadow style={styles.shadowProp}> */}
+              <Pressable style={styles.petCard}>
+                <Image
+                  style={styles.petImage}
+                  source={miso}
+                />
+                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+                  <Text
+                    style={styles.petHeader}
+                  >
+                    Miso
+                  </Text>
+                  <Pressable>
+                    <Feather
+                      name="x-circle"
+                      size={30}
+                      color="#e0777d"
+                      style={{ alignSelf: 'center', paddingLeft: 10, paddingTop: 10 }}
+                    />
+                  </Pressable>
+                </View>
+              </Pressable>
+              {/* </DropShadow> */}
             </ScrollView>
 
-            <DropShadow style={styles.shadowProp}>
-              <Pressable style={[styles.menuItem, { marginTop: 20, width: Dimensions.get('window').width - 40 }]}>
-                <Text
-                  adjustsFontSizeToFit
-                  numberOfLines={1}
-                  style={styles.menuText}
-                >
-                  Add Pet
-                </Text>
-                <Feather
-                  name="plus-circle"
-                  size={30}
-                  color="#e0777d"
-                  style={{ marginRight: -5 }}
-                />
-              </Pressable>
-            </DropShadow>
+            {/* <DropShadow style={styles.shadowProp}> */}
+            <Pressable style={[styles.menuItem, { marginTop: 20, width: Dimensions.get('window').width - 40 }]}>
+              <Text
+                adjustsFontSizeToFit
+                numberOfLines={1}
+                style={styles.menuText}
+              >
+                Add Pet
+              </Text>
+              <Feather
+                name="plus-circle"
+                size={30}
+                color="#e0777d"
+                style={{ marginRight: -5 }}
+              />
+            </Pressable>
+            {/* </DropShadow> */}
           </View>
 
         </View>
       </Modal>
 
-      <DropShadow style={styles.shadowProp}>
-        <Pressable style={styles.menuItem}>
-          <Text
-            adjustsFontSizeToFit
-            numberOfLines={1}
-            style={styles.menuText}
-          >
-            Sign out
-          </Text>
+      {/* <DropShadow style={styles.shadowProp}> */}
+      <Pressable style={styles.menuItem}>
+        <Text
+          adjustsFontSizeToFit
+          numberOfLines={1}
+          style={styles.menuText}
+        >
+          Sign out
+        </Text>
 
-        </Pressable>
+      </Pressable>
 
-      </DropShadow>
+      {/* </DropShadow> */}
     </View>
   );
 }
