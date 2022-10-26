@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable global-require */
 import {
-  View, Text, ScrollView, Pressable, Image,
+  View, Text, ScrollView, Pressable, Image, Platform,
 } from 'react-native';
 import React from 'react';
 import { useFonts } from 'expo-font';
@@ -38,7 +38,7 @@ export default function ServicesTab() {
       <View style={{ backgroundColor: '#e0777d', height: StatusBarHeight }} />
       <View style={[styles.containerMap, { backgroundColor: '#69A297' }]}>
 
-        <ScrollView contentInset={{ bottom: 150 }} style={{ marginTop: 90 }}>
+        <ScrollView contentInset={{ bottom: 150 }} style={{ marginTop: 90, marginBottom: Platform.OS === 'android' ? 68 : 0 }}>
           <ServNode />
           <ServNode />
           <ServNode />
