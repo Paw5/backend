@@ -34,20 +34,22 @@ export default function PawPics() {
       flex: 1, backgroundColor: '#69A297',
     }}
     >
-
       <View style={{ backgroundColor: '#e0777d', height: StatusBarHeight }} />
-      <View style={styles.search}>
-        <SearchBar />
+      <View style={[styles.containerMap, { backgroundColor: '#69A297' }]}>
+
+        <ScrollView contentInset={{ bottom: 150 }} style={{ marginTop: 90, marginBottom: 68 }}>
+          <PawPicsPost />
+          <PawPicsPost />
+          <PawPicsPost />
+          <PawPicsPost />
+          <PawPicsPost />
+          <PawPicsPost />
+          <PawPicsPost />
+        </ScrollView>
+        <View style={styles.search}>
+          <SearchBar />
+        </View>
       </View>
-      <ScrollView contentInset={{ bottom: 150 }} style={{ marginTop: 90 }}>
-        <PawPicsPost />
-        <PawPicsPost />
-        <PawPicsPost />
-        <PawPicsPost />
-        <PawPicsPost />
-        <PawPicsPost />
-        <PawPicsPost />
-      </ScrollView>
     </View>
   );
 }
