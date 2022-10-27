@@ -10,6 +10,10 @@ const TAB_WIDTH = TABBAR_WIDTH / 5;
 
 const StatusBarHeight = getStatusBarHeight();
 
+export const pawPink = '#e0777d';
+export const pawGreen = '#69a297';
+export const pawGrey = '#333333';
+
 // eslint-disable-next-line no-unused-vars
 export default StyleSheet.create({
   /* health styles */
@@ -17,7 +21,7 @@ export default StyleSheet.create({
     height: 200,
     width: 160,
     backgroundColor: 'white',
-    color: '#333333',
+    color: pawGrey,
     paddingLeft: 30,
     paddingRight: 30,
     paddingTop: 0,
@@ -32,7 +36,7 @@ export default StyleSheet.create({
   },
 
   shadowProp: {
-    shadowColor: '#333333',
+    shadowColor: pawGrey,
     shadowOffset: { width: 5, height: 5 },
     shadowOpacity: 0.4,
     shadowRadius: 2,
@@ -45,7 +49,7 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginTop: 5,
     fontFamily: 'QuicksandBold',
-    color: '#333333',
+    color: pawGrey,
   },
 
   petImage: {
@@ -53,7 +57,7 @@ export default StyleSheet.create({
     width: 135,
     borderRadius: 100,
     borderWidth: 3,
-    borderColor: '#e0777d',
+    borderColor: pawPink,
   },
 
   healthContainer: {
@@ -74,7 +78,7 @@ export default StyleSheet.create({
     marginTop: 15,
     marginBottom: 5,
     fontFamily: 'QuicksandBold',
-    color: '#333333',
+    color: pawGrey,
   },
   /* services styles */
   servImage: {
@@ -87,7 +91,7 @@ export default StyleSheet.create({
     borderRadius: 25,
     alignSelf: 'center',
     position: 'absolute',
-    borderColor: '#e0777d',
+    borderColor: pawPink,
   },
 
   servLeft: {
@@ -97,7 +101,7 @@ export default StyleSheet.create({
     position: 'absolute',
     justifyContent: 'center',
     alignContent: 'center',
-    borderColor: '#e0777d',
+    borderColor: pawPink,
   },
 
   servCheck: {
@@ -108,7 +112,7 @@ export default StyleSheet.create({
     borderRightWidth: 3,
     borderTopWidth: 3,
     backgroundColor: 'white',
-    borderColor: '#e0777d',
+    borderColor: pawPink,
   },
   servContainer: {
     alignSelf: 'center',
@@ -126,7 +130,7 @@ export default StyleSheet.create({
     marginLeft: 105,
     marginTop: 5,
     fontFamily: 'QuicksandBold',
-    color: '#333333',
+    color: pawGrey,
   },
 
   servHeader2: {
@@ -135,7 +139,7 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 105,
     fontFamily: 'QuicksandBold',
-    color: '#333333',
+    color: pawGrey,
   },
 
   servStar1: {
@@ -176,7 +180,7 @@ export default StyleSheet.create({
     width: TABBAR_WIDTH - 20,
     alignSelf: 'center',
     borderWidth: 4,
-    borderColor: '#e0777d',
+    borderColor: pawPink,
     flexDirection: 'row',
     alignContent: 'center',
     marginBottom: 20,
@@ -189,7 +193,7 @@ export default StyleSheet.create({
     borderRadius: 100,
     overflow: 'hidden',
     borderWidth: 5,
-    borderColor: '#e0777d',
+    borderColor: pawPink,
   },
   pmPreview: {
     paddingTop: 6,
@@ -199,13 +203,13 @@ export default StyleSheet.create({
   pmUserPreview: {
     fontFamily: 'QuicksandSemiBold',
     fontSize: 22,
-    color: '#333333',
+    color: pawGrey,
   },
   pmUserMessagePreview: {
     paddingTop: 2,
     fontFamily: 'QuicksandLight',
     fontSize: 18,
-    color: '#333333',
+    color: pawGrey,
   },
   pmMessageIcons: {
     flex: 1,
@@ -233,13 +237,13 @@ export default StyleSheet.create({
     borderRadius: 100,
     borderWidth: 3,
     position: 'absolute',
-    borderColor: '#e0777d',
+    borderColor: pawPink,
   },
   postTopBand: {
     height: 100,
     width: 200,
     borderRadius: 25,
-    borderColor: '#e0777d',
+    borderColor: pawPink,
     borderWidth: 300,
     zIndex: 51,
   },
@@ -253,7 +257,7 @@ export default StyleSheet.create({
     borderWidth: 3,
     justifyContent: 'center',
     position: 'absolute',
-    borderColor: '#e0777d',
+    borderColor: pawPink,
     backgroundColor: 'white',
   },
 
@@ -264,7 +268,7 @@ export default StyleSheet.create({
     marginLeft: 105,
     marginTop: 5,
     fontFamily: 'QuicksandBold',
-    color: '#333333',
+    color: pawGrey,
   },
 
   postHeader2: {
@@ -273,7 +277,7 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: '#333333',
+    color: pawGrey,
   },
 
   postDescription: {
@@ -282,7 +286,7 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: '#333333',
+    color: pawGrey,
   },
   postTag: {
     fontSize: 11,
@@ -290,7 +294,7 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: '#333333',
+    color: pawGrey,
   },
   /* PawPic styles */
   picImage: {
@@ -311,7 +315,7 @@ export default StyleSheet.create({
     left: 3,
     justifyContent: 'center',
     borderRadius: 25,
-    borderColor: '#e0777d',
+    borderColor: pawPink,
     borderBottomWidth: 3,
     borderRightWidth: 3,
     alignSelf: 'center',
@@ -340,7 +344,7 @@ export default StyleSheet.create({
     borderRadius: 100,
     borderWidth: 3,
     position: 'absolute',
-    borderColor: '#e0777d',
+    borderColor: pawPink,
   },
 
   ppProfileNameNode: {
@@ -352,7 +356,7 @@ export default StyleSheet.create({
     borderWidth: 3,
     justifyContent: 'center',
     position: 'absolute',
-    borderColor: '#e0777d',
+    borderColor: pawPink,
     backgroundColor: 'white',
   },
 
@@ -363,7 +367,7 @@ export default StyleSheet.create({
     marginLeft: 105,
     marginTop: 5,
     fontFamily: 'QuicksandBold',
-    color: '#333333',
+    color: pawGrey,
   },
 
   picHeader2: {
@@ -372,7 +376,7 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: '#333333',
+    color: pawGrey,
   },
 
   picDescription: {
@@ -381,7 +385,7 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: '#333333',
+    color: pawGrey,
   },
   picTag: {
     fontSize: 11,
@@ -389,7 +393,7 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: '#333333',
+    color: pawGrey,
   },
   /* news/events styles */
   eventTab: {
@@ -442,7 +446,6 @@ export default StyleSheet.create({
   },
   /* map styles */
   containerMap: {
-    flex: 1,
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
@@ -452,12 +455,10 @@ export default StyleSheet.create({
     height: Dimensions.get('window').height,
   },
   search: {
-    position: 'absolute',
-    height: '100%',
     width: '100%',
     justifyContent: 'space-between',
-    flex: 1,
-    marginTop: 40,
+    marginBottom: -10,
+    marginTop: -10,
   },
   container: {
     margin: 15,
@@ -497,15 +498,33 @@ export default StyleSheet.create({
     right: -5,
     elevation: 20,
   },
+  filtersClose: {
+    position: 'absolute',
+    marginLeft: 50,
+    height: 45,
+    width: 45,
+    flex: 1,
+    backgroundColor: 'white',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderWidth: 4,
+    borderColor: pawGreen,
+    borderRadius: 22.5,
+    borderTopLeftRadius: 0,
+    borderBottomRightRadius: 0,
+    right: 0,
+    elevation: 20,
+  },
   modalView: {
     margin: 15,
     flexDirection: 'row',
     // alignItems: 'center',
     padding: 45,
-    width: '90%',
+    marginTop: StatusBarHeight + 12,
+    width: '92%',
     justifyContent: 'space-between',
     backgroundColor: 'white',
-    borderRadius: 20,
+    borderRadius: 22.5,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -548,7 +567,7 @@ export default StyleSheet.create({
     backgroundColor: '#FFFFFF',
     bottom: 30,
     borderWidth: 0,
-    borderColor: '#69A297', // all pages will be one color so,,, just set it to that color
+    borderColor: pawGreen, // all pages will be one color so,,, just set it to that color
     shadowColor: '#000',
     shadowOffset: { width: 0, height: 1 },
     shadowOpacity: 100,
@@ -564,7 +583,7 @@ export default StyleSheet.create({
     backgroundColor: '#FFFFFF',
     bottom: Platform.OS === 'ios' ? 16 : 8,
     borderWidth: 7,
-    borderColor: '#69A297',
+    borderColor: pawGreen,
     elevation: 24,
     zIndex: 99,
   },
@@ -581,7 +600,7 @@ export default StyleSheet.create({
     marginLeft: (((Dimensions.get('window').width) / 5) * 3.5) - 81,
     bottom: Platform.OS === 'ios' ? 102 : 85,
     borderWidth: 7,
-    borderColor: '#69A297',
+    borderColor: pawGreen,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -603,7 +622,7 @@ export default StyleSheet.create({
     height: 45,
     borderRadius: 22.5,
     borderWidth: 7,
-    borderColor: '#69A297',
+    borderColor: pawGreen,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -625,7 +644,7 @@ export default StyleSheet.create({
     height: 45,
     borderRadius: 22.5,
     borderWidth: 7,
-    borderColor: '#69A297',
+    borderColor: pawGreen,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -652,7 +671,7 @@ export default StyleSheet.create({
     marginLeft: (((Dimensions.get('window').width) / 5) * 4.5) - 95,
     bottom: Platform.OS === 'ios' ? 92 : 75,
     borderWidth: 7,
-    borderColor: '#69A297',
+    borderColor: pawGreen,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -674,7 +693,7 @@ export default StyleSheet.create({
     height: 45,
     borderRadius: 22.5,
     borderWidth: 7,
-    borderColor: '#69A297',
+    borderColor: pawGreen,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -696,7 +715,7 @@ export default StyleSheet.create({
     height: 45,
     borderRadius: 22.5,
     borderWidth: 7,
-    borderColor: '#69A297',
+    borderColor: pawGreen,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -707,11 +726,11 @@ export default StyleSheet.create({
   },
   /* inspect pic styles */
   picsModal: {
-    backgroundColor: '#69A297',
+    backgroundColor: pawGreen,
     width: Dimensions.get('window').width,
     marginLeft: 0,
     height: Dimensions.get('window').height,
-    marginTop: StatusBarHeight - 28,
+    marginTop: 0,
     marginBottom: -20,
     justifyContent: 'flex-start',
     alignContent: 'center',
@@ -746,7 +765,7 @@ export default StyleSheet.create({
     left: -10,
     justifyContent: 'center',
     borderRadius: 25,
-    borderColor: '#e0777d',
+    borderColor: pawPink,
     borderWidth: 3,
     alignSelf: 'center',
     position: 'absolute',
@@ -778,7 +797,7 @@ export default StyleSheet.create({
     borderRadius: 100,
     borderWidth: 3,
     position: 'absolute',
-    borderColor: '#e0777d',
+    borderColor: pawPink,
   },
 
   insppProfileNameNode: {
@@ -790,7 +809,7 @@ export default StyleSheet.create({
     borderWidth: 3,
     justifyContent: 'center',
     position: 'absolute',
-    borderColor: '#e0777d',
+    borderColor: pawPink,
     backgroundColor: 'white',
   },
 
@@ -801,7 +820,7 @@ export default StyleSheet.create({
     marginLeft: 105,
     marginTop: 5,
     fontFamily: 'QuicksandBold',
-    color: '#333333',
+    color: pawGrey,
   },
 
   inspicHeader2: {
@@ -810,7 +829,7 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: '#333333',
+    color: pawGrey,
   },
 
   inspicDescription: {
@@ -819,7 +838,7 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: '#333333',
+    color: pawGrey,
   },
   inspicTag: {
     fontSize: 11,
@@ -827,11 +846,11 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: '#333333',
+    color: pawGrey,
   },
   /* inspect post styles */
   postModal: {
-    backgroundColor: '#69A297',
+    backgroundColor: pawGreen,
     width: Dimensions.get('window').width,
     marginLeft: 0,
     height: Dimensions.get('window').height,
@@ -844,7 +863,7 @@ export default StyleSheet.create({
   },
   exitPostButton: {
     alignSelf: 'center',
-    backgroundColor: '#333333',
+    backgroundColor: pawGrey,
     borderRadius: 25,
     overflow: 'hidden',
     zIndex: 45,
@@ -872,7 +891,7 @@ export default StyleSheet.create({
     borderRadius: 100,
     borderWidth: 3,
     position: 'absolute',
-    borderColor: '#e0777d',
+    borderColor: pawPink,
   },
 
   insppoProfileNameNode: {
@@ -884,7 +903,7 @@ export default StyleSheet.create({
     borderWidth: 3,
     justifyContent: 'center',
     position: 'absolute',
-    borderColor: '#e0777d',
+    borderColor: pawPink,
     backgroundColor: 'white',
   },
 
@@ -895,7 +914,7 @@ export default StyleSheet.create({
     marginLeft: 105,
     marginTop: 5,
     fontFamily: 'QuicksandBold',
-    color: '#333333',
+    color: pawGrey,
   },
 
   inspostHeader2: {
@@ -904,7 +923,7 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: '#333333',
+    color: pawGrey,
   },
 
   inspostDescription: {
@@ -913,7 +932,7 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: '#333333',
+    color: pawGrey,
   },
   likeLocPost: {
     left: (Dimensions.get('window').width - 18) - 30,
@@ -931,6 +950,6 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: '#333333',
+    color: pawGrey,
   },
 });

@@ -72,6 +72,7 @@ export default function PawPostPost() {
         hasBackdrop={false}
         style={styles.picsModal}
       >
+        <View style={{ backgroundColor: '#e0777d', height: StatusBarHeight, marginLeft: -10 }} />
         <View>
           <Image
             style={styles.inspicImage}
@@ -126,11 +127,11 @@ export default function PawPostPost() {
         </View>
         <View
           style={{
-            borderColor: 'white',
+            borderColor: 'black',
             borderWidth: 2,
             borderRadius: 50,
             top: (Dimensions.get('window').width + 100),
-            height: (Dimensions.get('window').height - 527),
+            height: (Dimensions.get('window').height / 3),
             width: 1,
             marginTop: 5,
             marginBottom: 5,

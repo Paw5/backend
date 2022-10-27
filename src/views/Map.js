@@ -1,5 +1,5 @@
 import {
-  ScrollView, View,
+  View,
 } from 'react-native';
 import React from 'react';
 import MapView from 'react-native-maps';
@@ -11,14 +11,14 @@ const StatusBarHeight = getStatusBarHeight();
 
 export default function MapTab() {
   return (
-    <ScrollView>
+    <View>
       <View style={{ backgroundColor: '#e0777d', height: StatusBarHeight }} />
       <View style={styles.containerMap}>
         <View><MapView style={styles.map} /></View>
-        <View style={styles.search}>
-          <SearchBar />
-        </View>
       </View>
-    </ScrollView>
+      <View style={[styles.search, { position: 'absolute', top: StatusBarHeight }]}>
+        <SearchBar />
+      </View>
+    </View>
   );
 }

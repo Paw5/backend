@@ -35,9 +35,12 @@ export default function PawPics() {
     }}
     >
       <View style={{ backgroundColor: '#e0777d', height: StatusBarHeight }} />
+      <View style={styles.search}>
+        <SearchBar />
+      </View>
       <View style={[styles.containerMap, { backgroundColor: '#69A297' }]}>
 
-        <ScrollView contentInset={{ bottom: 150 }} style={{ marginTop: 90, marginBottom: 68 }}>
+        <ScrollView contentInset={{ bottom: 150 }} style={{ marginBottom: 72 }}>
           <PawPicsPost />
           <PawPicsPost />
           <PawPicsPost />
@@ -46,9 +49,6 @@ export default function PawPics() {
           <PawPicsPost />
           <PawPicsPost />
         </ScrollView>
-        <View style={styles.search}>
-          <SearchBar />
-        </View>
       </View>
     </View>
   );
