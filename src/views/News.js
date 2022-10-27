@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable global-require */
 import {
-  Pressable, View, Text, Dimensions, ScrollView, Animated,
+  Pressable, View, Text, Dimensions, ScrollView, Animated, Platform,
 } from 'react-native';
 import React from 'react';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
@@ -39,7 +39,7 @@ export default function HealthTab() {
 
       <ScrollView
         contentInset={{ bottom: 150 }}
-        style={{ marginTop: 20, paddingTop: 20 }}
+        style={{ paddingTop: 20, marginBottom: Platform.OS === 'android' ? 68 : 0 }}
       >
         <Animated.ScrollView
           horizontal
@@ -57,7 +57,7 @@ export default function HealthTab() {
             { useNativeDriver: true },
           )}
           style={{
-            width: Dimensions.get('window').width, paddingBottom: 20, marginTop: -20,
+            width: Dimensions.get('window').width, paddingBottom: 20,
           }}
         >
           {/* <DropShadow style={styles.shadowProp}> */}
