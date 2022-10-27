@@ -167,6 +167,54 @@ export default StyleSheet.create({
     marginTop: 10,
     position: 'absolute',
   },
+  /* pm styles */
+  pmUserInteraction: {
+    backgroundColor: 'white',
+    borderRadius: 80,
+    overflow: 'hidden',
+    height: 80,
+    width: TABBAR_WIDTH - 20,
+    alignSelf: 'center',
+    borderWidth: 4,
+    borderColor: '#e0777d',
+    flexDirection: 'row',
+    alignContent: 'center',
+    marginBottom: 20,
+  },
+  pmUserImage: {
+    height: 80,
+    width: 80,
+    marginLeft: -3,
+    marginTop: -3,
+    borderRadius: 100,
+    overflow: 'hidden',
+    borderWidth: 5,
+    borderColor: '#e0777d',
+  },
+  pmPreview: {
+    paddingTop: 6,
+    paddingLeft: 10,
+    flex: 2.5,
+  },
+  pmUserPreview: {
+    fontFamily: 'QuicksandSemiBold',
+    fontSize: 22,
+    color: '#333333',
+  },
+  pmUserMessagePreview: {
+    paddingTop: 2,
+    fontFamily: 'QuicksandLight',
+    fontSize: 18,
+    color: '#333333',
+  },
+  pmMessageIcons: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignSelf: 'center',
+    marginRight: 15,
+    paddingTop: 1,
+  },
   /* PawPost styles */
   postContainer: {
     alignSelf: 'center',
@@ -409,6 +457,7 @@ export default StyleSheet.create({
     width: '100%',
     justifyContent: 'space-between',
     flex: 1,
+    marginTop: 40,
   },
   container: {
     margin: 15,
