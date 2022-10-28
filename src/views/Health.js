@@ -8,7 +8,7 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { useFonts } from 'expo-font';
 import DropShadow from 'react-native-drop-shadow';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
-import styles from '../constants/Styles';
+import styles, { pawPink } from '../constants/Styles';
 
 const StatusBarHeight = getStatusBarHeight();
 
@@ -36,7 +36,7 @@ export default function HealthTab() {
     }}
     >
 
-      <View style={{ backgroundColor: '#e0777d', height: StatusBarHeight }} />
+      <View style={{ backgroundColor: pawPink, height: StatusBarHeight }} />
 
       <ScrollView
         contentInset={{ bottom: 100 }}
@@ -118,7 +118,7 @@ export default function HealthTab() {
           <RNAnimatedScrollIndicators
             numberOfCards={4}
             scrollWidth={115}
-            activeColor="#e0777d"
+            activeColor={pawPink}
             inActiveColor="white"
             scrollAnimatedValue={scrollX}
             style={{
@@ -132,7 +132,7 @@ export default function HealthTab() {
           <Text style={styles.healthHeader}>Upcoming Appointments</Text>
           <View
             style={{
-              borderBottomColor: '#e0777d',
+              borderBottomColor: pawPink,
               borderBottomWidth: 3,
               borderRadius: 50,
               marginLeft: 10,
@@ -147,7 +147,7 @@ export default function HealthTab() {
           <Text style={styles.healthHeader}>Did you feed the dog today?</Text>
           <View
             style={{
-              borderBottomColor: '#e0777d',
+              borderBottomColor: pawPink,
               borderBottomWidth: 3,
               borderRadius: 50,
               marginLeft: 10,
@@ -162,7 +162,7 @@ export default function HealthTab() {
           <Text style={styles.healthHeader}>Walk Tracker</Text>
           <View
             style={{
-              borderBottomColor: '#e0777d',
+              borderBottomColor: pawPink,
               borderBottomWidth: 3,
               borderRadius: 50,
               marginLeft: 10,

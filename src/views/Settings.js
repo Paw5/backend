@@ -9,73 +9,9 @@ import { useFonts } from 'expo-font';
 import { DropShadow } from 'react-native-drop-shadow';
 import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
+import styles, { pawPink, pawGreen, pawGrey } from '../constants/Styles';
 
 const StatusBarHeight = getStatusBarHeight();
-
-const styles = StyleSheet.create({
-  settingsIcon: {
-    alignSelf: 'center',
-    padding: 20,
-    backgroundColor: 'white',
-    borderRadius: 70,
-    overflow: 'hidden',
-    marginBottom: 60,
-    marginTop: 20,
-  },
-  menuItem: {
-    alignSelf: 'center',
-    width: (Dimensions.get('window').width - 20),
-    backgroundColor: 'white',
-    borderRadius: 25,
-    overflow: 'hidden',
-    marginBottom: 20,
-    height: 60,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingLeft: 18,
-    paddingRight: 20,
-  },
-  shadowProp: {
-    shadowColor: '#333333',
-    shadowOffset: { width: 5, height: 5 },
-    shadowOpacity: 0.4,
-    shadowRadius: 2,
-  },
-  menuText: {
-    fontSize: 24,
-    width: (Dimensions.get('window').width - 120),
-    fontWeight: '600',
-    textTransform: 'uppercase',
-    letterSpacing: 1,
-    fontFamily: 'QuicksandBold',
-    color: '#333333',
-    flexBasis: 'auto',
-    paddingRight: 10,
-  },
-  settingsSwitch: {
-    flexBasis: 'auto',
-  },
-  exitButton: {
-    alignSelf: 'center',
-    padding: 10,
-    backgroundColor: 'white',
-    borderRadius: 25,
-    overflow: 'hidden',
-    paddingRight: 11,
-    paddingLeft: 9,
-  },
-  settingsModal: {
-    backgroundColor: '#69A297',
-    width: Dimensions.get('window').width,
-    marginLeft: 0,
-    marginTop: StatusBarHeight,
-    marginBottom: 150,
-    justifyContent: 'flex-start',
-    paddingTop: 20,
-    paddingLeft: 20,
-  },
-});
 
 export default function ServicesTab() {
   /* toggle switch section */
@@ -121,12 +57,12 @@ export default function ServicesTab() {
   return (
     /* background color */
     <View style={{
-      flex: 1, backgroundColor: '#69A297',
+      flex: 1, backgroundColor: pawGreen,
     }}
     >
 
       {/* status bar background color */}
-      <View style={{ backgroundColor: '#e0777d', height: StatusBarHeight, marginBottom: 30 }} />
+      <View style={{ backgroundColor: pawPink, height: StatusBarHeight, marginBottom: 30 }} />
 
       {/* settings icon header */}
       <View>
@@ -134,7 +70,7 @@ export default function ServicesTab() {
         <Feather
           name="settings"
           size={100}
-          color="#333333"
+          color={pawGrey}
           style={styles.settingsIcon}
         />
         {/* </DropShadow> */}
@@ -142,19 +78,19 @@ export default function ServicesTab() {
 
       {/* dark/light mode toggle option */}
       {/* <DropShadow style={styles.shadowProp}> */}
-      <View style={styles.menuItem}>
+      <View style={styles.settingsItem}>
         <Text
           adjustsFontSizeToFit
           numberOfLines={1}
-          style={styles.menuText}
+          style={styles.settingsText}
         >
           Dark/Light Mode
         </Text>
         <Switch
           style={styles.settingsSwitch}
-          trackColor={{ false: '#e0777d', true: '#edae49' }}
+          trackColor={{ false: pawPink, true: '#edae49' }}
           thumbColor="white"
-          ios_backgroundColor="#e0777d"
+          ios_backgroundColor={pawPink}
           onValueChange={lightdarkSwitch}
           value={LDisEnabled}
         />
@@ -164,19 +100,19 @@ export default function ServicesTab() {
 
       {/* location services toggle option */}
       {/* <DropShadow style={styles.shadowProp}> */}
-      <View style={styles.menuItem}>
+      <View style={styles.settingsItem}>
         <Text
           adjustsFontSizeToFit
           numberOfLines={1}
-          style={styles.menuText}
+          style={styles.settingsText}
         >
           Disable Location Services
         </Text>
         <Switch
           style={styles.settingsSwitch}
-          trackColor={{ false: '#e0777d', true: '#333333' }}
+          trackColor={{ false: pawPink, true: pawGrey }}
           thumbColor="white"
-          ios_backgroundColor="#e0777d"
+          ios_backgroundColor={pawPink}
           onValueChange={locationSwitch}
           value={LCisEnabled}
         />
@@ -186,18 +122,18 @@ export default function ServicesTab() {
 
       {/* notifications button to activate notifications options modal */}
       {/* <DropShadow style={styles.shadowProp}> */}
-      <Pressable onPress={toggleNotif} style={styles.menuItem}>
+      <Pressable onPress={toggleNotif} style={styles.settingsItem}>
         <Text
           adjustsFontSizeToFit
           numberOfLines={1}
-          style={styles.menuText}
+          style={styles.settingsText}
         >
           Notifications
         </Text>
         <Feather
           name="chevron-right"
           size={30}
-          color="#333333"
+          color={pawGrey}
           style={{ marginRight: -5 }}
         />
 
@@ -221,8 +157,8 @@ export default function ServicesTab() {
             <Feather
               name="chevron-left"
               size={30}
-              color="#333333"
-              style={styles.exitButton}
+              color={pawGrey}
+              style={styles.settingsExitButton}
             />
 
           </Pressable>
@@ -232,26 +168,26 @@ export default function ServicesTab() {
             <Feather
               name="mail"
               size={100}
-              color="#333333"
+              color={pawGrey}
               style={styles.settingsIcon}
             />
             {/* </DropShadow> */}
           </View>
 
           {/* <DropShadow style={styles.shadowProp}> */}
-          <View style={[styles.menuItem, { marginRight: 20, width: Dimensions.get('window').width - 40 }]}>
+          <View style={[styles.settingsItem, { marginRight: 20, width: Dimensions.get('window').width - 40 }]}>
             <Text
               adjustsFontSizeToFit
               numberOfLines={1}
-              style={styles.menuText}
+              style={styles.settingsText}
             >
               Email Notifications
             </Text>
             <Switch
               style={styles.settingsSwitch}
-              trackColor={{ false: '#e0777d', true: '#333333' }}
+              trackColor={{ false: pawPink, true: pawGrey }}
               thumbColor="white"
-              ios_backgroundColor="#e0777d"
+              ios_backgroundColor={pawPink}
               onValueChange={emailSwitch}
               value={EMisEnabled}
             />
@@ -259,19 +195,19 @@ export default function ServicesTab() {
           {/* </DropShadow> */}
 
           {/* <DropShadow style={styles.shadowProp}> */}
-          <View style={[styles.menuItem, { marginRight: 20, width: Dimensions.get('window').width - 40 }]}>
+          <View style={[styles.settingsItem, { marginRight: 20, width: Dimensions.get('window').width - 40 }]}>
             <Text
               adjustsFontSizeToFit
               numberOfLines={1}
-              style={styles.menuText}
+              style={styles.settingsText}
             >
               Messages Notifications
             </Text>
             <Switch
               style={styles.settingsSwitch}
-              trackColor={{ false: '#e0777d', true: '#333333' }}
+              trackColor={{ false: pawPink, true: pawGrey }}
               thumbColor="white"
-              ios_backgroundColor="#e0777d"
+              ios_backgroundColor={pawPink}
               onValueChange={messagesSwitch}
               value={MSisEnabled}
             />
@@ -279,19 +215,19 @@ export default function ServicesTab() {
           {/* </DropShadow> */}
 
           {/* <DropShadow style={styles.shadowProp}> */}
-          <View style={[styles.menuItem, { marginRight: 20, width: Dimensions.get('window').width - 40 }]}>
+          <View style={[styles.settingsItem, { marginRight: 20, width: Dimensions.get('window').width - 40 }]}>
             <Text
               adjustsFontSizeToFit
               numberOfLines={1}
-              style={styles.menuText}
+              style={styles.settingsText}
             >
               Comments Notifications
             </Text>
             <Switch
               style={styles.settingsSwitch}
-              trackColor={{ false: '#e0777d', true: '#333333' }}
+              trackColor={{ false: pawPink, true: pawGrey }}
               thumbColor="white"
-              ios_backgroundColor="#e0777d"
+              ios_backgroundColor={pawPink}
               onValueChange={commentsSwitch}
               value={CMisEnabled}
             />
@@ -299,19 +235,19 @@ export default function ServicesTab() {
           {/* </DropShadow> */}
 
           {/* <DropShadow style={styles.shadowProp}> */}
-          <View style={[styles.menuItem, { marginRight: 20, width: Dimensions.get('window').width - 40 }]}>
+          <View style={[styles.settingsItem, { marginRight: 20, width: Dimensions.get('window').width - 40 }]}>
             <Text
               adjustsFontSizeToFit
               numberOfLines={1}
-              style={styles.menuText}
+              style={styles.settingsText}
             >
               Likes Notifications
             </Text>
             <Switch
               style={styles.settingsSwitch}
-              trackColor={{ false: '#e0777d', true: '#333333' }}
+              trackColor={{ false: pawPink, true: pawGrey }}
               thumbColor="white"
-              ios_backgroundColor="#e0777d"
+              ios_backgroundColor={pawPink}
               onValueChange={likesSwitch}
               value={LKisEnabled}
             />
@@ -322,18 +258,18 @@ export default function ServicesTab() {
 
       {/* help options section modal activator */}
       {/* <DropShadow style={styles.shadowProp}> */}
-      <Pressable style={styles.menuItem} onPress={toggleHelp}>
+      <Pressable style={styles.settingsItem} onPress={toggleHelp}>
         <Text
           adjustsFontSizeToFit
           numberOfLines={1}
-          style={styles.menuText}
+          style={styles.settingsText}
         >
           Help
         </Text>
         <Feather
           name="chevron-right"
           size={30}
-          color="#333333"
+          color={pawGrey}
           style={{ marginRight: -5 }}
         />
 
@@ -357,8 +293,8 @@ export default function ServicesTab() {
             <Feather
               name="chevron-left"
               size={30}
-              color="#333333"
-              style={styles.exitButton}
+              color={pawGrey}
+              style={styles.settingsExitButton}
             />
 
           </Pressable>
@@ -368,25 +304,25 @@ export default function ServicesTab() {
             <Feather
               name="help-circle"
               size={100}
-              color="#333333"
+              color={pawGrey}
               style={styles.settingsIcon}
             />
             {/* </DropShadow> */}
           </View>
 
           {/* <DropShadow style={styles.shadowProp}> */}
-          <Pressable style={[styles.menuItem, { marginRight: 20, width: Dimensions.get('window').width - 40 }]}>
+          <Pressable style={[styles.settingsItem, { marginRight: 20, width: Dimensions.get('window').width - 40 }]}>
             <Text
               adjustsFontSizeToFit
               numberOfLines={1}
-              style={styles.menuText}
+              style={styles.settingsText}
             >
               FAQ
             </Text>
             <Feather
               name="chevron-right"
               size={30}
-              color="#333333"
+              color={pawGrey}
               style={{ marginRight: -5 }}
             />
           </Pressable>
@@ -394,18 +330,18 @@ export default function ServicesTab() {
 
           {/* contact button to send to email */}
           {/* <DropShadow style={styles.shadowProp}> */}
-          <Pressable style={[styles.menuItem, { marginRight: 20, width: Dimensions.get('window').width - 40 }]}>
+          <Pressable style={[styles.settingsItem, { marginRight: 20, width: Dimensions.get('window').width - 40 }]}>
             <Text
               adjustsFontSizeToFit
               numberOfLines={1}
-              style={styles.menuText}
+              style={styles.settingsText}
             >
               Contact Us
             </Text>
             <Feather
               name="chevron-right"
               size={30}
-              color="#333333"
+              color={pawGrey}
               style={{ marginRight: -5 }}
             />
           </Pressable>

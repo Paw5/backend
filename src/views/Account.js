@@ -9,140 +9,10 @@ import { useFonts } from 'expo-font';
 import DropShadow from 'react-native-drop-shadow';
 import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
+import styles, { pawPink, pawGreen } from '../constants/Styles';
 
 const StatusBarHeight = getStatusBarHeight();
 const miso = require('../../assets/miso.jpg');
-
-const styles = StyleSheet.create({
-  profileBorder: {
-    backgroundColor: 'white',
-    height: 220,
-    width: 220,
-    alignSelf: 'center',
-    justifyContent: 'center',
-    borderRadius: 150,
-    marginBottom: 20,
-  },
-  profileImage: {
-    height: 200,
-    width: 200,
-    alignSelf: 'center',
-    borderRadius: 100,
-    justifyContent: 'center',
-  },
-  menuItem: {
-    alignSelf: 'center',
-    width: (Dimensions.get('window').width - 20),
-    backgroundColor: 'white',
-    borderRadius: 25,
-    overflow: 'hidden',
-    marginBottom: 20,
-    height: 60,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    paddingLeft: 18,
-    paddingRight: 20,
-  },
-  shadowProp: {
-    shadowColor: '#333333',
-    shadowOffset: { width: 5, height: 5 },
-    shadowOpacity: 0.4,
-    shadowRadius: 2,
-  },
-  menuText: {
-    fontSize: 24,
-    width: (Dimensions.get('window').width - 120),
-    fontWeight: '600',
-    textTransform: 'uppercase',
-    letterSpacing: 1,
-    fontFamily: 'QuicksandBold',
-    color: '#333333',
-    flexBasis: 'auto',
-  },
-  profileIcon: {
-    height: 150,
-    width: 150,
-    alignSelf: 'center',
-    padding: 20,
-    backgroundColor: 'white',
-    borderWidth: 5,
-    borderColor: 'white',
-    borderRadius: 80,
-    overflow: 'hidden',
-    marginBottom: 40,
-  },
-  accountSwitch: {
-    flexBasis: 'auto',
-  },
-  exitButton: {
-    alignSelf: 'center',
-    padding: 10,
-    backgroundColor: 'white',
-    borderRadius: 25,
-    overflow: 'hidden',
-    paddingRight: 11,
-    paddingLeft: 9,
-    marginLeft: 20,
-  },
-  accountModal: {
-    backgroundColor: '#69A297',
-    width: Dimensions.get('window').width,
-    marginLeft: 0,
-    marginTop: StatusBarHeight,
-    marginBottom: 150,
-    justifyContent: 'flex-start',
-    paddingTop: 20,
-  },
-  petImage: {
-    height: 135,
-    width: 135,
-    borderRadius: 100,
-    borderWidth: 3,
-    borderColor: '#e0777d',
-    alignSelf: 'center',
-    marginLeft: 20,
-    marginRight: 20,
-  },
-  petHeader: {
-    fontSize: 32,
-    fontWeight: '600',
-    textTransform: 'uppercase',
-    letterSpacing: 1,
-    marginTop: 5,
-    fontFamily: 'QuicksandBold',
-    color: '#333333',
-    flexBasis: 'auto',
-    paddingLeft: 5,
-  },
-  petCard: {
-    height: 200,
-    width: 160,
-    backgroundColor: 'white',
-    color: '#333333',
-    paddingLeft: 10,
-    paddingRight: 10,
-    paddingTop: 0,
-    paddingBottom: 10,
-    justifyContent: 'flex-end',
-    alignSelf: 'center',
-    margin: 10,
-    marginTop: 0,
-    marginBottom: -30,
-    borderRadius: 25,
-  },
-  cameraIcon: {
-    alignSelf: 'flex-end',
-    backgroundColor: 'white',
-    position: 'absolute',
-    right: 120,
-    bottom: 40,
-    padding: 8,
-    paddingLeft: 9,
-    borderRadius: 23,
-    overflow: 'hidden',
-  },
-});
 
 export default function ServicesTab() {
   /* toggle profile section modal */
@@ -171,11 +41,11 @@ export default function ServicesTab() {
 
   return (
     <View style={{
-      flex: 1, backgroundColor: '#69A297',
+      flex: 1, backgroundColor: pawGreen,
     }}
     >
 
-      <View style={{ backgroundColor: '#e0777d', height: StatusBarHeight, marginBottom: 30 }} />
+      <View style={{ backgroundColor: pawPink, height: StatusBarHeight, marginBottom: 30 }} />
       <View>
         {/* <DropShadow style={styles.shadowProp}> */}
         <View style={styles.profileBorder}>
@@ -187,7 +57,7 @@ export default function ServicesTab() {
         {/* </DropShadow> */}
       </View>
       {/* <DropShadow style={styles.shadowProp}> */}
-      <View style={[styles.menuItem, { marginBottom: 50, justifyContent: 'center', backgroundColor: '#e0777d' }]}>
+      <View style={[styles.menuItem, { marginBottom: 50, justifyContent: 'center', backgroundColor: pawPink }]}>
         <Text
           adjustsFontSizeToFit
           numberOfLines={1}
@@ -264,7 +134,7 @@ export default function ServicesTab() {
           {/* <DropShadow style={styles.shadowProp}> */}
           <Pressable style={[styles.menuItem, { width: Dimensions.get('window').width - 40 }]}>
             <Text
-              style={[styles.menuText, { fontSize: 18, width: 'auto', color: '#e0777d' }]}
+              style={[styles.menuText, { fontSize: 18, width: 'auto', color: pawPink }]}
             >
               Username
             </Text>
@@ -279,7 +149,7 @@ export default function ServicesTab() {
           {/* <DropShadow style={styles.shadowProp}> */}
           <Pressable style={[styles.menuItem, { width: Dimensions.get('window').width - 40 }]}>
             <Text
-              style={[styles.menuText, { fontSize: 18, width: 'auto', color: '#e0777d' }]}
+              style={[styles.menuText, { fontSize: 18, width: 'auto', color: pawPink }]}
             >
               First Name
             </Text>
@@ -294,7 +164,7 @@ export default function ServicesTab() {
           {/* <DropShadow style={styles.shadowProp}> */}
           <Pressable style={[styles.menuItem, { width: Dimensions.get('window').width - 40 }]}>
             <Text
-              style={[styles.menuText, { fontSize: 18, width: 'auto', color: '#e0777d' }]}
+              style={[styles.menuText, { fontSize: 18, width: 'auto', color: pawPink }]}
             >
               Last Name
             </Text>
@@ -309,7 +179,7 @@ export default function ServicesTab() {
           {/* <DropShadow style={styles.shadowProp}> */}
           <Pressable style={[styles.menuItem, { width: Dimensions.get('window').width - 40 }]}>
             <Text
-              style={[styles.menuText, { fontSize: 18, width: 'auto', color: '#e0777d' }]}
+              style={[styles.menuText, { fontSize: 18, width: 'auto', color: pawPink }]}
             >
               Date of Birth
             </Text>
@@ -324,7 +194,7 @@ export default function ServicesTab() {
           {/* <DropShadow style={styles.shadowProp}> */}
           <Pressable style={[styles.menuItem, { width: Dimensions.get('window').width - 40 }]}>
             <Text
-              style={[styles.menuText, { fontSize: 18, width: 'auto', color: '#e0777d' }]}
+              style={[styles.menuText, { fontSize: 18, width: 'auto', color: pawPink }]}
             >
               Location
             </Text>
@@ -399,14 +269,14 @@ export default function ServicesTab() {
             >
 
               {/* <DropShadow style={styles.shadowProp}> */}
-              <Pressable style={styles.petCard}>
+              <Pressable style={styles.accountCard}>
                 <Image
-                  style={styles.petImage}
+                  style={styles.accountImage}
                   source={miso}
                 />
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                   <Text
-                    style={styles.petHeader}
+                    style={styles.accountHeader}
                   >
                     Miso
                   </Text>
@@ -423,14 +293,14 @@ export default function ServicesTab() {
               {/* </DropShadow> */}
 
               {/* <DropShadow style={styles.shadowProp}> */}
-              <Pressable style={styles.petCard}>
+              <Pressable style={styles.accountCard}>
                 <Image
-                  style={styles.petImage}
+                  style={styles.accountImage}
                   source={miso}
                 />
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                   <Text
-                    style={styles.petHeader}
+                    style={styles.accountHeader}
                   >
                     Miso
                   </Text>
@@ -447,14 +317,14 @@ export default function ServicesTab() {
               {/* </DropShadow> */}
 
               {/* <DropShadow style={styles.shadowProp}> */}
-              <Pressable style={styles.petCard}>
+              <Pressable style={styles.accountCard}>
                 <Image
-                  style={styles.petImage}
+                  style={styles.accountImage}
                   source={miso}
                 />
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                   <Text
-                    style={styles.petHeader}
+                    style={styles.accountHeader}
                   >
                     Miso
                   </Text>
@@ -471,14 +341,14 @@ export default function ServicesTab() {
               {/* </DropShadow> */}
 
               {/* <DropShadow style={styles.shadowProp}> */}
-              <Pressable style={styles.petCard}>
+              <Pressable style={styles.accountCard}>
                 <Image
-                  style={styles.petImage}
+                  style={styles.accountImage}
                   source={miso}
                 />
                 <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
                   <Text
-                    style={styles.petHeader}
+                    style={styles.accountHeader}
                   >
                     Miso
                   </Text>

@@ -37,7 +37,7 @@ export default function SearchBar(searchQuery) {
         <Feather
           name="search"
           size={20}
-          color="black"
+          color="pawGrey"
           style={{ marginLeft: 10, alignItems: 'center' }}
         />
         <TextInput
@@ -50,7 +50,7 @@ export default function SearchBar(searchQuery) {
         <Feather
           name="filter"
           size={20}
-          color="black"
+          color="pawGrey"
           style={{ justifyContent: 'center' }}
         />
       </Pressable>

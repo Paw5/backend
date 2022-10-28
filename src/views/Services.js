@@ -9,7 +9,7 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 import DropShadow from 'react-native-drop-shadow';
 import { Feather } from '@expo/vector-icons';
 import SearchBar from '../components/SearchBarServ';
-import styles from '../constants/Styles';
+import styles, { pawPink, pawGreen } from '../constants/Styles';
 import ServNode from '../components/ServiceNode';
 
 const miso = require('../../assets/miso.jpg');
@@ -32,14 +32,14 @@ export default function ServicesTab() {
   return (
 
     <View style={{
-      flex: 1, backgroundColor: '#69A297',
+      flex: 1, backgroundColor: pawGreen,
     }}
     >
-      <View style={{ backgroundColor: '#e0777d', height: StatusBarHeight }} />
+      <View style={{ backgroundColor: pawPink, height: StatusBarHeight }} />
       <View style={styles.search}>
         <SearchBar />
       </View>
-      <View style={[styles.containerMap, { backgroundColor: '#69A297' }]}>
+      <View style={[styles.containerMap, { backgroundColor: pawGreen }]}>
 
         <ScrollView contentInset={{ bottom: 150 }} style={{ marginBottom: 72 }}>
           <ServNode />

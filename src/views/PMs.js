@@ -7,7 +7,7 @@ import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { useFonts } from 'expo-font';
 import { Feather } from '@expo/vector-icons';
 import SearchBar from '../components/SearchBarServ';
-import styles from '../constants/Styles';
+import styles, { pawPink, pawGreen, pawGrey } from '../constants/Styles';
 
 const StatusBarHeight = getStatusBarHeight();
 const miso = require('../../assets/miso.jpg');
@@ -27,10 +27,10 @@ export default function PMs() {
 
   return (
     <View style={{
-      flex: 1, backgroundColor: '#69A297',
+      flex: 1, backgroundColor: pawGreen,
     }}
     >
-      <View style={{ backgroundColor: '#e0777d', height: StatusBarHeight }} />
+      <View style={{ backgroundColor: pawPink, height: StatusBarHeight }} />
 
       <View style={styles.search}>
         <SearchBar />
@@ -54,12 +54,12 @@ export default function PMs() {
             <Feather
               name="star"
               size={30}
-              color="#333333"
+              color={pawGrey}
             />
             <Feather
               name="send"
               size={30}
-              color="#333333"
+              color={pawGrey}
               style={{ paddingTop: 2 }}
             />
           </View>
@@ -82,12 +82,12 @@ export default function PMs() {
             <Feather
               name="alert-circle"
               size={30}
-              color="#333333"
+              color={pawGrey}
             />
             <Feather
               name="send"
               size={30}
-              color="#333333"
+              color={pawGrey}
               style={{ paddingTop: 2 }}
             />
           </View>

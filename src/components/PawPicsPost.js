@@ -9,7 +9,7 @@ import DropShadow from 'react-native-drop-shadow';
 import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
 import SearchBar from './SearchBarServ';
-import styles from '../constants/Styles';
+import styles, { pawPink, pawGrey } from '../constants/Styles';
 
 const miso = require('../../assets/miso.jpg');
 
@@ -36,7 +36,7 @@ export default function PawPostPost() {
           <Feather
             name="heart"
             size={24}
-            color="#e0777d"
+            color={pawPink}
             style={styles.likeLoc1}
           />
 
@@ -51,7 +51,7 @@ export default function PawPostPost() {
         <Text style={[styles.picDescription, { left: 2, top: 290 }]}>Descriptive Text</Text>
         <View
           style={{
-            borderBottomColor: '#e0777d',
+            borderBottomColor: pawPink,
             borderBottomWidth: 1,
             borderRadius: 50,
             top: 330,
@@ -72,7 +72,7 @@ export default function PawPostPost() {
         hasBackdrop={false}
         style={styles.picsModal}
       >
-        <View style={{ backgroundColor: '#e0777d', height: StatusBarHeight, marginLeft: -10 }} />
+        <View style={{ backgroundColor: pawPink, height: StatusBarHeight, marginLeft: -10 }} />
         <View>
           <Image
             style={styles.inspicImage}
@@ -86,7 +86,7 @@ export default function PawPostPost() {
             <Feather
               name="heart"
               size={24}
-              color="#e0777d"
+              color={pawPink}
               style={styles.likeLoc2}
             />
 
@@ -101,7 +101,7 @@ export default function PawPostPost() {
           <Text style={[styles.inspicDescription, { left: -8, top: (Dimensions.get('window').width - 20) }]}>Descriptive Text</Text>
           <View
             style={{
-              borderBottomColor: '#e0777d',
+              borderBottomColor: pawPink,
               borderBottomWidth: 1,
               borderRadius: 50,
               top: (Dimensions.get('window').width + 20),
@@ -119,7 +119,7 @@ export default function PawPostPost() {
             <Feather
               name="chevron-left"
               size={30}
-              color="#333333"
+              color={pawGrey}
               style={styles.exitPicButton}
             />
 
@@ -127,7 +127,7 @@ export default function PawPostPost() {
         </View>
         <View
           style={{
-            borderColor: 'black',
+            borderColor: pawGrey,
             borderWidth: 2,
             borderRadius: 50,
             top: (Dimensions.get('window').width + 100),

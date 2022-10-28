@@ -9,7 +9,7 @@ import { useFonts } from 'expo-font';
 import DropShadow from 'react-native-drop-shadow';
 import { Feather } from '@expo/vector-icons';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
-import styles from '../constants/Styles';
+import styles, { pawPink, pawGreen, pawGrey } from '../constants/Styles';
 
 const StatusBarHeight = getStatusBarHeight();
 
@@ -31,11 +31,11 @@ export default function HealthTab() {
   return (
 
     <View style={{
-      flex: 1, backgroundColor: '#69A297',
+      flex: 1, backgroundColor: pawGreen,
     }}
     >
 
-      <View style={{ backgroundColor: '#e0777d', height: StatusBarHeight }} />
+      <View style={{ backgroundColor: pawPink, height: StatusBarHeight }} />
 
       <ScrollView
         contentInset={{ bottom: 150 }}
@@ -71,7 +71,7 @@ export default function HealthTab() {
             </View>
             <View
               style={{
-                borderBottomColor: '#e0777d',
+                borderBottomColor: pawPink,
                 borderBottomWidth: 3,
                 borderRadius: 50,
                 marginBottom: 15,
@@ -94,7 +94,7 @@ export default function HealthTab() {
               <Feather
                 name="arrow-right-circle"
                 size={30}
-                color="#333333"
+                color={pawGrey}
                 style={{ alignSelf: 'center' }}
               />
             </View>
@@ -112,7 +112,7 @@ export default function HealthTab() {
             </View>
             <View
               style={{
-                borderBottomColor: '#e0777d',
+                borderBottomColor: pawPink,
                 borderBottomWidth: 3,
                 borderRadius: 50,
                 marginBottom: 15,
@@ -135,7 +135,7 @@ export default function HealthTab() {
               <Feather
                 name="arrow-right-circle"
                 size={30}
-                color="#333333"
+                color={pawGrey}
                 style={{ alignSelf: 'center' }}
               />
             </View>
@@ -153,7 +153,7 @@ export default function HealthTab() {
             </View>
             <View
               style={{
-                borderBottomColor: '#e0777d',
+                borderBottomColor: pawPink,
                 borderBottomWidth: 3,
                 borderRadius: 50,
                 marginBottom: 15,
@@ -176,7 +176,7 @@ export default function HealthTab() {
               <Feather
                 name="arrow-right-circle"
                 size={30}
-                color="#333333"
+                color={pawGrey}
                 style={{ alignSelf: 'center' }}
               />
             </View>
@@ -211,7 +211,7 @@ export default function HealthTab() {
 
           <View
             style={{
-              borderBottomColor: '#e0777d',
+              borderBottomColor: pawPink,
               borderBottomWidth: 3,
               borderRadius: 50,
               marginBottom: 15,
@@ -234,7 +234,7 @@ export default function HealthTab() {
             <Feather
               name="arrow-right-circle"
               size={30}
-              color="#333333"
+              color={pawGrey}
               style={{ alignSelf: 'center' }}
             />
           </View>
@@ -247,7 +247,7 @@ export default function HealthTab() {
 
           <View
             style={{
-              borderBottomColor: '#e0777d',
+              borderBottomColor: pawPink,
               borderBottomWidth: 3,
               borderRadius: 50,
               marginBottom: 15,
@@ -270,7 +270,7 @@ export default function HealthTab() {
             <Feather
               name="arrow-right-circle"
               size={30}
-              color="#333333"
+              color={pawGrey}
               style={{ alignSelf: 'center' }}
             />
           </View>
@@ -283,7 +283,7 @@ export default function HealthTab() {
 
           <View
             style={{
-              borderBottomColor: '#e0777d',
+              borderBottomColor: pawPink,
               borderBottomWidth: 3,
               borderRadius: 50,
               marginBottom: 15,
@@ -306,7 +306,7 @@ export default function HealthTab() {
             <Feather
               name="arrow-right-circle"
               size={30}
-              color="#333333"
+              color={pawGrey}
               style={{ alignSelf: 'center' }}
             />
           </View>

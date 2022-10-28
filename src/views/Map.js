@@ -5,14 +5,14 @@ import React from 'react';
 import MapView from 'react-native-maps';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import SearchBar from '../components/SearchBarServ';
-import styles from '../constants/Styles';
+import styles, { pawPink } from '../constants/Styles';
 
 const StatusBarHeight = getStatusBarHeight();
 
 export default function MapTab() {
   return (
     <View>
-      <View style={{ backgroundColor: '#e0777d', height: StatusBarHeight }} />
+      <View style={{ backgroundColor: pawPink, height: StatusBarHeight }} />
       <View style={styles.containerMap}>
         <View><MapView style={styles.map} /></View>
       </View>
