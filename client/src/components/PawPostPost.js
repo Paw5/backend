@@ -10,7 +10,7 @@ import DropShadow from 'react-native-drop-shadow';
 import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
 import SearchBar from './SearchBarServ';
-import styles from '../constants/Styles';
+import styles, { pawPink, pawGrey } from '../constants/Styles';
 
 const miso = require('../../assets/miso.jpg');
 
@@ -54,6 +54,7 @@ export default function PawPostPost() {
         hasBackdrop={false}
         style={styles.postModal}
       >
+        <View style={{ backgroundColor: pawPink, height: StatusBarHeight, marginLeft: -10 }} />
         <View>
           <Text style={[styles.postDescription, {
             paddingLeft: 0, top: 70, paddingBottom: 50, paddingRight: 10, position: 'absolute',

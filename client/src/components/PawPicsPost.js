@@ -72,8 +72,8 @@ export default function PawPostPost() {
         hasBackdrop={false}
         style={styles.picsModal}
       >
-        <View style={{ backgroundColor: pawPink, height: StatusBarHeight, marginLeft: -10 }} />
         <View>
+          <View style={{ backgroundColor: pawPink, height: StatusBarHeight, marginLeft: -10 }} />
           <Image
             style={styles.inspicImage}
             source={miso}
