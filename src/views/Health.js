@@ -1,13 +1,14 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable global-require */
 import {
-  Pressable, View, Image, Text, Dimensions, Animated, ScrollView,
+  Pressable, View, Image, Text, Dimensions, Animated, ScrollView, Platform,
 } from 'react-native';
 import React from 'react';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { useFonts } from 'expo-font';
 import DropShadow from 'react-native-drop-shadow';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
-import styles from '../constants/Styles';
+import styles, { pawPink } from '../constants/Styles';
 
 const StatusBarHeight = getStatusBarHeight();
 
@@ -35,10 +36,11 @@ export default function HealthTab() {
     }}
     >
 
-      <View style={{ backgroundColor: '#e0777d', height: StatusBarHeight }} />
+      <View style={{ backgroundColor: pawPink, height: StatusBarHeight }} />
 
       <ScrollView
         contentInset={{ bottom: 100 }}
+        style={{ marginBottom: Platform.OS === 'android' ? 68 : 0 }}
       >
         <Animated.ScrollView
           horizontal
@@ -46,7 +48,7 @@ export default function HealthTab() {
           snapToAlignment="center"
           snapToInterval={180}
           contentOffset={{ x: -110 }}
-          decelerationRate="0"
+          // decelerationRate="0"
           disableIntervalMomentum
           directionalLockEnabled
           pagingEnabled
@@ -57,50 +59,50 @@ export default function HealthTab() {
             { useNativeDriver: true },
           )}
           style={{
-            width: Dimensions.get('window').width, height: 220, marginTop: 20,
+            width: Dimensions.get('window').width, height: 220, marginTop: 10,
           }}
         >
 
-          <DropShadow style={styles.shadowProp}>
-            <Pressable style={styles.petCard}>
-              <Image
-                style={styles.petImage}
-                source={miso}
-              />
-              <Text style={styles.petHeader}>Miso</Text>
+          {/* <DropShadow style={styles.shadowProp}> */}
+          <Pressable style={styles.petCard}>
+            <Image
+              style={styles.petImage}
+              source={miso}
+            />
+            <Text style={styles.petHeader}>Miso</Text>
 
-            </Pressable>
-          </DropShadow>
-          <DropShadow style={styles.shadowProp}>
-            <Pressable style={styles.petCard}>
-              <Image
-                style={styles.petImage}
-                source={miso}
-              />
-              <Text style={styles.petHeader}>Miso</Text>
+          </Pressable>
+          {/* </DropShadow> */}
+          {/* <DropShadow style={styles.shadowProp}> */}
+          <Pressable style={styles.petCard}>
+            <Image
+              style={styles.petImage}
+              source={miso}
+            />
+            <Text style={styles.petHeader}>Miso</Text>
 
-            </Pressable>
-          </DropShadow>
-          <DropShadow style={styles.shadowProp}>
-            <Pressable style={styles.petCard}>
-              <Image
-                style={styles.petImage}
-                source={miso}
-              />
-              <Text style={styles.petHeader}>Miso</Text>
+          </Pressable>
+          {/* </DropShadow> */}
+          {/* <DropShadow style={styles.shadowProp}> */}
+          <Pressable style={styles.petCard}>
+            <Image
+              style={styles.petImage}
+              source={miso}
+            />
+            <Text style={styles.petHeader}>Miso</Text>
 
-            </Pressable>
-          </DropShadow>
-          <DropShadow style={styles.shadowProp}>
-            <Pressable style={styles.petCard}>
-              <Image
-                style={styles.petImage}
-                source={miso}
-              />
-              <Text style={styles.petHeader}>Miso</Text>
+          </Pressable>
+          {/* </DropShadow> */}
+          {/* <DropShadow style={styles.shadowProp}> */}
+          <Pressable style={styles.petCard}>
+            <Image
+              style={styles.petImage}
+              source={miso}
+            />
+            <Text style={styles.petHeader}>Miso</Text>
 
-            </Pressable>
-          </DropShadow>
+          </Pressable>
+          {/* </DropShadow> */}
         </Animated.ScrollView>
 
         <View style={{
@@ -116,7 +118,7 @@ export default function HealthTab() {
           <RNAnimatedScrollIndicators
             numberOfCards={4}
             scrollWidth={115}
-            activeColor="#e0777d"
+            activeColor={pawPink}
             inActiveColor="white"
             scrollAnimatedValue={scrollX}
             style={{
@@ -125,51 +127,51 @@ export default function HealthTab() {
           />
         </View>
 
-        <DropShadow style={styles.shadowProp}>
-          <Pressable style={[styles.healthContainer, { height: 200 }]}>
-            <Text style={styles.healthHeader}>Upcoming Appointments</Text>
-            <View
-              style={{
-                borderBottomColor: '#e0777d',
-                borderBottomWidth: 3,
-                borderRadius: 50,
-                marginLeft: 10,
-                marginRight: 10,
-              }}
-            />
-          </Pressable>
+        {/* <DropShadow style={styles.shadowProp}> */}
+        <Pressable style={[styles.healthContainer, { height: 200 }]}>
+          <Text style={styles.healthHeader}>Upcoming Appointments</Text>
+          <View
+            style={{
+              borderBottomColor: pawPink,
+              borderBottomWidth: 3,
+              borderRadius: 50,
+              marginLeft: 10,
+              marginRight: 10,
+            }}
+          />
+        </Pressable>
 
-        </DropShadow>
-        <DropShadow style={styles.shadowProp}>
-          <Pressable style={[styles.healthContainer, { height: 150 }]}>
-            <Text style={styles.healthHeader}>Did you feed the dog today?</Text>
-            <View
-              style={{
-                borderBottomColor: '#e0777d',
-                borderBottomWidth: 3,
-                borderRadius: 50,
-                marginLeft: 10,
-                marginRight: 10,
-              }}
-            />
-          </Pressable>
+        {/* </DropShadow> */}
+        {/* <DropShadow style={styles.shadowProp}> */}
+        <Pressable style={[styles.healthContainer, { height: 150 }]}>
+          <Text style={styles.healthHeader}>Did you feed the dog today?</Text>
+          <View
+            style={{
+              borderBottomColor: pawPink,
+              borderBottomWidth: 3,
+              borderRadius: 50,
+              marginLeft: 10,
+              marginRight: 10,
+            }}
+          />
+        </Pressable>
 
-        </DropShadow>
-        <DropShadow style={styles.shadowProp}>
-          <Pressable style={[styles.healthContainer, { height: 300 }]}>
-            <Text style={styles.healthHeader}>Walk Tracker</Text>
-            <View
-              style={{
-                borderBottomColor: '#e0777d',
-                borderBottomWidth: 3,
-                borderRadius: 50,
-                marginLeft: 10,
-                marginRight: 10,
-              }}
-            />
-          </Pressable>
+        {/* </DropShadow> */}
+        {/* <DropShadow style={styles.shadowProp}> */}
+        <Pressable style={[styles.healthContainer, { height: 300 }]}>
+          <Text style={styles.healthHeader}>Walk Tracker</Text>
+          <View
+            style={{
+              borderBottomColor: pawPink,
+              borderBottomWidth: 3,
+              borderRadius: 50,
+              marginLeft: 10,
+              marginRight: 10,
+            }}
+          />
+        </Pressable>
 
-        </DropShadow>
+        {/* </DropShadow> */}
 
       </ScrollView>
     </View>

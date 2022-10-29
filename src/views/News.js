@@ -1,6 +1,7 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable global-require */
 import {
-  Pressable, View, Text, Dimensions, ScrollView, Animated,
+  Pressable, View, Text, Dimensions, ScrollView, Animated, Platform,
 } from 'react-native';
 import React from 'react';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
@@ -8,7 +9,7 @@ import { useFonts } from 'expo-font';
 import DropShadow from 'react-native-drop-shadow';
 import { Feather } from '@expo/vector-icons';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
-import styles from '../constants/Styles';
+import styles, { pawPink, pawGreen, pawGrey } from '../constants/Styles';
 
 const StatusBarHeight = getStatusBarHeight();
 
@@ -30,15 +31,15 @@ export default function HealthTab() {
   return (
 
     <View style={{
-      flex: 1, backgroundColor: '#69A297',
+      flex: 1, backgroundColor: pawGreen,
     }}
     >
 
-      <View style={{ backgroundColor: '#e0777d', height: StatusBarHeight }} />
+      <View style={{ backgroundColor: pawPink, height: StatusBarHeight }} />
 
       <ScrollView
         contentInset={{ bottom: 150 }}
-        style={{ marginTop: 20, paddingTop: 20 }}
+        style={{ paddingTop: 20, marginBottom: Platform.OS === 'android' ? 68 : 0 }}
       >
         <Animated.ScrollView
           horizontal
@@ -46,7 +47,7 @@ export default function HealthTab() {
           contentInset={{ left: 50, right: 50 }}
           snapToAlignment="center"
           snapToInterval={Dimensions.get('window').width}
-          decelerationRate="0"
+          // decelerationRate="0"
           disableIntervalMomentum
           directionalLockEnabled
           pagingEnabled
@@ -56,131 +57,131 @@ export default function HealthTab() {
             { useNativeDriver: true },
           )}
           style={{
-            width: Dimensions.get('window').width, paddingBottom: 20, marginTop: -20,
+            width: Dimensions.get('window').width, paddingBottom: 20,
           }}
         >
-          <DropShadow style={styles.shadowProp}>
-            <Pressable style={styles.eventTab}>
-              <View style={{
-                flexDirection: 'row', justifyContent: 'space-between', paddingLeft: 5, paddingRight: 5,
+          {/* <DropShadow style={styles.shadowProp}> */}
+          <Pressable style={styles.eventTab}>
+            <View style={{
+              flexDirection: 'row', justifyContent: 'space-between', paddingLeft: 5, paddingRight: 5,
+            }}
+            >
+              <Text style={styles.eventHeader}>Event</Text>
+              <Text style={styles.eventDate}>00/00/00</Text>
+            </View>
+            <View
+              style={{
+                borderBottomColor: pawPink,
+                borderBottomWidth: 3,
+                borderRadius: 50,
+                marginBottom: 15,
               }}
-              >
-                <Text style={styles.eventHeader}>Event</Text>
-                <Text style={styles.eventDate}>00/00/00</Text>
-              </View>
-              <View
-                style={{
-                  borderBottomColor: '#e0777d',
-                  borderBottomWidth: 3,
-                  borderRadius: 50,
-                  marginBottom: 15,
-                }}
+            />
+
+            <View style={{
+              flexDirection: 'row', justifyContent: 'space-between', width: 'auto', paddingRight: 20,
+            }}
+            >
+              <Text style={styles.eventText} numberOfLines={4}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute i
+                dolor in reprehenderit in voluptate velit esse cillum dolore eu fiat nulla paatur.
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                mollit anim id est laborum.
+              </Text>
+
+              <Feather
+                name="arrow-right-circle"
+                size={30}
+                color={pawGrey}
+                style={{ alignSelf: 'center' }}
               />
+            </View>
+          </Pressable>
+          {/* </DropShadow> */}
 
-              <View style={{
-                flexDirection: 'row', justifyContent: 'space-between', width: 'auto', paddingRight: 20,
+          {/* <DropShadow style={styles.shadowProp}> */}
+          <Pressable style={styles.eventTab}>
+            <View style={{
+              flexDirection: 'row', justifyContent: 'space-between', paddingLeft: 5, paddingRight: 5,
+            }}
+            >
+              <Text style={styles.eventHeader}>Event</Text>
+              <Text style={styles.eventDate}>00/00/00</Text>
+            </View>
+            <View
+              style={{
+                borderBottomColor: pawPink,
+                borderBottomWidth: 3,
+                borderRadius: 50,
+                marginBottom: 15,
               }}
-              >
-                <Text style={styles.eventText} numberOfLines={4}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor
-                  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                  exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute i
-                  dolor in reprehenderit in voluptate velit esse cillum dolore eu fiat nulla paatur.
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
-                </Text>
+            />
 
-                <Feather
-                  name="arrow-right-circle"
-                  size={30}
-                  color="#333333"
-                  style={{ alignSelf: 'center' }}
-                />
-              </View>
-            </Pressable>
-          </DropShadow>
+            <View style={{
+              flexDirection: 'row', justifyContent: 'space-between', width: 'auto', paddingRight: 20,
+            }}
+            >
+              <Text style={styles.eventText} numberOfLines={4}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo coequat. Duis aute iru
+                dolor in reprehenderit in voluptate velit esse cillum dolore eu fiat nulla pariat.
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                mollit anim id est laborum.
+              </Text>
 
-          <DropShadow style={styles.shadowProp}>
-            <Pressable style={styles.eventTab}>
-              <View style={{
-                flexDirection: 'row', justifyContent: 'space-between', paddingLeft: 5, paddingRight: 5,
-              }}
-              >
-                <Text style={styles.eventHeader}>Event</Text>
-                <Text style={styles.eventDate}>00/00/00</Text>
-              </View>
-              <View
-                style={{
-                  borderBottomColor: '#e0777d',
-                  borderBottomWidth: 3,
-                  borderRadius: 50,
-                  marginBottom: 15,
-                }}
+              <Feather
+                name="arrow-right-circle"
+                size={30}
+                color={pawGrey}
+                style={{ alignSelf: 'center' }}
               />
+            </View>
+          </Pressable>
+          {/* </DropShadow> */}
 
-              <View style={{
-                flexDirection: 'row', justifyContent: 'space-between', width: 'auto', paddingRight: 20,
+          {/* <DropShadow style={styles.shadowProp}> */}
+          <Pressable style={styles.eventTab}>
+            <View style={{
+              flexDirection: 'row', justifyContent: 'space-between', paddingLeft: 5, paddingRight: 5,
+            }}
+            >
+              <Text style={styles.eventHeader}>Event</Text>
+              <Text style={styles.eventDate}>00/00/00</Text>
+            </View>
+            <View
+              style={{
+                borderBottomColor: pawPink,
+                borderBottomWidth: 3,
+                borderRadius: 50,
+                marginBottom: 15,
               }}
-              >
-                <Text style={styles.eventText} numberOfLines={4}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor
-                  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                  exercitation ullamco laboris nisi ut aliquip ex ea commodo coequat. Duis aute iru
-                  dolor in reprehenderit in voluptate velit esse cillum dolore eu fiat nulla pariat.
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
-                </Text>
+            />
 
-                <Feather
-                  name="arrow-right-circle"
-                  size={30}
-                  color="#333333"
-                  style={{ alignSelf: 'center' }}
-                />
-              </View>
-            </Pressable>
-          </DropShadow>
+            <View style={{
+              flexDirection: 'row', justifyContent: 'space-between', width: 'auto', paddingRight: 20,
+            }}
+            >
+              <Text style={styles.eventText} numberOfLines={4}>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo conquat. Duiaute irure
+                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat pariatur.
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+                mollit anim id est laborum.
+              </Text>
 
-          <DropShadow style={styles.shadowProp}>
-            <Pressable style={styles.eventTab}>
-              <View style={{
-                flexDirection: 'row', justifyContent: 'space-between', paddingLeft: 5, paddingRight: 5,
-              }}
-              >
-                <Text style={styles.eventHeader}>Event</Text>
-                <Text style={styles.eventDate}>00/00/00</Text>
-              </View>
-              <View
-                style={{
-                  borderBottomColor: '#e0777d',
-                  borderBottomWidth: 3,
-                  borderRadius: 50,
-                  marginBottom: 15,
-                }}
+              <Feather
+                name="arrow-right-circle"
+                size={30}
+                color={pawGrey}
+                style={{ alignSelf: 'center' }}
               />
-
-              <View style={{
-                flexDirection: 'row', justifyContent: 'space-between', width: 'auto', paddingRight: 20,
-              }}
-              >
-                <Text style={styles.eventText} numberOfLines={4}>
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor
-                  incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                  exercitation ullamco laboris nisi ut aliquip ex ea commodo conquat. Duiaute irure
-                  dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat pariatur.
-                  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                  mollit anim id est laborum.
-                </Text>
-
-                <Feather
-                  name="arrow-right-circle"
-                  size={30}
-                  color="#333333"
-                  style={{ alignSelf: 'center' }}
-                />
-              </View>
-            </Pressable>
-          </DropShadow>
+            </View>
+          </Pressable>
+          {/* </DropShadow> */}
         </Animated.ScrollView>
 
         <View style={{
@@ -204,113 +205,113 @@ export default function HealthTab() {
           />
         </View>
 
-        <DropShadow style={styles.shadowProp}>
-          <Pressable style={styles.newsTab}>
-            <Text style={styles.newsHeader}>Breaking News!</Text>
+        {/* <DropShadow style={styles.shadowProp}> */}
+        <Pressable style={styles.newsTab}>
+          <Text style={styles.newsHeader}>Breaking News!</Text>
 
-            <View
-              style={{
-                borderBottomColor: '#e0777d',
-                borderBottomWidth: 3,
-                borderRadius: 50,
-                marginBottom: 15,
-              }}
-            />
-
-            <View style={{
-              flexDirection: 'row', justifyContent: 'space-between', width: 'auto', paddingRight: 20,
+          <View
+            style={{
+              borderBottomColor: pawPink,
+              borderBottomWidth: 3,
+              borderRadius: 50,
+              marginBottom: 15,
             }}
-            >
-              <Text style={styles.eventText} numberOfLines={4}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                exercitation ullamco laboris nisi ut aliquip ex ea commodo conquat. Duiaute irure
-                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum.
-              </Text>
+          />
 
-              <Feather
-                name="arrow-right-circle"
-                size={30}
-                color="#333333"
-                style={{ alignSelf: 'center' }}
-              />
-            </View>
-          </Pressable>
-        </DropShadow>
+          <View style={{
+            flexDirection: 'row', justifyContent: 'space-between', width: 'auto', paddingRight: 20,
+          }}
+          >
+            <Text style={styles.eventText} numberOfLines={4}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo conquat. Duiaute irure
+              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat pariatur.
+              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum.
+            </Text>
 
-        <DropShadow style={styles.shadowProp}>
-          <Pressable style={styles.newsTab}>
-            <Text style={styles.newsHeader}>Breaking News!</Text>
-
-            <View
-              style={{
-                borderBottomColor: '#e0777d',
-                borderBottomWidth: 3,
-                borderRadius: 50,
-                marginBottom: 15,
-              }}
+            <Feather
+              name="arrow-right-circle"
+              size={30}
+              color={pawGrey}
+              style={{ alignSelf: 'center' }}
             />
+          </View>
+        </Pressable>
+        {/* </DropShadow> */}
 
-            <View style={{
-              flexDirection: 'row', justifyContent: 'space-between', width: 'auto', paddingRight: 20,
+        {/* <DropShadow style={styles.shadowProp}> */}
+        <Pressable style={styles.newsTab}>
+          <Text style={styles.newsHeader}>Breaking News!</Text>
+
+          <View
+            style={{
+              borderBottomColor: pawPink,
+              borderBottomWidth: 3,
+              borderRadius: 50,
+              marginBottom: 15,
             }}
-            >
-              <Text style={styles.eventText} numberOfLines={4}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                exercitation ullamco laboris nisi ut aliquip ex ea commodo conquat. Duiaute irure
-                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum.
-              </Text>
+          />
 
-              <Feather
-                name="arrow-right-circle"
-                size={30}
-                color="#333333"
-                style={{ alignSelf: 'center' }}
-              />
-            </View>
-          </Pressable>
-        </DropShadow>
+          <View style={{
+            flexDirection: 'row', justifyContent: 'space-between', width: 'auto', paddingRight: 20,
+          }}
+          >
+            <Text style={styles.eventText} numberOfLines={4}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo conquat. Duiaute irure
+              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat pariatur.
+              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum.
+            </Text>
 
-        <DropShadow style={styles.shadowProp}>
-          <Pressable style={styles.newsTab}>
-            <Text style={styles.newsHeader}>Breaking News!</Text>
-
-            <View
-              style={{
-                borderBottomColor: '#e0777d',
-                borderBottomWidth: 3,
-                borderRadius: 50,
-                marginBottom: 15,
-              }}
+            <Feather
+              name="arrow-right-circle"
+              size={30}
+              color={pawGrey}
+              style={{ alignSelf: 'center' }}
             />
+          </View>
+        </Pressable>
+        {/* </DropShadow> */}
 
-            <View style={{
-              flexDirection: 'row', justifyContent: 'space-between', width: 'auto', paddingRight: 20,
+        {/* <DropShadow style={styles.shadowProp}> */}
+        <Pressable style={styles.newsTab}>
+          <Text style={styles.newsHeader}>Breaking News!</Text>
+
+          <View
+            style={{
+              borderBottomColor: pawPink,
+              borderBottomWidth: 3,
+              borderRadius: 50,
+              marginBottom: 15,
             }}
-            >
-              <Text style={styles.eventText} numberOfLines={4}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                exercitation ullamco laboris nisi ut aliquip ex ea commodo conquat. Duiaute irure
-                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat pariatur.
-                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-                mollit anim id est laborum.
-              </Text>
+          />
 
-              <Feather
-                name="arrow-right-circle"
-                size={30}
-                color="#333333"
-                style={{ alignSelf: 'center' }}
-              />
-            </View>
-          </Pressable>
-        </DropShadow>
+          <View style={{
+            flexDirection: 'row', justifyContent: 'space-between', width: 'auto', paddingRight: 20,
+          }}
+          >
+            <Text style={styles.eventText} numberOfLines={4}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo conquat. Duiaute irure
+              dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat pariatur.
+              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+              mollit anim id est laborum.
+            </Text>
+
+            <Feather
+              name="arrow-right-circle"
+              size={30}
+              color={pawGrey}
+              style={{ alignSelf: 'center' }}
+            />
+          </View>
+        </Pressable>
+        {/* </DropShadow> */}
       </ScrollView>
     </View>
   );
