@@ -31,23 +31,24 @@ export default function HealthTab() {
   return (
 
     <View style={{
-      flex: 1, backgroundColor: pawGreen,
+      flex: 1, backgroundColor: '#69A297',
     }}
     >
 
       <View style={{ backgroundColor: pawPink, height: StatusBarHeight }} />
 
       <ScrollView
-        contentInset={{ bottom: 150 }}
-        style={{ paddingTop: 20, marginBottom: Platform.OS === 'android' ? 68 : 0 }}
+        contentInset={{ bottom: 40, top: 0 }}
+        showsVerticalScrollIndicator={false}
+        style={{ marginBottom: Platform.OS === 'android' ? 68 : 0, marginTop: Platform.OS === 'android' ? 30 : 0 }}
       >
+
         <Animated.ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
           contentInset={{ left: 50, right: 50 }}
           snapToAlignment="center"
           snapToInterval={Dimensions.get('window').width}
-          // decelerationRate="0"
           disableIntervalMomentum
           directionalLockEnabled
           pagingEnabled

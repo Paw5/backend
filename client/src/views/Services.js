@@ -41,7 +41,11 @@ export default function ServicesTab() {
       </View>
       <View style={[styles.containerMap, { backgroundColor: pawGreen }]}>
 
-        <ScrollView contentInset={{ bottom: 150 }} style={{ marginBottom: 72 }}>
+        <ScrollView
+          contentInset={{ bottom: 160 }}
+          showsVerticalScrollIndicator={false}
+          style={{ marginBottom: Platform.OS === 'android' ? 170 : 0 }}
+        >
           <ServNode />
           <ServNode />
           <ServNode />

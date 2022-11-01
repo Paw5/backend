@@ -1,6 +1,6 @@
 /* eslint-disable global-require */
 import {
-  View, ScrollView, Image, Text, Pressable,
+  View, ScrollView, Image, Text, Pressable, Platform,
 } from 'react-native';
 import React, { useState, useRef } from 'react';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
@@ -45,7 +45,11 @@ export default function PMs() {
         <SearchBar />
       </View>
 
-      <ScrollView contentInset={{ bottom: 150 }}>
+      <ScrollView
+        contentInset={{ bottom: 160 }}
+        showsVerticalScrollIndicator={false}
+        style={{ marginBottom: Platform.OS === 'android' ? 170 : 0 }}
+      >
         <Pressable onPress={toggleMessage} style={styles.pmUserInteraction}>
           <Image
             style={styles.pmUserImage}

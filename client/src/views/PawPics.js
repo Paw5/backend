@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable global-require */
 import {
-  View, ScrollView,
+  View, ScrollView, Platform,
 } from 'react-native';
 import React from 'react';
 import { useFonts } from 'expo-font';
@@ -37,7 +37,11 @@ export default function PawPics() {
       </View>
       <View style={[styles.containerMap, { backgroundColor: pawGreen }]}>
 
-        <ScrollView contentInset={{ bottom: 150 }} style={{ marginBottom: 72 }}>
+        <ScrollView
+          contentInset={{ bottom: 160 }}
+          showsVerticalScrollIndicator={false}
+          style={{ marginBottom: Platform.OS === 'android' ? 170 : 0 }}
+        >
           <PawPicsPost />
           <PawPicsPost />
           <PawPicsPost />

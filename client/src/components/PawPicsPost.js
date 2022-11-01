@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import {
-  View, Text, ScrollView, Pressable, Image, Dimensions,
+  View, Text, ScrollView, Pressable, Image, Dimensions, Platform,
 } from 'react-native';
 import React, { useState } from 'react';
 import { useFonts } from 'expo-font';
@@ -73,7 +73,6 @@ export default function PawPostPost() {
         style={styles.picsModal}
       >
         <View>
-          <View style={{ backgroundColor: pawPink, height: StatusBarHeight, marginLeft: -10 }} />
           <Image
             style={styles.inspicImage}
             source={miso}
@@ -125,221 +124,208 @@ export default function PawPostPost() {
 
           </Pressable>
         </View>
-        <View
-          style={{
-            borderColor: pawGrey,
-            borderWidth: 2,
-            borderRadius: 50,
-            top: (Dimensions.get('window').width + 100),
-            height: (Dimensions.get('window').height / 3),
-            width: 1,
-            marginTop: 5,
-            marginBottom: 5,
-            marginLeft: 20,
-            marginRight: 20,
-            position: 'absolute',
-          }}
-        />
-        <ScrollView contentInset={{ bottom: 150 }} style={{ marginLeft: 20, marginTop: (Dimensions.get('window').width - 20), marginBottom: 30 }}>
-          {/* REMOVE FROM HERE */}
+        <View style={{ flexDirection: 'row', paddingBottom: 72, marginBottom: 100 }}>
           <View
             style={{
+              borderColor: 'white',
               backgroundColor: 'white',
-              width: (Dimensions.get('window').height - 550),
-              height: 25,
-              borderRadius: 100,
-              marginTop: 10,
+              borderRadius: 50,
+              width: 6,
+              height: Platform.OS === 'android' ? (Dimensions.get('window').width - 90) : (Dimensions.get('window').width - 125),
+              marginTop: Dimensions.get('window').width,
               marginBottom: 5,
-              marginLeft: 20,
+              marginLeft: 10,
               marginRight: 20,
-              paddingLeft: 10,
             }}
-          >
-            <Text>Comment Example</Text>
-          </View>
-          <View
-            style={{
-              backgroundColor: 'white',
-              width: (Dimensions.get('window').height - 550),
-              height: 25,
-              borderRadius: 100,
-              marginTop: 10,
-              marginBottom: 5,
-              marginLeft: 20,
-              marginRight: 20,
-              paddingLeft: 10,
-            }}
-          >
-            <Text>Comment Example</Text>
-          </View>
-          <View
-            style={{
-              backgroundColor: 'white',
-              width: (Dimensions.get('window').height - 550),
-              height: 25,
-              borderRadius: 100,
-              marginTop: 10,
-              marginBottom: 5,
-              marginLeft: 20,
-              marginRight: 20,
-              paddingLeft: 10,
-            }}
-          >
-            <Text>Comment Example</Text>
-          </View>
-          <View
-            style={{
-              backgroundColor: 'white',
-              width: (Dimensions.get('window').height - 550),
-              height: 25,
-              borderRadius: 100,
-              marginTop: 10,
-              marginBottom: 5,
-              marginLeft: 20,
-              marginRight: 20,
-              paddingLeft: 10,
-            }}
-          >
-            <Text>Comment Example</Text>
-          </View>
-          <View
-            style={{
-              backgroundColor: 'white',
-              width: (Dimensions.get('window').height - 550),
-              height: 25,
-              borderRadius: 100,
-              marginTop: 10,
-              marginBottom: 5,
-              marginLeft: 20,
-              marginRight: 20,
-              paddingLeft: 10,
-            }}
-          >
-            <Text>Comment Example</Text>
-          </View>
-          <View
-            style={{
-              backgroundColor: 'white',
-              width: (Dimensions.get('window').height - 550),
-              height: 25,
-              borderRadius: 100,
-              marginTop: 10,
-              marginBottom: 5,
-              marginLeft: 20,
-              marginRight: 20,
-              paddingLeft: 10,
-            }}
-          >
-            <Text>Comment Example</Text>
-          </View>
-          <View
-            style={{
-              backgroundColor: 'white',
-              width: (Dimensions.get('window').height - 550),
-              height: 25,
-              borderRadius: 100,
-              marginTop: 10,
-              marginBottom: 5,
-              marginLeft: 20,
-              marginRight: 20,
-              paddingLeft: 10,
-            }}
-          >
-            <Text>Comment Example</Text>
-          </View>
-          <View
-            style={{
-              backgroundColor: 'white',
-              width: (Dimensions.get('window').height - 550),
-              height: 25,
-              borderRadius: 100,
-              marginTop: 10,
-              marginBottom: 5,
-              marginLeft: 20,
-              marginRight: 20,
-              paddingLeft: 10,
-            }}
-          >
-            <Text>Comment Example</Text>
-          </View>
-          <View
-            style={{
-              backgroundColor: 'white',
-              width: (Dimensions.get('window').height - 550),
-              height: 25,
-              borderRadius: 100,
-              marginTop: 10,
-              marginBottom: 5,
-              marginLeft: 20,
-              marginRight: 20,
-              paddingLeft: 10,
-            }}
-          >
-            <Text>Comment Example</Text>
-          </View>
-          <View
-            style={{
-              backgroundColor: 'white',
-              width: (Dimensions.get('window').height - 550),
-              height: 25,
-              borderRadius: 100,
-              marginTop: 10,
-              marginBottom: 5,
-              marginLeft: 20,
-              marginRight: 20,
-              paddingLeft: 10,
-            }}
-          >
-            <Text>Comment Example</Text>
-          </View>
-          <View
-            style={{
-              backgroundColor: 'white',
-              width: (Dimensions.get('window').height - 550),
-              height: 25,
-              borderRadius: 100,
-              marginTop: 10,
-              marginBottom: 5,
-              marginLeft: 20,
-              marginRight: 20,
-              paddingLeft: 10,
-            }}
-          >
-            <Text>Comment Example</Text>
-          </View>
-          <View
-            style={{
-              backgroundColor: 'white',
-              width: (Dimensions.get('window').height - 550),
-              height: 25,
-              borderRadius: 100,
-              marginTop: 10,
-              marginBottom: 5,
-              marginLeft: 20,
-              marginRight: 20,
-              paddingLeft: 10,
-            }}
-          >
-            <Text>Comment Example</Text>
-          </View>
-          <View
-            style={{
-              backgroundColor: 'white',
-              width: (Dimensions.get('window').height - 550),
-              height: 25,
-              borderRadius: 100,
-              marginTop: 10,
-              marginBottom: 5,
-              marginLeft: 20,
-              marginRight: 20,
-              paddingLeft: 10,
-            }}
-          >
-            <Text>Comment Example</Text>
-          </View>
+          />
+          <ScrollView style={{ marginTop: Dimensions.get('window').width - 10 }}>
+            {/* REMOVE FROM HERE */}
+            <View
+              style={{
+                backgroundColor: 'white',
+                width: (Dimensions.get('window').width - 70),
+                height: 25,
+                borderRadius: 100,
+                marginTop: 10,
+                marginBottom: 5,
+                marginRight: 20,
+                paddingLeft: 10,
+              }}
+            >
+              <Text>Comment Example</Text>
+            </View>
+            <View
+              style={{
+                backgroundColor: 'white',
+                width: (Dimensions.get('window').width - 70),
+                height: 25,
+                borderRadius: 100,
+                marginTop: 10,
+                marginBottom: 5,
+                marginRight: 20,
+                paddingLeft: 10,
+              }}
+            >
+              <Text>Comment Example</Text>
+            </View>
+            <View
+              style={{
+                backgroundColor: 'white',
+                width: (Dimensions.get('window').width - 70),
+                height: 25,
+                borderRadius: 100,
+                marginTop: 10,
+                marginBottom: 5,
+                marginRight: 20,
+                paddingLeft: 10,
+              }}
+            >
+              <Text>Comment Example</Text>
+            </View>
+            <View
+              style={{
+                backgroundColor: 'white',
+                width: (Dimensions.get('window').width - 70),
+                height: 25,
+                borderRadius: 100,
+                marginTop: 10,
+                marginBottom: 5,
+                marginRight: 20,
+                paddingLeft: 10,
+              }}
+            >
+              <Text>Comment Example</Text>
+            </View>
+            <View
+              style={{
+                backgroundColor: 'white',
+                width: (Dimensions.get('window').width - 70),
+                height: 25,
+                borderRadius: 100,
+                marginTop: 10,
+                marginBottom: 5,
+                marginRight: 20,
+                paddingLeft: 10,
+              }}
+            >
+              <Text>Comment Example</Text>
+            </View>
+            <View
+              style={{
+                backgroundColor: 'white',
+                width: (Dimensions.get('window').width - 70),
+                height: 25,
+                borderRadius: 100,
+                marginTop: 10,
+                marginBottom: 5,
+                marginRight: 20,
+                paddingLeft: 10,
+              }}
+            >
+              <Text>Comment Example</Text>
+            </View>
+            <View
+              style={{
+                backgroundColor: 'white',
+                width: (Dimensions.get('window').width - 70),
+                height: 25,
+                borderRadius: 100,
+                marginTop: 10,
+                marginBottom: 5,
+                marginRight: 20,
+                paddingLeft: 10,
+              }}
+            >
+              <Text>Comment Example</Text>
+            </View>
+            <View
+              style={{
+                backgroundColor: 'white',
+                width: (Dimensions.get('window').width - 70),
+                height: 25,
+                borderRadius: 100,
+                marginTop: 10,
+                marginBottom: 5,
+                marginRight: 20,
+                paddingLeft: 10,
+              }}
+            >
+              <Text>Comment Example</Text>
+            </View>
+            <View
+              style={{
+                backgroundColor: 'white',
+                width: (Dimensions.get('window').width - 70),
+                height: 25,
+                borderRadius: 100,
+                marginTop: 10,
+                marginBottom: 5,
+                marginRight: 20,
+                paddingLeft: 10,
+              }}
+            >
+              <Text>Comment Example</Text>
+            </View>
+            <View
+              style={{
+                backgroundColor: 'white',
+                width: (Dimensions.get('window').width - 70),
+                height: 25,
+                borderRadius: 100,
+                marginTop: 10,
+                marginBottom: 5,
+                marginRight: 20,
+                paddingLeft: 10,
+              }}
+            >
+              <Text>Comment Example</Text>
+            </View>
+            <View
+              style={{
+                backgroundColor: 'white',
+                width: (Dimensions.get('window').width - 70),
+                height: 25,
+                borderRadius: 100,
+                marginTop: 10,
+                marginBottom: 5,
+                marginRight: 20,
+                paddingLeft: 10,
+              }}
+            >
+              <Text>Comment Example</Text>
+            </View>
+            <View
+              style={{
+                backgroundColor: 'white',
+                width: (Dimensions.get('window').width - 70),
+                height: 25,
+                borderRadius: 100,
+                marginTop: 10,
+                marginBottom: 5,
+                marginRight: 20,
+                paddingLeft: 10,
+              }}
+            >
+              <Text>Comment Example</Text>
+            </View>
+            <View
+              style={{
+                backgroundColor: 'white',
+                width: (Dimensions.get('window').width - 70),
+                height: 25,
+                borderRadius: 100,
+                marginTop: 10,
+                marginBottom: 5,
+                marginRight: 20,
+                paddingLeft: 10,
+              }}
+            >
+              <Text>Last Example</Text>
+            </View>
 
-          {/* REMOVE TO HERE */}
-        </ScrollView>
+            {/* REMOVE TO HERE */}
+          </ScrollView>
+        </View>
       </Modal>
     </View>
   );

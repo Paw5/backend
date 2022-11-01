@@ -719,7 +719,7 @@ export default StyleSheet.create({
   },
   newsTab: {
     alignSelf: 'center',
-    marginTop: 20,
+    marginTop: 10,
     height: 'auto',
     width: Dimensions.get('window').width - 30,
     backgroundColor: 'white',
@@ -730,6 +730,7 @@ export default StyleSheet.create({
     paddingTop: 25,
     marginRight: 15,
     marginLeft: 15,
+    marginBottom: 20,
   },
   newsHeader: {
     fontFamily: 'QuicksandBold',
@@ -812,7 +813,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     // alignItems: 'center',
     padding: 45,
-    marginTop: StatusBarHeight + 12,
+    marginTop: Platform.OS === 'android' ? 12 : StatusBarHeight + 12,
     width: '92%',
     justifyContent: 'space-between',
     backgroundColor: 'white',
@@ -840,11 +841,6 @@ export default StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
     justifyContent: 'space-around',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 100,
-    shadowRadius: 20,
-    elevation: 24,
   },
   circleAnimated: {
     width: TAB_WIDTH,
@@ -860,11 +856,6 @@ export default StyleSheet.create({
     bottom: 30,
     borderWidth: 0,
     borderColor: pawGreen, // all pages will be one color so,,, just set it to that color
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 100,
-    shadowRadius: 20,
-    elevation: 24,
     zIndex: 99,
   },
   circle2: {
@@ -876,7 +867,6 @@ export default StyleSheet.create({
     bottom: Platform.OS === 'ios' ? 16 : 8,
     borderWidth: 7,
     borderColor: pawGreen,
-    elevation: 24,
     zIndex: 99,
   },
   pawPupPic: {
@@ -1022,19 +1012,16 @@ export default StyleSheet.create({
     width: Dimensions.get('window').width,
     marginLeft: 0,
     height: Dimensions.get('window').height,
-    marginTop: StatusBarHeight,
+    marginTop: Platform.OS === 'android' ? 0 : StatusBarHeight,
     marginBottom: -20,
     justifyContent: 'flex-start',
     alignContent: 'center',
     paddingLeft: 10,
-    zIndex: 1,
   },
   exitPicButton: {
-    alignSelf: 'center',
     backgroundColor: 'white',
     borderRadius: 25,
     overflow: 'hidden',
-    zIndex: 45,
     padding: 9,
   },
   inspicImage: {
