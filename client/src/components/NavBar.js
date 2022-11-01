@@ -27,6 +27,7 @@ function MyTabBar({ state, descriptors, navigation }) {
   const [translateX] = useState(new Animated.Value(0));
   const [commPopupVisible, makeCommPopupVisible] = useState(false);
   const [healthPopupVisible, makeHealthPopupVisible] = useState(false);
+  const [currentScreen, setCurrentScreen] = useState('N');
 
   const translateTab = (index) => {
     if (index > 4 && index < 7) {
@@ -66,10 +67,12 @@ function MyTabBar({ state, descriptors, navigation }) {
 
           if (!isFocused && !event.defaultPrevented) {
             navigation.navigate({ name: route.name, merge: true });
+            setCurrentScreen(route.name);
           }
         };
 
         const onLongPress = () => {
+          onPress();
           if (route.name === 'M') {
             navigation.emit({
               type: 'tabLongPress',
@@ -100,7 +103,7 @@ function MyTabBar({ state, descriptors, navigation }) {
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            onFocus={isFocused ? buttonRaise = (Platform.OS === 'ios' ? 22 : 15) : buttonRaise = 0}
+            onFocus={(currentScreen === label) ? (buttonRaise = (Platform.OS === 'ios' ? 22 : 15)) : buttonRaise = 0}
             style={{ flex: 1, alignItems: 'center', bottom: buttonRaise }}
             hitSlop={{
               top: 20, bottom: 20, left: 20, right: 20,
@@ -108,11 +111,16 @@ function MyTabBar({ state, descriptors, navigation }) {
           >
             <Feather
               name={
-                 // eslint-disable-next-line no-nested-ternary
-                 label === 'N' && isFocused ? 'book-open' : label === 'N' ? 'book' : label === 'M' ? 'map-pin' : label === 'S' ? 'compass' : label === 'C' ? 'users' : label === 'H' ? 'activity' : 'home'
+                {
+                  N: isFocused ? 'book-open' : 'book',
+                  M: 'map-pin',
+                  S: 'compass',
+                  C: 'users',
+                  H: 'activity',
+                }[label] || 'home'
               }
               size={
-                isFocused ? 50 : 30
+                currentScreen === label ? 50 : 30
               }
               color="#333333"
               style={{ justifyContent: 'center' }}

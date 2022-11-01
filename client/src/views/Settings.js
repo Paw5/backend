@@ -346,7 +346,21 @@ export default function ServicesTab() {
             />
           </Pressable>
           {/* </DropShadow> */}
-
+          <Pressable style={[styles.settingsItem, { marginRight: 20, width: Dimensions.get('window').width - 40 }]} onPress={{/* PLAY ONBOARDNG */}}>
+            <Text
+              adjustsFontSizeToFit
+              numberOfLines={1}
+              style={styles.settingsText}
+            >
+              Onboarding
+            </Text>
+            <Feather
+              name="chevron-right"
+              size={30}
+              color={pawGrey}
+              style={{ marginRight: -5 }}
+            />
+          </Pressable>
         </View>
       </Modal>
     </View>
