@@ -144,6 +144,7 @@ export default function ServicesTab() {
       {/* notification options modal */}
       <Modal
         isVisible={isNotifVisible}
+        onBackdropPress={() => isNotifVisible}
         animationIn="slideInRight"
         animationOut="slideOutRight"
         hasBackdrop={false}

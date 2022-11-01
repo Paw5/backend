@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import {
-  TextInput, View, Text, Pressable, Modal,
+  TextInput, View, Text, Pressable,
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
+import Modal from 'react-native-modal';
 import styles, { pawGrey } from '../constants/Styles';
 
 export default function SearchBar(searchQuery) {
@@ -13,6 +14,9 @@ export default function SearchBar(searchQuery) {
         animationType="fade"
         transparent
         visible={isModalVisible}
+        onBackdropPress={() => {
+          setModalVisible(!isModalVisible);
+        }}
         onRequestClose={() => {
           setModalVisible(!isModalVisible);
         }}

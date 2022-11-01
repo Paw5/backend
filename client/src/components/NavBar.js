@@ -5,9 +5,10 @@
 // Required imports
 import React, { useState, useEffect } from 'react';
 import {
-  View, TouchableOpacity, Dimensions, Animated, Modal, Pressable, Platform,
+  View, TouchableOpacity, Dimensions, Animated, Pressable, Platform,
 } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import Modal from 'react-native-modal';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Feather } from '@expo/vector-icons';
 // Component imports
@@ -125,6 +126,9 @@ function MyTabBar({ state, descriptors, navigation }) {
           animationType="fade"
           transparent
           visible={commPopupVisible}
+          onBackdropPress={() => {
+            makeCommPopupVisible(!commPopupVisible);
+          }}
           onRequestClose={() => {
             makeCommPopupVisible(!commPopupVisible);
           }}
@@ -176,6 +180,9 @@ function MyTabBar({ state, descriptors, navigation }) {
           animationType="fade"
           transparent
           visible={healthPopupVisible}
+          onBackdropPress={() => {
+            makeHealthPopupVisible(!healthPopupVisible);
+          }}
           onRequestClose={() => {
             makeHealthPopupVisible(!healthPopupVisible);
           }}
