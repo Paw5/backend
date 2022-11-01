@@ -67,6 +67,7 @@ export default function PawPostPost() {
       {/* </DropShadow> */}
       <Modal
         isVisible={isPicVisible}
+        onBackdropPress={() => isPicVisible}
         animationIn="slideInRight"
         animationOut="slideOutRight"
         hasBackdrop={false}
