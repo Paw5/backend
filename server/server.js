@@ -21,12 +21,19 @@ app.use((req, res, next) => {
 app.listen(3001, () => { console.log('Listening on port 3001'); }); // has server listen for requests
 
 app.get('/', (req, res) => {
-  connection.query('SHOW tables', (error, values) => res.send(error || values));
+  connection.query('SHOW tables', (error, values) => {
+    res.send(error || values.map((ea) => Object.values(ea)[0]));
+  });
 });
 
 app.get('/:table', (req, res) => {
   connection.query(`SELECT * FROM ${req.params.table}`, (error, values) => {
-    res.send(error || values);
+    if (error) {
+      if (error.code === 'ER_NO_SUCH_TABLE') res.status(404);
+      res.send(error);
+    } else {
+      res.send(values);
+    }
   });
 });
 
