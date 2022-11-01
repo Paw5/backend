@@ -9,6 +9,7 @@ import { useFonts } from 'expo-font';
 import { DropShadow } from 'react-native-drop-shadow';
 import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
+import Onboarding from 'react-native-onboarding-swiper';
 import styles, { pawPink, pawGreen, pawGrey } from '../constants/Styles';
 
 const StatusBarHeight = getStatusBarHeight();
@@ -38,6 +39,12 @@ export default function ServicesTab() {
   const [isHelpVisible, setHelpVisible] = useState(false);
   const toggleHelp = () => {
     setHelpVisible(!isHelpVisible);
+  };
+
+  /* toggle onboarding replay modal */
+  const [isOnboardVisible, setOnboardVisible] = useState(false);
+  const toggleOnboard = () => {
+    setOnboardVisible(!isOnboardVisible);
   };
 
   /* add native fonts */
@@ -347,7 +354,7 @@ export default function ServicesTab() {
             />
           </Pressable>
           {/* </DropShadow> */}
-          <Pressable style={[styles.settingsItem, { marginRight: 20, width: Dimensions.get('window').width - 40 }]} onPress={{/* PLAY ONBOARDNG */}}>
+          <Pressable style={[styles.settingsItem, { marginRight: 20, width: Dimensions.get('window').width - 40 }]} onPress={toggleOnboard}>
             <Text
               adjustsFontSizeToFit
               numberOfLines={1}
