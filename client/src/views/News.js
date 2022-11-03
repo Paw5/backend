@@ -38,9 +38,8 @@ export default function HealthTab() {
       <View style={{ backgroundColor: pawPink, height: StatusBarHeight }} />
 
       <ScrollView
-        contentInset={{ bottom: 40, top: 0 }}
         showsVerticalScrollIndicator={false}
-        style={{ marginBottom: Platform.OS === 'android' ? 68 : 0, marginTop: Platform.OS === 'android' ? 30 : 0 }}
+        style={{ marginBottom: Platform.OS === 'android' ? 68 : 68, marginTop: 30 }}
       >
 
         <Animated.ScrollView

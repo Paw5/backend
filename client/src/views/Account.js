@@ -1,12 +1,10 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable global-require */
 import {
-  View, Text, Dimensions, StyleSheet, Pressable, Image, ScrollView,
+  View, Text, Dimensions, Pressable, Image, ScrollView,
 } from 'react-native';
 import React, { useState } from 'react';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import { useFonts } from 'expo-font';
-import DropShadow from 'react-native-drop-shadow';
 import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
 import styles, { pawPink, pawGreen } from '../constants/Styles';
@@ -145,6 +143,19 @@ export default function ServicesTab() {
             </Text>
           </Pressable>
           {/* </DropShadow> */}
+
+          <Pressable style={[styles.menuItem, { width: Dimensions.get('window').width - 40 }]}>
+            <Text
+              style={[styles.menuText, { fontSize: 18, width: 'auto', color: pawPink }]}
+            >
+              Email
+            </Text>
+            <Text
+              style={[styles.menuText, { fontSize: 22, width: 'auto' }]}
+            >
+              Users email
+            </Text>
+          </Pressable>
 
           {/* <DropShadow style={styles.shadowProp}> */}
           <Pressable style={[styles.menuItem, { width: Dimensions.get('window').width - 40 }]}>

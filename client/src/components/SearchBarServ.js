@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  TextInput, View, Text, Pressable,
+  TextInput, View, Text, Pressable, KeyboardAvoidingView,
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
@@ -35,27 +35,29 @@ export default function SearchBar(searchQuery) {
           </Pressable>
         </View>
       </Modal>
-      <View
+      <KeyboardAvoidingView
+        behavior="height"
         style={styles.searchBar}
       >
         <Feather
           name="search"
           size={20}
           color="pawGrey"
-          style={{ marginLeft: 10, alignItems: 'center' }}
+          style={{ marginLeft: 10, alignSelf: 'center' }}
         />
         <TextInput
           style={styles.input}
           placeholder="Search"
           value={searchQuery}
         />
-      </View>
+      </KeyboardAvoidingView>
+
       <Pressable style={styles.filters} onPress={() => setModalVisible(true)}>
         <Feather
           name="filter"
           size={20}
           color="pawGrey"
-          style={{ justifyContent: 'center' }}
+          style={{ justifyContent: 'center', alignSelf: 'center' }}
         />
       </Pressable>
     </View>

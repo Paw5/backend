@@ -38,9 +38,8 @@ export default function PawPics() {
       <View style={[styles.containerMap, { backgroundColor: pawGreen }]}>
 
         <ScrollView
-          contentInset={{ bottom: 160 }}
           showsVerticalScrollIndicator={false}
-          style={{ marginBottom: Platform.OS === 'android' ? 170 : 0 }}
+          style={{ marginBottom: 170 }}
         >
           <PawPicsPost />
           <PawPicsPost />
