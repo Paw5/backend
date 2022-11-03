@@ -1,17 +1,19 @@
 {
   "dependencies": {
+    "aws-sdk": "^2.1247.0",
+    "aws-serverless-express": "^3.4.0",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "mysql": "^2.18.1"
   },
   "scripts": {
-    "start": "MODE=AWS node server.js",
-    "start:local": "MODE=LOCAL node server.js"
+    "start": "node server.js"
   },
   "name": "server",
   "version": "1.0.0",
   "main": "server.js",
   "devDependencies": {
+    "claudia": "^5.14.1",
     "eslint": "^8.26.0",
     "eslint-config-airbnb": "^19.0.4",
     "eslint-plugin-import": "^2.26.0",

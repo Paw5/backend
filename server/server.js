@@ -2,6 +2,7 @@ import express from 'express';
 import dotenv from 'dotenv'; // library for processing .env files
 import connection from './connection.js';
 import users from './routers/Users.js';
+
 // library for creating server
 const app = express();
 
@@ -19,11 +20,22 @@ app.use((req, res, next) => {
   next();
 });
 
-app.listen(3001, () => { console.log('Listening on port 3001'); }); // has server listen for requests
+app.listen(process.env.PORT || 3001, () => { console.log('Listening on port 3001'); });
 
 app.get('/', (req, res) => {
   connection.query('SHOW tables', (error, values) => {
     res.send(error || values.map((ea) => Object.values(ea)[0]));
+  });
+});
+
+app.get('/count/:table', (req, res) => {
+  connection.query(`SELECT COUNT(*) AS 'count' FROM ${req.params.table}`, (error, values) => {
+    if (error) {
+      if (error.code === 'ER_NO_SUCH_TABLE') res.status(404);
+      res.send(error);
+    } else {
+      res.send(values[0]);
+    }
   });
 });
 
