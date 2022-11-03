@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv'; // library for processing .env files
 import connection from './connection.js';
+import users from './routers/Users.js';
 // library for creating server
 const app = express();
 
@@ -38,3 +39,5 @@ app.get('/:table', (req, res) => {
 });
 
 process.on('exit', () => connection.end((err) => console.log(err || 'Successfully ended DB connection.')));
+
+app.use('/users', users);
