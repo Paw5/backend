@@ -1,5 +1,5 @@
-import { Router } from 'express';
-import connection from '../connection.js';
+const { Router } = require('express');
+const connection = require('../connection.js');
 
 const account = 'user_id, username, firstname, lastname, email, phone, profile_picture, birthdate, city, state';
 const router = Router();
@@ -18,7 +18,7 @@ router.get('/:userId', (req, res) => {
   let limitSql = '';
   if (limit) {
     limitSql = `LIMIT ${limit}`;
-    limitSql += (page || offset) ? ` OFFSET ${offset + (page - 1) * limit}` : '';
+    limitSql += (req.query.page || req.query.offset) ? ` OFFSET ${offset + (page - 1) * limit}` : '';
   }
 
   const jsonResponse = {
@@ -65,18 +65,6 @@ router.get('/:userId', (req, res) => {
   });
 });
 
-/**
- * username (required, unique)
-user_id (required, unique)
-firstname (required)
-lastname (required)
-email (required, unique)
-phone
-profile_id
-birthdate (required)
-city (required)
-state (required)
- */
 router.post('/', (req, res) => {
   const jsonResponse = {
     links: {
@@ -120,4 +108,4 @@ router.post('/', (req, res) => {
   );
 });
 
-export default router;
+module.exports = router;

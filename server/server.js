@@ -1,7 +1,7 @@
-import express from 'express';
-import dotenv from 'dotenv'; // library for processing .env files
-import connection from './connection.js';
-import users from './routers/Users.js';
+const express = require('express');
+const dotenv = require('dotenv'); // library for processing .env files
+const connection = require('./connection.js');
+const users = require('./routers/Users.js');
 
 // library for creating server
 const app = express();
@@ -20,7 +20,7 @@ app.use((req, res, next) => {
   next();
 });
 
-app.listen(process.env.PORT || 3001, () => { console.log('Listening on port 3001'); });
+const server = app.listen(process.env.PORT || 3001, () => { console.log('Listening on port 3001'); });
 
 app.get('/', (req, res) => {
   connection.query('SHOW tables', (error, values) => {
@@ -50,6 +50,6 @@ app.get('/:table', (req, res) => {
   });
 });
 
-process.on('exit', () => connection.end((err) => console.log(err || 'Successfully ended DB connection.')));
+process.on('exit', () => connection.end(() => server.close()));
 
 app.use('/users', users);

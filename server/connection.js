@@ -1,5 +1,5 @@
-import dotenv from 'dotenv';
-import { createConnection } from 'mysql';
+const dotenv = require('dotenv');
+const { createConnection } = require('mysql');
 
 dotenv.config();
 
@@ -13,6 +13,6 @@ const connection = createConnection({
   port,
 });
 
-connection.connect({}, (err) => console.log(err || 'Successfully connected to DB'));
+connection.connect({}, () => {});
 
-export default connection;
+module.exports = connection;
