@@ -7,8 +7,9 @@
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "joi": "^17.7.0",
     "mysql": "^2.18.1",
-    "ssh2": "^1.11.0"
+    "mysql2": "^2.3.3"
   },
   "scripts": {
     "load:prod": "find . -type d -not -path './node_modules/*' -a ! -name '.' | xargs -I% ssh -i ~/.ssh/paw5-kp.pem ubuntu@ec2-3-209-131-148.compute-1.amazonaws.com 'mkdir -p ~/capstone/server/%'",
@@ -17,7 +18,7 @@
     "start:prod": "npm run load:prod && npm run build:prod && npm run deploy:prod",
     "start": "npm run load:prod && npm run build:prod && npm run deploy:prod",
     "start:native": "node server.js",
-    "test": "jest"
+    "test": "NODE_ENV=test jest --watchAll"
   },
   "name": "server",
   "version": "1.0.0",

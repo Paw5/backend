@@ -1,5 +1,7 @@
 /* eslint-disable no-undef */
+const { afterAll } = require('@jest/globals');
 const login = require('./login');
+const connection = require('./connection');
 
 test('performs sha256 on Hello World', () => {
   expect(login.sha256('Hello')).toBe('GF+NsyJx/iX1Yab8k4suJkMG7DBO2lGAB9F2SCY4GWk=');
@@ -26,3 +28,5 @@ test('valid username with invalid password does not login', async () => {
 test('SQL injection fails on request for password hash', async () => {
   login.getPasswordHash("' OR 'abc'='abc").then((v) => expect(v).toBe(''));
 });
+
+afterAll(() => connection.end());

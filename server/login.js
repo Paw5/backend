@@ -21,12 +21,10 @@ const comparePasswords = async (input, hash) => bcrypt.compare(input, hash);
 
 const getPasswordHash = async (username) => {
   const passwordHash = new Promise((resolve) => {
-    const setPWHash = (err, values) => {
-      if (err) resolve('');
-      else if (!values) resolve('');
-      else resolve(values.length ? values[0].password : '');
-    };
-    connection.query('SELECT password FROM users WHERE username=?', username, setPWHash);
+    connection.query('SELECT password FROM users WHERE username=?', [username], (err, results) => {
+      if (!err && results && results.length) resolve(results[0].password);
+      else resolve('');
+    });
   });
   return passwordHash;
 };

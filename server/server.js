@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv'); // library for processing .env files
+const bodyParser = require('body-parser');
 const connection = require('./connection.js');
 const users = require('./routers/Users.js');
 
@@ -10,6 +11,7 @@ dotenv.config();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use((req, res, next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -39,16 +41,16 @@ app.get('/count/:table', (req, res) => {
   });
 });
 
-app.get('/:table', (req, res) => {
-  connection.query(`SELECT * FROM ${req.params.table}`, (error, values) => {
-    if (error) {
-      if (error.code === 'ER_NO_SUCH_TABLE') res.status(404);
-      res.send(error);
-    } else {
-      res.send(values);
-    }
-  });
-});
+// app.get('/:table', (req, res) => {
+//   connection.query(`SELECT * FROM ${req.params.table}`, (error, values) => {
+//     if (error) {
+//       if (error.code === 'ER_NO_SUCH_TABLE') res.status(404);
+//       res.send(error);
+//     } else {
+//       res.send(values);
+//     }
+//   });
+// });
 
 process.on('exit', () => connection.end(() => server.close()));
 
