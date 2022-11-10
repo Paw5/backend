@@ -323,7 +323,6 @@ export default StyleSheet.create({
     position: 'absolute',
     borderColor: pawGreen,
   },
-
   servLeft: {
     height: 160,
     width: 90,
@@ -333,7 +332,6 @@ export default StyleSheet.create({
     alignContent: 'center',
     borderColor: pawGreen,
   },
-
   servCheck: {
     height: 25,
     width: 90,
@@ -352,7 +350,6 @@ export default StyleSheet.create({
     overflow: 'hidden',
     marginBottom: 20,
   },
-
   servHeader: {
     fontSize: 15,
     fontWeight: '600',
@@ -362,7 +359,6 @@ export default StyleSheet.create({
     fontFamily: 'QuicksandBold',
     color: pawYellow,
   },
-
   servHeader2: {
     fontSize: 11,
     fontWeight: '600',
@@ -371,36 +367,32 @@ export default StyleSheet.create({
     fontFamily: 'QuicksandBold',
     color: pawYellow,
   },
-
   servStar1: {
     marginLeft: 260,
     marginTop: 10,
     position: 'absolute',
   },
-
   servStar2: {
     marginLeft: 280,
     marginTop: 10,
     position: 'absolute',
   },
-
   servStar3: {
     marginLeft: 300,
     marginTop: 10,
     position: 'absolute',
   },
-
   servStar4: {
     marginLeft: 320,
     marginTop: 10,
     position: 'absolute',
   },
-
   servStar5: {
     marginLeft: 340,
     marginTop: 10,
     position: 'absolute',
   },
+
   /* pm styles */
   pmUserInteraction: {
     backgroundColor: pawLightGrey,
@@ -561,6 +553,7 @@ export default StyleSheet.create({
     borderRadius: 22,
     overflow: 'hidden',
   },
+
   /* PawPost styles */
   postContainer: {
     alignSelf: 'center',
@@ -570,7 +563,6 @@ export default StyleSheet.create({
     overflow: 'hidden',
     marginBottom: 20,
   },
-
   ppoProfileImage: {
     height: 60,
     width: 60,
@@ -589,7 +581,6 @@ export default StyleSheet.create({
     borderWidth: 300,
     zIndex: 51,
   },
-
   ppoProfileNameNode: {
     height: 30,
     width: 160,
@@ -602,7 +593,6 @@ export default StyleSheet.create({
     borderColor: pawGreen,
     backgroundColor: pawLightGrey,
   },
-
   postHeader: {
     fontSize: 15,
     fontWeight: '600',
@@ -612,7 +602,6 @@ export default StyleSheet.create({
     fontFamily: 'QuicksandBold',
     color: pawYellow,
   },
-
   postHeader2: {
     fontSize: 11,
     fontWeight: '600',
@@ -621,7 +610,6 @@ export default StyleSheet.create({
     fontFamily: 'QuicksandBold',
     color: pawYellow,
   },
-
   postDescription: {
     fontSize: 13,
     fontWeight: '600',
@@ -638,6 +626,7 @@ export default StyleSheet.create({
     fontFamily: 'QuicksandBold',
     color: pawYellow,
   },
+
   /* PawPic styles */
   picImage: {
     height: 300,
@@ -649,7 +638,6 @@ export default StyleSheet.create({
     alignSelf: 'center',
     position: 'absolute',
   },
-
   picBottomBand: {
     height: 300,
     width: (Dimensions.get('window').width - 18),
@@ -663,12 +651,10 @@ export default StyleSheet.create({
     alignSelf: 'center',
     position: 'absolute',
   },
-
   likeLoc1: {
     left: (Dimensions.get('window').width - 18) - 40,
     top: 310,
   },
-
   picContainer: {
     alignSelf: 'center',
     width: (Dimensions.get('window').width - 20),
@@ -677,7 +663,6 @@ export default StyleSheet.create({
     overflow: 'hidden',
     marginBottom: 20,
   },
-
   ppProfileImage: {
     height: 60,
     width: 60,
@@ -688,7 +673,6 @@ export default StyleSheet.create({
     position: 'absolute',
     borderColor: pawGreen,
   },
-
   ppProfileNameNode: {
     height: 25,
     width: 160,
@@ -701,7 +685,6 @@ export default StyleSheet.create({
     borderColor: pawGreen,
     backgroundColor: pawLightGrey,
   },
-
   picHeader: {
     fontSize: 15,
     fontWeight: '600',
@@ -711,7 +694,6 @@ export default StyleSheet.create({
     fontFamily: 'QuicksandBold',
     color: pawYellow,
   },
-
   picHeader2: {
     fontSize: 11,
     fontWeight: '600',
@@ -720,7 +702,6 @@ export default StyleSheet.create({
     fontFamily: 'QuicksandBold',
     color: pawYellow,
   },
-
   picDescription: {
     fontSize: 13,
     fontWeight: '600',
@@ -737,6 +718,7 @@ export default StyleSheet.create({
     fontFamily: 'QuicksandBold',
     color: pawYellow,
   },
+
   /* news/events styles */
   eventTab: {
     alignSelf: 'center',
@@ -791,6 +773,7 @@ export default StyleSheet.create({
     textAlign: 'center',
     color: pawYellow,
   },
+
   /* map styles */
   containerMap: {
     backgroundColor: pawGrey,
@@ -892,7 +875,6 @@ export default StyleSheet.create({
     height: Platform.OS === 'ios' ? 80 : 73,
     borderRadius: 5,
     zIndex: 100,
-    // borderWidth: 4,
     borderColor: 'rgba(158, 150, 150, .25)',
     bottom: -5,
     alignSelf: 'center',
@@ -994,7 +976,7 @@ export default StyleSheet.create({
   },
   modalView1: {
     justifyContent: 'space-evenly',
-    backgroundColor: '#FFFFF',
+    backgroundColor: 'white',
     alignSelf: 'center',
   },
   pawPupHealth: {
@@ -1063,6 +1045,7 @@ export default StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
   },
+
   /* inspect pic styles */
   picsModal: {
     backgroundColor: pawGrey,
@@ -1093,7 +1076,6 @@ export default StyleSheet.create({
     alignSelf: 'center',
     position: 'absolute',
   },
-
   inspicBottomBand: {
     height: (Dimensions.get('window').width) + 200,
     width: (Dimensions.get('window').width),
@@ -1106,12 +1088,10 @@ export default StyleSheet.create({
     alignSelf: 'center',
     position: 'absolute',
   },
-
   likeLoc2: {
     left: (Dimensions.get('window').width - 18) - 40,
     top: (Dimensions.get('window').width) + 5,
   },
-
   inspicContainer: {
     alignSelf: 'center',
     width: (Dimensions.get('window').width),
@@ -1124,7 +1104,6 @@ export default StyleSheet.create({
     position: 'absolute',
     zIndex: -1,
   },
-
   insppProfileImage: {
     height: 60,
     width: 60,
@@ -1135,7 +1114,6 @@ export default StyleSheet.create({
     position: 'absolute',
     borderColor: pawGreen,
   },
-
   insppProfileNameNode: {
     height: 25,
     width: 160,
@@ -1148,7 +1126,6 @@ export default StyleSheet.create({
     borderColor: pawGreen,
     backgroundColor: pawLightGrey,
   },
-
   inspicHeader: {
     fontSize: 15,
     fontWeight: '600',
@@ -1158,7 +1135,6 @@ export default StyleSheet.create({
     fontFamily: 'QuicksandBold',
     color: pawYellow,
   },
-
   inspicHeader2: {
     fontSize: 11,
     fontWeight: '600',
@@ -1167,7 +1143,6 @@ export default StyleSheet.create({
     fontFamily: 'QuicksandBold',
     color: pawYellow,
   },
-
   inspicDescription: {
     fontSize: 13,
     fontWeight: '600',
@@ -1184,6 +1159,7 @@ export default StyleSheet.create({
     fontFamily: 'QuicksandBold',
     color: pawYellow,
   },
+
   /* inspect post styles */
   postModal: {
     backgroundColor: pawGrey,
