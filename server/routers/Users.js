@@ -111,7 +111,7 @@ router.get('/:userIdString', (req, res) => {
   }
 });
 
-router.put('/', (req, res) => {
+router.patch('/', (req, res) => {
   const jsonResponse = {
     links: {
       self: req.originalUrl,
@@ -169,4 +169,18 @@ router.post('/', (req, res) => {
   res.status(409).send();
 });
 
+router.delete('/', (req, res) => {
+  getUsername(req.headers.authorization).then((username) => {
+    connection.query('DELETE FROM users WHERE username=?', [username], (err, result) => {
+      if (err) {
+        res.status(500).json({
+          error: { status: 500 },
+        });
+      } else if (result) {
+        res.status(200).send();
+      }
+      res.status(500).send();
+    });
+  });
+});
 module.exports = router;
