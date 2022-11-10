@@ -14,11 +14,11 @@
     "mysql2": "^2.3.3"
   },
   "scripts": {
-    "load:prod": "find . -type d -not -path './node_modules/*' -a ! -name '.' | xargs -I% ssh -i ~/.ssh/paw5-kp.pem ubuntu@ec2-3-209-131-148.compute-1.amazonaws.com 'mkdir -p ~/capstone/server/%'",
-    "build:prod": "find . -type f -not -path './node_modules/*' | xargs -I% scp -i ~/.ssh/paw5-kp.pem % ubuntu@3.209.131.148:~/capstone/server/%",
-    "deploy:prod": "ssh -i ~/.ssh/paw5-kp.pem ubuntu@ec2-3-209-131-148.compute-1.amazonaws.com 'cd ~/capstone/server; npm i; sudo systemctl restart paw5.service'",
-    "start:prod": "npm run load:prod && npm run build:prod && npm run deploy:prod",
-    "deploy": "npm run load:prod && npm run build:prod && npm run deploy:prod",
+    "mkdir": "find . -type d -not -path './node_modules/*' -a ! -name '.' | xargs -I% ssh -i ~/.ssh/paw5-kp.pem ubuntu@ec2-3-209-131-148.compute-1.amazonaws.com 'mkdir -p ~/capstone/server/%'",
+    "scp": "find . -type f -not -path './node_modules/*' -a -name '*.js' | xargs -I% scp -i ~/.ssh/paw5-kp.pem % ubuntu@3.209.131.148:~/capstone/server/%",
+    "scp:pjs": "scp -i ~/.ssh/paw5-kp.pem package.json ubuntu@3.209.131.148:~/capstone/server/package.json",
+    "service": "ssh -i ~/.ssh/paw5-kp.pem ubuntu@ec2-3-209-131-148.compute-1.amazonaws.com 'cd ~/capstone/server; npm i; sudo systemctl restart paw5.service'",
+    "deploy": "npm run mkdir && npm run scp && npm run scp:pjs && npm run service",
     "start": "node server.js",
     "test": "NODE_ENV=test jest --watchAll"
   },
