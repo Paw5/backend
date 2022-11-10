@@ -18,8 +18,8 @@
     "build:prod": "find . -type f -not -path './node_modules/*' | xargs -I% scp -i ~/.ssh/paw5-kp.pem % ubuntu@3.209.131.148:~/capstone/server/%",
     "deploy:prod": "ssh -i ~/.ssh/paw5-kp.pem ubuntu@ec2-3-209-131-148.compute-1.amazonaws.com 'cd ~/capstone/server; npm i; sudo systemctl restart paw5.service'",
     "start:prod": "npm run load:prod && npm run build:prod && npm run deploy:prod",
-    "start": "npm run load:prod && npm run build:prod && npm run deploy:prod",
-    "start:native": "node server.js",
+    "deploy": "npm run load:prod && npm run build:prod && npm run deploy:prod",
+    "start": "node server.js",
     "test": "NODE_ENV=test jest --watchAll"
   },
   "name": "server",
