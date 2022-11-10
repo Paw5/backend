@@ -1,32 +1,119 @@
-import express from 'express'; // library for creating server
+const express = require('express');
+const dotenv = require('dotenv'); // library for processing .env files
+const bodyParser = require('body-parser');
+const https = require('https');
+const fs = require('fs');
+const base64 = require('base-64');
+const connection = require('./connection.js');
+const users = require('./routers/Users.js');
+const { getToken } = require('./getToken');
+const login = require('./login');
+
+// library for creating server
 const app = express();
-import mongoose from "mongoose"; // library for connecting to MongoDB
-import dotenv from "dotenv"; // library for processing .env files
 
 dotenv.config();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header(
-      "Access-Control-Allow-Headers",
-      "Origin, X-Requested-With, Content-Type, Accept"
-    );
-    next();
+// Initialize SSL certificate for HTTPS connections
+https.createServer({
+  key: fs.readFileSync('key.pem'),
+  cert: fs.readFileSync('cert.pem'),
+}, app).listen(3001, () => {
+  console.log('server is running on port 3001');
+});
+
+app.post('/login', (req, res) => {
+  const { username, password } = req.body;
+  if (!username || !password) res.status(400).send();
+  login.createUser(username, password).then((v) => {
+    if (v.error) {
+      res.status(400).send(v);
+    } else if (v.data) {
+      res.status(200);
+      getToken(`Basic ${base64.encode(`${username}:${password}`)}`).then((token) => res.json({
+        data: {
+          type: 'token',
+          attributes: [token],
+        },
+      }));
+    }
   });
+});
 
-const port = 3001; // port to listen on
-const uri = process.env.MONGODB_CONNECTION_STRING; // connection string used to connect to Atlas
+app.use((req, res, next) => {
+  const { authorization } = req.headers;
+  getToken(authorization).then((token) => {
+    if (token) {
+      if (req.url === '/login') {
+        res.json({
+          data: {
+            type: 'token',
+            attributes: [token],
+          },
+        });
+      } else next();
+    } else {
+      res.status(401).json({
+        links: {
+          self: req.originalUrl,
+        },
+        jsonapi: {
+          version: '1.1',
+        },
+        error: {
+          status: 401,
+        },
+      });
+    }
+  });
+});
 
-// establishes connection to database
-mongoose
-    .connect(uri, { useNewUrlParser: true })
-    .then(() => console.log("MongoDb Connected"));
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header(
+    'Access-Control-Allow-Headers',
+    'Origin, X-Requested-With, Content-Type, Accept',
+  );
+  next();
+});
 
-const db = mongoose.connection; // holds the connection to database
+app.put('/login', (req, res) => {
+  const { username, password } = req.body;
+  if (!username || !password) res.status(400).send();
+  login.updateUserPassword(username, password).then((v) => {
+    if (v.error) {
+      res.status(400).send(v);
+    } else if (v.data) {
+      res.status(200);
+      getToken(`Basic ${base64.encode(`${username}:${password}`)}`).then((token) => res.json({
+        data: {
+          type: 'token',
+          attributes: [token],
+        },
+      }));
+    }
+  });
+});
 
-db.on("error", console.error.bind(console, "MongoDB connection error:"));
+app.get('/', (req, res) => {
+  connection.query('SHOW tables', (error, values) => {
+    res.send(error || values.map((ea) => Object.values(ea)[0]));
+  });
+});
 
-app.listen(port, () => {console.log("Listening on port 3001")}); // has server listen for requests
+app.get('/count/:table', (req, res) => {
+  connection.query(`SELECT COUNT(*) AS 'count' FROM ${req.params.table}`, (error, values) => {
+    if (error) {
+      if (error.code === 'ER_NO_SUCH_TABLE') res.status(404);
+      res.send(error);
+    } else {
+      res.send(values[0]);
+    }
+  });
+});
+
+app.use('/users', users);
