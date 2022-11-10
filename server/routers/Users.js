@@ -1,20 +1,20 @@
 const { Router } = require('express');
 const joi = require('joi');
-const connection = require('../connection.js');
-const { GEN_ERR_BAD_REQUEST, ERR_NOT_FOUND } = require('../ResponseErrors.js');
+const connection = require('../connection');
+const { GEN_ERR_BAD_REQUEST, ERR_NOT_FOUND } = require('../ResponseErrors');
+const { getUsername } = require('../getToken');
 
 const account = 'user_id, username, firstname, lastname, email, phone, profile_picture, birthdate, city, state';
 const router = Router();
 
-const userPOSTSchema = joi.object({
-  username: joi.string().alphanum().min(3).max(16)
-    .required(),
-  email: joi.string().email().required(),
+const userSchema = joi.object({
+  username: joi.string().alphanum().min(3).max(16),
+  email: joi.string().email(),
   phone: joi.string().length(10).regex(/[0-9]{10}/),
   profileId: joi.string().regex(/[a-zA-Z0-9-](\.jpg|\.png|\.jpeg)?/),
-  birthdate: joi.string().regex(/[12][0-9]{3}-[0-1][0-9]-[0-3][0-9]/).required(),
-  city: joi.string().regex(/[A-Za-z]+/).required(),
-  state: joi.string().length(2).regex(/[A-Z]{2}/).required(),
+  birthdate: joi.string().regex(/[12][0-9]{3}-[0-1][0-9]-[0-3][0-9]/),
+  city: joi.string().regex(/[A-Za-z]+/),
+  state: joi.string().length(2).regex(/[A-Z]{2}/),
 });
 
 router.get('/', (req, res) => {
@@ -111,7 +111,7 @@ router.get('/:userIdString', (req, res) => {
   }
 });
 
-router.post('/', (req, res) => {
+router.put('/', (req, res) => {
   const jsonResponse = {
     links: {
       self: req.originalUrl,
@@ -121,20 +121,15 @@ router.post('/', (req, res) => {
     },
   };
 
-  const { error, value } = userPOSTSchema.validate(req.body);
-  if (error) {
-    res.status(400);
-    jsonResponse.error = {
-      status: 400,
-      title: 'Bad Request',
-      error,
-    };
-    res.send(jsonResponse);
-  } else if (value) {
+  getUsername(req.headers.authorization).then((username) => {
+    if (userSchema.validate(req.body).error) {
+      res.status(400).json({ ...jsonResponse, error: { status: 400 } });
+      return;
+    }
     connection.query(
-      `INSERT INTO users (${Object.keys(value).join()})
-      VALUES (${Object.values(value).map((a) => `'${a}'`).join()})`,
-      (err, results) => {
+      `UPDATE users SET ${Object.entries(req.body).map((a) => (a[0] !== 'username') && `${a[0]}='${a[1]}',`).join('').slice(0, -1)} WHERE username=?`,
+      [username],
+      (err) => {
         if (err) {
           if (err.errno === 1062) {
             res.status(409);
@@ -152,17 +147,26 @@ router.post('/', (req, res) => {
               title: 'Bad Request',
               code: err.errno,
               id: err.sqlState,
+              description: `UPDATE users SET ${Object.entries(req.body).map((a) => (a[0] !== 'username') && `${a[0]}='${a[1]}',`).join('').slice(0, -1)} WHERE username=?`,
             };
           }
+          res.send(jsonResponse);
         } else {
-          const { insertId } = results;
-          res.location(`/users/${insertId}`);
-          res.status(201);
+          connection.query('SELECT user_id FROM users WHERE username=?', username, (errs, results) => {
+            res.location(`/users/${results[0].user_id}`);
+            res.status(201);
+            res.send(jsonResponse);
+          });
         }
-        res.send(jsonResponse);
       },
     );
-  }
+  });
+});
+
+router.post('/', (req, res) => {
+  res.status(409).send();
+}).post('/:userId', (req, res) => {
+  res.status(409).send();
 });
 
 module.exports = router;
