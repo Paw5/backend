@@ -1,41 +1,21 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable global-require */
 import {
   Pressable, View, Text, Dimensions, ScrollView, Animated, Platform,
 } from 'react-native';
 import React from 'react';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
-import { useFonts } from 'expo-font';
-import DropShadow from 'react-native-drop-shadow';
 import { Feather } from '@expo/vector-icons';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
-import styles, { pawPink, pawGreen, pawGrey } from '../constants/Styles';
-
-const StatusBarHeight = getStatusBarHeight();
+import styles, {
+  pink2green, grey2yellow, pink2yellow, white2lgrey, white2green,
+} from '../constants/DarkStyles';
 
 export default function HealthTab() {
-  const [loaded] = useFonts({
-    QuicksandBold: require('../../assets/fonts/Quicksand-Bold.ttf'),
-    QuicksandLight: require('../../assets/fonts/Quicksand-Light.ttf'),
-    QuicksandMedium: require('../../assets/fonts/Quicksand-Medium.ttf'),
-    QuicksandRegular: require('../../assets/fonts/Quicksand-Regular.ttf'),
-    QuicksandSemiBold: require('../../assets/fonts/Quicksand-SemiBold.ttf'),
-  });
-
-  if (!loaded) {
-    return null;
-  }
-
   const scrollX = new Animated.Value(0);
 
   return (
 
-    <View style={{
-      flex: 1, backgroundColor: '#69A297',
-    }}
-    >
+    <View style={styles.background}>
 
-      <View style={{ backgroundColor: pawPink, height: StatusBarHeight }} />
+      <View style={styles.statusBar} />
 
       <ScrollView
         showsVerticalScrollIndicator={false}
@@ -71,7 +51,7 @@ export default function HealthTab() {
             </View>
             <View
               style={{
-                borderBottomColor: pawPink,
+                borderBottomColor: pink2green,
                 borderBottomWidth: 3,
                 borderRadius: 50,
                 marginBottom: 15,
@@ -94,14 +74,12 @@ export default function HealthTab() {
               <Feather
                 name="arrow-right-circle"
                 size={30}
-                color={pawGrey}
+                color={grey2yellow}
                 style={{ alignSelf: 'center' }}
               />
             </View>
           </Pressable>
-          {/* </DropShadow> */}
 
-          {/* <DropShadow style={styles.shadowProp}> */}
           <Pressable style={styles.eventTab}>
             <View style={{
               flexDirection: 'row', justifyContent: 'space-between', paddingLeft: 5, paddingRight: 5,
@@ -112,7 +90,7 @@ export default function HealthTab() {
             </View>
             <View
               style={{
-                borderBottomColor: pawPink,
+                borderBottomColor: pink2green,
                 borderBottomWidth: 3,
                 borderRadius: 50,
                 marginBottom: 15,
@@ -135,7 +113,7 @@ export default function HealthTab() {
               <Feather
                 name="arrow-right-circle"
                 size={30}
-                color={pawGrey}
+                color={grey2yellow}
                 style={{ alignSelf: 'center' }}
               />
             </View>
@@ -153,7 +131,7 @@ export default function HealthTab() {
             </View>
             <View
               style={{
-                borderBottomColor: pawPink,
+                borderBottomColor: pink2green,
                 borderBottomWidth: 3,
                 borderRadius: 50,
                 marginBottom: 15,
@@ -176,7 +154,7 @@ export default function HealthTab() {
               <Feather
                 name="arrow-right-circle"
                 size={30}
-                color={pawGrey}
+                color={grey2yellow}
                 style={{ alignSelf: 'center' }}
               />
             </View>
@@ -186,7 +164,7 @@ export default function HealthTab() {
 
         <View style={{
           borderWidth: 2,
-          borderColor: 'white',
+          borderColor: white2green,
           borderRadius: 10,
           padding: 5,
           width: 115,
@@ -196,8 +174,8 @@ export default function HealthTab() {
           <RNAnimatedScrollIndicators
             numberOfCards={3}
             scrollWidth={Dimensions.get('window').width}
-            activeColor="#e0777d"
-            inActiveColor="white"
+            activeColor={pink2yellow}
+            inActiveColor={white2lgrey}
             scrollAnimatedValue={scrollX}
             style={{
 
@@ -211,7 +189,7 @@ export default function HealthTab() {
 
           <View
             style={{
-              borderBottomColor: pawPink,
+              borderBottomColor: pink2green,
               borderBottomWidth: 3,
               borderRadius: 50,
               marginBottom: 15,
@@ -234,7 +212,7 @@ export default function HealthTab() {
             <Feather
               name="arrow-right-circle"
               size={30}
-              color={pawGrey}
+              color={grey2yellow}
               style={{ alignSelf: 'center' }}
             />
           </View>
@@ -247,7 +225,7 @@ export default function HealthTab() {
 
           <View
             style={{
-              borderBottomColor: pawPink,
+              borderBottomColor: pink2green,
               borderBottomWidth: 3,
               borderRadius: 50,
               marginBottom: 15,
@@ -270,7 +248,7 @@ export default function HealthTab() {
             <Feather
               name="arrow-right-circle"
               size={30}
-              color={pawGrey}
+              color={grey2yellow}
               style={{ alignSelf: 'center' }}
             />
           </View>
@@ -283,7 +261,7 @@ export default function HealthTab() {
 
           <View
             style={{
-              borderBottomColor: pawPink,
+              borderBottomColor: pink2green,
               borderBottomWidth: 3,
               borderRadius: 50,
               marginBottom: 15,
@@ -306,7 +284,7 @@ export default function HealthTab() {
             <Feather
               name="arrow-right-circle"
               size={30}
-              color={pawGrey}
+              color={grey2yellow}
               style={{ alignSelf: 'center' }}
             />
           </View>

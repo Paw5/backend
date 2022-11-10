@@ -1,18 +1,13 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable global-require */
 import {
-  View, Text, Dimensions, StyleSheet, Switch, Pressable,
+  View, Text, Dimensions, Switch, Pressable,
 } from 'react-native';
 import React, { useState } from 'react';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
-import { useFonts } from 'expo-font';
-import { DropShadow } from 'react-native-drop-shadow';
 import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
-import Onboarding from 'react-native-onboarding-swiper';
-import styles, { pawPink, pawGreen, pawGrey } from '../constants/Styles';
-
-const StatusBarHeight = getStatusBarHeight();
+// import Onboarding from 'react-native-onboarding-swiper';
+import styles, {
+  pink2green, white2lgrey, pawGrey,
+} from '../constants/DarkStyles';
 
 export default function ServicesTab() {
   /* toggle switch section */
@@ -47,44 +42,23 @@ export default function ServicesTab() {
     setOnboardVisible(!isOnboardVisible);
   };
 
-  /* add native fonts */
-  const [loaded] = useFonts({
-    QuicksandBold: require('../../assets/fonts/Quicksand-Bold.ttf'),
-    QuicksandLight: require('../../assets/fonts/Quicksand-Light.ttf'),
-    QuicksandMedium: require('../../assets/fonts/Quicksand-Medium.ttf'),
-    QuicksandRegular: require('../../assets/fonts/Quicksand-Regular.ttf'),
-    QuicksandSemiBold: require('../../assets/fonts/Quicksand-SemiBold.ttf'),
-  });
-
-  /* if fonts not loaded, error */
-  if (!loaded) {
-    return null;
-  }
-
   return (
     /* background color */
-    <View style={{
-      flex: 1, backgroundColor: pawGreen,
-    }}
-    >
+    <View style={styles.background}>
 
       {/* status bar background color */}
-      <View style={{ backgroundColor: pawPink, height: StatusBarHeight, marginBottom: 30 }} />
+      <View style={[styles.statusBar, { marginBottom: 30 }]} />
 
       {/* settings icon header */}
       <View>
-        {/* <DropShadow style={styles.shadowProp}> */}
         <Feather
           name="settings"
           size={100}
           color={pawGrey}
           style={styles.settingsIcon}
         />
-        {/* </DropShadow> */}
       </View>
 
-      {/* dark/light mode toggle option */}
-      {/* <DropShadow style={styles.shadowProp}> */}
       <View style={styles.settingsItem}>
         <Text
           adjustsFontSizeToFit
@@ -95,18 +69,15 @@ export default function ServicesTab() {
         </Text>
         <Switch
           style={styles.settingsSwitch}
-          trackColor={{ false: pawPink, true: '#edae49' }}
-          thumbColor="white"
-          ios_backgroundColor={pawPink}
+          trackColor={{ false: '#e0777d', true: '#edae49' }}
+          thumbColor={white2lgrey}
+          ios_backgroundColor="#e0777d"
           onValueChange={lightdarkSwitch}
           value={LDisEnabled}
         />
       </View>
 
-      {/* </DropShadow> */}
-
       {/* location services toggle option */}
-      {/* <DropShadow style={styles.shadowProp}> */}
       <View style={styles.settingsItem}>
         <Text
           adjustsFontSizeToFit
@@ -117,18 +88,15 @@ export default function ServicesTab() {
         </Text>
         <Switch
           style={styles.settingsSwitch}
-          trackColor={{ false: pawPink, true: pawGrey }}
-          thumbColor="white"
-          ios_backgroundColor={pawPink}
+          trackColor={{ false: pink2green, true: pawGrey }}
+          thumbColor={white2lgrey}
+          ios_backgroundColor={pink2green}
           onValueChange={locationSwitch}
           value={LCisEnabled}
         />
       </View>
 
-      {/* </DropShadow> */}
-
       {/* notifications button to activate notifications options modal */}
-      {/* <DropShadow style={styles.shadowProp}> */}
       <Pressable onPress={toggleNotif} style={styles.settingsItem}>
         <Text
           adjustsFontSizeToFit
@@ -145,8 +113,6 @@ export default function ServicesTab() {
         />
 
       </Pressable>
-
-      {/* </DropShadow> */}
 
       {/* notification options modal */}
       <Modal
@@ -172,17 +138,14 @@ export default function ServicesTab() {
           </Pressable>
 
           <View>
-            {/* <DropShadow style={styles.shadowProp}> */}
             <Feather
               name="mail"
               size={100}
               color={pawGrey}
               style={styles.settingsIcon}
             />
-            {/* </DropShadow> */}
           </View>
 
-          {/* <DropShadow style={styles.shadowProp}> */}
           <View style={[styles.settingsItem, { marginRight: 20, width: Dimensions.get('window').width - 40 }]}>
             <Text
               adjustsFontSizeToFit
@@ -193,16 +156,14 @@ export default function ServicesTab() {
             </Text>
             <Switch
               style={styles.settingsSwitch}
-              trackColor={{ false: pawPink, true: pawGrey }}
-              thumbColor="white"
-              ios_backgroundColor={pawPink}
+              trackColor={{ false: pink2green, true: pawGrey }}
+              thumbColor={white2lgrey}
+              ios_backgroundColor={pink2green}
               onValueChange={emailSwitch}
               value={EMisEnabled}
             />
           </View>
-          {/* </DropShadow> */}
 
-          {/* <DropShadow style={styles.shadowProp}> */}
           <View style={[styles.settingsItem, { marginRight: 20, width: Dimensions.get('window').width - 40 }]}>
             <Text
               adjustsFontSizeToFit
@@ -213,16 +174,14 @@ export default function ServicesTab() {
             </Text>
             <Switch
               style={styles.settingsSwitch}
-              trackColor={{ false: pawPink, true: pawGrey }}
-              thumbColor="white"
-              ios_backgroundColor={pawPink}
+              trackColor={{ false: pink2green, true: pawGrey }}
+              thumbColor={white2lgrey}
+              ios_backgroundColor={pink2green}
               onValueChange={messagesSwitch}
               value={MSisEnabled}
             />
           </View>
-          {/* </DropShadow> */}
 
-          {/* <DropShadow style={styles.shadowProp}> */}
           <View style={[styles.settingsItem, { marginRight: 20, width: Dimensions.get('window').width - 40 }]}>
             <Text
               adjustsFontSizeToFit
@@ -233,16 +192,14 @@ export default function ServicesTab() {
             </Text>
             <Switch
               style={styles.settingsSwitch}
-              trackColor={{ false: pawPink, true: pawGrey }}
-              thumbColor="white"
-              ios_backgroundColor={pawPink}
+              trackColor={{ false: pink2green, true: pawGrey }}
+              thumbColor={white2lgrey}
+              ios_backgroundColor={pink2green}
               onValueChange={commentsSwitch}
               value={CMisEnabled}
             />
           </View>
-          {/* </DropShadow> */}
 
-          {/* <DropShadow style={styles.shadowProp}> */}
           <View style={[styles.settingsItem, { marginRight: 20, width: Dimensions.get('window').width - 40 }]}>
             <Text
               adjustsFontSizeToFit
@@ -253,19 +210,17 @@ export default function ServicesTab() {
             </Text>
             <Switch
               style={styles.settingsSwitch}
-              trackColor={{ false: pawPink, true: pawGrey }}
-              thumbColor="white"
-              ios_backgroundColor={pawPink}
+              trackColor={{ false: pink2green, true: pawGrey }}
+              thumbColor={white2lgrey}
+              ios_backgroundColor={pink2green}
               onValueChange={likesSwitch}
               value={LKisEnabled}
             />
           </View>
-          {/* </DropShadow> */}
         </View>
       </Modal>
 
       {/* help options section modal activator */}
-      {/* <DropShadow style={styles.shadowProp}> */}
       <Pressable style={styles.settingsItem} onPress={toggleHelp}>
         <Text
           adjustsFontSizeToFit
@@ -282,8 +237,6 @@ export default function ServicesTab() {
         />
 
       </Pressable>
-
-      {/* </DropShadow> */}
 
       {/* help options modal */}
       <Modal
@@ -308,17 +261,14 @@ export default function ServicesTab() {
           </Pressable>
 
           <View>
-            {/* <DropShadow style={styles.shadowProp}> */}
             <Feather
               name="help-circle"
               size={100}
               color={pawGrey}
               style={styles.settingsIcon}
             />
-            {/* </DropShadow> */}
           </View>
 
-          {/* <DropShadow style={styles.shadowProp}> */}
           <Pressable style={[styles.settingsItem, { marginRight: 20, width: Dimensions.get('window').width - 40 }]}>
             <Text
               adjustsFontSizeToFit
@@ -334,10 +284,8 @@ export default function ServicesTab() {
               style={{ marginRight: -5 }}
             />
           </Pressable>
-          {/* </DropShadow> */}
 
           {/* contact button to send to email */}
-          {/* <DropShadow style={styles.shadowProp}> */}
           <Pressable style={[styles.settingsItem, { marginRight: 20, width: Dimensions.get('window').width - 40 }]}>
             <Text
               adjustsFontSizeToFit
@@ -353,7 +301,7 @@ export default function ServicesTab() {
               style={{ marginRight: -5 }}
             />
           </Pressable>
-          {/* </DropShadow> */}
+
           <Pressable style={[styles.settingsItem, { marginRight: 20, width: Dimensions.get('window').width - 40 }]} onPress={toggleOnboard}>
             <Text
               adjustsFontSizeToFit

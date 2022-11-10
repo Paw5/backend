@@ -22,7 +22,7 @@ import AccountPage from '../views/Account';
 import PawPics from '../views/PawPics';
 import PawPosts from '../views/PawPosts';
 import PMs from '../views/PMs';
-import styles from '../constants/Styles';
+import styles, { grey2yellow } from '../constants/DarkStyles';
 
 function MyTabBar({ state, descriptors, navigation }) {
   const [translateX] = useState(new Animated.Value(0));
@@ -104,7 +104,7 @@ function MyTabBar({ state, descriptors, navigation }) {
             testID={options.tabBarTestID}
             onPress={onPress}
             onLongPress={onLongPress}
-            onFocus={(currentScreen === label) ? (buttonRaise = (Platform.OS === 'ios' ? 22 : 15)) : buttonRaise = 0}
+            onFocus={(currentScreen === label) ? (buttonRaise = (Platform.OS === 'ios' ? 22 : 20)) : buttonRaise = 0}
             style={{ flex: 1, alignItems: 'center', bottom: buttonRaise }}
             hitSlop={{
               top: 20, bottom: 20, left: 20, right: 20,
@@ -123,7 +123,7 @@ function MyTabBar({ state, descriptors, navigation }) {
               size={
                 currentScreen === label ? 50 : 30
               }
-              color="#333333"
+              color={grey2yellow}
               style={{ justifyContent: 'center' }}
             />
           </TouchableOpacity>
@@ -151,7 +151,7 @@ function MyTabBar({ state, descriptors, navigation }) {
             <Feather
               name="image"
               size={20}
-              color="black"
+              color={grey2yellow}
               style={{ justifyContent: 'center' }}
             />
           </Pressable>
@@ -165,7 +165,7 @@ function MyTabBar({ state, descriptors, navigation }) {
             <Feather
               name="file-text"
               size={20}
-              color="black"
+              color={grey2yellow}
               style={{ justifyContent: 'center' }}
             />
           </Pressable>
@@ -179,7 +179,7 @@ function MyTabBar({ state, descriptors, navigation }) {
             <Feather
               name="message-square"
               size={20}
-              color="black"
+              color={grey2yellow}
               style={{ justifyContent: 'center' }}
             />
           </Pressable>
@@ -205,7 +205,7 @@ function MyTabBar({ state, descriptors, navigation }) {
             <Feather
               name="heart"
               size={20}
-              color="black"
+              color={grey2yellow}
               style={{ justifyContent: 'center' }}
             />
           </Pressable>
@@ -219,7 +219,7 @@ function MyTabBar({ state, descriptors, navigation }) {
             <Feather
               name="user"
               size={20}
-              color="black"
+              color={grey2yellow}
               style={{ justifyContent: 'center' }}
             />
           </Pressable>
@@ -233,7 +233,7 @@ function MyTabBar({ state, descriptors, navigation }) {
             <Feather
               name="settings"
               size={20}
-              color="black"
+              color={grey2yellow}
               style={{ justifyContent: 'center' }}
             />
           </Pressable>

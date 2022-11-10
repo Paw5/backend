@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
-import styles, { pawGrey } from '../constants/Styles';
+import styles, { pawGrey, grey2yellow, PlaceholderText } from '../constants/DarkStyles';
 
 export default function SearchBar(searchQuery) {
   const [isModalVisible, setModalVisible] = useState(false);
@@ -22,7 +22,7 @@ export default function SearchBar(searchQuery) {
         }}
       >
         <View style={styles.modalView}>
-          <Text>Filters Will be Here</Text>
+          <Text style={styles.filterText}>Filters Will be Here</Text>
           <Pressable
             style={[styles.filtersClose]}
             onPress={() => setModalVisible(!isModalVisible)}
@@ -42,12 +42,13 @@ export default function SearchBar(searchQuery) {
         <Feather
           name="search"
           size={20}
-          color="pawGrey"
+          color={grey2yellow}
           style={{ marginLeft: 10, alignSelf: 'center' }}
         />
         <TextInput
           style={styles.input}
           placeholder="Search"
+          placeholderTextColor={PlaceholderText}
           value={searchQuery}
         />
       </KeyboardAvoidingView>
@@ -56,7 +57,7 @@ export default function SearchBar(searchQuery) {
         <Feather
           name="filter"
           size={20}
-          color="pawGrey"
+          color={grey2yellow}
           style={{ justifyContent: 'center', alignSelf: 'center' }}
         />
       </Pressable>

@@ -1,22 +1,15 @@
-/* eslint-disable no-unused-vars */
 import {
-  View, Text, ScrollView, Pressable, Image,
+  View, Text, Pressable, Image,
 } from 'react-native';
 import React from 'react';
-import { useFonts } from 'expo-font';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
-import DropShadow from 'react-native-drop-shadow';
 import { Feather } from '@expo/vector-icons';
-import SearchBar from './SearchBarServ';
-import styles from '../constants/Styles';
+import styles, { grey2yellow, pink2green } from '../constants/DarkStyles';
 
 const miso = require('../../assets/miso.jpg');
 
-const StatusBarHeight = getStatusBarHeight();
 export default function ServNode() {
   return (
     <View>
-      {/* <DropShadow style={styles.shadowProp}> */}
       <Pressable style={[styles.servContainer, { height: 125 }]}>
         <View
           style={styles.servLeft}
@@ -31,7 +24,7 @@ export default function ServNode() {
             <Feather
               name="check"
               size={24}
-              color="black"
+              color={grey2yellow}
               style={{ alignSelf: 'center' }}
             />
 
@@ -42,36 +35,36 @@ export default function ServNode() {
         <Feather
           name="star"
           size={20}
-          color="black"
+          color={grey2yellow}
           style={styles.servStar1}
         />
         <Feather
           name="star"
           size={20}
-          color="black"
+          color={grey2yellow}
           style={styles.servStar2}
         />
         <Feather
           name="star"
           size={20}
-          color="black"
+          color={grey2yellow}
           style={styles.servStar3}
         />
         <Feather
           name="star"
           size={20}
-          color="black"
+          color={grey2yellow}
           style={styles.servStar4}
         />
         <Feather
           name="star"
           size={20}
-          color="black"
+          color={grey2yellow}
           style={styles.servStar5}
         />
         <View
           style={{
-            borderBottomColor: '#e0777d',
+            borderBottomColor: pink2green,
             borderBottomWidth: 3,
             borderRadius: 50,
             marginTop: 5,

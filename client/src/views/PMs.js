@@ -1,22 +1,15 @@
-/* eslint-disable global-require */
 import {
   View, ScrollView, Platform,
 } from 'react-native';
 import React from 'react';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
 import SearchBar from '../components/SearchBarServ';
-import styles, { pawPink, pawGreen } from '../constants/Styles';
+import styles, { } from '../constants/DarkStyles';
 import PMUserInteraction from '../components/PMInteraction';
-
-const StatusBarHeight = getStatusBarHeight();
 
 export default function PMs() {
   return (
-    <View style={{
-      flex: 1, backgroundColor: pawGreen,
-    }}
-    >
-      <View style={{ backgroundColor: pawPink, height: StatusBarHeight }} />
+    <View style={styles.background}>
+      <View style={styles.statusBar} />
 
       <View style={styles.search}>
         <SearchBar />

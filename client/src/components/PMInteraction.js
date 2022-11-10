@@ -4,7 +4,7 @@ import {
 import React, { useState, useRef } from 'react';
 import Modal from 'react-native-modal';
 import { Feather } from '@expo/vector-icons';
-import styles, { pawGrey } from '../constants/Styles';
+import styles, { grey2yellow, PlaceholderText, white2lgrey } from '../constants/DarkStyles';
 import MessageSent from './MessageSent';
 import MessageReceived from './MessageReceived';
 
@@ -37,12 +37,12 @@ export default function PMUserInteraction(replyText) {
           <Feather
             name="star"
             size={30}
-            color={pawGrey}
+            color={grey2yellow}
           />
           <Feather
             name="send"
             size={30}
-            color={pawGrey}
+            color={grey2yellow}
             style={{ paddingTop: 2 }}
           />
         </View>
@@ -63,7 +63,7 @@ export default function PMUserInteraction(replyText) {
             <Feather
               name="chevron-left"
               size={30}
-              color={pawGrey}
+              color={grey2yellow}
               style={styles.pmExitButton}
             />
 
@@ -98,7 +98,7 @@ export default function PMUserInteraction(replyText) {
           <TextInput
             style={styles.replyContents}
             placeholder="Reply here"
-            placeholderTextColor={pawGrey}
+            placeholderTextColor={PlaceholderText}
             multiline
             value={replyText}
           />
@@ -107,7 +107,7 @@ export default function PMUserInteraction(replyText) {
             <Feather
               name="send"
               size={25}
-              color="white"
+              color={white2lgrey}
               style={styles.sendButton}
             />
           </Pressable>

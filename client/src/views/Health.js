@@ -1,27 +1,20 @@
-/* eslint-disable global-require */
 import {
   View, Dimensions, Animated, ScrollView,
 } from 'react-native';
 import React from 'react';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
-import { pawPink } from '../constants/Styles';
+import styles, { white2lgrey, pink2yellow } from '../constants/DarkStyles';
 import PetCard from '../components/PetCard';
 import HealthComponent from '../components/HealthComponent';
-
-const StatusBarHeight = getStatusBarHeight();
 
 export default function HealthTab() {
   const scrollX = new Animated.Value(0);
 
   return (
 
-    <View style={{
-      flex: 1, backgroundColor: '#69A297',
-    }}
-    >
+    <View style={styles.background}>
 
-      <View style={{ backgroundColor: pawPink, height: StatusBarHeight }} />
+      <View style={styles.statusBar} />
 
       <ScrollView
         showsVerticalScrollIndicator={false}
@@ -55,22 +48,12 @@ export default function HealthTab() {
           <PetCard />
         </Animated.ScrollView>
 
-        <View style={{
-          marginBottom: 20,
-          borderWidth: 2,
-          borderColor: 'white',
-          borderRadius: 10,
-          padding: 5,
-          width: 115,
-          alignSelf: 'center',
-          justifyContent: 'center',
-        }}
-        >
+        <View style={styles.scrollIndicator}>
           <RNAnimatedScrollIndicators
             numberOfCards={4}
             scrollWidth={Dimensions.get('window').width}
-            activeColor={pawPink}
-            inActiveColor="white"
+            activeColor={pink2yellow}
+            inActiveColor={white2lgrey}
             scrollAnimatedValue={scrollX}
             style={{
               alignSelf: 'center',

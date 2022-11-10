@@ -2,7 +2,7 @@ import {
   Text, View,
 } from 'react-native';
 import React from 'react';
-import styles from '../constants/Styles';
+import styles from '../constants/DarkStyles';
 
 export default function MessageSent() {
   return (

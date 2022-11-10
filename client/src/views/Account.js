@@ -1,18 +1,24 @@
 /* eslint-disable global-require */
 import {
-  View, Text, Dimensions, Pressable, Image, ScrollView,
+  View, Text, Dimensions, Pressable, Image, Animated,
 } from 'react-native';
 import React, { useState } from 'react';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
-import { useFonts } from 'expo-font';
 import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
-import styles, { pawPink, pawGreen } from '../constants/Styles';
+import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
+import { getStatusBarHeight } from 'react-native-status-bar-height';
+import styles, {
+  pawGrey, pink2lgrey, pink2yellow, white2lgrey,
+} from '../constants/DarkStyles';
+import AccountCard from '../components/AccountCard';
 
-const StatusBarHeight = getStatusBarHeight();
 const miso = require('../../assets/miso.jpg');
 
-export default function ServicesTab() {
+const StatusBarHeight = getStatusBarHeight();
+
+export default function AccountTab() {
+  const scrollX = new Animated.Value(0);
+
   /* toggle profile section modal */
   const [isProfileVisible, setProfileVisible] = useState(false);
   const toggleProfile = () => {
@@ -25,49 +31,29 @@ export default function ServicesTab() {
     setPetsVisible(!isPetsVisible);
   };
 
-  const [loaded] = useFonts({
-    QuicksandBold: require('../../assets/fonts/Quicksand-Bold.ttf'),
-    QuicksandLight: require('../../assets/fonts/Quicksand-Light.ttf'),
-    QuicksandMedium: require('../../assets/fonts/Quicksand-Medium.ttf'),
-    QuicksandRegular: require('../../assets/fonts/Quicksand-Regular.ttf'),
-    QuicksandSemiBold: require('../../assets/fonts/Quicksand-SemiBold.ttf'),
-  });
-
-  if (!loaded) {
-    return null;
-  }
-
   return (
-    <View style={{
-      flex: 1, backgroundColor: pawGreen,
-    }}
-    >
+    <View style={styles.background}>
 
-      <View style={{ backgroundColor: pawPink, height: StatusBarHeight, marginBottom: 30 }} />
+      <View style={[styles.statusBar, { marginBottom: 30 }]} />
       <View>
-        {/* <DropShadow style={styles.shadowProp}> */}
         <View style={styles.profileBorder}>
           <Image
             style={styles.profileImage}
             source={miso}
           />
         </View>
-        {/* </DropShadow> */}
       </View>
-      {/* <DropShadow style={styles.shadowProp}> */}
-      <View style={[styles.menuItem, { marginBottom: 50, justifyContent: 'center', backgroundColor: pawPink }]}>
+
+      <View style={[styles.menuItem, styles.usernameField]}>
         <Text
           adjustsFontSizeToFit
           numberOfLines={1}
-          style={[styles.menuText, { width: 'auto', fontSize: 32, color: 'white' }]}
+          style={[styles.menuText, styles.usernameFont]}
         >
           UserName
         </Text>
-
       </View>
 
-      {/* </DropShadow> */}
-      {/* <DropShadow style={styles.shadowProp}> */}
       <Pressable onPress={toggleProfile} style={styles.menuItem}>
         <Text
           adjustsFontSizeToFit
@@ -79,13 +65,11 @@ export default function ServicesTab() {
         <Feather
           name="chevron-right"
           size={30}
-          color="#333333"
+          color={pawGrey}
           style={{ marginRight: -5 }}
         />
 
       </Pressable>
-
-      {/* </DropShadow> */}
 
       {/* profile options modal */}
       <Modal
@@ -103,14 +87,13 @@ export default function ServicesTab() {
             <Feather
               name="chevron-left"
               size={30}
-              color="#333333"
+              color={pawGrey}
               style={styles.exitButton}
             />
 
           </Pressable>
 
           <View>
-            {/* <DropShadow style={styles.shadowProp}> */}
             <View style={{ justifyContent: 'flex-end' }}>
               <Image
                 resizeMode="cover"
@@ -121,18 +104,16 @@ export default function ServicesTab() {
                 <Feather
                   name="camera"
                   size={30}
-                  color="#e0777d"
+                  color={pink2lgrey}
                   style={styles.cameraIcon}
                 />
               </Pressable>
             </View>
-            {/* </DropShadow> */}
           </View>
 
-          {/* <DropShadow style={styles.shadowProp}> */}
           <Pressable style={[styles.menuItem, { width: Dimensions.get('window').width - 40 }]}>
             <Text
-              style={[styles.menuText, { fontSize: 18, width: 'auto', color: pawPink }]}
+              style={[styles.menuText, styles.accountFields]}
             >
               Username
             </Text>
@@ -142,11 +123,10 @@ export default function ServicesTab() {
               Users name
             </Text>
           </Pressable>
-          {/* </DropShadow> */}
 
           <Pressable style={[styles.menuItem, { width: Dimensions.get('window').width - 40 }]}>
             <Text
-              style={[styles.menuText, { fontSize: 18, width: 'auto', color: pawPink }]}
+              style={[styles.menuText, styles.accountFields]}
             >
               Email
             </Text>
@@ -157,10 +137,9 @@ export default function ServicesTab() {
             </Text>
           </Pressable>
 
-          {/* <DropShadow style={styles.shadowProp}> */}
           <Pressable style={[styles.menuItem, { width: Dimensions.get('window').width - 40 }]}>
             <Text
-              style={[styles.menuText, { fontSize: 18, width: 'auto', color: pawPink }]}
+              style={[styles.menuText, styles.accountFields]}
             >
               First Name
             </Text>
@@ -170,12 +149,10 @@ export default function ServicesTab() {
               Users name
             </Text>
           </Pressable>
-          {/* </DropShadow> */}
 
-          {/* <DropShadow style={styles.shadowProp}> */}
           <Pressable style={[styles.menuItem, { width: Dimensions.get('window').width - 40 }]}>
             <Text
-              style={[styles.menuText, { fontSize: 18, width: 'auto', color: pawPink }]}
+              style={[styles.menuText, styles.accountFields]}
             >
               Last Name
             </Text>
@@ -185,12 +162,10 @@ export default function ServicesTab() {
               Users name
             </Text>
           </Pressable>
-          {/* </DropShadow> */}
 
-          {/* <DropShadow style={styles.shadowProp}> */}
           <Pressable style={[styles.menuItem, { width: Dimensions.get('window').width - 40 }]}>
             <Text
-              style={[styles.menuText, { fontSize: 18, width: 'auto', color: pawPink }]}
+              style={[styles.menuText, styles.accountFields]}
             >
               Date of Birth
             </Text>
@@ -200,12 +175,10 @@ export default function ServicesTab() {
               Date
             </Text>
           </Pressable>
-          {/* </DropShadow> */}
 
-          {/* <DropShadow style={styles.shadowProp}> */}
           <Pressable style={[styles.menuItem, { width: Dimensions.get('window').width - 40 }]}>
             <Text
-              style={[styles.menuText, { fontSize: 18, width: 'auto', color: pawPink }]}
+              style={[styles.menuText, styles.accountFields]}
             >
               Location
             </Text>
@@ -215,12 +188,9 @@ export default function ServicesTab() {
               Location Data
             </Text>
           </Pressable>
-          {/* </DropShadow> */}
-
         </View>
       </Modal>
 
-      {/* <DropShadow style={styles.shadowProp}> */}
       <Pressable onPress={togglePets} style={styles.menuItem}>
         <Text
           adjustsFontSizeToFit
@@ -232,13 +202,11 @@ export default function ServicesTab() {
         <Feather
           name="chevron-right"
           size={30}
-          color="#333333"
+          color={pawGrey}
           style={{ marginRight: -5 }}
         />
 
       </Pressable>
-
-      {/* </DropShadow> */}
 
       {/* pets options modal */}
       <Modal
@@ -256,127 +224,56 @@ export default function ServicesTab() {
             <Feather
               name="chevron-left"
               size={30}
-              color="#333333"
+              color={pawGrey}
               style={styles.exitButton}
             />
 
           </Pressable>
 
           <View>
-            <ScrollView
+            <Animated.ScrollView
               horizontal
               showsHorizontalScrollIndicator={false}
               snapToAlignment="center"
-              snapToInterval={180}
-              contentOffset={{ x: -110 }}
-              // decelerationRate="fast"
+              snapToInterval={Dimensions.get('window').width}
+              decelerationRate="fast"
               disableIntervalMomentum
               directionalLockEnabled
               pagingEnabled
-              contentInset={{ left: 100, right: 100 }}
+              scrollEventThrottle={14}
+              onScroll={Animated.event(
+                [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+                { useNativeDriver: true },
+              )}
               style={{
-                height: 300, width: Dimensions.get('window').width, marginTop: 100,
+                width: Dimensions.get('window').width,
+                height: 250,
+                marginTop: (Dimensions.get('window').height - StatusBarHeight - 100) / 10,
+                marginLeft: 10,
+                marginBottom: 20,
               }}
             >
+              <AccountCard />
+              <AccountCard />
+              <AccountCard />
+              <AccountCard />
 
-              {/* <DropShadow style={styles.shadowProp}> */}
-              <Pressable style={styles.accountCard}>
-                <Image
-                  style={styles.accountImage}
-                  source={miso}
-                />
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <Text
-                    style={styles.accountHeader}
-                  >
-                    Miso
-                  </Text>
-                  <Pressable>
-                    <Feather
-                      name="x-circle"
-                      size={30}
-                      color="#e0777d"
-                      style={{ alignSelf: 'center', paddingLeft: 10, paddingTop: 10 }}
-                    />
-                  </Pressable>
-                </View>
-              </Pressable>
-              {/* </DropShadow> */}
+            </Animated.ScrollView>
 
-              {/* <DropShadow style={styles.shadowProp}> */}
-              <Pressable style={styles.accountCard}>
-                <Image
-                  style={styles.accountImage}
-                  source={miso}
-                />
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <Text
-                    style={styles.accountHeader}
-                  >
-                    Miso
-                  </Text>
-                  <Pressable>
-                    <Feather
-                      name="x-circle"
-                      size={30}
-                      color="#e0777d"
-                      style={{ alignSelf: 'center', paddingLeft: 10, paddingTop: 10 }}
-                    />
-                  </Pressable>
-                </View>
-              </Pressable>
-              {/* </DropShadow> */}
+            <View style={styles.scrollIndicator}>
+              <RNAnimatedScrollIndicators
+                numberOfCards={4}
+                scrollWidth={Dimensions.get('window').width}
+                activeColor={pink2yellow}
+                inActiveColor={white2lgrey}
+                scrollAnimatedValue={scrollX}
+                style={{
+                  alignSelf: 'center',
+                  justifyContent: 'center',
+                }}
+              />
+            </View>
 
-              {/* <DropShadow style={styles.shadowProp}> */}
-              <Pressable style={styles.accountCard}>
-                <Image
-                  style={styles.accountImage}
-                  source={miso}
-                />
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <Text
-                    style={styles.accountHeader}
-                  >
-                    Miso
-                  </Text>
-                  <Pressable>
-                    <Feather
-                      name="x-circle"
-                      size={30}
-                      color="#e0777d"
-                      style={{ alignSelf: 'center', paddingLeft: 10, paddingTop: 10 }}
-                    />
-                  </Pressable>
-                </View>
-              </Pressable>
-              {/* </DropShadow> */}
-
-              {/* <DropShadow style={styles.shadowProp}> */}
-              <Pressable style={styles.accountCard}>
-                <Image
-                  style={styles.accountImage}
-                  source={miso}
-                />
-                <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-                  <Text
-                    style={styles.accountHeader}
-                  >
-                    Miso
-                  </Text>
-                  <Pressable>
-                    <Feather
-                      name="x-circle"
-                      size={30}
-                      color="#e0777d"
-                      style={{ alignSelf: 'center', paddingLeft: 10, paddingTop: 10 }}
-                    />
-                  </Pressable>
-                </View>
-              </Pressable>
-              {/* </DropShadow> */}
-            </ScrollView>
-
-            {/* <DropShadow style={styles.shadowProp}> */}
             <Pressable style={[styles.menuItem, { marginTop: 20, width: Dimensions.get('window').width - 40 }]}>
               <Text
                 adjustsFontSizeToFit
@@ -388,17 +285,16 @@ export default function ServicesTab() {
               <Feather
                 name="plus-circle"
                 size={30}
-                color="#e0777d"
+                color="indianred"
                 style={{ marginRight: -5 }}
               />
             </Pressable>
-            {/* </DropShadow> */}
+
           </View>
 
         </View>
       </Modal>
 
-      {/* <DropShadow style={styles.shadowProp}> */}
       <Pressable style={styles.menuItem}>
         <Text
           adjustsFontSizeToFit
@@ -410,7 +306,6 @@ export default function ServicesTab() {
 
       </Pressable>
 
-      {/* </DropShadow> */}
     </View>
   );
 }

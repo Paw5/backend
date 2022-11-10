@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 import {
   StyleSheet, Dimensions, Platform,
 } from 'react-native';
@@ -8,34 +9,35 @@ const TAB_WIDTH = TABBAR_WIDTH / 5;
 
 const StatusBarHeight = getStatusBarHeight();
 
-export const pawPink = '#e0777d';
+export const pawYellow = '#edae49';
 export const pawGreen = '#69a297';
 export const pawGrey = '#333333';
+export const pawLightGrey = '#545454';
 
-export const pink2green = pawPink;
-export const white2lgrey = 'white';
-export const pink2lgrey = pawPink;
-export const pink2yellow = pawPink;
-export const grey2yellow = pawGrey;
-export const white2yellow = 'white';
-export const white2green = 'white';
-export const PlaceholderText = '#33333385';
-export const mapColor = 'light';
+export const pink2green = pawGreen;
+export const white2lgrey = pawLightGrey;
+export const pink2lgrey = pawLightGrey;
+export const pink2yellow = pawYellow;
+export const grey2yellow = pawYellow;
+export const white2yellow = pawYellow;
+export const white2green = pawGreen;
+export const PlaceholderText = '#edae4985';
+export const mapColor = 'dark';
 
 export default StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: pawGreen,
+    backgroundColor: pawGrey,
   },
   statusBar: {
     height: StatusBarHeight,
-    backgroundColor: pawPink,
+    backgroundColor: pawGreen,
   },
   /* health styles */
   petCard: {
     height: 200,
     width: 160,
-    backgroundColor: 'white',
+    backgroundColor: pawLightGrey,
     color: pawGrey,
     paddingTop: 0,
     paddingBottom: 10,
@@ -58,7 +60,6 @@ export default StyleSheet.create({
     shadowOpacity: 0.4,
     shadowRadius: 2,
   },
-
   petHeader: {
     fontSize: 32,
     fontWeight: '600',
@@ -66,20 +67,19 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginTop: 5,
     fontFamily: 'QuicksandBold',
-    color: pawGrey,
+    color: pawYellow,
   },
-
   petImage: {
     height: 135,
     width: 135,
     borderRadius: 100,
     borderWidth: 3,
-    borderColor: pawPink,
+    borderColor: pawGreen,
   },
   scrollIndicator: {
     marginBottom: 20,
     borderWidth: 2,
-    borderColor: 'white',
+    borderColor: pawGreen,
     borderRadius: 10,
     padding: 5,
     width: 115,
@@ -89,13 +89,12 @@ export default StyleSheet.create({
   healthContainer: {
     alignSelf: 'center',
     width: (Dimensions.get('window').width - 20),
-    backgroundColor: 'white',
+    backgroundColor: pawLightGrey,
     borderRadius: 25,
     overflow: 'hidden',
     marginBottom: 20,
     height: 200,
   },
-
   healthHeader: {
     fontSize: 20,
     fontWeight: '600',
@@ -105,10 +104,10 @@ export default StyleSheet.create({
     marginTop: 15,
     marginBottom: 5,
     fontFamily: 'QuicksandBold',
-    color: pawGrey,
+    color: pawYellow,
   },
   healthDivider: {
-    borderBottomColor: pawPink,
+    borderBottomColor: pawGreen,
     borderBottomWidth: 3,
     borderRadius: 50,
     marginLeft: 10,
@@ -117,7 +116,7 @@ export default StyleSheet.create({
 
   /* account styles */
   profileBorder: {
-    backgroundColor: 'white',
+    backgroundColor: pawYellow,
     height: 220,
     width: 220,
     alignSelf: 'center',
@@ -135,7 +134,7 @@ export default StyleSheet.create({
   menuItem: {
     alignSelf: 'center',
     width: (Dimensions.get('window').width - 20),
-    backgroundColor: 'white',
+    backgroundColor: pawLightGrey,
     borderRadius: 25,
     overflow: 'hidden',
     marginBottom: 20,
@@ -149,7 +148,7 @@ export default StyleSheet.create({
   usernameField: {
     marginBottom: 50,
     justifyContent: 'center',
-    backgroundColor: pawPink,
+    backgroundColor: pawGreen,
   },
   menuText: {
     fontSize: 24,
@@ -158,22 +157,22 @@ export default StyleSheet.create({
     textTransform: 'uppercase',
     letterSpacing: 1,
     fontFamily: 'QuicksandBold',
-    color: pawGrey,
+    color: pawYellow,
     flexBasis: 'auto',
   },
   usernameFont: {
     width: 'auto',
     fontSize: 32,
-    color: 'white',
+    color: pawGrey,
   },
   profileIcon: {
     height: 150,
     width: 150,
     alignSelf: 'center',
     padding: 20,
-    backgroundColor: 'white',
+    backgroundColor: pawYellow,
     borderWidth: 5,
-    borderColor: 'white',
+    borderColor: pawYellow,
     borderRadius: 80,
     overflow: 'hidden',
     marginBottom: 40,
@@ -184,7 +183,7 @@ export default StyleSheet.create({
   exitButton: {
     alignSelf: 'center',
     padding: 10,
-    backgroundColor: 'white',
+    backgroundColor: pawGreen,
     borderRadius: 25,
     overflow: 'hidden',
     paddingRight: 11,
@@ -192,11 +191,10 @@ export default StyleSheet.create({
     marginLeft: 20,
   },
   accountModal: {
-    backgroundColor: pawGreen,
+    backgroundColor: pawGrey,
     width: Dimensions.get('window').width,
-    marginLeft: 0,
-    marginTop: StatusBarHeight,
-    marginBottom: 150,
+    margin: 0,
+    marginTop: Platform.OS === 'android' ? 0 : StatusBarHeight,
     justifyContent: 'flex-start',
     paddingTop: 20,
   },
@@ -205,7 +203,7 @@ export default StyleSheet.create({
     width: 135,
     borderRadius: 100,
     borderWidth: 3,
-    borderColor: pawPink,
+    borderColor: pawGreen,
     alignSelf: 'center',
     marginLeft: 20,
     marginRight: 20,
@@ -217,15 +215,14 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginTop: 5,
     fontFamily: 'QuicksandBold',
-    color: pawGrey,
+    color: pawYellow,
     flexBasis: 'auto',
     paddingLeft: 5,
   },
   accountCard: {
     height: 200,
     width: 160,
-    backgroundColor: 'white',
-    color: pawGrey,
+    backgroundColor: pawLightGrey,
     paddingLeft: 10,
     paddingRight: 10,
     paddingTop: 0,
@@ -244,7 +241,7 @@ export default StyleSheet.create({
   },
   cameraIcon: {
     alignSelf: 'flex-end',
-    backgroundColor: 'white',
+    backgroundColor: pawYellow,
     position: 'absolute',
     right: 120,
     bottom: 40,
@@ -253,11 +250,12 @@ export default StyleSheet.create({
     borderRadius: 23,
     overflow: 'hidden',
   },
+
   /* settings styles */
   settingsIcon: {
     alignSelf: 'center',
     padding: 20,
-    backgroundColor: 'white',
+    backgroundColor: pawGreen,
     borderRadius: 70,
     overflow: 'hidden',
     marginBottom: 60,
@@ -266,7 +264,7 @@ export default StyleSheet.create({
   settingsItem: {
     alignSelf: 'center',
     width: (Dimensions.get('window').width - 20),
-    backgroundColor: 'white',
+    backgroundColor: pawLightGrey,
     borderRadius: 25,
     overflow: 'hidden',
     marginBottom: 20,
@@ -284,7 +282,7 @@ export default StyleSheet.create({
     textTransform: 'uppercase',
     letterSpacing: 1,
     fontFamily: 'QuicksandBold',
-    color: '#333333',
+    color: pawYellow,
     flexBasis: 'auto',
     paddingRight: 10,
   },
@@ -301,7 +299,7 @@ export default StyleSheet.create({
     paddingLeft: 9,
   },
   settingsModal: {
-    backgroundColor: pawGreen,
+    backgroundColor: pawGrey,
     width: Dimensions.get('window').width,
     marginLeft: 0,
     height: Dimensions.get('window').height,
@@ -323,7 +321,7 @@ export default StyleSheet.create({
     borderRadius: 25,
     alignSelf: 'center',
     position: 'absolute',
-    borderColor: pawPink,
+    borderColor: pawGreen,
   },
 
   servLeft: {
@@ -333,7 +331,7 @@ export default StyleSheet.create({
     position: 'absolute',
     justifyContent: 'center',
     alignContent: 'center',
-    borderColor: pawPink,
+    borderColor: pawGreen,
   },
 
   servCheck: {
@@ -343,13 +341,13 @@ export default StyleSheet.create({
     position: 'absolute',
     borderRightWidth: 3,
     borderTopWidth: 3,
-    backgroundColor: 'white',
-    borderColor: pawPink,
+    backgroundColor: pawLightGrey,
+    borderColor: pawGreen,
   },
   servContainer: {
     alignSelf: 'center',
     width: (Dimensions.get('window').width - 20),
-    backgroundColor: 'white',
+    backgroundColor: pawLightGrey,
     borderRadius: 25,
     overflow: 'hidden',
     marginBottom: 20,
@@ -362,7 +360,7 @@ export default StyleSheet.create({
     marginLeft: 105,
     marginTop: 5,
     fontFamily: 'QuicksandBold',
-    color: pawGrey,
+    color: pawYellow,
   },
 
   servHeader2: {
@@ -371,7 +369,7 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 105,
     fontFamily: 'QuicksandBold',
-    color: pawGrey,
+    color: pawYellow,
   },
 
   servStar1: {
@@ -405,14 +403,14 @@ export default StyleSheet.create({
   },
   /* pm styles */
   pmUserInteraction: {
-    backgroundColor: 'white',
+    backgroundColor: pawLightGrey,
     borderRadius: 80,
     overflow: 'hidden',
     height: 80,
     width: TABBAR_WIDTH - 20,
     alignSelf: 'center',
     borderWidth: 4,
-    borderColor: pawPink,
+    borderColor: pawGreen,
     flexDirection: 'row',
     alignContent: 'center',
     marginBottom: 20,
@@ -425,7 +423,7 @@ export default StyleSheet.create({
     borderRadius: 100,
     overflow: 'hidden',
     borderWidth: 5,
-    borderColor: pawPink,
+    borderColor: pawGreen,
   },
   pmPreview: {
     paddingTop: 6,
@@ -435,13 +433,13 @@ export default StyleSheet.create({
   pmUserPreview: {
     fontFamily: 'QuicksandSemiBold',
     fontSize: 22,
-    color: pawGrey,
+    color: pawYellow,
   },
   pmUserMessagePreview: {
     paddingTop: 2,
     fontFamily: 'QuicksandLight',
     fontSize: 18,
-    color: pawGrey,
+    color: pawYellow,
   },
   pmMessageIcons: {
     flex: 1,
@@ -452,7 +450,7 @@ export default StyleSheet.create({
     paddingTop: 1,
   },
   PMModal: {
-    backgroundColor: pawGreen,
+    backgroundColor: pawGrey,
     flex: 1,
     margin: 0,
     justifyContent: 'flex-start',
@@ -463,7 +461,7 @@ export default StyleSheet.create({
     width: 50,
     marginLeft: 20,
     marginTop: 25,
-    backgroundColor: 'white',
+    backgroundColor: pawLightGrey,
     borderRadius: 25,
     overflow: 'hidden',
     paddingRight: 11,
@@ -474,7 +472,7 @@ export default StyleSheet.create({
   messageTitle: {
     alignSelf: 'center',
     flex: 4,
-    backgroundColor: pawPink,
+    backgroundColor: pawLightGrey,
     borderRadius: 100,
     overflow: 'hidden',
     marginRight: 20,
@@ -486,13 +484,13 @@ export default StyleSheet.create({
     paddingBottom: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    borderColor: 'white',
+    borderColor: pawGreen,
     borderWidth: 3,
   },
   userTitle: {
     fontFamily: 'QuicksandBold',
     fontSize: 24,
-    color: 'white',
+    color: pawYellow,
     flex: 3,
     alignSelf: 'center',
   },
@@ -503,11 +501,11 @@ export default StyleSheet.create({
     overflow: 'hidden',
     marginLeft: 20,
     borderWidth: 3,
-    borderColor: 'white',
+    borderColor: pawGreen,
     margin: 5,
   },
   messageRecieve: {
-    backgroundColor: 'white',
+    backgroundColor: pawLightGrey,
     borderRadius: 50,
     borderBottomLeftRadius: 0,
     overflow: 'hidden',
@@ -519,7 +517,7 @@ export default StyleSheet.create({
   },
   messageSent: {
     alignSelf: 'flex-end',
-    backgroundColor: 'white',
+    backgroundColor: pawLightGrey,
     borderRadius: 50,
     borderBottomRightRadius: 0,
     overflow: 'hidden',
@@ -530,13 +528,13 @@ export default StyleSheet.create({
   },
   messageContents: {
     fontFamily: 'QuicksandMedium',
-    color: pawGrey,
+    color: pawYellow,
     fontSize: 16,
   },
   replyBar: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    backgroundColor: 'white',
+    backgroundColor: pawLightGrey,
     borderRadius: 50,
     overflow: 'hidden',
     marginLeft: 20,
@@ -547,7 +545,7 @@ export default StyleSheet.create({
   },
   replyContents: {
     fontFamily: 'QuicksandMedium',
-    color: pawGrey,
+    color: pawYellow,
     fontSize: 18,
     marginLeft: 10,
     alignSelf: 'center',
@@ -556,7 +554,7 @@ export default StyleSheet.create({
     padding: 10,
   },
   sendButton: {
-    backgroundColor: pawPink,
+    backgroundColor: pawYellow,
     padding: 10,
     paddingLeft: 8,
     paddingBottom: 8,
@@ -567,7 +565,7 @@ export default StyleSheet.create({
   postContainer: {
     alignSelf: 'center',
     width: (Dimensions.get('window').width - 20),
-    backgroundColor: 'white',
+    backgroundColor: pawLightGrey,
     borderRadius: 25,
     overflow: 'hidden',
     marginBottom: 20,
@@ -581,13 +579,13 @@ export default StyleSheet.create({
     borderRadius: 100,
     borderWidth: 3,
     position: 'absolute',
-    borderColor: pawPink,
+    borderColor: pawGreen,
   },
   postTopBand: {
     height: 100,
     width: 200,
     borderRadius: 25,
-    borderColor: pawPink,
+    borderColor: pawGreen,
     borderWidth: 300,
     zIndex: 51,
   },
@@ -601,8 +599,8 @@ export default StyleSheet.create({
     borderWidth: 3,
     justifyContent: 'center',
     position: 'absolute',
-    borderColor: pawPink,
-    backgroundColor: 'white',
+    borderColor: pawGreen,
+    backgroundColor: pawLightGrey,
   },
 
   postHeader: {
@@ -612,7 +610,7 @@ export default StyleSheet.create({
     marginLeft: 105,
     marginTop: 5,
     fontFamily: 'QuicksandBold',
-    color: pawGrey,
+    color: pawYellow,
   },
 
   postHeader2: {
@@ -621,7 +619,7 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: pawGrey,
+    color: pawYellow,
   },
 
   postDescription: {
@@ -630,7 +628,7 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: pawGrey,
+    color: pawYellow,
   },
   postTag: {
     fontSize: 11,
@@ -638,7 +636,7 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: pawGrey,
+    color: pawYellow,
   },
   /* PawPic styles */
   picImage: {
@@ -659,7 +657,7 @@ export default StyleSheet.create({
     left: 3,
     justifyContent: 'center',
     borderRadius: 25,
-    borderColor: pawPink,
+    borderColor: pawGreen,
     borderBottomWidth: 3,
     borderRightWidth: 3,
     alignSelf: 'center',
@@ -674,7 +672,7 @@ export default StyleSheet.create({
   picContainer: {
     alignSelf: 'center',
     width: (Dimensions.get('window').width - 20),
-    backgroundColor: 'white',
+    backgroundColor: pawLightGrey,
     borderRadius: 25,
     overflow: 'hidden',
     marginBottom: 20,
@@ -688,7 +686,7 @@ export default StyleSheet.create({
     borderRadius: 100,
     borderWidth: 3,
     position: 'absolute',
-    borderColor: pawPink,
+    borderColor: pawGreen,
   },
 
   ppProfileNameNode: {
@@ -700,8 +698,8 @@ export default StyleSheet.create({
     borderWidth: 3,
     justifyContent: 'center',
     position: 'absolute',
-    borderColor: pawPink,
-    backgroundColor: 'white',
+    borderColor: pawGreen,
+    backgroundColor: pawLightGrey,
   },
 
   picHeader: {
@@ -711,7 +709,7 @@ export default StyleSheet.create({
     marginLeft: 105,
     marginTop: 5,
     fontFamily: 'QuicksandBold',
-    color: pawGrey,
+    color: pawYellow,
   },
 
   picHeader2: {
@@ -720,7 +718,7 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: pawGrey,
+    color: pawYellow,
   },
 
   picDescription: {
@@ -729,7 +727,7 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: pawGrey,
+    color: pawYellow,
   },
   picTag: {
     fontSize: 11,
@@ -737,14 +735,14 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: pawGrey,
+    color: pawYellow,
   },
   /* news/events styles */
   eventTab: {
     alignSelf: 'center',
     height: 'auto',
     width: Dimensions.get('window').width - 30,
-    backgroundColor: 'white',
+    backgroundColor: pawLightGrey,
     borderRadius: 50,
     overflow: 'hidden',
     padding: 35,
@@ -756,11 +754,13 @@ export default StyleSheet.create({
   eventHeader: {
     fontFamily: 'QuicksandBold',
     fontSize: 26,
+    color: pawYellow,
   },
   eventDate: {
     fontFamily: 'QuicksandSemiBold',
     fontSize: 20,
     paddingTop: 5,
+    color: pawYellow,
   },
   eventText: {
     fontFamily: 'QuicksandRegular',
@@ -768,13 +768,14 @@ export default StyleSheet.create({
     paddingLeft: 5,
     paddingRight: 30,
     textAlign: 'justify',
+    color: pawYellow,
   },
   newsTab: {
     alignSelf: 'center',
     marginTop: 10,
     height: 'auto',
     width: Dimensions.get('window').width - 30,
-    backgroundColor: 'white',
+    backgroundColor: pawLightGrey,
     borderRadius: 50,
     overflow: 'hidden',
     padding: 35,
@@ -788,10 +789,11 @@ export default StyleSheet.create({
     fontFamily: 'QuicksandBold',
     fontSize: 26,
     textAlign: 'center',
+    color: pawYellow,
   },
   /* map styles */
   containerMap: {
-    backgroundColor: pawGreen,
+    backgroundColor: pawGrey,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -820,7 +822,7 @@ export default StyleSheet.create({
     width: 45,
     flex: 1,
     justifyContent: 'center',
-    backgroundColor: '#FFFFFF',
+    backgroundColor: pawLightGrey,
     borderRadius: 150,
     elevation: 24,
   },
@@ -828,7 +830,7 @@ export default StyleSheet.create({
     fontSize: 20,
     marginLeft: 10,
     width: '90%',
-    color: pawGrey,
+    color: pawYellow,
   },
   filters: {
     position: 'absolute',
@@ -836,7 +838,7 @@ export default StyleSheet.create({
     height: 45,
     width: 45,
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: pawLightGrey,
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 22.5,
@@ -849,11 +851,11 @@ export default StyleSheet.create({
     height: 45,
     width: 45,
     flex: 1,
-    backgroundColor: 'white',
+    backgroundColor: pawYellow,
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 4,
-    borderColor: pawGreen,
+    borderColor: pawGrey,
     borderRadius: 22.5,
     borderTopLeftRadius: 0,
     borderBottomRightRadius: 0,
@@ -862,7 +864,7 @@ export default StyleSheet.create({
   },
   filterText: {
     fontFamily: 'QuicksandSemiBold',
-    color: pawGrey,
+    color: pawYellow,
     fontSize: 16,
   },
   modalView: {
@@ -871,7 +873,7 @@ export default StyleSheet.create({
     alignSelf: 'center',
     width: Dimensions.get('window').width - 35,
     padding: 45,
-    backgroundColor: 'white',
+    backgroundColor: pawLightGrey,
     borderRadius: 22.5,
     shadowColor: '#000',
     shadowOffset: {
@@ -883,7 +885,7 @@ export default StyleSheet.create({
     elevation: 24,
   },
   tabBarContainer: {
-    backgroundColor: '#FFFFFF',
+    backgroundColor: pawLightGrey,
     flexDirection: 'row',
     position: 'absolute',
     width: Dimensions.get('window').width + 6,
@@ -900,14 +902,14 @@ export default StyleSheet.create({
   circleAnimated: {
     width: TAB_WIDTH,
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: pawLightGrey,
     alignItems: 'center',
   },
   circle: {
     width: 90,
     height: 90,
     borderRadius: 45,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: pawLightGrey,
     bottom: 30,
     borderWidth: 0,
     borderColor: pawGreen, // all pages will be one color so,,, just set it to that color
@@ -918,16 +920,16 @@ export default StyleSheet.create({
     width: 95,
     height: 95,
     borderRadius: 47.5,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: pawLightGrey,
     bottom: Platform.OS === 'ios' ? 16 : 8,
     borderWidth: 7,
-    borderColor: pawGreen,
+    borderColor: pawGrey,
     zIndex: 99,
   },
   pawPupPic: {
     position: 'absolute',
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: pawLightGrey,
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 12,
@@ -937,7 +939,7 @@ export default StyleSheet.create({
     marginLeft: (((Dimensions.get('window').width) / 5) * 3.5) - 98,
     bottom: Platform.OS === 'ios' ? 75 : 67,
     borderWidth: 7,
-    borderColor: pawGreen,
+    borderColor: pawGrey,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -949,7 +951,7 @@ export default StyleSheet.create({
   pawPupPost: {
     position: 'absolute',
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: pawLightGrey,
     marginLeft: (((Dimensions.get('window').width) / 5) * 3.5) - 41.5, // 55 normally
     bottom: Platform.OS === 'ios' ? 100 : 90, // 0 normally
     justifyContent: 'center',
@@ -959,7 +961,7 @@ export default StyleSheet.create({
     height: 45,
     borderRadius: 22.5,
     borderWidth: 7,
-    borderColor: pawGreen,
+    borderColor: pawGrey,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -971,7 +973,7 @@ export default StyleSheet.create({
   pawPupPM: {
     position: 'absolute',
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: pawLightGrey,
     marginLeft: (((Dimensions.get('window').width) / 5) * 3.5) + 15,
     bottom: Platform.OS === 'ios' ? 73 : 68,
     justifyContent: 'center',
@@ -981,7 +983,7 @@ export default StyleSheet.create({
     height: 45,
     borderRadius: 22.5,
     borderWidth: 7,
-    borderColor: pawGreen,
+    borderColor: pawGrey,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -998,7 +1000,7 @@ export default StyleSheet.create({
   pawPupHealth: {
     position: 'absolute',
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: pawLightGrey,
     justifyContent: 'center',
     alignItems: 'center',
     elevation: 12,
@@ -1008,7 +1010,7 @@ export default StyleSheet.create({
     marginLeft: (((Dimensions.get('window').width) / 5) * 4.5) - 110,
     bottom: Platform.OS === 'ios' ? 62 : 54,
     borderWidth: 7,
-    borderColor: pawGreen,
+    borderColor: pawGrey,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -1020,7 +1022,7 @@ export default StyleSheet.create({
   pawPupAccount: {
     position: 'absolute',
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: pawLightGrey,
     marginLeft: (((Dimensions.get('window').width) / 5) * 4.5) - 75,
     bottom: Platform.OS === 'ios' ? 95 : 90,
     justifyContent: 'center',
@@ -1030,7 +1032,7 @@ export default StyleSheet.create({
     height: 45,
     borderRadius: 22.5,
     borderWidth: 7,
-    borderColor: pawGreen,
+    borderColor: pawGrey,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -1042,7 +1044,7 @@ export default StyleSheet.create({
   pawPupSettings: {
     position: 'absolute',
     flex: 1,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: pawLightGrey,
     marginLeft: (((Dimensions.get('window').width) / 5) * 4.5) - 25,
     bottom: Platform.OS === 'ios' ? 90 : 85,
     justifyContent: 'center',
@@ -1052,7 +1054,7 @@ export default StyleSheet.create({
     height: 45,
     borderRadius: 22.5,
     borderWidth: 7,
-    borderColor: pawGreen,
+    borderColor: pawGrey,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -1063,7 +1065,7 @@ export default StyleSheet.create({
   },
   /* inspect pic styles */
   picsModal: {
-    backgroundColor: pawGreen,
+    backgroundColor: pawGrey,
     width: Dimensions.get('window').width,
     marginLeft: 0,
     height: Dimensions.get('window').height,
@@ -1074,7 +1076,7 @@ export default StyleSheet.create({
     paddingLeft: 10,
   },
   exitPicButton: {
-    backgroundColor: 'white',
+    backgroundColor: pawGrey,
     borderRadius: 25,
     overflow: 'hidden',
     padding: 9,
@@ -1099,7 +1101,7 @@ export default StyleSheet.create({
     left: -10,
     justifyContent: 'center',
     borderRadius: 25,
-    borderColor: pawPink,
+    borderColor: pawGreen,
     borderWidth: 3,
     alignSelf: 'center',
     position: 'absolute',
@@ -1114,7 +1116,7 @@ export default StyleSheet.create({
     alignSelf: 'center',
     width: (Dimensions.get('window').width),
     height: (Dimensions.get('window').width),
-    backgroundColor: 'white',
+    backgroundColor: pawLightGrey,
     borderRadius: 25,
     overflow: 'hidden',
     left: -10,
@@ -1131,7 +1133,7 @@ export default StyleSheet.create({
     borderRadius: 100,
     borderWidth: 3,
     position: 'absolute',
-    borderColor: pawPink,
+    borderColor: pawGreen,
   },
 
   insppProfileNameNode: {
@@ -1143,8 +1145,8 @@ export default StyleSheet.create({
     borderWidth: 3,
     justifyContent: 'center',
     position: 'absolute',
-    borderColor: pawPink,
-    backgroundColor: 'white',
+    borderColor: pawGreen,
+    backgroundColor: pawLightGrey,
   },
 
   inspicHeader: {
@@ -1154,7 +1156,7 @@ export default StyleSheet.create({
     marginLeft: 105,
     marginTop: 5,
     fontFamily: 'QuicksandBold',
-    color: pawGrey,
+    color: pawYellow,
   },
 
   inspicHeader2: {
@@ -1163,7 +1165,7 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: pawGrey,
+    color: pawYellow,
   },
 
   inspicDescription: {
@@ -1172,7 +1174,7 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: pawGrey,
+    color: pawYellow,
   },
   inspicTag: {
     fontSize: 11,
@@ -1180,67 +1182,58 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: pawGrey,
+    color: pawYellow,
   },
   /* inspect post styles */
   postModal: {
-    backgroundColor: pawGreen,
-    width: Dimensions.get('window').width,
-    marginLeft: 0,
-    height: Dimensions.get('window').height,
-    marginTop: StatusBarHeight - 15,
-    marginBottom: -20,
+    backgroundColor: pawGrey,
+    margin: 0,
+    marginTop: Platform.OS === 'android' ? 0 : StatusBarHeight,
     justifyContent: 'flex-start',
     alignContent: 'center',
     paddingLeft: 10,
-    zIndex: 1,
   },
   exitPostButton: {
     alignSelf: 'center',
     backgroundColor: pawGrey,
     borderRadius: 25,
     overflow: 'hidden',
-    zIndex: 45,
     padding: 9,
   },
-
   inspostContainer: {
     alignSelf: 'center',
     width: (Dimensions.get('window').width),
-    height: (Dimensions.get('window').width) + 125,
-    backgroundColor: 'white',
+    height: (Dimensions.get('window').height) / 1.75,
+    backgroundColor: pawLightGrey,
+    marginLeft: -10,
     borderRadius: 25,
+    borderTopLeftRadius: 0,
+    borderTopRightRadius: 0,
+    paddingBottom: 20,
     overflow: 'hidden',
-    left: -10,
-    top: -30,
-    position: 'absolute',
-    zIndex: -1,
   },
-
   insppoProfileImage: {
     height: 60,
     width: 60,
-    top: 8,
+    top: 15,
     left: ((Dimensions.get('window').width - 20) / 2) - (60 + 37.5),
     borderRadius: 100,
     borderWidth: 3,
     position: 'absolute',
-    borderColor: pawPink,
+    borderColor: pawGreen,
   },
-
   insppoProfileNameNode: {
     height: 25,
     width: 160,
-    top: 25,
+    top: 32,
     left: ((Dimensions.get('window').width - 20) / 2) - 60,
     borderRadius: 100,
     borderWidth: 3,
     justifyContent: 'center',
     position: 'absolute',
-    borderColor: pawPink,
-    backgroundColor: 'white',
+    borderColor: pawGreen,
+    backgroundColor: pawLightGrey,
   },
-
   inspostHeader: {
     fontSize: 15,
     fontWeight: '600',
@@ -1250,32 +1243,32 @@ export default StyleSheet.create({
     fontFamily: 'QuicksandBold',
     color: pawGrey,
   },
-
   inspostHeader2: {
     fontSize: 11,
     fontWeight: '600',
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: pawGrey,
+    color: pawYellow,
   },
-
   inspostDescription: {
     fontSize: 13,
     fontWeight: '600',
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: pawGrey,
+    color: pawYellow,
+    paddingLeft: 0,
+    paddingRight: 10,
   },
   likeLocPost: {
     left: (Dimensions.get('window').width - 18) - 30,
-    top: 30,
+    top: 31,
     position: 'absolute',
   },
   commLocPost: {
     left: (Dimensions.get('window').width - 18) - 70,
-    top: 30,
+    top: 31,
     position: 'absolute',
   },
   inspostTag: {
@@ -1284,7 +1277,23 @@ export default StyleSheet.create({
     letterSpacing: 1,
     marginLeft: 20,
     fontFamily: 'QuicksandBold',
-    color: pawGrey,
+    color: pawYellow,
+  },
+  inspostComment: {
+    backgroundColor: pawLightGrey,
+    width: (Dimensions.get('window').height - 550),
+    height: 25,
+    borderRadius: 100,
+    marginTop: 10,
+    marginBottom: 5,
+    marginLeft: 20,
+    marginRight: 20,
+    paddingLeft: 10,
+  },
+  inspostCommentText: {
+    color: pawYellow,
+    fontFamily: 'QuicksandSemiBold',
+    fontSize: 14,
   },
   onboardModal: {
     backgroundColor: pawGreen,

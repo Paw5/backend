@@ -2,7 +2,7 @@ import {
   Text, Pressable, View,
 } from 'react-native';
 import React from 'react';
-import styles, { pawPink } from '../constants/Styles';
+import styles from '../constants/DarkStyles';
 
 export default function PetCard() {
   return (
@@ -10,13 +10,7 @@ export default function PetCard() {
     <Pressable style={styles.healthContainer}>
       <Text style={styles.healthHeader}>Health Component</Text>
       <View
-        style={{
-          borderBottomColor: pawPink,
-          borderBottomWidth: 3,
-          borderRadius: 50,
-          marginLeft: 10,
-          marginRight: 10,
-        }}
+        style={styles.healthDivider}
       />
     </Pressable>
   );
