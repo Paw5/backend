@@ -7,7 +7,7 @@ import Modal from 'react-native-modal';
 // import Onboarding from 'react-native-onboarding-swiper';
 import styles, {
   pink2green, white2lgrey, pawGrey,
-} from '../constants/DarkStyles';
+} from '../constants/Styles';
 
 export default function ServicesTab() {
   /* toggle switch section */

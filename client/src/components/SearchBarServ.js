@@ -4,7 +4,7 @@ import {
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
-import styles, { pawGrey, grey2yellow, PlaceholderText } from '../constants/DarkStyles';
+import styles, { pawGrey, grey2yellow, PlaceholderText } from '../constants/Styles';
 
 export default function SearchBar(searchQuery) {
   const [isModalVisible, setModalVisible] = useState(false);

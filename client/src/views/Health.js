@@ -3,7 +3,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
-import styles, { white2lgrey, pink2yellow } from '../constants/DarkStyles';
+import styles, { white2lgrey, pink2yellow } from '../constants/Styles';
 import PetCard from '../components/PetCard';
 import HealthComponent from '../components/HealthComponent';
 

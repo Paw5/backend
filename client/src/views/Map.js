@@ -5,7 +5,7 @@ import React from 'react';
 import MapView from 'react-native-maps';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import SearchBar from '../components/SearchBarServ';
-import styles, { mapColor } from '../constants/DarkStyles';
+import styles, { mapColor } from '../constants/Styles';
 
 const StatusBarHeight = getStatusBarHeight();
 

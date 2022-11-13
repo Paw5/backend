@@ -4,7 +4,7 @@ import {
 import React, { useState, useRef } from 'react';
 import Modal from 'react-native-modal';
 import { Feather } from '@expo/vector-icons';
-import styles, { grey2yellow, PlaceholderText, white2lgrey } from '../constants/DarkStyles';
+import styles, { grey2yellow, PlaceholderText, white2lgrey } from '../constants/Styles';
 import MessageSent from './MessageSent';
 import MessageReceived from './MessageReceived';
 

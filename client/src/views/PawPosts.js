@@ -3,7 +3,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import SearchBar from '../components/SearchBarServ';
-import styles, { } from '../constants/DarkStyles';
+import styles, { } from '../constants/Styles';
 import PawPostPost from '../components/PawPostPost';
 
 export default function PawPics() {

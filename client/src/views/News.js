@@ -6,7 +6,7 @@ import { Feather } from '@expo/vector-icons';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
 import styles, {
   pink2green, grey2yellow, pink2yellow, white2lgrey, white2green,
-} from '../constants/DarkStyles';
+} from '../constants/Styles';
 
 export default function HealthTab() {
   const scrollX = new Animated.Value(0);

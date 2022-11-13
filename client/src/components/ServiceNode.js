@@ -3,7 +3,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import { Feather } from '@expo/vector-icons';
-import styles, { grey2yellow, pink2green } from '../constants/DarkStyles';
+import styles, { grey2yellow, pink2green } from '../constants/Styles';
 
 const miso = require('../../assets/miso.jpg');
 

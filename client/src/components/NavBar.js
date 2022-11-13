@@ -22,7 +22,7 @@ import AccountPage from '../views/Account';
 import PawPics from '../views/PawPics';
 import PawPosts from '../views/PawPosts';
 import PMs from '../views/PMs';
-import styles, { grey2yellow } from '../constants/DarkStyles';
+import styles, { grey2yellow } from '../constants/Styles';
 
 function MyTabBar({ state, descriptors, navigation }) {
   const [translateX] = useState(new Animated.Value(0));

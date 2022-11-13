@@ -9,7 +9,7 @@ import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators'
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import styles, {
   pawGrey, pink2lgrey, pink2yellow, white2lgrey,
-} from '../constants/DarkStyles';
+} from '../constants/Styles';
 import AccountCard from '../components/AccountCard';
 
 const miso = require('../../assets/miso.jpg');

@@ -6,7 +6,7 @@ import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
 import styles, {
   pink2yellow, pink2green, white2yellow, white2green,
-} from '../constants/DarkStyles';
+} from '../constants/Styles';
 import PawPostComment from './PawPostComment';
 
 const miso = require('../../assets/miso.jpg');
