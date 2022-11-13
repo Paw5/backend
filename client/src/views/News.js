@@ -8,7 +8,7 @@ import styles, {
   pink2green, grey2yellow, pink2yellow, white2lgrey, white2green,
 } from '../constants/Styles';
 
-export default function HealthTab() {
+export default function NewsTab() {
   const scrollX = new Animated.Value(0);
 
   return (
@@ -40,8 +40,9 @@ export default function HealthTab() {
             width: Dimensions.get('window').width, paddingBottom: 20,
           }}
         >
-          {/* <DropShadow style={styles.shadowProp}> */}
-          <Pressable style={styles.eventTab}>
+          <Pressable
+            style={styles.eventTab}
+          >
             <View style={{
               flexDirection: 'row', justifyContent: 'space-between', paddingLeft: 5, paddingRight: 5,
             }}

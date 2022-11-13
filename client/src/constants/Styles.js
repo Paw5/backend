@@ -31,6 +31,30 @@ export default StyleSheet.create({
     height: StatusBarHeight,
     backgroundColor: pawPink,
   },
+  /* register/signin styles */
+  signinbutton: {
+    backgroundColor: 'white',
+    borderRadius: 50,
+    padding: 20,
+    marginBottom: 40,
+    marginLeft: 40,
+    marginRight: 40,
+  },
+  signintext: {
+    color: pawGrey,
+    fontFamily: 'QuicksandBold',
+    fontSize: 26,
+    textAlign: 'center',
+  },
+  signinModal: {
+    backgroundColor: pawGreen,
+    flex: 1,
+    margin: 0,
+    marginTop: Platform.OS === 'android' ? 0 : StatusBarHeight,
+    justifyContent: 'flex-start',
+    alignContent: 'center',
+  },
+
   /* health styles */
   petCard: {
     height: 200,

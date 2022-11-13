@@ -22,7 +22,8 @@ import AccountPage from '../views/Account';
 import PawPics from '../views/PawPics';
 import PawPosts from '../views/PawPosts';
 import PMs from '../views/PMs';
-import styles, { grey2yellow } from '../constants/Styles';
+import SignIn from '../views/Signin';
+import styles, { grey2yellow } from '../constants/DarkStyles';
 
 function MyTabBar({ state, descriptors, navigation }) {
   const [translateX] = useState(new Animated.Value(0));
@@ -253,7 +254,7 @@ function Tabs() {
       // eslint-disable-next-line react/no-unstable-nested-components, react/jsx-props-no-spreading
       tabBar={(props) => <MyTabBar {...props} state={{ ...props.state, routes: props.state.routes.slice(0, 5) }} />}
     >
-      <Tab.Screen name="M" component={MapTab} />
+      <Tab.Screen name="M" component={SignIn} />
       <Tab.Screen name="S" component={ServicesTab} />
       <Tab.Screen name="N" component={NewsTab} />
       <Tab.Screen name="C" component={CommunityTab} />
