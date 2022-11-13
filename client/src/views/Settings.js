@@ -6,12 +6,14 @@ import { Feather } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Modal from 'react-native-modal';
 // import Onboarding from 'react-native-onboarding-swiper';
+import { useSelector, useDispatch } from 'react-redux';
 import lstyles, {
   pink2green, white2lgrey, pawGrey,
 } from '../constants/Styles';
 import dstyles, {
 // dpink2green, dwhite2lgrey, dpawGrey,
 } from '../constants/DarkStyles';
+import { flipDarkMode } from '../redux/SettingsSlice';
 
 /*
 AsyncStorage.getItem('darkLight').then((darkLight) => {
@@ -24,8 +26,10 @@ AsyncStorage.getItem('darkLight').then((darkLight) => {
 const dlKey = '@darkLight';
 
 export default function ServicesTab() {
-  const [styleNow, setStyleNow] = useState('dark');
+  // const [styleNow, setStyleNow] = useState('dark');
   const [styles, setStyles] = useState(lstyles);
+  const isDarkMode = useSelector((state) => state.settings.darkMode);
+  const dispatch = useDispatch();
 
   const getData = async () => {
     try {
@@ -38,8 +42,10 @@ export default function ServicesTab() {
   };
 
   const onChange = async () => {
-    await setStyleNow((s) => (s === 'light' ? 'dark' : 'light'));
-    AsyncStorage.setItem(dlKey, styleNow);
+    dispatch(flipDarkMode());
+
+    // await setStyleNow((s) => (s === 'light' ? 'dark' : 'light'));
+    AsyncStorage.setItem(dlKey, isDarkMode);
     getData();
   };
   /* GET LIGHT DARK END */
@@ -77,9 +83,9 @@ export default function ServicesTab() {
   };
 
   useEffect(() => {
-    if (styleNow === 'light') setStyles(dstyles);
+    if (isDarkMode === 'light') setStyles(dstyles);
     else setStyles(lstyles);
-  }, [styleNow]);
+  }, [isDarkMode]);
 
   return (
     /* background color */
