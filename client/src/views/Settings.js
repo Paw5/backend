@@ -1,15 +1,49 @@
 import {
   View, Text, Dimensions, Switch, Pressable,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Feather } from '@expo/vector-icons';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import Modal from 'react-native-modal';
 // import Onboarding from 'react-native-onboarding-swiper';
-import styles, {
+import lstyles, {
   pink2green, white2lgrey, pawGrey,
+} from '../constants/Styles';
+import dstyles, {
+// dpink2green, dwhite2lgrey, dpawGrey,
 } from '../constants/DarkStyles';
 
+/*
+AsyncStorage.getItem('darkLight').then((darkLight) => {
+  import('../constants/Styles').then((styles) => {
+    console.log(styles);
+  });
+}); */
+
+/* GET LIGHT DARK START */
+const dlKey = '@darkLight';
+
 export default function ServicesTab() {
+  const [styleNow, setStyleNow] = useState('dark');
+  const [styles, setStyles] = useState(lstyles);
+
+  const getData = async () => {
+    try {
+      const data = await AsyncStorage.getItem(dlKey);
+
+      return data;
+    } catch (e) {
+      return (e);
+    }
+  };
+
+  const onChange = async () => {
+    await setStyleNow((s) => (s === 'light' ? 'dark' : 'light'));
+    AsyncStorage.setItem(dlKey, styleNow);
+    getData();
+  };
+  /* GET LIGHT DARK END */
+
   /* toggle switch section */
   const [LDisEnabled, LSsetIsEnabled] = useState(false);
   const [LCisEnabled, LCsetIsEnabled] = useState(false);
@@ -42,6 +76,11 @@ export default function ServicesTab() {
     setOnboardVisible(!isOnboardVisible);
   };
 
+  useEffect(() => {
+    if (styleNow === 'light') setStyles(dstyles);
+    else setStyles(lstyles);
+  }, [styleNow]);
+
   return (
     /* background color */
     <View style={styles.background}>
@@ -73,6 +112,7 @@ export default function ServicesTab() {
           thumbColor={white2lgrey}
           ios_backgroundColor="#e0777d"
           onValueChange={lightdarkSwitch}
+          onChange={onChange}
           value={LDisEnabled}
         />
       </View>
