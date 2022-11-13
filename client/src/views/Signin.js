@@ -1,10 +1,13 @@
 import {
-  View, Text, Pressable,
+  View, Text, Pressable, TextInput, Dimensions,
 } from 'react-native';
 import React, { useState } from 'react';
 import Modal from 'react-native-modal';
 import { Feather } from '@expo/vector-icons';
-import styles from '../constants/Styles';
+import styles, { PlaceholderText } from '../constants/Styles';
+
+const textInputWidth = Dimensions.get('window').width - 60;
+const maxFontSize = 26;
 
 export default function Home() {
   /* toggle sigin section modal */
@@ -17,6 +20,25 @@ export default function Home() {
   const [isRegisterVisible, setRegisterVisible] = useState(false);
   const toggleRegister = () => {
     setRegisterVisible(!isRegisterVisible);
+  };
+
+  // eslint-disable-next-line no-unused-vars
+  const [value, setValue] = React.useState('');
+  const [fontSize, setFontSize] = React.useState(maxFontSize);
+
+  const scaleFontSize = (width) => {
+    const actualWidth = width + fontSize;
+    const scaledSize = Math.min(maxFontSize, fontSize * (textInputWidth / actualWidth));
+
+    setFontSize(scaledSize);
+  };
+
+  const onContentSizeChange = ({ nativeEvent }) => {
+    // eslint-disable-next-line no-unused-vars
+    const { target, contentSize } = nativeEvent;
+    const { width } = contentSize;
+
+    scaleFontSize(width);
   };
 
   return (
@@ -54,11 +76,28 @@ export default function Home() {
             name="chevron-left"
             size={30}
             color="#333333"
-            style={styles.settingsExitButton}
+            style={styles.signinExitButton}
           />
 
         </Pressable>
-        <Text>Signin</Text>
+        <View style={styles.signinPrompt}>
+          <Text style={styles.signinPromptText}>Welcome Back!</Text>
+        </View>
+
+        <TextInput
+          style={styles.signinField}
+          placeholder="username"
+          placeholderTextColor={PlaceholderText}
+          textAlign="center"
+          autoCapitalize="none"
+        />
+        <TextInput
+          style={styles.signinField}
+          placeholder="password"
+          placeholderTextColor={PlaceholderText}
+          secureTextEntry
+          textAlign="center"
+        />
       </Modal>
 
       <Modal
@@ -76,11 +115,67 @@ export default function Home() {
             name="chevron-left"
             size={30}
             color="#333333"
-            style={styles.settingsExitButton}
+            style={[styles.signinExitButton, { marginBottom: 30 }]}
           />
 
         </Pressable>
-        <Text>Register</Text>
+
+        <View style={styles.signinPrompt}>
+          <Text style={styles.signinPromptText}>Welcome to Paw5!</Text>
+        </View>
+
+        <TextInput
+          style={[styles.signinField, { fontSize }]}
+          placeholder="email"
+          placeholderTextColor={PlaceholderText}
+          textAlign="center"
+          keyboardType="email-address"
+          secureTextEntry={false}
+          autoCapitalize="none"
+          onContentSizeChange={onContentSizeChange}
+          onChangeText={setValue}
+        />
+        <TextInput
+          style={styles.signinField}
+          placeholder="first name"
+          placeholderTextColor={PlaceholderText}
+          textAlign="center"
+          secureTextEntry={false}
+        />
+        <TextInput
+          style={styles.signinField}
+          placeholder="last name"
+          placeholderTextColor={PlaceholderText}
+          textAlign="center"
+          secureTextEntry={false}
+        />
+        <TextInput
+          style={styles.signinField}
+          placeholder="username"
+          placeholderTextColor={PlaceholderText}
+          textAlign="center"
+          secureTextEntry={false}
+          autoCapitalize="none"
+        />
+        <TextInput
+          style={styles.signinField}
+          placeholder="password"
+          placeholderTextColor={PlaceholderText}
+          secureTextEntry
+          textAlign="center"
+        />
+        <TextInput
+          style={styles.signinField}
+          placeholder="retype password"
+          placeholderTextColor={PlaceholderText}
+          secureTextEntry
+          textAlign="center"
+        />
+
+        <Pressable style={[styles.signinPrompt, { marginTop: 15 }]}>
+          <Text style={styles.signinPromptText}>Submit</Text>
+        </Pressable>
+
       </Modal>
 
     </View>

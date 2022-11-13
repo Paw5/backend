@@ -31,6 +31,7 @@ export default StyleSheet.create({
     height: StatusBarHeight,
     backgroundColor: pawPink,
   },
+
   /* register/signin styles */
   signinbutton: {
     backgroundColor: 'white',
@@ -53,6 +54,43 @@ export default StyleSheet.create({
     marginTop: Platform.OS === 'android' ? 0 : StatusBarHeight,
     justifyContent: 'flex-start',
     alignContent: 'center',
+  },
+  signinExitButton: {
+    alignSelf: 'center',
+    padding: 10,
+    backgroundColor: 'white',
+    borderRadius: 25,
+    overflow: 'hidden',
+    paddingRight: 11,
+    paddingLeft: 9,
+    marginLeft: 20,
+    marginTop: 20,
+    marginBottom: Dimensions.get('window').width / 3,
+  },
+  signinPrompt: {
+    alignSelf: 'center',
+    width: Dimensions.get('window').width - 60,
+    backgroundColor: pawPink,
+    borderRadius: 30,
+    marginBottom: 40,
+    padding: 15,
+  },
+  signinPromptText: {
+    color: 'white',
+    fontFamily: 'QuicksandBold',
+    fontSize: 26,
+    textAlign: 'center',
+  },
+  signinField: {
+    backgroundColor: 'white',
+    alignSelf: 'center',
+    width: Dimensions.get('window').width - 40,
+    padding: 10,
+    fontFamily: 'QuicksandBold',
+    borderRadius: 35,
+    fontSize: 26,
+    justifyContent: 'center',
+    marginBottom: 20,
   },
 
   /* health styles */
