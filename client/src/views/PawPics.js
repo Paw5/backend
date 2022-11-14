@@ -5,9 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import SearchBar from '../components/SearchBarServ';
 import lstyles, { } from '../constants/Styles';
-import dstyles, {
-// pink2green, white2lgrey, pawGrey,
-} from '../constants/DarkStyles';
+import dstyles from '../constants/DarkStyles';
 import PawPicsPost from '../components/PawPicsPost';
 
 export default function PawPics() {

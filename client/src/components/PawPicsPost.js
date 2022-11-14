@@ -6,10 +6,10 @@ import { useSelector } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
 import lstyles, {
-  grey2yellow, pink2yellow, pink2green, white2green,
+  pawGreen, pawPink, pawGrey,
 } from '../constants/Styles';
 import dstyles, {
-// pink2green, white2lgrey, pawGrey,
+  pawYellow,
 } from '../constants/DarkStyles';
 import PawPostComment from './PawPostComment';
 
@@ -43,7 +43,7 @@ export default function PawPostPost() {
           <Feather
             name="heart"
             size={24}
-            color={pink2yellow}
+            color={isDarkMode === 'light' ? pawYellow : pawPink}
             style={styles.likeLoc1}
           />
 
@@ -58,7 +58,7 @@ export default function PawPostPost() {
         <Text style={[styles.picDescription, { left: 2, top: 290 }]}>Descriptive Text</Text>
         <View
           style={{
-            borderBottomColor: pink2green,
+            borderBottomColor: isDarkMode === 'light' ? pawGreen : pawPink,
             borderBottomWidth: 1,
             borderRadius: 50,
             top: 330,
@@ -93,7 +93,7 @@ export default function PawPostPost() {
             <Feather
               name="heart"
               size={24}
-              color={pink2yellow}
+              color={isDarkMode === 'light' ? pawYellow : pawPink}
               style={styles.likeLoc2}
             />
 
@@ -108,7 +108,7 @@ export default function PawPostPost() {
           <Text style={[styles.inspicDescription, { left: -8, top: (Dimensions.get('window').width - 20) }]}>Descriptive Text</Text>
           <View
             style={{
-              borderBottomColor: pink2green,
+              borderBottomColor: isDarkMode === 'light' ? pawGreen : pawPink,
               borderBottomWidth: 1,
               borderRadius: 50,
               top: (Dimensions.get('window').width + 20),
@@ -126,7 +126,7 @@ export default function PawPostPost() {
             <Feather
               name="chevron-left"
               size={30}
-              color={grey2yellow}
+              color={isDarkMode === 'light' ? pawYellow : pawGrey}
               style={styles.exitPicButton}
             />
 
@@ -135,8 +135,8 @@ export default function PawPostPost() {
         <View style={{ flexDirection: 'row', paddingBottom: 72, marginBottom: 100 }}>
           <View
             style={{
-              borderColor: white2green,
-              backgroundColor: white2green,
+              borderColor: isDarkMode === 'light' ? pawGreen : 'white',
+              backgroundColor: isDarkMode === 'light' ? pawGreen : 'white',
               borderRadius: 50,
               width: 6,
               height: Platform.OS === 'android' ? (Dimensions.get('window').width - 90) : (Dimensions.get('window').width - 125),

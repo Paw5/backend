@@ -5,9 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
 import lstyles from '../constants/Styles';
-import dstyles, {
-// pink2green, white2lgrey, pawGrey,
-} from '../constants/DarkStyles';
+import dstyles from '../constants/DarkStyles';
 
 const miso = require('../../assets/miso.jpg');
 

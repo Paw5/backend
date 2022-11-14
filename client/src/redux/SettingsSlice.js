@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const settingsSlice = createSlice({
   name: 'settings',
   initialState: {
-    darkMode: 'light',
+    darkMode: 'dark',
   },
   reducers: {
     flipDarkMode: (state) => {

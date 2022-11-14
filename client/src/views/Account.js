@@ -8,12 +8,8 @@ import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import lstyles, {
-  pawGrey, pink2lgrey, pink2yellow, white2lgrey,
-} from '../constants/Styles';
-import dstyles, {
-// pink2green, white2lgrey, pawGrey,
-} from '../constants/DarkStyles';
+import lstyles, { pawPink, pawGrey } from '../constants/Styles';
+import dstyles, { pawLightGrey, pawYellow } from '../constants/DarkStyles';
 import AccountCard from '../components/AccountCard';
 
 const miso = require('../../assets/miso.jpg');
@@ -116,7 +112,7 @@ export default function AccountTab() {
                 <Feather
                   name="camera"
                   size={30}
-                  color={pink2lgrey}
+                  color={isDarkMode === 'light' ? pawLightGrey : pawPink}
                   style={styles.cameraIcon}
                 />
               </Pressable>
@@ -276,8 +272,8 @@ export default function AccountTab() {
               <RNAnimatedScrollIndicators
                 numberOfCards={4}
                 scrollWidth={Dimensions.get('window').width}
-                activeColor={pink2yellow}
-                inActiveColor={white2lgrey}
+                activeColor={isDarkMode === 'light' ? pawYellow : pawPink}
+                inActiveColor={isDarkMode === 'light' ? pawLightGrey : 'white'}
                 scrollAnimatedValue={scrollX}
                 style={{
                   alignSelf: 'center',

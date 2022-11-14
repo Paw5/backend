@@ -5,10 +5,8 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Modal from 'react-native-modal';
 import { Feather } from '@expo/vector-icons';
-import lstyles, { PlaceholderText } from '../constants/Styles';
-import dstyles, {
-// pink2green, white2lgrey, pawGrey,
-} from '../constants/DarkStyles';
+import lstyles from '../constants/Styles';
+import dstyles from '../constants/DarkStyles';
 
 const textInputWidth = Dimensions.get('window').width - 60;
 const maxFontSize = 26;
@@ -99,14 +97,14 @@ export default function Signin() {
         <TextInput
           style={styles.signinField}
           placeholder="username"
-          placeholderTextColor={PlaceholderText}
+          placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
           textAlign="center"
           autoCapitalize="none"
         />
         <TextInput
           style={styles.signinField}
           placeholder="password"
-          placeholderTextColor={PlaceholderText}
+          placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
           secureTextEntry
           textAlign="center"
         />
@@ -139,7 +137,7 @@ export default function Signin() {
         <TextInput
           style={[styles.signinField, { fontSize }]}
           placeholder="email"
-          placeholderTextColor={PlaceholderText}
+          placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
           textAlign="center"
           keyboardType="email-address"
           secureTextEntry={false}
@@ -150,21 +148,21 @@ export default function Signin() {
         <TextInput
           style={styles.signinField}
           placeholder="first name"
-          placeholderTextColor={PlaceholderText}
+          placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
           textAlign="center"
           secureTextEntry={false}
         />
         <TextInput
           style={styles.signinField}
           placeholder="last name"
-          placeholderTextColor={PlaceholderText}
+          placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
           textAlign="center"
           secureTextEntry={false}
         />
         <TextInput
           style={styles.signinField}
           placeholder="username"
-          placeholderTextColor={PlaceholderText}
+          placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
           textAlign="center"
           secureTextEntry={false}
           autoCapitalize="none"
@@ -172,14 +170,14 @@ export default function Signin() {
         <TextInput
           style={styles.signinField}
           placeholder="password"
-          placeholderTextColor={PlaceholderText}
+          placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
           secureTextEntry
           textAlign="center"
         />
         <TextInput
           style={styles.signinField}
           placeholder="retype password"
-          placeholderTextColor={PlaceholderText}
+          placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
           secureTextEntry
           textAlign="center"
         />

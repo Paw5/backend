@@ -5,10 +5,8 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import Modal from 'react-native-modal';
 import { Feather } from '@expo/vector-icons';
-import lstyles, { grey2yellow, PlaceholderText, white2lgrey } from '../constants/Styles';
-import dstyles, {
-// pink2green, white2lgrey, pawGrey,
-} from '../constants/DarkStyles';
+import lstyles, { pawGrey } from '../constants/Styles';
+import dstyles, { pawLightGrey, pawYellow } from '../constants/DarkStyles';
 import MessageSent from './MessageSent';
 import MessageReceived from './MessageReceived';
 
@@ -49,12 +47,12 @@ export default function PMUserInteraction(replyText) {
           <Feather
             name="star"
             size={30}
-            color={grey2yellow}
+            color={isDarkMode === 'light' ? pawYellow : pawGrey}
           />
           <Feather
             name="send"
             size={30}
-            color={grey2yellow}
+            color={isDarkMode === 'light' ? pawYellow : pawGrey}
             style={{ paddingTop: 2 }}
           />
         </View>
@@ -75,7 +73,7 @@ export default function PMUserInteraction(replyText) {
             <Feather
               name="chevron-left"
               size={30}
-              color={grey2yellow}
+              color={isDarkMode === 'light' ? pawYellow : pawGrey}
               style={styles.pmExitButton}
             />
 
@@ -110,7 +108,7 @@ export default function PMUserInteraction(replyText) {
           <TextInput
             style={styles.replyContents}
             placeholder="Reply here"
-            placeholderTextColor={PlaceholderText}
+            placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
             multiline
             value={replyText}
           />
@@ -119,7 +117,7 @@ export default function PMUserInteraction(replyText) {
             <Feather
               name="send"
               size={25}
-              color={white2lgrey}
+              color={isDarkMode === 'light' ? pawLightGrey : 'white'}
               style={styles.sendButton}
             />
           </Pressable>

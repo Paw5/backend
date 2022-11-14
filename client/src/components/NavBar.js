@@ -23,13 +23,12 @@ import AccountPage from '../views/Account';
 import PawPics from '../views/PawPics';
 import PawPosts from '../views/PawPosts';
 import PMs from '../views/PMs';
-import lstyles, { grey2yellow } from '../constants/Styles';
-import dstyles, {
-// pink2green, white2lgrey, pawGrey,
-} from '../constants/DarkStyles';
+import lstyles, { pawGrey } from '../constants/Styles';
+import dstyles, { pawYellow } from '../constants/DarkStyles';
 
 function MyTabBar({ state, descriptors, navigation }) {
   const [styles, setStyles] = useState(lstyles);
+  // eslint-disable-next-line no-shadow
   const isDarkMode = useSelector((state) => state.settings.darkMode);
 
   useEffect(() => {
@@ -135,7 +134,7 @@ function MyTabBar({ state, descriptors, navigation }) {
               size={
                 currentScreen === label ? 50 : 30
               }
-              color={grey2yellow}
+              color={isDarkMode === 'light' ? pawYellow : pawGrey}
               style={{ justifyContent: 'center' }}
             />
           </TouchableOpacity>
@@ -163,7 +162,7 @@ function MyTabBar({ state, descriptors, navigation }) {
             <Feather
               name="image"
               size={20}
-              color={grey2yellow}
+              color={isDarkMode === 'light' ? pawYellow : pawGrey}
               style={{ justifyContent: 'center' }}
             />
           </Pressable>
@@ -177,7 +176,7 @@ function MyTabBar({ state, descriptors, navigation }) {
             <Feather
               name="file-text"
               size={20}
-              color={grey2yellow}
+              color={isDarkMode === 'light' ? pawYellow : pawGrey}
               style={{ justifyContent: 'center' }}
             />
           </Pressable>
@@ -191,7 +190,7 @@ function MyTabBar({ state, descriptors, navigation }) {
             <Feather
               name="message-square"
               size={20}
-              color={grey2yellow}
+              color={isDarkMode === 'light' ? pawYellow : pawGrey}
               style={{ justifyContent: 'center' }}
             />
           </Pressable>
@@ -217,7 +216,7 @@ function MyTabBar({ state, descriptors, navigation }) {
             <Feather
               name="heart"
               size={20}
-              color={grey2yellow}
+              color={isDarkMode === 'light' ? pawYellow : pawGrey}
               style={{ justifyContent: 'center' }}
             />
           </Pressable>
@@ -231,7 +230,7 @@ function MyTabBar({ state, descriptors, navigation }) {
             <Feather
               name="user"
               size={20}
-              color={grey2yellow}
+              color={isDarkMode === 'light' ? pawYellow : pawGrey}
               style={{ justifyContent: 'center' }}
             />
           </Pressable>
@@ -245,7 +244,7 @@ function MyTabBar({ state, descriptors, navigation }) {
             <Feather
               name="settings"
               size={20}
-              color={grey2yellow}
+              color={isDarkMode === 'light' ? pawYellow : pawGrey}
               style={{ justifyContent: 'center' }}
             />
           </Pressable>

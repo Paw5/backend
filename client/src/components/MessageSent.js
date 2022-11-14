@@ -4,9 +4,7 @@ import {
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import lstyles from '../constants/Styles';
-import dstyles, {
-// pink2green, white2lgrey, pawGrey,
-} from '../constants/DarkStyles';
+import dstyles from '../constants/DarkStyles';
 
 export default function MessageSent() {
   const [styles, setStyles] = useState(lstyles);

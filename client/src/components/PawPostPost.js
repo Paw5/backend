@@ -6,11 +6,9 @@ import { useSelector } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
 import lstyles, {
-  pink2yellow, pink2green, white2yellow, white2green,
+  pawGreen, pawPink,
 } from '../constants/Styles';
-import dstyles, {
-// pink2green, white2lgrey, pawGrey,
-} from '../constants/DarkStyles';
+import dstyles, { pawYellow } from '../constants/DarkStyles';
 import PawPostComment from './PawPostComment';
 
 const miso = require('../../assets/miso.jpg');
@@ -77,7 +75,7 @@ export default function PawPostPost() {
               <Feather
                 name="chevron-left"
                 size={30}
-                color={white2yellow}
+                color={isDarkMode === 'light' ? pawYellow : 'white'}
                 style={styles.exitPostButton}
               />
 
@@ -86,7 +84,7 @@ export default function PawPostPost() {
               <Feather
                 name="heart"
                 size={24}
-                color={pink2yellow}
+                color={isDarkMode === 'light' ? pawYellow : pawPink}
                 style={styles.likeLocPost}
               />
 
@@ -95,7 +93,7 @@ export default function PawPostPost() {
               <Feather
                 name="send"
                 size={24}
-                color={pink2yellow}
+                color={isDarkMode === 'light' ? pawYellow : pawPink}
                 style={styles.commLocPost}
               />
 
@@ -138,7 +136,7 @@ export default function PawPostPost() {
 
             <View
               style={{
-                borderBottomColor: pink2green,
+                borderBottomColor: isDarkMode === 'light' ? pawGreen : pawPink,
                 borderBottomWidth: 1,
                 borderRadius: 50,
                 marginBottom: 5,
@@ -152,7 +150,7 @@ export default function PawPostPost() {
         </View>
         <View
           style={{
-            borderColor: white2green,
+            borderColor: isDarkMode === 'light' ? pawGreen : 'white',
             borderWidth: 2,
             borderRadius: 50,
             top: (Dimensions.get('window').width + 100),

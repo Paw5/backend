@@ -8,16 +8,6 @@ export const pawGreen = '#69a297';
 export const pawGrey = '#333333';
 export const pawLightGrey = '#545454';
 
-export const pink2green = pawGreen;
-export const white2lgrey = pawLightGrey;
-export const pink2lgrey = pawLightGrey;
-export const pink2yellow = pawYellow;
-export const grey2yellow = pawYellow;
-export const white2yellow = pawYellow;
-export const white2green = pawGreen;
-export const PlaceholderText = '#edae4985';
-export const mapColor = 'dark';
-
 export default StyleSheet.create({
   background: {
     backgroundColor: pawGrey,

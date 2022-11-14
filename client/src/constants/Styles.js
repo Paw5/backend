@@ -12,16 +12,6 @@ export const pawPink = '#e0777d';
 export const pawGreen = '#69a297';
 export const pawGrey = '#333333';
 
-export const pink2green = pawPink;
-export const white2lgrey = 'white';
-export const pink2lgrey = pawPink;
-export const pink2yellow = pawPink;
-export const grey2yellow = pawGrey;
-export const white2yellow = 'white';
-export const white2green = 'white';
-export const PlaceholderText = '#33333385';
-export const mapColor = 'light';
-
 export default StyleSheet.create({
   background: {
     flex: 1,

@@ -5,10 +5,8 @@ import {
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
-import lstyles, { pawGrey, grey2yellow, PlaceholderText } from '../constants/Styles';
-import dstyles, {
-// pink2green, white2lgrey, pawGrey,
-} from '../constants/DarkStyles';
+import lstyles, { pawGrey } from '../constants/Styles';
+import dstyles, { pawYellow } from '../constants/DarkStyles';
 
 export default function SearchBar(searchQuery) {
   const [styles, setStyles] = useState(lstyles);
@@ -54,13 +52,13 @@ export default function SearchBar(searchQuery) {
         <Feather
           name="search"
           size={20}
-          color={grey2yellow}
+          color={isDarkMode === 'light' ? pawYellow : pawGrey}
           style={{ marginLeft: 10, alignSelf: 'center' }}
         />
         <TextInput
           style={styles.input}
           placeholder="Search"
-          placeholderTextColor={PlaceholderText}
+          placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
           value={searchQuery}
         />
       </KeyboardAvoidingView>
@@ -69,7 +67,7 @@ export default function SearchBar(searchQuery) {
         <Feather
           name="filter"
           size={20}
-          color={grey2yellow}
+          color={isDarkMode === 'light' ? pawYellow : pawGrey}
           style={{ justifyContent: 'center', alignSelf: 'center' }}
         />
       </Pressable>

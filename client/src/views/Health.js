@@ -4,10 +4,8 @@ import {
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
-import lstyles, { white2lgrey, pink2yellow } from '../constants/Styles';
-import dstyles, {
-// pink2green, white2lgrey, pawGrey,
-} from '../constants/DarkStyles';
+import lstyles, { pawPink } from '../constants/Styles';
+import dstyles, { pawLightGrey, pawYellow } from '../constants/DarkStyles';
 import PetCard from '../components/PetCard';
 import HealthComponent from '../components/HealthComponent';
 
@@ -64,8 +62,8 @@ export default function HealthTab() {
           <RNAnimatedScrollIndicators
             numberOfCards={4}
             scrollWidth={Dimensions.get('window').width}
-            activeColor={pink2yellow}
-            inActiveColor={white2lgrey}
+            activeColor={isDarkMode === 'light' ? pawYellow : pawPink}
+            inActiveColor={isDarkMode === 'light' ? pawLightGrey : 'white'}
             scrollAnimatedValue={scrollX}
             style={{
               alignSelf: 'center',

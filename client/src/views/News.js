@@ -6,11 +6,9 @@ import { useSelector } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
 import lstyles, {
-  pink2green, grey2yellow, pink2yellow, white2lgrey, white2green,
+  pawGreen, pawPink, pawGrey,
 } from '../constants/Styles';
-import dstyles, {
-// pink2green, white2lgrey, pawGrey,
-} from '../constants/DarkStyles';
+import dstyles, { pawLightGrey, pawYellow } from '../constants/DarkStyles';
 
 export default function NewsTab() {
   const [styles, setStyles] = useState(lstyles);
@@ -64,7 +62,7 @@ export default function NewsTab() {
             </View>
             <View
               style={{
-                borderBottomColor: pink2green,
+                borderBottomColor: isDarkMode === 'light' ? pawGreen : pawPink,
                 borderBottomWidth: 3,
                 borderRadius: 50,
                 marginBottom: 15,
@@ -87,7 +85,7 @@ export default function NewsTab() {
               <Feather
                 name="arrow-right-circle"
                 size={30}
-                color={grey2yellow}
+                color={isDarkMode === 'light' ? pawYellow : pawGrey}
                 style={{ alignSelf: 'center' }}
               />
             </View>
@@ -103,7 +101,7 @@ export default function NewsTab() {
             </View>
             <View
               style={{
-                borderBottomColor: pink2green,
+                borderBottomColor: isDarkMode === 'light' ? pawGreen : pawPink,
                 borderBottomWidth: 3,
                 borderRadius: 50,
                 marginBottom: 15,
@@ -126,7 +124,7 @@ export default function NewsTab() {
               <Feather
                 name="arrow-right-circle"
                 size={30}
-                color={grey2yellow}
+                color={isDarkMode === 'light' ? pawYellow : pawGrey}
                 style={{ alignSelf: 'center' }}
               />
             </View>
@@ -144,7 +142,7 @@ export default function NewsTab() {
             </View>
             <View
               style={{
-                borderBottomColor: pink2green,
+                borderBottomColor: isDarkMode === 'light' ? pawGreen : pawPink,
                 borderBottomWidth: 3,
                 borderRadius: 50,
                 marginBottom: 15,
@@ -167,7 +165,7 @@ export default function NewsTab() {
               <Feather
                 name="arrow-right-circle"
                 size={30}
-                color={grey2yellow}
+                color={isDarkMode === 'light' ? pawYellow : pawGrey}
                 style={{ alignSelf: 'center' }}
               />
             </View>
@@ -177,7 +175,7 @@ export default function NewsTab() {
 
         <View style={{
           borderWidth: 2,
-          borderColor: white2green,
+          borderColor: isDarkMode === 'light' ? pawGreen : 'white',
           borderRadius: 10,
           padding: 5,
           width: 115,
@@ -187,8 +185,8 @@ export default function NewsTab() {
           <RNAnimatedScrollIndicators
             numberOfCards={3}
             scrollWidth={Dimensions.get('window').width}
-            activeColor={pink2yellow}
-            inActiveColor={white2lgrey}
+            activeColor={isDarkMode === 'light' ? pawYellow : pawPink}
+            inActiveColor={isDarkMode === 'light' ? pawLightGrey : 'white'}
             scrollAnimatedValue={scrollX}
             style={{
 
@@ -202,7 +200,7 @@ export default function NewsTab() {
 
           <View
             style={{
-              borderBottomColor: pink2green,
+              borderBottomColor: isDarkMode === 'light' ? pawGreen : pawPink,
               borderBottomWidth: 3,
               borderRadius: 50,
               marginBottom: 15,
@@ -225,7 +223,7 @@ export default function NewsTab() {
             <Feather
               name="arrow-right-circle"
               size={30}
-              color={grey2yellow}
+              color={isDarkMode === 'light' ? pawYellow : pawGrey}
               style={{ alignSelf: 'center' }}
             />
           </View>
@@ -238,7 +236,7 @@ export default function NewsTab() {
 
           <View
             style={{
-              borderBottomColor: pink2green,
+              borderBottomColor: isDarkMode === 'light' ? pawGreen : pawPink,
               borderBottomWidth: 3,
               borderRadius: 50,
               marginBottom: 15,
@@ -261,7 +259,7 @@ export default function NewsTab() {
             <Feather
               name="arrow-right-circle"
               size={30}
-              color={grey2yellow}
+              color={isDarkMode === 'light' ? pawYellow : pawGrey}
               style={{ alignSelf: 'center' }}
             />
           </View>
@@ -274,7 +272,7 @@ export default function NewsTab() {
 
           <View
             style={{
-              borderBottomColor: pink2green,
+              borderBottomColor: isDarkMode === 'light' ? pawGreen : pawPink,
               borderBottomWidth: 3,
               borderRadius: 50,
               marginBottom: 15,
@@ -297,7 +295,7 @@ export default function NewsTab() {
             <Feather
               name="arrow-right-circle"
               size={30}
-              color={grey2yellow}
+              color={isDarkMode === 'light' ? pawYellow : pawGrey}
               style={{ alignSelf: 'center' }}
             />
           </View>
