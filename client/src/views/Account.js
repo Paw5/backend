@@ -2,13 +2,17 @@
 import {
   View, Text, Dimensions, Pressable, Image, Animated,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import styles, {
+import lstyles, {
   pawGrey, pink2lgrey, pink2yellow, white2lgrey,
+} from '../constants/Styles';
+import dstyles, {
+// pink2green, white2lgrey, pawGrey,
 } from '../constants/DarkStyles';
 import AccountCard from '../components/AccountCard';
 
@@ -17,6 +21,14 @@ const miso = require('../../assets/miso.jpg');
 const StatusBarHeight = getStatusBarHeight();
 
 export default function AccountTab() {
+  const [styles, setStyles] = useState(lstyles);
+  const isDarkMode = useSelector((state) => state.settings.darkMode);
+
+  useEffect(() => {
+    if (isDarkMode === 'light') setStyles(dstyles);
+    else setStyles(lstyles);
+  }, [isDarkMode]);
+
   const scrollX = new Animated.Value(0);
 
   /* toggle profile section modal */

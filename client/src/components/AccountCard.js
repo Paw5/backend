@@ -1,13 +1,25 @@
 import {
   Text, Pressable, Image, View,
 } from 'react-native';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
-import styles from '../constants/DarkStyles';
+import lstyles from '../constants/Styles';
+import dstyles, {
+// pink2green, white2lgrey, pawGrey,
+} from '../constants/DarkStyles';
 
 const miso = require('../../assets/miso.jpg');
 
 export default function AccountCard() {
+  const [styles, setStyles] = useState(lstyles);
+  const isDarkMode = useSelector((state) => state.settings.darkMode);
+
+  useEffect(() => {
+    if (isDarkMode === 'light') setStyles(dstyles);
+    else setStyles(lstyles);
+  }, [isDarkMode]);
+
   return (
 
     <View style={styles.transparentBG}>

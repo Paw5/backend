@@ -1,15 +1,27 @@
 import {
   View, Text, Pressable, TextInput, Dimensions,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import Modal from 'react-native-modal';
 import { Feather } from '@expo/vector-icons';
-import styles, { PlaceholderText } from '../constants/Styles';
+import lstyles, { PlaceholderText } from '../constants/Styles';
+import dstyles, {
+// pink2green, white2lgrey, pawGrey,
+} from '../constants/DarkStyles';
 
 const textInputWidth = Dimensions.get('window').width - 60;
 const maxFontSize = 26;
 
-export default function Home() {
+export default function Signin() {
+  const [styles, setStyles] = useState(lstyles);
+  const isDarkMode = useSelector((state) => state.settings.darkMode);
+
+  useEffect(() => {
+    if (isDarkMode === 'light') setStyles(dstyles);
+    else setStyles(lstyles);
+  }, [isDarkMode]);
+
   /* toggle sigin section modal */
   const [isSigninVisible, setSigninVisible] = useState(false);
   const toggleSignin = () => {

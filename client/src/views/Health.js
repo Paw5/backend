@@ -1,13 +1,25 @@
 import {
   View, Dimensions, Animated, ScrollView,
 } from 'react-native';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
-import styles, { white2lgrey, pink2yellow } from '../constants/DarkStyles';
+import lstyles, { white2lgrey, pink2yellow } from '../constants/Styles';
+import dstyles, {
+// pink2green, white2lgrey, pawGrey,
+} from '../constants/DarkStyles';
 import PetCard from '../components/PetCard';
 import HealthComponent from '../components/HealthComponent';
 
 export default function HealthTab() {
+  const [styles, setStyles] = useState(lstyles);
+  const isDarkMode = useSelector((state) => state.settings.darkMode);
+
+  useEffect(() => {
+    if (isDarkMode === 'light') setStyles(dstyles);
+    else setStyles(lstyles);
+  }, [isDarkMode]);
+
   const scrollX = new Animated.Value(0);
 
   return (

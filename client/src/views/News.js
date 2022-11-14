@@ -1,15 +1,27 @@
 import {
   Pressable, View, Text, Dimensions, ScrollView, Animated, Platform,
 } from 'react-native';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
-import styles, {
+import lstyles, {
   pink2green, grey2yellow, pink2yellow, white2lgrey, white2green,
+} from '../constants/Styles';
+import dstyles, {
+// pink2green, white2lgrey, pawGrey,
 } from '../constants/DarkStyles';
 
 export default function NewsTab() {
+  const [styles, setStyles] = useState(lstyles);
+  const isDarkMode = useSelector((state) => state.settings.darkMode);
+
   const scrollX = new Animated.Value(0);
+
+  useEffect(() => {
+    if (isDarkMode === 'light') setStyles(dstyles);
+    else setStyles(lstyles);
+  }, [isDarkMode]);
 
   return (
 

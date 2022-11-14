@@ -15,18 +15,10 @@ import dstyles, {
 } from '../constants/DarkStyles';
 import { flipDarkMode } from '../redux/SettingsSlice';
 
-/*
-AsyncStorage.getItem('darkLight').then((darkLight) => {
-  import('../constants/Styles').then((styles) => {
-    console.log(styles);
-  });
-}); */
-
 /* GET LIGHT DARK START */
 const dlKey = '@darkLight';
 
 export default function ServicesTab() {
-  // const [styleNow, setStyleNow] = useState('dark');
   const [styles, setStyles] = useState(lstyles);
   const isDarkMode = useSelector((state) => state.settings.darkMode);
   const dispatch = useDispatch();
@@ -44,7 +36,6 @@ export default function ServicesTab() {
   const onChange = async () => {
     dispatch(flipDarkMode());
 
-    // await setStyleNow((s) => (s === 'light' ? 'dark' : 'light'));
     AsyncStorage.setItem(dlKey, isDarkMode);
     getData();
   };

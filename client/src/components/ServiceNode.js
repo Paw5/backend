@@ -1,13 +1,25 @@
 import {
   View, Text, Pressable, Image,
 } from 'react-native';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
-import styles, { grey2yellow, pink2green } from '../constants/DarkStyles';
+import lstyles, { grey2yellow, pink2green } from '../constants/Styles';
+import dstyles, {
+// pink2green, white2lgrey, pawGrey,
+} from '../constants/DarkStyles';
 
 const miso = require('../../assets/miso.jpg');
 
 export default function ServNode() {
+  const [styles, setStyles] = useState(lstyles);
+  const isDarkMode = useSelector((state) => state.settings.darkMode);
+
+  useEffect(() => {
+    if (isDarkMode === 'light') setStyles(dstyles);
+    else setStyles(lstyles);
+  }, [isDarkMode]);
+
   return (
     <View>
       <Pressable style={[styles.servContainer, { height: 125 }]}>

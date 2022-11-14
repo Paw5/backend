@@ -1,16 +1,28 @@
 import {
   Text, Pressable, View, Image, ScrollView, TextInput,
 } from 'react-native';
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import Modal from 'react-native-modal';
 import { Feather } from '@expo/vector-icons';
-import styles, { grey2yellow, PlaceholderText, white2lgrey } from '../constants/DarkStyles';
+import lstyles, { grey2yellow, PlaceholderText, white2lgrey } from '../constants/Styles';
+import dstyles, {
+// pink2green, white2lgrey, pawGrey,
+} from '../constants/DarkStyles';
 import MessageSent from './MessageSent';
 import MessageReceived from './MessageReceived';
 
 const miso = require('../../assets/miso.jpg');
 
 export default function PMUserInteraction(replyText) {
+  const [styles, setStyles] = useState(lstyles);
+  const isDarkMode = useSelector((state) => state.settings.darkMode);
+
+  useEffect(() => {
+    if (isDarkMode === 'light') setStyles(dstyles);
+    else setStyles(lstyles);
+  }, [isDarkMode]);
+
   const [isMessageVisible, setMessageVisible] = useState(false);
   const toggleMessage = () => {
     setMessageVisible(!isMessageVisible);

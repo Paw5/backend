@@ -4,6 +4,7 @@
 /* eslint-disable react/prop-types */
 // Required imports
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import {
   View, TouchableOpacity, Dimensions, Animated, Pressable, Platform,
 } from 'react-native';
@@ -22,9 +23,20 @@ import AccountPage from '../views/Account';
 import PawPics from '../views/PawPics';
 import PawPosts from '../views/PawPosts';
 import PMs from '../views/PMs';
-import styles, { grey2yellow } from '../constants/DarkStyles';
+import lstyles, { grey2yellow } from '../constants/Styles';
+import dstyles, {
+// pink2green, white2lgrey, pawGrey,
+} from '../constants/DarkStyles';
 
 function MyTabBar({ state, descriptors, navigation }) {
+  const [styles, setStyles] = useState(lstyles);
+  const isDarkMode = useSelector((state) => state.settings.darkMode);
+
+  useEffect(() => {
+    if (isDarkMode === 'light') setStyles(dstyles);
+    else setStyles(lstyles);
+  }, [isDarkMode]);
+
   const [translateX] = useState(new Animated.Value(0));
   const [commPopupVisible, makeCommPopupVisible] = useState(false);
   const [healthPopupVisible, makeHealthPopupVisible] = useState(false);

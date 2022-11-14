@@ -1,17 +1,29 @@
 import {
   View, Text, ScrollView, Pressable, Image, Dimensions,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
-import styles, {
+import lstyles, {
   pink2yellow, pink2green, white2yellow, white2green,
+} from '../constants/Styles';
+import dstyles, {
+// pink2green, white2lgrey, pawGrey,
 } from '../constants/DarkStyles';
 import PawPostComment from './PawPostComment';
 
 const miso = require('../../assets/miso.jpg');
 
 export default function PawPostPost() {
+  const [styles, setStyles] = useState(lstyles);
+  const isDarkMode = useSelector((state) => state.settings.darkMode);
+
+  useEffect(() => {
+    if (isDarkMode === 'light') setStyles(dstyles);
+    else setStyles(lstyles);
+  }, [isDarkMode]);
+
   const [isPostVisible, setPostVisible] = useState(false);
   const togglePost = () => {
     setPostVisible(!isPostVisible);

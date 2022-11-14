@@ -1,12 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import {
   TextInput, View, Text, Pressable, KeyboardAvoidingView,
 } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
-import styles, { pawGrey, grey2yellow, PlaceholderText } from '../constants/DarkStyles';
+import lstyles, { pawGrey, grey2yellow, PlaceholderText } from '../constants/Styles';
+import dstyles, {
+// pink2green, white2lgrey, pawGrey,
+} from '../constants/DarkStyles';
 
 export default function SearchBar(searchQuery) {
+  const [styles, setStyles] = useState(lstyles);
+  const isDarkMode = useSelector((state) => state.settings.darkMode);
+
+  useEffect(() => {
+    if (isDarkMode === 'light') setStyles(dstyles);
+    else setStyles(lstyles);
+  }, [isDarkMode]);
+
   const [isModalVisible, setModalVisible] = useState(false);
   return (
     <View style={styles.container}>
