@@ -6,8 +6,10 @@ import { useSelector } from 'react-redux';
 import MapView from 'react-native-maps';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import SearchBar from '../components/SearchBarServ';
-import lstyles, { } from '../constants/Styles';
+import lstyles from '../constants/Styles';
 import dstyles from '../constants/DarkStyles';
+import lightMap from '../constants/lightMap.json';
+// import darkMap from '../constants/darkMap.json';
 
 const StatusBarHeight = getStatusBarHeight();
 
@@ -26,7 +28,7 @@ export default function MapTab() {
       <View style={styles.containerMap}>
         <View>
           <MapView
-            userInterfaceStyle={isDarkMode === 'light' ? 'dark' : 'light'}
+            customMapStyle={lightMap}
             style={styles.map}
           />
 

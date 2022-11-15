@@ -23,10 +23,13 @@ import AccountPage from '../views/Account';
 import PawPics from '../views/PawPics';
 import PawPosts from '../views/PawPosts';
 import PMs from '../views/PMs';
+import Signin from '../views/Signin';
 import lstyles, { pawGrey } from '../constants/Styles';
 import dstyles, { pawYellow } from '../constants/DarkStyles';
 
-function MyTabBar({ state, descriptors, navigation }) {
+function MyTabBar({
+  state, descriptors, navigation,
+}) {
   const [styles, setStyles] = useState(lstyles);
   // eslint-disable-next-line no-shadow
   const isDarkMode = useSelector((state) => state.settings.darkMode);
@@ -109,6 +112,7 @@ function MyTabBar({ state, descriptors, navigation }) {
         let buttonRaise = 0;
         return (
           <TouchableOpacity
+            key={label}
             accessibilityRole="button"
             accessibilityState={isFocused ? { selected: true } : {}}
             accessibilityLabel={options.tabBarAccessibilityLabel}
@@ -274,6 +278,7 @@ function Tabs() {
       <Tab.Screen name="PawPics" component={PawPics} />
       <Tab.Screen name="PawPosts" component={PawPosts} />
       <Tab.Screen name="PMs" component={PMs} />
+      <Tab.Screen name="Signin" component={Signin} />
     </Tab.Navigator>
   );
 }
