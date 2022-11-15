@@ -3,13 +3,13 @@ import {
 } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
-import MapView from 'react-native-maps';
+import MapView, { PROVIDER_GOOGLE } from 'react-native-maps';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
 import SearchBar from '../components/SearchBarServ';
 import lstyles from '../constants/Styles';
 import dstyles from '../constants/DarkStyles';
 import lightMap from '../constants/lightMap.json';
-// import darkMap from '../constants/darkMap.json';
+import darkMap from '../constants/darkMap.json';
 
 const StatusBarHeight = getStatusBarHeight();
 
@@ -28,8 +28,10 @@ export default function MapTab() {
       <View style={styles.containerMap}>
         <View>
           <MapView
-            customMapStyle={lightMap}
             style={styles.map}
+            customMapStyle={isDarkMode === 'light' ? darkMap : lightMap}
+            provider={PROVIDER_GOOGLE}
+            showsUserLocation
           />
 
         </View>
