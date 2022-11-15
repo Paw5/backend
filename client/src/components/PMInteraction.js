@@ -1,16 +1,26 @@
 import {
   Text, Pressable, View, Image, ScrollView, TextInput,
 } from 'react-native';
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { useSelector } from 'react-redux';
 import Modal from 'react-native-modal';
 import { Feather } from '@expo/vector-icons';
-import styles, { grey2yellow, PlaceholderText, white2lgrey } from '../constants/Styles';
+import lstyles, { pawGrey } from '../constants/Styles';
+import dstyles, { pawLightGrey, pawYellow } from '../constants/DarkStyles';
 import MessageSent from './MessageSent';
 import MessageReceived from './MessageReceived';
 
 const miso = require('../../assets/miso.jpg');
 
 export default function PMUserInteraction(replyText) {
+  const [styles, setStyles] = useState(lstyles);
+  const isDarkMode = useSelector((state) => state.settings.darkMode);
+
+  useEffect(() => {
+    if (isDarkMode === 'light') setStyles(dstyles);
+    else setStyles(lstyles);
+  }, [isDarkMode]);
+
   const [isMessageVisible, setMessageVisible] = useState(false);
   const toggleMessage = () => {
     setMessageVisible(!isMessageVisible);
@@ -37,12 +47,12 @@ export default function PMUserInteraction(replyText) {
           <Feather
             name="star"
             size={30}
-            color={grey2yellow}
+            color={isDarkMode === 'light' ? pawYellow : pawGrey}
           />
           <Feather
             name="send"
             size={30}
-            color={grey2yellow}
+            color={isDarkMode === 'light' ? pawYellow : pawGrey}
             style={{ paddingTop: 2 }}
           />
         </View>
@@ -63,7 +73,7 @@ export default function PMUserInteraction(replyText) {
             <Feather
               name="chevron-left"
               size={30}
-              color={grey2yellow}
+              color={isDarkMode === 'light' ? pawYellow : pawGrey}
               style={styles.pmExitButton}
             />
 
@@ -98,7 +108,7 @@ export default function PMUserInteraction(replyText) {
           <TextInput
             style={styles.replyContents}
             placeholder="Reply here"
-            placeholderTextColor={PlaceholderText}
+            placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
             multiline
             value={replyText}
           />
@@ -107,7 +117,7 @@ export default function PMUserInteraction(replyText) {
             <Feather
               name="send"
               size={25}
-              color={white2lgrey}
+              color={isDarkMode === 'light' ? pawLightGrey : 'white'}
               style={styles.sendButton}
             />
           </Pressable>

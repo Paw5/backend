@@ -4,6 +4,7 @@
 /* eslint-disable react/prop-types */
 // Required imports
 import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import {
   View, TouchableOpacity, Dimensions, Animated, Pressable, Platform,
 } from 'react-native';
@@ -22,10 +23,19 @@ import AccountPage from '../views/Account';
 import PawPics from '../views/PawPics';
 import PawPosts from '../views/PawPosts';
 import PMs from '../views/PMs';
-import SignIn from '../views/Signin';
-import styles, { grey2yellow } from '../constants/DarkStyles';
+import lstyles, { pawGrey } from '../constants/Styles';
+import dstyles, { pawYellow } from '../constants/DarkStyles';
 
 function MyTabBar({ state, descriptors, navigation }) {
+  const [styles, setStyles] = useState(lstyles);
+  // eslint-disable-next-line no-shadow
+  const isDarkMode = useSelector((state) => state.settings.darkMode);
+
+  useEffect(() => {
+    if (isDarkMode === 'light') setStyles(dstyles);
+    else setStyles(lstyles);
+  }, [isDarkMode]);
+
   const [translateX] = useState(new Animated.Value(0));
   const [commPopupVisible, makeCommPopupVisible] = useState(false);
   const [healthPopupVisible, makeHealthPopupVisible] = useState(false);
@@ -124,7 +134,7 @@ function MyTabBar({ state, descriptors, navigation }) {
               size={
                 currentScreen === label ? 50 : 30
               }
-              color={grey2yellow}
+              color={isDarkMode === 'light' ? pawYellow : pawGrey}
               style={{ justifyContent: 'center' }}
             />
           </TouchableOpacity>
@@ -152,7 +162,7 @@ function MyTabBar({ state, descriptors, navigation }) {
             <Feather
               name="image"
               size={20}
-              color={grey2yellow}
+              color={isDarkMode === 'light' ? pawYellow : pawGrey}
               style={{ justifyContent: 'center' }}
             />
           </Pressable>
@@ -166,7 +176,7 @@ function MyTabBar({ state, descriptors, navigation }) {
             <Feather
               name="file-text"
               size={20}
-              color={grey2yellow}
+              color={isDarkMode === 'light' ? pawYellow : pawGrey}
               style={{ justifyContent: 'center' }}
             />
           </Pressable>
@@ -180,7 +190,7 @@ function MyTabBar({ state, descriptors, navigation }) {
             <Feather
               name="message-square"
               size={20}
-              color={grey2yellow}
+              color={isDarkMode === 'light' ? pawYellow : pawGrey}
               style={{ justifyContent: 'center' }}
             />
           </Pressable>
@@ -206,7 +216,7 @@ function MyTabBar({ state, descriptors, navigation }) {
             <Feather
               name="heart"
               size={20}
-              color={grey2yellow}
+              color={isDarkMode === 'light' ? pawYellow : pawGrey}
               style={{ justifyContent: 'center' }}
             />
           </Pressable>
@@ -220,7 +230,7 @@ function MyTabBar({ state, descriptors, navigation }) {
             <Feather
               name="user"
               size={20}
-              color={grey2yellow}
+              color={isDarkMode === 'light' ? pawYellow : pawGrey}
               style={{ justifyContent: 'center' }}
             />
           </Pressable>
@@ -234,7 +244,7 @@ function MyTabBar({ state, descriptors, navigation }) {
             <Feather
               name="settings"
               size={20}
-              color={grey2yellow}
+              color={isDarkMode === 'light' ? pawYellow : pawGrey}
               style={{ justifyContent: 'center' }}
             />
           </Pressable>
@@ -254,7 +264,7 @@ function Tabs() {
       // eslint-disable-next-line react/no-unstable-nested-components, react/jsx-props-no-spreading
       tabBar={(props) => <MyTabBar {...props} state={{ ...props.state, routes: props.state.routes.slice(0, 5) }} />}
     >
-      <Tab.Screen name="M" component={SignIn} />
+      <Tab.Screen name="M" component={MapTab} />
       <Tab.Screen name="S" component={ServicesTab} />
       <Tab.Screen name="N" component={NewsTab} />
       <Tab.Screen name="C" component={CommunityTab} />

@@ -1,17 +1,27 @@
 import {
   View, Text, ScrollView, Pressable, Image, Dimensions,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
-import styles, {
-  pink2yellow, pink2green, white2yellow, white2green,
+import lstyles, {
+  pawGreen, pawPink,
 } from '../constants/Styles';
+import dstyles, { pawYellow } from '../constants/DarkStyles';
 import PawPostComment from './PawPostComment';
 
 const miso = require('../../assets/miso.jpg');
 
 export default function PawPostPost() {
+  const [styles, setStyles] = useState(lstyles);
+  const isDarkMode = useSelector((state) => state.settings.darkMode);
+
+  useEffect(() => {
+    if (isDarkMode === 'light') setStyles(dstyles);
+    else setStyles(lstyles);
+  }, [isDarkMode]);
+
   const [isPostVisible, setPostVisible] = useState(false);
   const togglePost = () => {
     setPostVisible(!isPostVisible);
@@ -65,7 +75,7 @@ export default function PawPostPost() {
               <Feather
                 name="chevron-left"
                 size={30}
-                color={white2yellow}
+                color={isDarkMode === 'light' ? pawYellow : 'white'}
                 style={styles.exitPostButton}
               />
 
@@ -74,7 +84,7 @@ export default function PawPostPost() {
               <Feather
                 name="heart"
                 size={24}
-                color={pink2yellow}
+                color={isDarkMode === 'light' ? pawYellow : pawPink}
                 style={styles.likeLocPost}
               />
 
@@ -83,7 +93,7 @@ export default function PawPostPost() {
               <Feather
                 name="send"
                 size={24}
-                color={pink2yellow}
+                color={isDarkMode === 'light' ? pawYellow : pawPink}
                 style={styles.commLocPost}
               />
 
@@ -126,7 +136,7 @@ export default function PawPostPost() {
 
             <View
               style={{
-                borderBottomColor: pink2green,
+                borderBottomColor: isDarkMode === 'light' ? pawGreen : pawPink,
                 borderBottomWidth: 1,
                 borderRadius: 50,
                 marginBottom: 5,
@@ -140,7 +150,7 @@ export default function PawPostPost() {
         </View>
         <View
           style={{
-            borderColor: white2green,
+            borderColor: isDarkMode === 'light' ? pawGreen : 'white',
             borderWidth: 2,
             borderRadius: 50,
             top: (Dimensions.get('window').width + 100),

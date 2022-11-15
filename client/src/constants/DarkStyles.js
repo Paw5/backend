@@ -14,16 +14,6 @@ export const pawGreen = '#69a297';
 export const pawGrey = '#333333';
 export const pawLightGrey = '#545454';
 
-export const pink2green = pawGreen;
-export const white2lgrey = pawLightGrey;
-export const pink2lgrey = pawLightGrey;
-export const pink2yellow = pawYellow;
-export const grey2yellow = pawYellow;
-export const white2yellow = pawYellow;
-export const white2green = pawGreen;
-export const PlaceholderText = '#edae4985';
-export const mapColor = 'dark';
-
 export default StyleSheet.create({
   background: {
     flex: 1,
@@ -33,6 +23,68 @@ export default StyleSheet.create({
     height: StatusBarHeight,
     backgroundColor: pawGreen,
   },
+
+  /* register/signin styles */
+  signinbutton: {
+    backgroundColor: pawLightGrey,
+    borderRadius: 50,
+    padding: 20,
+    marginBottom: 40,
+    marginLeft: 40,
+    marginRight: 40,
+  },
+  signintext: {
+    color: pawYellow,
+    fontFamily: 'QuicksandBold',
+    fontSize: 26,
+    textAlign: 'center',
+  },
+  signinModal: {
+    backgroundColor: pawGrey,
+    flex: 1,
+    margin: 0,
+    marginTop: Platform.OS === 'android' ? 0 : StatusBarHeight,
+    justifyContent: 'flex-start',
+    alignContent: 'center',
+  },
+  signinExitButton: {
+    alignSelf: 'center',
+    padding: 10,
+    backgroundColor: pawYellow,
+    borderRadius: 25,
+    overflow: 'hidden',
+    paddingRight: 11,
+    paddingLeft: 9,
+    marginLeft: 20,
+    marginTop: 20,
+    marginBottom: Dimensions.get('window').width / 3,
+  },
+  signinPrompt: {
+    alignSelf: 'center',
+    width: Dimensions.get('window').width - 60,
+    backgroundColor: pawLightGrey,
+    borderRadius: 30,
+    marginBottom: 40,
+    padding: 15,
+  },
+  signinPromptText: {
+    color: pawYellow,
+    fontFamily: 'QuicksandBold',
+    fontSize: 26,
+    textAlign: 'center',
+  },
+  signinField: {
+    backgroundColor: pawLightGrey,
+    alignSelf: 'center',
+    width: Dimensions.get('window').width - 40,
+    padding: 10,
+    fontFamily: 'QuicksandBold',
+    borderRadius: 35,
+    fontSize: 26,
+    justifyContent: 'center',
+    marginBottom: 20,
+  },
+
   /* health styles */
   petCard: {
     height: 200,

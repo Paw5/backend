@@ -1,12 +1,22 @@
 import {
   View, ScrollView, Platform,
 } from 'react-native';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import SearchBar from '../components/SearchBarServ';
-import styles, { } from '../constants/Styles';
+import lstyles, { } from '../constants/Styles';
+import dstyles from '../constants/DarkStyles';
 import PawPostPost from '../components/PawPostPost';
 
 export default function PawPics() {
+  const [styles, setStyles] = useState(lstyles);
+  const isDarkMode = useSelector((state) => state.settings.darkMode);
+
+  useEffect(() => {
+    if (isDarkMode === 'light') setStyles(dstyles);
+    else setStyles(lstyles);
+  }, [isDarkMode]);
+
   return (
     <View style={styles.background}>
       <View style={styles.statusBar} />

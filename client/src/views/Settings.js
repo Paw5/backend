@@ -6,26 +6,22 @@ import { Feather } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Modal from 'react-native-modal';
 // import Onboarding from 'react-native-onboarding-swiper';
+import { useSelector, useDispatch } from 'react-redux';
 import lstyles, {
-  pink2green, white2lgrey, pawGrey,
+  pawGreen, pawPink, pawGrey,
 } from '../constants/Styles';
 import dstyles, {
-// dpink2green, dwhite2lgrey, dpawGrey,
+  pawLightGrey,
 } from '../constants/DarkStyles';
-
-/*
-AsyncStorage.getItem('darkLight').then((darkLight) => {
-  import('../constants/Styles').then((styles) => {
-    console.log(styles);
-  });
-}); */
+import { flipDarkMode } from '../redux/SettingsSlice';
 
 /* GET LIGHT DARK START */
 const dlKey = '@darkLight';
 
 export default function ServicesTab() {
-  const [styleNow, setStyleNow] = useState('dark');
   const [styles, setStyles] = useState(lstyles);
+  const isDarkMode = useSelector((state) => state.settings.darkMode);
+  const dispatch = useDispatch();
 
   const getData = async () => {
     try {
@@ -38,8 +34,9 @@ export default function ServicesTab() {
   };
 
   const onChange = async () => {
-    await setStyleNow((s) => (s === 'light' ? 'dark' : 'light'));
-    AsyncStorage.setItem(dlKey, styleNow);
+    dispatch(flipDarkMode());
+
+    AsyncStorage.setItem(dlKey, isDarkMode);
     getData();
   };
   /* GET LIGHT DARK END */
@@ -77,9 +74,9 @@ export default function ServicesTab() {
   };
 
   useEffect(() => {
-    if (styleNow === 'light') setStyles(dstyles);
+    if (isDarkMode === 'light') setStyles(dstyles);
     else setStyles(lstyles);
-  }, [styleNow]);
+  }, [isDarkMode]);
 
   return (
     /* background color */
@@ -109,7 +106,7 @@ export default function ServicesTab() {
         <Switch
           style={styles.settingsSwitch}
           trackColor={{ false: '#e0777d', true: '#edae49' }}
-          thumbColor={white2lgrey}
+          thumbColor={isDarkMode === 'light' ? pawLightGrey : 'white'}
           ios_backgroundColor="#e0777d"
           onValueChange={lightdarkSwitch}
           onChange={onChange}
@@ -128,9 +125,9 @@ export default function ServicesTab() {
         </Text>
         <Switch
           style={styles.settingsSwitch}
-          trackColor={{ false: pink2green, true: pawGrey }}
-          thumbColor={white2lgrey}
-          ios_backgroundColor={pink2green}
+          trackColor={{ false: isDarkMode === 'light' ? pawGreen : pawPink, true: pawGrey }}
+          thumbColor={isDarkMode === 'light' ? pawLightGrey : 'white'}
+          ios_backgroundColor={isDarkMode === 'light' ? pawGreen : pawPink}
           onValueChange={locationSwitch}
           value={LCisEnabled}
         />
@@ -196,9 +193,9 @@ export default function ServicesTab() {
             </Text>
             <Switch
               style={styles.settingsSwitch}
-              trackColor={{ false: pink2green, true: pawGrey }}
-              thumbColor={white2lgrey}
-              ios_backgroundColor={pink2green}
+              trackColor={{ false: isDarkMode === 'light' ? pawGreen : pawPink, true: pawGrey }}
+              thumbColor={isDarkMode === 'light' ? pawLightGrey : 'white'}
+              ios_backgroundColor={isDarkMode === 'light' ? pawGreen : pawPink}
               onValueChange={emailSwitch}
               value={EMisEnabled}
             />
@@ -214,9 +211,9 @@ export default function ServicesTab() {
             </Text>
             <Switch
               style={styles.settingsSwitch}
-              trackColor={{ false: pink2green, true: pawGrey }}
-              thumbColor={white2lgrey}
-              ios_backgroundColor={pink2green}
+              trackColor={{ false: isDarkMode === 'light' ? pawGreen : pawPink, true: pawGrey }}
+              thumbColor={isDarkMode === 'light' ? pawLightGrey : 'white'}
+              ios_backgroundColor={isDarkMode === 'light' ? pawGreen : pawPink}
               onValueChange={messagesSwitch}
               value={MSisEnabled}
             />
@@ -232,9 +229,9 @@ export default function ServicesTab() {
             </Text>
             <Switch
               style={styles.settingsSwitch}
-              trackColor={{ false: pink2green, true: pawGrey }}
-              thumbColor={white2lgrey}
-              ios_backgroundColor={pink2green}
+              trackColor={{ false: isDarkMode === 'light' ? pawGreen : pawPink, true: pawGrey }}
+              thumbColor={isDarkMode === 'light' ? pawLightGrey : 'white'}
+              ios_backgroundColor={isDarkMode === 'light' ? pawGreen : pawPink}
               onValueChange={commentsSwitch}
               value={CMisEnabled}
             />
@@ -250,9 +247,9 @@ export default function ServicesTab() {
             </Text>
             <Switch
               style={styles.settingsSwitch}
-              trackColor={{ false: pink2green, true: pawGrey }}
-              thumbColor={white2lgrey}
-              ios_backgroundColor={pink2green}
+              trackColor={{ false: isDarkMode === 'light' ? pawGreen : pawPink, true: pawGrey }}
+              thumbColor={isDarkMode === 'light' ? pawLightGrey : 'white'}
+              ios_backgroundColor={isDarkMode === 'light' ? pawGreen : pawPink}
               onValueChange={likesSwitch}
               value={LKisEnabled}
             />

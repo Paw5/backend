@@ -2,14 +2,14 @@
 import {
   View, Text, Dimensions, Pressable, Image, Animated,
 } from 'react-native';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import styles, {
-  pawGrey, pink2lgrey, pink2yellow, white2lgrey,
-} from '../constants/Styles';
+import lstyles, { pawPink, pawGrey } from '../constants/Styles';
+import dstyles, { pawLightGrey, pawYellow } from '../constants/DarkStyles';
 import AccountCard from '../components/AccountCard';
 
 const miso = require('../../assets/miso.jpg');
@@ -17,6 +17,14 @@ const miso = require('../../assets/miso.jpg');
 const StatusBarHeight = getStatusBarHeight();
 
 export default function AccountTab() {
+  const [styles, setStyles] = useState(lstyles);
+  const isDarkMode = useSelector((state) => state.settings.darkMode);
+
+  useEffect(() => {
+    if (isDarkMode === 'light') setStyles(dstyles);
+    else setStyles(lstyles);
+  }, [isDarkMode]);
+
   const scrollX = new Animated.Value(0);
 
   /* toggle profile section modal */
@@ -104,7 +112,7 @@ export default function AccountTab() {
                 <Feather
                   name="camera"
                   size={30}
-                  color={pink2lgrey}
+                  color={isDarkMode === 'light' ? pawLightGrey : pawPink}
                   style={styles.cameraIcon}
                 />
               </Pressable>
@@ -264,8 +272,8 @@ export default function AccountTab() {
               <RNAnimatedScrollIndicators
                 numberOfCards={4}
                 scrollWidth={Dimensions.get('window').width}
-                activeColor={pink2yellow}
-                inActiveColor={white2lgrey}
+                activeColor={isDarkMode === 'light' ? pawYellow : pawPink}
+                inActiveColor={isDarkMode === 'light' ? pawLightGrey : 'white'}
                 scrollAnimatedValue={scrollX}
                 style={{
                   alignSelf: 'center',
