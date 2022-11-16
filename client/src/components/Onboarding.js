@@ -45,7 +45,6 @@ export default function Onboarding() {
     setRegisterVisible(!isRegisterVisible);
   };
 
-  const [value, setValue] = React.useState('');
   const [fontSize, setFontSize] = React.useState(maxFontSize);
 
   const scaleFontSize = (width) => {
@@ -187,8 +186,6 @@ export default function Onboarding() {
             secureTextEntry={false}
             autoCapitalize="none"
             onContentSizeChange={onContentSizeChange}
-            onChangeText={setValue}
-            value={value}
           />
           <TextInput
             style={styles.signinField}
