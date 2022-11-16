@@ -303,7 +303,9 @@ export default function AccountTab() {
         </View>
       </Modal>
 
-      <Pressable style={styles.menuItem}>
+      <Pressable
+        style={styles.menuItem}
+      >
         <Text
           adjustsFontSizeToFit
           numberOfLines={1}
