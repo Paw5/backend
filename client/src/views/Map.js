@@ -39,6 +39,12 @@ export default function MapTab() {
               latitudeDelta: 0.2,
               longitudeDelta: 0.2,
             }}
+            initialRegion={{
+              latitude: 33.2148,
+              longitude: -97.1331,
+              latitudeDelta: 0.2,
+              longitudeDelta: 0.2,
+            }}
           />
 
         </View>
