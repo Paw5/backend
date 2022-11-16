@@ -5,7 +5,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import Modal from 'react-native-modal';
 import { Feather } from '@expo/vector-icons';
-import lstyles, { pawGrey } from '../constants/Styles';
+import lstyles, { pawGrey, pawWhite } from '../constants/Styles';
 import dstyles, { pawLightGrey, pawYellow } from '../constants/DarkStyles';
 import MessageSent from './MessageSent';
 import MessageReceived from './MessageReceived';
@@ -117,7 +117,7 @@ export default function PMUserInteraction(replyText) {
             <Feather
               name="send"
               size={25}
-              color={isDarkMode === 'light' ? pawLightGrey : 'white'}
+              color={isDarkMode === 'light' ? pawLightGrey : pawWhite}
               style={styles.sendButton}
             />
           </Pressable>

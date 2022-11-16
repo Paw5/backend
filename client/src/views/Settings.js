@@ -5,10 +5,9 @@ import React, { useState, useEffect } from 'react';
 import { Feather } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Modal from 'react-native-modal';
-// import Onboarding from 'react-native-onboarding-swiper';
 import { useSelector, useDispatch } from 'react-redux';
 import lstyles, {
-  pawGreen, pawPink, pawGrey,
+  pawGreen, pawPink, pawGrey, pawWhite,
 } from '../constants/Styles';
 import dstyles, {
   pawLightGrey,
@@ -67,16 +66,14 @@ export default function ServicesTab() {
     setHelpVisible(!isHelpVisible);
   };
 
-  /* toggle onboarding replay modal */
-  const [isOnboardVisible, setOnboardVisible] = useState(false);
-  const toggleOnboard = () => {
-    setOnboardVisible(!isOnboardVisible);
-  };
-
   useEffect(() => {
     if (isDarkMode === 'light') setStyles(dstyles);
     else setStyles(lstyles);
   }, [isDarkMode]);
+
+  const clearOnboarding = async () => {
+    await AsyncStorage.removeItem('@viewedOnboard');
+  };
 
   return (
     /* background color */
@@ -106,7 +103,7 @@ export default function ServicesTab() {
         <Switch
           style={styles.settingsSwitch}
           trackColor={{ false: '#e0777d', true: '#edae49' }}
-          thumbColor={isDarkMode === 'light' ? pawLightGrey : 'white'}
+          thumbColor={isDarkMode === 'light' ? pawLightGrey : pawWhite}
           ios_backgroundColor="#e0777d"
           onValueChange={lightdarkSwitch}
           onChange={onChange}
@@ -126,7 +123,7 @@ export default function ServicesTab() {
         <Switch
           style={styles.settingsSwitch}
           trackColor={{ false: isDarkMode === 'light' ? pawGreen : pawPink, true: pawGrey }}
-          thumbColor={isDarkMode === 'light' ? pawLightGrey : 'white'}
+          thumbColor={isDarkMode === 'light' ? pawLightGrey : pawWhite}
           ios_backgroundColor={isDarkMode === 'light' ? pawGreen : pawPink}
           onValueChange={locationSwitch}
           value={LCisEnabled}
@@ -194,7 +191,7 @@ export default function ServicesTab() {
             <Switch
               style={styles.settingsSwitch}
               trackColor={{ false: isDarkMode === 'light' ? pawGreen : pawPink, true: pawGrey }}
-              thumbColor={isDarkMode === 'light' ? pawLightGrey : 'white'}
+              thumbColor={isDarkMode === 'light' ? pawLightGrey : pawWhite}
               ios_backgroundColor={isDarkMode === 'light' ? pawGreen : pawPink}
               onValueChange={emailSwitch}
               value={EMisEnabled}
@@ -212,7 +209,7 @@ export default function ServicesTab() {
             <Switch
               style={styles.settingsSwitch}
               trackColor={{ false: isDarkMode === 'light' ? pawGreen : pawPink, true: pawGrey }}
-              thumbColor={isDarkMode === 'light' ? pawLightGrey : 'white'}
+              thumbColor={isDarkMode === 'light' ? pawLightGrey : pawWhite}
               ios_backgroundColor={isDarkMode === 'light' ? pawGreen : pawPink}
               onValueChange={messagesSwitch}
               value={MSisEnabled}
@@ -230,7 +227,7 @@ export default function ServicesTab() {
             <Switch
               style={styles.settingsSwitch}
               trackColor={{ false: isDarkMode === 'light' ? pawGreen : pawPink, true: pawGrey }}
-              thumbColor={isDarkMode === 'light' ? pawLightGrey : 'white'}
+              thumbColor={isDarkMode === 'light' ? pawLightGrey : pawWhite}
               ios_backgroundColor={isDarkMode === 'light' ? pawGreen : pawPink}
               onValueChange={commentsSwitch}
               value={CMisEnabled}
@@ -248,7 +245,7 @@ export default function ServicesTab() {
             <Switch
               style={styles.settingsSwitch}
               trackColor={{ false: isDarkMode === 'light' ? pawGreen : pawPink, true: pawGrey }}
-              thumbColor={isDarkMode === 'light' ? pawLightGrey : 'white'}
+              thumbColor={isDarkMode === 'light' ? pawLightGrey : pawWhite}
               ios_backgroundColor={isDarkMode === 'light' ? pawGreen : pawPink}
               onValueChange={likesSwitch}
               value={LKisEnabled}
@@ -339,20 +336,14 @@ export default function ServicesTab() {
             />
           </Pressable>
 
-          <Pressable style={[styles.settingsItem, { marginRight: 20, width: Dimensions.get('window').width - 40 }]} onPress={toggleOnboard}>
+          <Pressable style={[styles.settingsItemOnboard, { justifyContent: 'center', marginRight: 20, width: Dimensions.get('window').width - 40 }]} onPress={clearOnboarding}>
             <Text
               adjustsFontSizeToFit
               numberOfLines={1}
-              style={styles.settingsText}
+              style={styles.settingsTextOnboard}
             >
-              Onboarding
+              Reset Onboarding
             </Text>
-            <Feather
-              name="chevron-right"
-              size={30}
-              color={pawGrey}
-              style={{ marginRight: -5 }}
-            />
           </Pressable>
         </View>
       </Modal>

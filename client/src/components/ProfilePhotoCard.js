@@ -12,11 +12,10 @@ import dstyles, {
   pawYellow,
 } from '../constants/DarkStyles';
 import PawPostComment from './PawPostComment';
-import ProfileClick from './ProfileClick';
 
 const miso = require('../../assets/miso.jpg');
 
-export default function PawPostPost() {
+export default function ProfilePhotoCard() {
   const [styles, setStyles] = useState(lstyles);
   const isDarkMode = useSelector((state) => state.settings.darkMode);
 
@@ -31,42 +30,12 @@ export default function PawPostPost() {
   };
 
   return (
-    <View>
-      <Pressable style={[styles.picContainer, { height: 400 }]} onPress={togglePic}>
+    <View style={styles.photoingrid}>
+      <Pressable onPress={togglePic}>
         <Image
-          style={styles.picImage}
+          style={styles.photoingrid}
           source={miso}
         />
-        <View
-          style={styles.picBottomBand}
-        />
-        <Pressable>
-          <Feather
-            name="heart"
-            size={24}
-            color={isDarkMode === 'light' ? pawYellow : pawPink}
-            style={styles.likeLoc1}
-          />
-
-        </Pressable>
-        <Pressable style={styles.ppProfileNameNode}>
-          <Text style={styles.picHeader2}>@user-name</Text>
-        </Pressable>
-        <ProfileClick />
-        <Text style={[styles.picDescription, { left: 2, top: 220 }]}>Descriptive Text</Text>
-        <View
-          style={{
-            borderBottomColor: isDarkMode === 'light' ? pawGreen : pawPink,
-            borderBottomWidth: 1,
-            borderRadius: 50,
-            top: 270,
-            marginTop: 5,
-            marginBottom: 5,
-            marginLeft: 20,
-            marginRight: 20,
-          }}
-        />
-        <Text style={[styles.picTag, { left: 2, top: 265 }]}>Tags</Text>
       </Pressable>
 
       {/* </DropShadow> */}
@@ -99,24 +68,27 @@ export default function PawPostPost() {
           <Pressable style={styles.insppProfileNameNode}>
             <Text style={styles.inspicHeader2}>@user-name</Text>
           </Pressable>
-          <ProfileClick />
-          <Text style={[styles.inspicDescription, { left: -8, top: (Dimensions.get('window').width - 80) }]}>Descriptive Text</Text>
+          <Image
+            style={styles.insppProfileImage}
+            source={miso}
+          />
+          <Text style={[styles.inspicDescription, { left: -8, top: (Dimensions.get('window').width - 20) }]}>Descriptive Text</Text>
           <View
             style={{
               borderBottomColor: isDarkMode === 'light' ? pawGreen : pawPink,
               borderBottomWidth: 1,
               borderRadius: 50,
-              top: (Dimensions.get('window').width - 35),
+              top: (Dimensions.get('window').width + 20),
               marginTop: 5,
               marginBottom: 5,
               marginLeft: 10,
               marginRight: 20,
             }}
           />
-          <Text style={[styles.inspicTag, { left: -8, top: (Dimensions.get('window').width - 37.5) }]}>Tags</Text>
+          <Text style={[styles.inspicTag, { left: -8, top: (Dimensions.get('window').width + 15) }]}>Tags</Text>
           <Pressable
             onPress={togglePic}
-            style={{ alignSelf: 'flex-start', zIndex: 45, top: -120 }}
+            style={{ alignSelf: 'flex-start', zIndex: 45, top: -60 }}
           >
             <Feather
               name="chevron-left"
@@ -141,7 +113,7 @@ export default function PawPostPost() {
               marginRight: 20,
             }}
           />
-          <ScrollView style={{ marginTop: Dimensions.get('window').width - 70 }}>
+          <ScrollView style={{ marginTop: Dimensions.get('window').width - 10 }}>
 
             <PawPostComment />
             <PawPostComment />

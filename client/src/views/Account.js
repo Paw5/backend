@@ -8,7 +8,7 @@ import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import lstyles, { pawPink, pawGrey } from '../constants/Styles';
+import lstyles, { pawPink, pawGrey, pawWhite } from '../constants/Styles';
 import dstyles, { pawLightGrey, pawYellow } from '../constants/DarkStyles';
 import AccountCard from '../components/AccountCard';
 
@@ -273,7 +273,7 @@ export default function AccountTab() {
                 numberOfCards={4}
                 scrollWidth={Dimensions.get('window').width}
                 activeColor={isDarkMode === 'light' ? pawYellow : pawPink}
-                inActiveColor={isDarkMode === 'light' ? pawLightGrey : 'white'}
+                inActiveColor={isDarkMode === 'light' ? pawLightGrey : pawWhite}
                 scrollAnimatedValue={scrollX}
                 style={{
                   alignSelf: 'center',

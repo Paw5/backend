@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
 import lstyles, {
-  pawGreen, pawPink, pawGrey,
+  pawGreen, pawPink, pawGrey, pawWhite,
 } from '../constants/Styles';
 import dstyles, { pawLightGrey, pawYellow } from '../constants/DarkStyles';
 
@@ -175,7 +175,7 @@ export default function NewsTab() {
 
         <View style={{
           borderWidth: 2,
-          borderColor: isDarkMode === 'light' ? pawGreen : 'white',
+          borderColor: isDarkMode === 'light' ? pawGreen : pawWhite,
           borderRadius: 10,
           padding: 5,
           width: 115,
@@ -186,7 +186,7 @@ export default function NewsTab() {
             numberOfCards={3}
             scrollWidth={Dimensions.get('window').width}
             activeColor={isDarkMode === 'light' ? pawYellow : pawPink}
-            inActiveColor={isDarkMode === 'light' ? pawLightGrey : 'white'}
+            inActiveColor={isDarkMode === 'light' ? pawLightGrey : pawWhite}
             scrollAnimatedValue={scrollX}
             style={{
 
