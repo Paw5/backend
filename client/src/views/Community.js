@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
-import { getStatusBarHeight } from 'react-native-status-bar-height';
 import lstyles, { pawWhite, pawGreen, pawPink } from '../constants/Styles';
 import dstyles, {
   pawYellow, pawLightGrey, pawGrey,
@@ -15,8 +14,6 @@ import ProfilePhotoCard from '../components/ProfilePhotoCard';
 import ProfilePostCard from '../components/ProfilePostCard';
 
 const miso = require('../../assets/miso.jpg');
-
-const StatusBarHeight = getStatusBarHeight();
 
 export default function CommunityTab(bioUpdate) {
   const [styles, setStyles] = useState(lstyles);
@@ -43,55 +40,51 @@ export default function CommunityTab(bioUpdate) {
   };
 
   return (
-    <View style={{
-      flex: 1, backgroundColor: (isDarkMode === 'light' ? pawGrey : pawGreen), top: StatusBarHeight, fontFamily: 'QuicksandBold',
-    }}
-    >
-      <View>
-        <Image
-          style={styles.oProfileImage}
-          source={miso}
+    <View style={styles.background}>
+      <View style={styles.statusBar} />
+      <Image
+        style={styles.oProfileImage}
+        source={miso}
+      />
+      <Pressable
+        onPress={toggleForumSettings}
+        style={{
+          alignSelf: 'flex-start', position: 'absolute', top: 60, left: 10,
+        }}
+      >
+        <Feather
+          name="settings"
+          size={30}
+          color={isDarkMode === 'light' ? pawYellow : pawWhite}
+          style={styles.exitProfButton}
         />
-        <Pressable
-          onPress={toggleForumSettings}
-          style={{
-            alignSelf: 'flex-start', position: 'absolute', margin: 10,
-          }}
-        >
-          <Feather
-            name="settings"
-            size={30}
-            color={isDarkMode === 'light' ? pawYellow : pawWhite}
-            style={styles.exitProfButton}
-          />
 
-        </Pressable>
-        <View style={styles.oProfileBio}>
-          <Text style={styles.oProfBioText} numberOfLines={6}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute i
-            dolor in reprehenderit in voluptate velit esse cillum dolore eu fiat nulla paatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
-            mollit anim id est laborum.
+      </Pressable>
+      <View style={styles.oProfileBio}>
+        <Text style={styles.oProfBioText} numberOfLines={6}>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit,sed do eiusmod tempor
+          incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+          exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute i
+          dolor in reprehenderit in voluptate velit esse cillum dolore eu fiat nulla paatur.
+          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+          mollit anim id est laborum.
 
-          </Text>
-        </View>
-        <View style={styles.oProfileName}>
-          <Text style={styles.oProfNameText}>@user-name</Text>
-        </View>
-        <View
-          style={styles.profBottomBand}
+        </Text>
+      </View>
+      <View style={styles.oProfileName}>
+        <Text style={styles.oProfNameText}>@user-name</Text>
+      </View>
+      <View
+        style={styles.profBottomBand}
+      />
+      <View style={styles.scrollIndicatorProfile}>
+        <RNAnimatedScrollIndicators
+          numberOfCards={2}
+          scrollWidth={Dimensions.get('window').width}
+          activeColor={isDarkMode === 'light' ? pawYellow : pawPink}
+          inActiveColor={isDarkMode === 'light' ? pawLightGrey : pawWhite}
+          scrollAnimatedValue={scrollX}
         />
-        <View style={styles.scrollIndicatorProfile}>
-          <RNAnimatedScrollIndicators
-            numberOfCards={2}
-            scrollWidth={Dimensions.get('window').width}
-            activeColor={isDarkMode === 'light' ? pawYellow : pawWhite}
-            inActiveColor={isDarkMode === 'light' ? pawGrey : pawGreen}
-            scrollAnimatedValue={scrollX}
-          />
-        </View>
       </View>
       <Animated.ScrollView
         horizontal
@@ -117,7 +110,7 @@ export default function CommunityTab(bioUpdate) {
         <ScrollView
           showsVerticalScrollIndicator={false}
           style={{
-            width: Dimensions.get('window').width, height: Dimensions.get('window').height, left: -12, marginBottom: 170,
+            width: Dimensions.get('window').width, left: -12, marginBottom: 75, paddingBottom: 60,
           }}
         >
           <View style={styles.photoGrid}>
@@ -145,13 +138,13 @@ export default function CommunityTab(bioUpdate) {
             <ProfilePhotoCard />
             <ProfilePhotoCard />
             <ProfilePhotoCard />
-            <ProfilePhotoCard />
           </View>
+          <View style={{ height: 20 }} />
         </ScrollView>
         <ScrollView
           showsVerticalScrollIndicator={false}
           style={{
-            width: Dimensions.get('window').width, height: Dimensions.get('window').height, left: -10, marginBottom: 170,
+            width: Dimensions.get('window').width, left: -10, marginBottom: 75, paddingBottom: 60,
           }}
         >
           <ProfilePostCard />
