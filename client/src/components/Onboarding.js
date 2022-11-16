@@ -14,8 +14,8 @@ import lstyles, {
 } from '../constants/Styles';
 import dstyles from '../constants/DarkStyles';
 
-const textInputWidth = Dimensions.get('window').width - 60;
-const maxFontSize = 26;
+// const textInputWidth = Dimensions.get('window').width - 60;
+// const maxFontSize = 26;
 
 export default function Onboarding() {
   const scrollX = new Animated.Value(0);
@@ -45,7 +45,7 @@ export default function Onboarding() {
     setRegisterVisible(!isRegisterVisible);
   };
 
-  const [fontSize, setFontSize] = React.useState(maxFontSize);
+  /* const [fontSize, setFontSize] = React.useState(maxFontSize);
 
   const scaleFontSize = (width) => {
     const actualWidth = width + fontSize;
@@ -59,7 +59,7 @@ export default function Onboarding() {
     const { width } = contentSize;
 
     scaleFontSize(width);
-  };
+  }; */
 
   return (
     <View style={{
@@ -178,14 +178,14 @@ export default function Onboarding() {
           </View>
 
           <TextInput
-            style={[styles.signinField, { fontSize }]}
+            style={[styles.signinField/* , { fontSize } */]}
             placeholder="email"
             placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
             textAlign="center"
             keyboardType="email-address"
             secureTextEntry={false}
             autoCapitalize="none"
-            onContentSizeChange={onContentSizeChange}
+            // onContentSizeChange={onContentSizeChange}
           />
           <TextInput
             style={styles.signinField}
