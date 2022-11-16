@@ -23,7 +23,6 @@ import AccountPage from '../views/Account';
 import PawPics from '../views/PawPics';
 import PawPosts from '../views/PawPosts';
 import PMs from '../views/PMs';
-import Signin from '../views/Signin';
 import lstyles, { pawGrey } from '../constants/Styles';
 import dstyles, { pawYellow } from '../constants/DarkStyles';
 
@@ -278,7 +277,6 @@ function Tabs() {
       <Tab.Screen name="PawPics" component={PawPics} />
       <Tab.Screen name="PawPosts" component={PawPosts} />
       <Tab.Screen name="PMs" component={PMs} />
-      <Tab.Screen name="Signin" component={Signin} />
     </Tab.Navigator>
   );
 }

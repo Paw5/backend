@@ -12,7 +12,7 @@ export default function OnboardingItem({ item }) {
     }}
     >
       <Image source={item.image} style={[styles.onboardingImage, { width: Dimensions.get('window').width, resizeMode: 'contain' }]} />
-      <View style={{ flex: 0.3 }}>
+      <View style={{ flex: 0.7 }}>
         <Text style={styles.onboardingTitle}>{item.title}</Text>
         <Text style={styles.onboardingDes}>{item.description}</Text>
       </View>
