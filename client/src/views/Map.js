@@ -32,6 +32,13 @@ export default function MapTab() {
             customMapStyle={isDarkMode === 'light' ? darkMap : lightMap}
             provider={PROVIDER_GOOGLE}
             showsUserLocation
+            followsUserLocation
+            region={{
+              latitude: 33.2148,
+              longitude: -97.1331,
+              latitudeDelta: 0.2,
+              longitudeDelta: 0.2,
+            }}
           />
 
         </View>
