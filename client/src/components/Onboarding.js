@@ -45,7 +45,6 @@ export default function Onboarding() {
     setRegisterVisible(!isRegisterVisible);
   };
 
-  // eslint-disable-next-line no-unused-vars
   const [value, setValue] = React.useState('');
   const [fontSize, setFontSize] = React.useState(maxFontSize);
 
@@ -57,8 +56,7 @@ export default function Onboarding() {
   };
 
   const onContentSizeChange = ({ nativeEvent }) => {
-    // eslint-disable-next-line no-unused-vars
-    const { target, contentSize } = nativeEvent;
+    const { contentSize } = nativeEvent;
     const { width } = contentSize;
 
     scaleFontSize(width);
@@ -81,7 +79,7 @@ export default function Onboarding() {
           [{ nativeEvent: { contentOffset: { x: scrollX } } }],
           { useNativeDriver: false },
         )}
-        style={{ height: Dimensions.get('window').height - 270 }}
+        style={{ height: Dimensions.get('window').height - 290 }}
       />
       <RNAnimatedScrollIndicators
         numberOfCards={3}
@@ -91,13 +89,11 @@ export default function Onboarding() {
         scrollAnimatedValue={scrollX}
         style={{
           flex: 1,
-          top: 100,
         }}
       />
-      <View style={styles.background}>
-        <View style={styles.statusBar} />
+      <View style={[styles.background, { marginTop: 15 }]}>
         <View style={{
-          flex: 1, justifyContent: 'center', flexDirection: 'row', alignContent: 'center',
+          flex: 1, justifyContent: 'center', flexDirection: 'row', alignContent: 'center', marginTop: 2,
         }}
         >
 
@@ -183,7 +179,7 @@ export default function Onboarding() {
           </View>
 
           <TextInput
-            style={styles.signinField}
+            style={[styles.signinField, { fontSize }]}
             placeholder="email"
             placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
             textAlign="center"
@@ -192,6 +188,7 @@ export default function Onboarding() {
             autoCapitalize="none"
             onContentSizeChange={onContentSizeChange}
             onChangeText={setValue}
+            value={value}
           />
           <TextInput
             style={styles.signinField}
