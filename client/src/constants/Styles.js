@@ -16,6 +16,7 @@ export const pawWhite = '#f9f5ee';
 export default StyleSheet.create({
   background: {
     flex: 1,
+    height: 100,
     backgroundColor: pawGreen,
   },
   statusBar: {
@@ -29,8 +30,9 @@ export default StyleSheet.create({
     borderRadius: 50,
     padding: 20,
     marginBottom: 40,
-    marginLeft: 40,
-    marginRight: 40,
+    margin: 10,
+    height: 80,
+    width: Dimensions.get('window').width / 2 - 20,
   },
   signintext: {
     color: pawGrey,
@@ -60,7 +62,15 @@ export default StyleSheet.create({
   },
   signinPrompt: {
     alignSelf: 'center',
-    width: Dimensions.get('window').width - 60,
+    width: Dimensions.get('window').width - 250,
+    backgroundColor: pawPink,
+    borderRadius: 30,
+    marginBottom: 40,
+    padding: 15,
+  },
+  signinHead: {
+    alignSelf: 'center',
+    width: Dimensions.get('window').width - 40,
     backgroundColor: pawPink,
     borderRadius: 30,
     marginBottom: 40,
@@ -1364,12 +1374,13 @@ export default StyleSheet.create({
     fontWeight: '800',
     fontSize: 28,
     marginBottom: 10,
-    color: pawGrey,
+    color: pawWhite,
     textAlign: 'center',
   },
   onboardingDes: {
-    fontWeight: '300',
-    color: pawGrey,
+    fontWeight: '350',
+    fontSize: 16,
+    color: pawWhite,
     textAlign: 'center',
     paddingHorizontal: 64,
   },

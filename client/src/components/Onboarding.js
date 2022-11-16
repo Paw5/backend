@@ -1,15 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
-  View, FlatList, Animated, Dimensions, Pressable,
+  View, Text, Pressable, TextInput, Dimensions, FlatList, Animated,
 } from 'react-native';
+import { useSelector } from 'react-redux';
+import Modal from 'react-native-modal';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
 import { Feather } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import slides from './OnboardingSlides';
 import OnboardingItem from './OnboardingItem';
 import lstyles, {
-  pawGreen, pawPink, pawGrey, pawWhite,
+  pawGreen, pawPink, pawWhite,
 } from '../constants/Styles';
+import dstyles from '../constants/DarkStyles';
+
+const textInputWidth = Dimensions.get('window').width - 60;
+const maxFontSize = 26;
 
 export default function Onboarding() {
   const scrollX = new Animated.Value(0);
@@ -19,23 +25,51 @@ export default function Onboarding() {
     navigation.navigate('N');
   };
 
+  const [styles, setStyles] = useState(lstyles);
+  const isDarkMode = useSelector((state) => state.settings.darkMode);
+
+  useEffect(() => {
+    if (isDarkMode === 'light') setStyles(dstyles);
+    else setStyles(lstyles);
+  }, [isDarkMode]);
+
+  /* toggle sigin section modal */
+  const [isSigninVisible, setSigninVisible] = useState(false);
+  const toggleSignin = () => {
+    setSigninVisible(!isSigninVisible);
+  };
+
+  /* toggle register section modal */
+  const [isRegisterVisible, setRegisterVisible] = useState(false);
+  const toggleRegister = () => {
+    setRegisterVisible(!isRegisterVisible);
+  };
+
+  // eslint-disable-next-line no-unused-vars
+  const [value, setValue] = React.useState('');
+  const [fontSize, setFontSize] = React.useState(maxFontSize);
+
+  const scaleFontSize = (width) => {
+    const actualWidth = width + fontSize;
+    const scaledSize = Math.min(maxFontSize, fontSize * (textInputWidth / actualWidth));
+
+    setFontSize(scaledSize);
+  };
+
+  const onContentSizeChange = ({ nativeEvent }) => {
+    // eslint-disable-next-line no-unused-vars
+    const { target, contentSize } = nativeEvent;
+    const { width } = contentSize;
+
+    scaleFontSize(width);
+  };
+
   return (
     <View style={{
-      flex: 1, backgroundColor: pawGreen,
+      flex: 1, backgroundColor: pawPink,
     }}
     >
-      <View style={lstyles.statusBar} />
-      <RNAnimatedScrollIndicators
-        numberOfCards={4}
-        scrollWidth={Dimensions.get('window').width}
-        activeColor={pawPink}
-        inActiveColor={pawWhite}
-        scrollAnimatedValue={scrollX}
-        style={{
-          flex: 1,
-          top: 100,
-        }}
-      />
+      <View style={styles.statusBar} />
       <FlatList
         data={slides}
         renderItem={({ item }) => <OnboardingItem item={item} />}
@@ -47,21 +81,162 @@ export default function Onboarding() {
           [{ nativeEvent: { contentOffset: { x: scrollX } } }],
           { useNativeDriver: false },
         )}
+        style={{ height: Dimensions.get('window').height - 270 }}
       />
-      <Pressable
-        onPress={endOnboarding}
+      <RNAnimatedScrollIndicators
+        numberOfCards={3}
+        scrollWidth={Dimensions.get('window').width}
+        activeColor={pawGreen}
+        inActiveColor={pawWhite}
+        scrollAnimatedValue={scrollX}
         style={{
-          alignSelf: 'center', position: 'absolute', bottom: 25,
+          flex: 1,
+          top: 100,
         }}
-      >
-        <Feather
-          name="chevron-right"
-          size={30}
-          color={pawGrey}
-          style={lstyles.settingsExitButton}
-        />
+      />
+      <View style={styles.background}>
+        <View style={styles.statusBar} />
+        <View style={{
+          flex: 1, justifyContent: 'center', flexDirection: 'row', alignContent: 'center',
+        }}
+        >
 
-      </Pressable>
+          <Pressable
+            onPress={toggleSignin}
+            style={styles.signinbutton}
+          >
+            <Text style={styles.signintext}>Sign In</Text>
+          </Pressable>
+          <Pressable
+            onPress={toggleRegister}
+            style={styles.signinbutton}
+          >
+            <Text style={styles.signintext}>Register</Text>
+          </Pressable>
+
+        </View>
+
+        <Modal
+          isVisible={isSigninVisible}
+          animationIn="slideInRight"
+          animationOut="slideOutRight"
+          hasBackdrop={false}
+          style={styles.signinModal}
+        >
+          <Pressable
+            onPress={toggleSignin}
+            style={{ alignSelf: 'flex-start' }}
+          >
+            <Feather
+              name="chevron-left"
+              size={30}
+              color="#333333"
+              style={styles.signinExitButton}
+            />
+
+          </Pressable>
+          <View style={styles.signinHead}>
+            <Text style={styles.signinPromptText}>Welcome Back!</Text>
+          </View>
+
+          <TextInput
+            style={styles.signinField}
+            placeholder="username"
+            placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
+            textAlign="center"
+            autoCapitalize="none"
+          />
+          <TextInput
+            style={styles.signinField}
+            placeholder="password"
+            placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
+            secureTextEntry
+            textAlign="center"
+          />
+          <Pressable onPress={endOnboarding} style={[styles.signinPrompt, { marginTop: 15 }]}>
+            <Text style={styles.signinPromptText}>Sign In</Text>
+          </Pressable>
+        </Modal>
+
+        <Modal
+          isVisible={isRegisterVisible}
+          animationIn="slideInRight"
+          animationOut="slideOutRight"
+          hasBackdrop={false}
+          style={styles.signinModal}
+        >
+          <Pressable
+            onPress={toggleRegister}
+            style={{ alignSelf: 'flex-start' }}
+          >
+            <Feather
+              name="chevron-left"
+              size={30}
+              color="#333333"
+              style={[styles.signinExitButton, { marginBottom: 30 }]}
+            />
+
+          </Pressable>
+
+          <View style={styles.signinHead}>
+            <Text style={styles.signinPromptText}>Welcome to Paw5!</Text>
+          </View>
+
+          <TextInput
+            style={styles.signinField}
+            placeholder="email"
+            placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
+            textAlign="center"
+            keyboardType="email-address"
+            secureTextEntry={false}
+            autoCapitalize="none"
+            onContentSizeChange={onContentSizeChange}
+            onChangeText={setValue}
+          />
+          <TextInput
+            style={styles.signinField}
+            placeholder="first name"
+            placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
+            textAlign="center"
+            secureTextEntry={false}
+          />
+          <TextInput
+            style={styles.signinField}
+            placeholder="last name"
+            placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
+            textAlign="center"
+            secureTextEntry={false}
+          />
+          <TextInput
+            style={styles.signinField}
+            placeholder="username"
+            placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
+            textAlign="center"
+            secureTextEntry={false}
+            autoCapitalize="none"
+          />
+          <TextInput
+            style={styles.signinField}
+            placeholder="password"
+            placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
+            secureTextEntry
+            textAlign="center"
+          />
+          <TextInput
+            style={styles.signinField}
+            placeholder="retype password"
+            placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
+            secureTextEntry
+            textAlign="center"
+          />
+
+          <Pressable onPress={endOnboarding} style={[styles.signinPrompt, { marginTop: 15 }]}>
+            <Text style={styles.signinPromptText}>Submit</Text>
+          </Pressable>
+
+        </Modal>
+
+      </View>
     </View>
   );
 }
