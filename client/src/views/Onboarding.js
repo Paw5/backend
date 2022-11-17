@@ -7,8 +7,8 @@ import Modal from 'react-native-modal';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
 import { Feather } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import slides from './OnboardingSlides';
-import OnboardingItem from './OnboardingItem';
+import slides from '../components/OnboardingSlides';
+import OnboardingItem from '../components/OnboardingItem';
 import lstyles, {
   pawGreen, pawPink, pawWhite,
 } from '../constants/Styles';
