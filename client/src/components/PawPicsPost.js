@@ -83,6 +83,8 @@ export default function PawPostPost() {
       <Modal
         isVisible={isPicVisible}
         onBackdropPress={() => isPicVisible}
+        onSwipeMove={() => setPicVisible(false)}
+        swipeDirection="right"
         animationIn="slideInRight"
         animationOut="slideOutRight"
         hasBackdrop={false}
