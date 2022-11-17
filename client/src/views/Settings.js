@@ -152,6 +152,8 @@ export default function ServicesTab() {
       <Modal
         isVisible={isNotifVisible}
         onBackdropPress={() => isNotifVisible}
+        onSwipeMove={() => setNotifVisible(false)}
+        swipeDirection="right"
         animationIn="slideInRight"
         animationOut="slideOutRight"
         hasBackdrop={false}
@@ -275,6 +277,8 @@ export default function ServicesTab() {
       {/* help options modal */}
       <Modal
         isVisible={isHelpVisible}
+        onSwipeMove={() => setHelpVisible(false)}
+        swipeDirection="right"
         animationIn="slideInRight"
         animationOut="slideOutRight"
         hasBackdrop={false}

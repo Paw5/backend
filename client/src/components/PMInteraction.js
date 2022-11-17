@@ -60,6 +60,8 @@ export default function PMUserInteraction(replyText) {
 
       <Modal
         isVisible={isMessageVisible}
+        onSwipeMove={() => setMessageVisible(false)}
+        swipeDirection="right"
         animationIn="slideInRight"
         animationOut="slideOutRight"
         hasBackdrop={false}
