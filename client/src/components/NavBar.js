@@ -82,6 +82,10 @@ function MyTabBar({
           if (!isFocused && !event.defaultPrevented) {
             navigation.navigate({ name: route.name, merge: true });
             setCurrentScreen(route.name);
+          } else if (isFocused && route.name === 'C') {
+            makeCommPopupVisible(true);
+          } else if (isFocused && route.name === 'H') {
+            makeHealthPopupVisible(true);
           }
         };
 
