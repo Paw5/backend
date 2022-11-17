@@ -11,7 +11,7 @@ import { Provider } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NavBar from '../components/NavBar';
 import store from '../redux/Store';
-import Onboarding from '../components/Onboarding';
+import Onboarding from './Onboarding';
 import { pawPink } from '../constants/Styles';
 
 const logo = require('../../assets/Paw5Logo.png');

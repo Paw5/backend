@@ -6,9 +6,9 @@ import { useSelector } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
 import Modal from 'react-native-modal';
-import lstyles, { pawWhite, pawGreen } from '../constants/Styles';
+import lstyles, { pawWhite, pawPink } from '../constants/Styles';
 import dstyles, {
-  pawYellow, pawGrey,
+  pawYellow, pawLightGrey,
 } from '../constants/DarkStyles';
 import ProfilePhotoCard from './ProfilePhotoCard';
 import ProfilePostCard from './ProfilePostCard';
@@ -89,8 +89,8 @@ export default function ProfileClick() {
             <RNAnimatedScrollIndicators
               numberOfCards={2}
               scrollWidth={Dimensions.get('window').width}
-              activeColor={isDarkMode === 'light' ? pawYellow : pawWhite}
-              inActiveColor={isDarkMode === 'light' ? pawGrey : pawGreen}
+              activeColor={isDarkMode === 'light' ? pawYellow : pawPink}
+              inActiveColor={isDarkMode === 'light' ? pawLightGrey : pawWhite}
               scrollAnimatedValue={scrollX}
             />
           </View>
