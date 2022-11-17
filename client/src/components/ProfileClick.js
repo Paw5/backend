@@ -75,18 +75,21 @@ export default function ProfileClick() {
         )}
         style={{
           width: Dimensions.get('window').width,
-          height: 220,
           marginTop: 10,
           marginLeft: 10,
+          height: Dimensions.get('window').height - 1700,
         }}
       >
         <ScrollView
           showsVerticalScrollIndicator={false}
           style={{
-            width: Dimensions.get('window').width, height: Dimensions.get('window').height, left: -12, marginBottom: 170,
+            width: Dimensions.get('window').width, left: -12, marginBottom: 370,
           }}
         >
           <View style={styles.photoGrid}>
+            <ProfilePhotoCard />
+            <ProfilePhotoCard />
+            <ProfilePhotoCard />
             <ProfilePhotoCard />
             <ProfilePhotoCard />
             <ProfilePhotoCard />
@@ -117,7 +120,7 @@ export default function ProfileClick() {
         <ScrollView
           showsVerticalScrollIndicator={false}
           style={{
-            width: Dimensions.get('window').width, height: Dimensions.get('window').height, left: -10, marginBottom: 170,
+            width: Dimensions.get('window').width, left: -10, marginBottom: 370,
           }}
         >
           <ProfilePostCard />
