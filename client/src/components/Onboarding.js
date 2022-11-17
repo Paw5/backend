@@ -20,9 +20,9 @@ import dstyles from '../constants/DarkStyles';
 export default function Onboarding() {
   const scrollX = new Animated.Value(0);
 
-  const endOnboarding = async ({ navigation }) => {
+  const endOnboarding = async (/* { navigation } */) => {
     await AsyncStorage.setItem('@viewedOnboard', 'true');
-    navigation.navigate('N');
+    // navigation.navigate('N');
   };
 
   const [styles, setStyles] = useState(lstyles);
