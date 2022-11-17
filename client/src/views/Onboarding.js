@@ -7,8 +7,8 @@ import Modal from 'react-native-modal';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
 import { Feather } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import slides from './OnboardingSlides';
-import OnboardingItem from './OnboardingItem';
+import slides from '../components/OnboardingSlides';
+import OnboardingItem from '../components/OnboardingItem';
 import lstyles, {
   pawGreen, pawPink, pawWhite,
 } from '../constants/Styles';
@@ -20,9 +20,9 @@ import dstyles from '../constants/DarkStyles';
 export default function Onboarding() {
   const scrollX = new Animated.Value(0);
 
-  const endOnboarding = async ({ navigation }) => {
+  const endOnboarding = async (/* { navigation } */) => {
     await AsyncStorage.setItem('@viewedOnboard', 'true');
-    navigation.navigate('N');
+    // navigation.navigate('N');
   };
 
   const [styles, setStyles] = useState(lstyles);
