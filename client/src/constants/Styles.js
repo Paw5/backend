@@ -750,6 +750,13 @@ export default StyleSheet.create({
     left: 0,
     borderRadius: 100,
   },
+  insppProfileImageHolder: {
+    height: 60,
+    width: 60,
+    top: 330,
+    left: -10,
+    borderRadius: 100,
+  },
   ppProfileImage: {
     height: 60,
     width: 60,

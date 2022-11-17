@@ -30,6 +30,11 @@ export default function PawPostPost() {
     setPicVisible(!isPicVisible);
   };
 
+  const [isProfileVisible, setProfileVisible] = useState(false);
+  const toggleProfile = () => {
+    setProfileVisible(!isProfileVisible);
+  };
+
   return (
     <View>
       <Pressable style={[styles.picContainer, { height: 400 }]} onPress={togglePic}>
@@ -52,7 +57,12 @@ export default function PawPostPost() {
         <Pressable style={styles.ppProfileNameNode}>
           <Text style={styles.picHeader2}>@user-name</Text>
         </Pressable>
-        <ProfileClick />
+        <Pressable style={styles.ppProfileImageHolder} onPress={toggleProfile}>
+          <Image
+            style={styles.ppProfileImage}
+            source={miso}
+          />
+        </Pressable>
         <Text style={[styles.picDescription, { left: 2, top: 220 }]}>Descriptive Text</Text>
         <View
           style={{
@@ -99,7 +109,12 @@ export default function PawPostPost() {
           <Pressable style={styles.insppProfileNameNode}>
             <Text style={styles.inspicHeader2}>@user-name</Text>
           </Pressable>
-          <ProfileClick />
+          <Pressable style={styles.insppProfileImageHolder} onPress={toggleProfile}>
+            <Image
+              style={styles.ppProfileImage}
+              source={miso}
+            />
+          </Pressable>
           <Text style={[styles.inspicDescription, { left: -8, top: (Dimensions.get('window').width - 80) }]}>Descriptive Text</Text>
           <View
             style={{
@@ -158,6 +173,29 @@ export default function PawPostPost() {
 
           </ScrollView>
         </View>
+      </Modal>
+      <Modal
+        isVisible={isProfileVisible}
+        onBackdropPress={() => isProfileVisible}
+        animationIn="slideInRight"
+        animationOut="slideOutRight"
+        hasBackdrop={false}
+        style={styles.oProfModal}
+      >
+        <Pressable
+          onPress={toggleProfile}
+          style={{
+            alignSelf: 'flex-start', position: 'absolute', margin: 10,
+          }}
+        >
+          <Feather
+            name="chevron-left"
+            size={30}
+            color={isDarkMode === 'light' ? pawYellow : pawWhite}
+            style={styles.exitProfButton}
+          />
+        </Pressable>
+        <ProfileClick />
       </Modal>
     </View>
   );
