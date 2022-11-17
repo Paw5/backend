@@ -29,19 +29,21 @@ https.createServer({
 app.post('/login', (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) res.status(400).send();
-  login.createUser(username, password).then((v) => {
-    if (v.error) {
-      res.status(400).send(v);
-    } else if (v.data) {
-      res.status(200);
-      getToken(`Basic ${base64.encode(`${username}:${password}`)}`).then((token) => res.json({
-        data: {
-          type: 'token',
-          attributes: [token],
-        },
-      }));
-    }
-  });
+  else {
+    login.createUser(username, password).then((v) => {
+      if (v.error) {
+        res.status(400).send(v);
+      } else if (v.data) {
+      // res.status(200);
+        getToken(`Basic ${base64.encode(`${username}:${password}`)}`).then((token) => res.json({
+          data: {
+            type: 'token',
+            attributes: [token],
+          },
+        }));
+      }
+    });
+  }
 });
 
 app.use((req, res, next) => {
