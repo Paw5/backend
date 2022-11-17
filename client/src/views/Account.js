@@ -82,7 +82,7 @@ export default function AccountTab() {
       {/* profile options modal */}
       <Modal
         isVisible={isProfileVisible}
-        onSwipeMove={() => setProfileVisible(false)}
+        onSwipeComplete={() => setProfileVisible(false)}
         swipeDirection="right"
         animationIn="slideInRight"
         animationOut="slideOutRight"
@@ -221,7 +221,7 @@ export default function AccountTab() {
       {/* pets options modal */}
       <Modal
         isVisible={isPetsVisible}
-        onSwipeMove={() => setPetsVisible(false)}
+        onSwipeComplete={() => setPetsVisible(false)}
         swipeDirection="right"
         animationIn="slideInRight"
         animationOut="slideOutRight"

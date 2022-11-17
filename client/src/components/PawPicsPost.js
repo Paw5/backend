@@ -54,7 +54,7 @@ export default function PawPostPost() {
           />
 
         </Pressable>
-        <Pressable style={styles.ppProfileNameNode}>
+        <Pressable style={styles.ppProfileNameNode} onPress={toggleProfile}>
           <Text style={styles.picHeader2}>@user-name</Text>
         </Pressable>
         <Pressable style={styles.ppProfileImageHolder} onPress={toggleProfile}>
@@ -79,12 +79,9 @@ export default function PawPostPost() {
         <Text style={[styles.picTag, { left: 2, top: 265 }]}>Tags</Text>
       </Pressable>
 
-      {/* </DropShadow> */}
       <Modal
         isVisible={isPicVisible}
         onBackdropPress={() => isPicVisible}
-        onSwipeMove={() => setPicVisible(false)}
-        swipeDirection="right"
         animationIn="slideInRight"
         animationOut="slideOutRight"
         hasBackdrop={false}
@@ -106,12 +103,14 @@ export default function PawPostPost() {
               color={isDarkMode === 'light' ? pawYellow : pawPink}
               style={styles.likeLoc2}
             />
-
           </Pressable>
-          <Pressable style={styles.insppProfileNameNode}>
-            <Text style={styles.inspicHeader2}>@user-name</Text>
+          <Pressable style={styles.insppProfileNameNode} onPress={toggleProfile}>
+            <Text style={styles.picHeader2}>@user-name</Text>
           </Pressable>
-          <Pressable style={styles.insppProfileImageHolder} onPress={toggleProfile}>
+          <Pressable
+            style={styles.insppProfileImageHolder}
+            onPress={toggleProfile}
+          >
             <Image
               style={styles.ppProfileImage}
               source={miso}
@@ -187,7 +186,11 @@ export default function PawPostPost() {
         <Pressable
           onPress={toggleProfile}
           style={{
-            alignSelf: 'flex-start', position: 'absolute', margin: 10,
+            alignSelf: 'flex-start',
+            position: 'absolute',
+            margin: 10,
+            zIndex: 50,
+            marginTop: Platform.OS === 'android' ? 38 : 56,
           }}
         >
           <Feather

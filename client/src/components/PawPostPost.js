@@ -55,7 +55,7 @@ export default function PawPostPost() {
 
       <Modal
         isVisible={isPostVisible}
-        onSwipeMove={() => setPostVisible(false)}
+        onSwipeComplete={() => setPostVisible(false)}
         swipeDirection="right"
         animationIn="slideInRight"
         animationOut="slideOutRight"

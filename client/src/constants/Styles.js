@@ -748,14 +748,12 @@ export default StyleSheet.create({
     width: 60,
     top: 220,
     left: 0,
-    borderRadius: 100,
   },
   insppProfileImageHolder: {
     height: 60,
     width: 60,
-    top: 330,
+    top: Platform.OS === 'android' ? 330 : 310,
     left: -10,
-    borderRadius: 100,
   },
   ppProfileImage: {
     height: 60,
@@ -1395,9 +1393,8 @@ export default StyleSheet.create({
   oProfModal: {
     backgroundColor: pawGreen,
     width: Dimensions.get('window').width,
+    marginTop: Platform.OS === 'android' ? -StatusBarHeight : 0,
     marginLeft: 0,
-    height: Dimensions.get('window').height,
-    marginTop: Platform.OS === 'android' ? 0 : StatusBarHeight,
     marginBottom: -20,
     justifyContent: 'flex-start',
     alignContent: 'center',

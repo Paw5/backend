@@ -740,6 +740,13 @@ export default StyleSheet.create({
     left: 0,
     borderRadius: 100,
   },
+  insppProfileImageHolder: {
+    height: 60,
+    width: 60,
+    top: Platform.OS === 'android' ? 330 : 310,
+    left: -10,
+    borderRadius: 100,
+  },
   ppProfileImage: {
     height: 60,
     width: 60,
@@ -1361,7 +1368,7 @@ export default StyleSheet.create({
     width: Dimensions.get('window').width,
     marginLeft: 0,
     height: Dimensions.get('window').height,
-    marginTop: Platform.OS === 'android' ? 0 : StatusBarHeight,
+    marginTop: Platform.OS === 'android' ? -StatusBarHeight : 0,
     marginBottom: -20,
     justifyContent: 'flex-start',
     alignContent: 'center',
