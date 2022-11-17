@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import {
-  View, Text, Pressable, TextInput, Dimensions, FlatList, Animated,
+  View, Text, Pressable, TextInput, Dimensions, FlatList, Animated, Platform,
 } from 'react-native';
 import { useSelector } from 'react-redux';
 import Modal from 'react-native-modal';
@@ -46,7 +46,7 @@ export default function Onboarding() {
   };
 
   const [fontSize, setFontSize] = React.useState(maxFontSize);
-
+  /*
   const scaleFontSize = (width) => {
     const actualWidth = width + fontSize;
     const scaledSize = Math.min(maxFontSize, fontSize * (textInputWidth / actualWidth));
@@ -60,7 +60,7 @@ export default function Onboarding() {
 
     scaleFontSize(width);
   };
-
+*/
   return (
     <View style={{
       flex: 1, backgroundColor: pawPink,
@@ -78,7 +78,7 @@ export default function Onboarding() {
           [{ nativeEvent: { contentOffset: { x: scrollX } } }],
           { useNativeDriver: false },
         )}
-        style={{ height: Dimensions.get('window').height - 290 }}
+        style={{ height: Dimensions.get('window').height - (Platform.OS === 'ios' ? 290 : 230) }}
       />
       <RNAnimatedScrollIndicators
         numberOfCards={3}
@@ -185,7 +185,6 @@ export default function Onboarding() {
             keyboardType="email-address"
             secureTextEntry={false}
             autoCapitalize="none"
-            onContentSizeChange={onContentSizeChange}
           />
           <TextInput
             style={styles.signinField}
