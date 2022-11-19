@@ -1,30 +1,65 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable global-require */
 // Required imports
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import {
+  ActivityIndicator, View, Image, Dimensions,
+} from 'react-native';
 import { registerRootComponent } from 'expo';
+import { useFonts } from 'expo-font';
+import { Provider } from 'react-redux';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import NavBar from '../components/NavBar';
+import store from '../redux/Store';
+import Onboarding from './Onboarding';
+import { pawPink } from '../constants/Styles';
 
-// Component imports
-import { NavigationContainer } from '@react-navigation/native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
-import Settings from './Settings';
-import Home from './Home';
+const logo = require('../../assets/Paw5Logo.png');
 
-const { Navigator, Screen } = require('@react-navigation/bottom-tabs').createBottomTabNavigator();
-
-const getTabBarIcon = ({ focused, color }) => (
-  <Ionicons name="cog" size={32} color={focused ? color : 'red'} />
-);
+function Load() { // can be used for initializing settings
+  return (
+    <View style={{
+      flex: 1, width: Dimensions.get('window').width, justifyContent: 'center', backgroundColor: pawPink,
+    }}
+    >
+      <Image style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').width - 100 }} source={logo} />
+      <ActivityIndicator size="large" />
+    </View>
+  );
+}
 
 export default function App() {
+  const [loading, setLoading] = useState(true);
+  const [viewOnboard, setViewedOnboard] = useState(false);
+
+  const checkOnboard = async () => {
+    const val = await AsyncStorage.getItem('@viewedOnboard');
+    if (val !== null) {
+      setViewedOnboard(true);
+    }
+    setLoading(false);
+  };
+
+  useEffect(() => {
+    checkOnboard();
+  }, []);
+
+  const [loaded] = useFonts({
+    QuicksandBold: require('../../assets/fonts/Quicksand-Bold.ttf'),
+    QuicksandLight: require('../../assets/fonts/Quicksand-Light.ttf'),
+    QuicksandMedium: require('../../assets/fonts/Quicksand-Medium.ttf'),
+    QuicksandRegular: require('../../assets/fonts/Quicksand-Regular.ttf'),
+    QuicksandSemiBold: require('../../assets/fonts/Quicksand-SemiBold.ttf'),
+  });
+
+  if (!loaded) {
+    return null;
+  }
+
   return (
-    <NavigationContainer>
-      <Navigator screenOptions={{ headerShown: false, tabBarIcon: getTabBarIcon }}>
-        <Screen name="Home" component={Home} />
-        <Screen name="Settings" component={Settings} />
-        <Screen name="Community" component={Home} />
-        <Screen name="Map" component={Settings} />
-        <Screen name="Account" component={Home} />
-      </Navigator>
-    </NavigationContainer>
+    <Provider store={store}>
+      {loading ? <Load /> : viewOnboard ? <NavBar /> : <Onboarding />}
+    </Provider>
   );
 }
 
