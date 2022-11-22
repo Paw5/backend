@@ -2,6 +2,7 @@ const express = require('express');
 const dotenv = require('dotenv'); // library for processing .env files
 const bodyParser = require('body-parser');
 const https = require('https');
+const http = require('http');
 const fs = require('fs');
 const base64 = require('base-64');
 const connection = require('./connection.js');
@@ -20,10 +21,19 @@ app.use(bodyParser.json());
 
 // Initialize SSL certificate for HTTPS connections
 https.createServer({
-  key: fs.readFileSync('key.pem'),
-  cert: fs.readFileSync('cert.pem'),
-}, app).listen(3001, () => {
+  key: fs.readFileSync('./key.pem'),
+  cert: fs.readFileSync('./cert.pem'),
+  ca: fs.readFileSync('./ca.pem'),
+}, app).listen(443, () => {
   console.log('server is running on port 3001');
+});
+
+http.createServer(app).listen(80);
+
+app.use((req, res, next) => {
+  if (!req.secure) {
+    res.status(308).location(`https://paw-5.com${req.url}`).send();
+  } else next();
 });
 
 app.post('/login', (req, res) => {
@@ -34,7 +44,6 @@ app.post('/login', (req, res) => {
       if (v.error) {
         res.status(400).send(v);
       } else if (v.data) {
-      // res.status(200);
         getToken(`Basic ${base64.encode(`${username}:${password}`)}`).then((token) => res.json({
           data: {
             type: 'token',
@@ -111,7 +120,7 @@ app.get('/count/:table', (req, res) => {
   connection.query(`SELECT COUNT(*) AS 'count' FROM ${req.params.table}`, (error, values) => {
     if (error) {
       if (error.code === 'ER_NO_SUCH_TABLE') res.status(404);
-      res.send(error);
+      else res.send(error);
     } else {
       res.send(values[0]);
     }
