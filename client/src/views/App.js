@@ -18,24 +18,22 @@ import { getLocation } from '../redux/LocationSlice';
 
 const logo = require('../../assets/Paw5Logo.png');
 
-function Load() { // can be used for initializing settings
-  const [location, setLocation] = useState({ coords: { latitude: 0, longitude: 0 } });
+function Load({ setLocation }) { // can be used for initializing settings
+  const [location] = useState({ coords: { latitude: 0, longitude: 0 } });
   const dispatch = useDispatch();
-  useEffect(() => {
-    (async () => {
-      await AsyncStorage.setItem('@loading', 'true');
-      const { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        return;
-      }
+  useEffect(async () => {
+    await AsyncStorage.setItem('@loading', 'true');
+    const { status } = await Location.requestForegroundPermissionsAsync();
+    if (status !== 'granted') {
+      return;
+    }
 
-      // eslint-disable-next-line no-shadow
-      const location = await Location.getCurrentPositionAsync({});
-      setLocation(location);
+    // eslint-disable-next-line no-shadow
+    const location = await Location.getCurrentPositionAsync({});
+    setLocation(location);
 
-      console.log('done');
-      await AsyncStorage.setItem('@loading', 'false');
-    })();
+    console.log('done');
+    await AsyncStorage.setItem('@loading', 'false');
   }, []);
 
   dispatch(getLocation(location));
@@ -53,7 +51,12 @@ function Load() { // can be used for initializing settings
 
 export default function App() {
   const [viewOnboard, setViewedOnboard] = useState(false);
-  const [getLoading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true);
+  const [location, setLocation] = useState({ coords: { latitude: 0, longitude: 0 } });
+
+  useEffect(() => {
+    setLoading(false);
+  }, [location.coords.latitude, location.coords.longitude]);
 
   const checkOnboard = async () => {
     const val = await AsyncStorage.getItem('@viewedOnboard');
@@ -88,7 +91,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      {getLoading ? <Load /> : viewOnboard ? <NavBar /> : <Onboarding />}
+      {loading ? <Load setLocation={setLocation} /> : (viewOnboard ? <NavBar /> : <Onboarding />)}
     </Provider>
   );
 }
