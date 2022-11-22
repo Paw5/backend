@@ -43,7 +43,7 @@ function Load({ setLocation }) { // can be used for initializing settings
       flex: 1, width: Dimensions.get('window').width, justifyContent: 'center', backgroundColor: pawPink,
     }}
     >
-      <Image style={{ width: Dimensions.get('window').width, height: Dimensions.get('window').width - 100 }} source={logo} />
+      <Image style={{ width: Dimensions.get('window').width - 40, height: Dimensions.get('window').width - 100 }} source={logo} />
       <ActivityIndicator size="large" />
     </View>
   );
