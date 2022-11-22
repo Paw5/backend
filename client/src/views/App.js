@@ -7,16 +7,39 @@ import {
 } from 'react-native';
 import { registerRootComponent } from 'expo';
 import { useFonts } from 'expo-font';
-import { Provider } from 'react-redux';
+import * as Location from 'expo-location';
+import { Provider, useDispatch } from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import NavBar from '../components/NavBar';
 import store from '../redux/Store';
 import Onboarding from './Onboarding';
 import { pawPink } from '../constants/Styles';
+import { getLocation } from '../redux/LocationSlice';
 
 const logo = require('../../assets/Paw5Logo.png');
 
 function Load() { // can be used for initializing settings
+  const [location, setLocation] = useState({ coords: { latitude: 0, longitude: 0 } });
+  const dispatch = useDispatch();
+  useEffect(() => {
+    (async () => {
+      await AsyncStorage.setItem('@loading', 'true');
+      const { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        return;
+      }
+
+      // eslint-disable-next-line no-shadow
+      const location = await Location.getCurrentPositionAsync({});
+      setLocation(location);
+
+      console.log('done');
+      await AsyncStorage.setItem('@loading', 'false');
+    })();
+  }, []);
+
+  dispatch(getLocation(location));
+
   return (
     <View style={{
       flex: 1, width: Dimensions.get('window').width, justifyContent: 'center', backgroundColor: pawPink,
@@ -29,19 +52,26 @@ function Load() { // can be used for initializing settings
 }
 
 export default function App() {
-  const [loading, setLoading] = useState(true);
   const [viewOnboard, setViewedOnboard] = useState(false);
+  const [getLoading, setLoading] = useState(true);
 
   const checkOnboard = async () => {
     const val = await AsyncStorage.getItem('@viewedOnboard');
     if (val !== null) {
       setViewedOnboard(true);
     }
-    setLoading(false);
+  };
+
+  const checkLoading = async () => {
+    const val = await AsyncStorage.getItem('@loading');
+    if (val === null) {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
     checkOnboard();
+    checkLoading();
   }, []);
 
   const [loaded] = useFonts({
@@ -58,7 +88,7 @@ export default function App() {
 
   return (
     <Provider store={store}>
-      {loading ? <Load /> : viewOnboard ? <NavBar /> : <Onboarding />}
+      {getLoading ? <Load /> : viewOnboard ? <NavBar /> : <Onboarding />}
     </Provider>
   );
 }

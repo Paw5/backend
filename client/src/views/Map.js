@@ -16,6 +16,7 @@ const StatusBarHeight = getStatusBarHeight();
 export default function MapTab() {
   const [styles, setStyles] = useState(lstyles);
   const isDarkMode = useSelector((state) => state.settings.darkMode);
+  const initialLocation = useSelector((state) => state.location.region);
 
   useEffect(() => {
     if (isDarkMode === 'light') setStyles(dstyles);
@@ -34,14 +35,14 @@ export default function MapTab() {
             showsUserLocation
             followsUserLocation
             region={{
-              latitude: 33.2148,
-              longitude: -97.1331,
+              latitude: initialLocation.latitude,
+              longitude: initialLocation.longitude,
               latitudeDelta: 0.2,
               longitudeDelta: 0.2,
             }}
             initialRegion={{
-              latitude: 33.2148,
-              longitude: -97.1331,
+              latitude: initialLocation.latitude,
+              longitude: initialLocation.longitude,
               latitudeDelta: 0.2,
               longitudeDelta: 0.2,
             }}
