@@ -12,7 +12,7 @@ const locationSlice = createSlice({
     },
   },
   reducers: {
-    getLocation: (state, action) => {
+    setLocation: (state, action) => {
       state.region.latitude = action.payload.coords.latitude;
       state.region.longitude = action.payload.coords.longitude;
     },
@@ -20,6 +20,6 @@ const locationSlice = createSlice({
 
 });
 
-export const { getLocation } = locationSlice.actions;
+export const { setLocation } = locationSlice.actions;
 
 export default locationSlice.reducer;
