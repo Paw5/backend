@@ -14,29 +14,31 @@ import NavBar from '../components/NavBar';
 import store from '../redux/Store';
 import Onboarding from './Onboarding';
 import { pawPink } from '../constants/Styles';
-import { getLocation } from '../redux/LocationSlice';
+import { setLocation as setLocationStore } from '../redux/LocationSlice';
 
 const logo = require('../../assets/Paw5Logo.png');
 
 function Load({ setLocation }) { // can be used for initializing settings
-  const [location] = useState({ coords: { latitude: 0, longitude: 0 } });
   const dispatch = useDispatch();
-  useEffect(async () => {
-    await AsyncStorage.setItem('@loading', 'true');
-    const { status } = await Location.requestForegroundPermissionsAsync();
-    if (status !== 'granted') {
-      return;
-    }
+  useEffect(
+    () => {
+      (async () => {
+        await AsyncStorage.setItem('@loading', 'true');
+        const { status } = await Location.requestForegroundPermissionsAsync();
+        if (status !== 'granted') {
+          return;
+        }
 
-    // eslint-disable-next-line no-shadow
-    const location = await Location.getCurrentPositionAsync({});
-    setLocation(location);
+        // eslint-disable-next-line no-shadow
+        const location = await Location.getCurrentPositionAsync({});
+        dispatch(setLocationStore(location));
+        await AsyncStorage.setItem('@loading', 'false');
 
-    console.log('done');
-    await AsyncStorage.setItem('@loading', 'false');
-  }, []);
-
-  dispatch(getLocation(location));
+        setLocation(location);
+      })();
+    },
+    [],
+  );
 
   return (
     <View style={{
@@ -55,7 +57,9 @@ export default function App() {
   const [location, setLocation] = useState({ coords: { latitude: 0, longitude: 0 } });
 
   useEffect(() => {
-    setLoading(false);
+    if (location.coords.latitude && location.coords.longitude) {
+      setLoading(false);
+    }
   }, [location.coords.latitude, location.coords.longitude]);
 
   const checkOnboard = async () => {
@@ -65,16 +69,8 @@ export default function App() {
     }
   };
 
-  const checkLoading = async () => {
-    const val = await AsyncStorage.getItem('@loading');
-    if (val === null) {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
     checkOnboard();
-    checkLoading();
   }, []);
 
   const [loaded] = useFonts({
