@@ -34,18 +34,8 @@ export default function MapTab() {
             provider={PROVIDER_GOOGLE}
             showsUserLocation
             followsUserLocation
-            region={{
-              latitude: initialLocation.latitude,
-              longitude: initialLocation.longitude,
-              latitudeDelta: 0.2,
-              longitudeDelta: 0.2,
-            }}
-            initialRegion={{
-              latitude: initialLocation.latitude,
-              longitude: initialLocation.longitude,
-              latitudeDelta: 0.2,
-              longitudeDelta: 0.2,
-            }}
+            region={initialLocation}
+            initialRegion={initialLocation}
           />
 
         </View>
