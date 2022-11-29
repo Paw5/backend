@@ -28,7 +28,6 @@
     "react-feather": "^2.0.10",
     "react-native": "0.69.6",
     "react-native-animated-scroll-indicators": "^1.0.1",
-    "react-native-geolocation-service": "^5.3.1",
     "react-native-maps": "^0.31.1",
     "react-native-modal": "^13.0.1",
     "react-native-onboarding-swiper": "^1.2.0",
