@@ -1495,4 +1495,9 @@ export default StyleSheet.create({
     width: Dimensions.get('window').width,
     backgroundColor: pawLightGrey,
   },
+  dropDownPaw5: {
+    backgroundColor: pawGreen,
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
+  },
 });

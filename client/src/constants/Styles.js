@@ -1520,4 +1520,10 @@ export default StyleSheet.create({
     width: Dimensions.get('window').width,
     backgroundColor: pawWhite,
   },
+  /* DROP DOWN STYLES */
+  dropDownPaw5: {
+    backgroundColor: pawPink,
+    borderBottomRightRadius: 20,
+    borderBottomLeftRadius: 20,
+  },
 });
