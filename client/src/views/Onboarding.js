@@ -2,16 +2,15 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
   View, Text, Pressable,
   TextInput, Dimensions, FlatList,
-  Animated, Platform,
+  Animated, Platform, Modal, ScrollView,
 } from 'react-native';
 import { useSelector } from 'react-redux';
 import validator from 'validator';
-import Modal from 'react-native-modal';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
-import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Feather } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DropdownAlert from 'react-native-dropdownalert';
+import axios from 'axios';
 import slides from '../components/OnboardingSlides';
 import OnboardingItem from '../components/OnboardingItem';
 import lstyles, {
@@ -32,14 +31,8 @@ export default function Onboarding({ setViewedOnboard }) {
 
   const scrollX = new Animated.Value(0);
 
-  const endOnboarding = async () => {
-    fetch('https://www.paw-5.com/login', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formEntry),
-    }).then(async (res) => {
+  const registerUser = async () => {
+    axios.post('https://www.paw-5.com/login', formEntry).then(async (res) => {
       if (res.status === 200) return res.json();
       if (res.status === 409) throw new Error('Conflict');
       throw new Error('Bad Request');
@@ -148,10 +141,8 @@ export default function Onboarding({ setViewedOnboard }) {
         </View>
 
         <Modal
-          isVisible={isSigninVisible}
-          animationIn="slideInRight"
-          animationOut="slideOutRight"
-          hasBackdrop={false}
+          visible={isSigninVisible}
+          animationType="slide"
           style={styles.signinModal}
         >
           <Pressable
@@ -184,19 +175,23 @@ export default function Onboarding({ setViewedOnboard }) {
             secureTextEntry
             textAlign="center"
           />
-          <Pressable onPress={endOnboarding} style={[styles.signinPrompt, { marginTop: 15 }]}>
+          <Pressable
+            onPress={() => {
+              setViewedOnboard(true);
+              AsyncStorage.setItem('@loginToken', 'debug');
+            }}
+            style={[styles.signinPrompt, { marginTop: 15 }]}
+          >
             <Text style={styles.signinPromptText}>Sign In</Text>
           </Pressable>
         </Modal>
 
         <Modal
-          isVisible={isRegisterVisible}
-          animationIn="slideInRight"
-          animationOut="slideOutRight"
-          hasBackdrop={false}
+          visible={isRegisterVisible}
+          animationType="modal"
           style={styles.signinModal}
         >
-          <KeyboardAwareScrollView
+          <ScrollView
             alwaysBounceVertical={false}
             showsVerticalScrollIndicator={false}
             keyboardShouldPersistTaps="handled"
@@ -226,7 +221,7 @@ export default function Onboarding({ setViewedOnboard }) {
               keyboardType="email-address"
               secureTextEntry={false}
               autoCapitalize="none"
-              // value={formEntry.email}
+              autoCorrect={false}
               onChangeText={(text) => {
                 if (text) {
                   setEmailValid(validator.isEmail(text));
@@ -239,10 +234,8 @@ export default function Onboarding({ setViewedOnboard }) {
               placeholder="first name"
               placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
               textAlign="center"
-              secureTextEntry={false}
-              // value={formEntry.firstname}
               onChangeText={(text) => updateFormEntry('firstname', text)}
-              autoCorrect="email"
+              autoCorrect={false}
               autoCapitalize="none"
               autoComplete="email"
             />
@@ -251,8 +244,7 @@ export default function Onboarding({ setViewedOnboard }) {
               placeholder="last name"
               placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
               textAlign="center"
-              secureTextEntry={false}
-              // value={formEntry.lastname}
+              autoCorrect={false}
               onChangeText={(text) => updateFormEntry('lastname', text)}
             />
             <TextInput
@@ -260,9 +252,8 @@ export default function Onboarding({ setViewedOnboard }) {
               placeholder="username"
               placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
               textAlign="center"
-              secureTextEntry={false}
               autoCapitalize="none"
-              // value={formEntry.username}
+              autoCorrect={false}
               onChangeText={(text) => updateFormEntry('username', text)}
             />
             <TextInput
@@ -271,7 +262,7 @@ export default function Onboarding({ setViewedOnboard }) {
               placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
               secureTextEntry
               textAlign="center"
-              // value={formEntry.password}
+              autoCorrect={false}
               onChangeText={(text) => updateFormEntry('password', text)}
             />
             <TextInput
@@ -279,12 +270,13 @@ export default function Onboarding({ setViewedOnboard }) {
               placeholder="retype password"
               placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
               secureTextEntry
+              autoCorrect={false}
               textAlign="center"
             />
 
             <Pressable
               onPress={() => {
-                if (formEntry.email && isEmailValid) endOnboarding();
+                if (formEntry.email && isEmailValid) registerUser();
                 else dropdownAlert.alertWithType('custom', 'Warning:', 'Invalid email');
               }}
               style={[styles.signinPrompt, { marginTop: 15 }]}
@@ -292,7 +284,7 @@ export default function Onboarding({ setViewedOnboard }) {
               <Text style={styles.signinPromptText}>Submit</Text>
             </Pressable>
 
-          </KeyboardAwareScrollView>
+          </ScrollView>
           <DropdownAlert
             ref={(ref) => {
               if (ref) {

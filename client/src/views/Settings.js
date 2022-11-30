@@ -72,7 +72,7 @@ export default function ServicesTab() {
   }, [isDarkMode]);
 
   const clearOnboarding = async () => {
-    await AsyncStorage.removeItem('@viewedOnboard');
+    await AsyncStorage.removeItem('@loginToken');
   };
 
   return (
@@ -346,7 +346,7 @@ export default function ServicesTab() {
               numberOfLines={1}
               style={styles.settingsTextOnboard}
             >
-              Reset Onboarding
+              Log Out
             </Text>
           </Pressable>
         </View>

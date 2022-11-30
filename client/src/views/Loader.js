@@ -1,13 +1,13 @@
 import React from 'react';
 import {
-  View, Image, ActivityIndicator, Dimensions, Text,
+  View, Image, ActivityIndicator, Dimensions,
 } from 'react-native';
 
 import logo from '../../assets/Paw5Logo.png';
 import { pawPink } from '../constants/Styles';
 
 export default function Loader({
-  show, title, children,
+  show, children,
 }) {
   if (show) {
     return (
@@ -20,10 +20,9 @@ export default function Loader({
       }}
       >
         <Image resizeMode="contain" style={{ width: Dimensions.get('window').width - 40 }} source={logo} />
-        {
-          title ? <Text>{title}</Text>
-            : <ActivityIndicator size="large" />
-        }
+
+        <ActivityIndicator size="large" />
+
       </View>
     );
   }

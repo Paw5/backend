@@ -1383,7 +1383,7 @@ export default StyleSheet.create({
     textAlign: 'center',
   },
   onboardingDes: {
-    fontWeight: '350',
+    fontWeight: '400',
     fontSize: 16,
     color: pawWhite,
     textAlign: 'center',

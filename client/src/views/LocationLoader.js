@@ -2,8 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import * as Location from 'expo-location';
 import { setLocation } from '../redux/LocationSlice';
 
-export default function LocationLoader() {
-  const [status, requestPermission] = Location.useForegroundPermissions();
+export default function LocationLoader({ status, requestPermission }) {
   const dispatch = useDispatch();
   const currentLocation = useSelector((state) => state.location);
 
