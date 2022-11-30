@@ -77,6 +77,16 @@ export default function Onboarding({ setViewedOnboard }) {
     setRegisterVisible(!isRegisterVisible);
   };
 
+  const [hidePassword, setHidePassword] = useState(true);
+  const toggleHidePassword = () => {
+    setHidePassword(!hidePassword);
+  };
+
+  const [hideConfirmPassword, setHideConfirmPassword] = useState(true);
+  const toggleHideConfirmPassword = () => {
+    setHideConfirmPassword(!hideConfirmPassword);
+  };
+
   /* const [fontSize, setFontSize] = React.useState(maxFontSize);
 
   const scaleFontSize = (width) => {
@@ -172,13 +182,23 @@ export default function Onboarding({ setViewedOnboard }) {
             textAlign="center"
             autoCapitalize="none"
           />
-          <TextInput
-            style={styles.signinField}
-            placeholder="password"
-            placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
-            secureTextEntry
-            textAlign="center"
-          />
+          <View>
+            <TextInput
+              style={styles.signinField}
+              placeholder="password"
+              placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
+              secureTextEntry={hidePassword}
+              textAlign="center"
+            />
+            <Pressable style={[styles.signinField, { position: 'absolute', width: 50, right: 20 }]} onPress={toggleHidePassword}>
+              <Feather
+                name={hidePassword ? 'eye' : 'eye-off'}
+                size={30}
+                color="#333333"
+                style={{ }}
+              />
+            </Pressable>
+          </View>
           <Pressable
             onPress={() => {
               AsyncStorage.setItem('@loginToken', 'debug', () => setViewedOnboard(true));
@@ -260,24 +280,43 @@ export default function Onboarding({ setViewedOnboard }) {
               autoCorrect={false}
               onChangeText={(text) => updateFormEntry('username', text)}
             />
-            <TextInput
-              style={styles.signinField}
-              placeholder="password"
-              placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
-              secureTextEntry
-              textAlign="center"
-              autoCorrect={false}
-              onChangeText={(text) => updateFormEntry('password', text)}
-            />
-            <TextInput
-              style={styles.signinField}
-              placeholder="retype password"
-              placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
-              secureTextEntry
-              autoCorrect={false}
-              textAlign="center"
-            />
-
+            <View>
+              <TextInput
+                style={styles.signinField}
+                placeholder="password"
+                placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
+                secureTextEntry={hidePassword}
+                textAlign="center"
+                autoCorrect={false}
+                onChangeText={(text) => updateFormEntry('password', text)}
+              />
+              <Pressable style={[styles.signinField, { position: 'absolute', width: 50, right: 20 }]} onPress={toggleHidePassword}>
+                <Feather
+                  name={hidePassword ? 'eye' : 'eye-off'}
+                  size={30}
+                  color="#333333"
+                  style={{ }}
+                />
+              </Pressable>
+            </View>
+            <View>
+              <TextInput
+                style={styles.signinField}
+                placeholder="retype password"
+                placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
+                secureTextEntry={hideConfirmPassword}
+                autoCorrect={false}
+                textAlign="center"
+              />
+              <Pressable style={[styles.signinField, { position: 'absolute', width: 50, right: 20 }]} onPress={toggleHideConfirmPassword}>
+                <Feather
+                  name={hideConfirmPassword ? 'eye' : 'eye-off'}
+                  size={30}
+                  color="#333333"
+                  style={{ }}
+                />
+              </Pressable>
+            </View>
             <Pressable
               onPress={() => {
                 if (formEntry.email && isEmailValid) registerUser();
