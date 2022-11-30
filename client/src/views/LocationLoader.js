@@ -9,12 +9,10 @@ export default function LocationLoader({ status, requestPermission }) {
   if (status === null) {
     requestPermission();
   } else if (status.granted && !currentLocation.loaded) {
-    console.debug('Current location', currentLocation);
     Location.getCurrentPositionAsync({
       accuracy: Location.LocationAccuracy.Balanced,
     }).then((location) => {
-      console.debug('Found location', location);
       dispatch(setLocation(location));
     });
-  } else console.debug('Current location', currentLocation);
+  }
 }

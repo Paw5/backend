@@ -35,7 +35,9 @@ export default function Onboarding({ setViewedOnboard }) {
 
   const registerUser = async () => {
     axios.post('https://www.paw-5.com/login', formEntry).then(async (res) => {
-      if (res.status === 200) return res.json();
+      if (res.status === 200) {
+        return res.data;
+      }
       if (res.status === 409) throw new Error('Conflict');
       throw new Error('Bad Request');
     })

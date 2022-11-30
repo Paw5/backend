@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { useFonts } from 'expo-font';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSelector } from 'react-redux';
+import * as Location from 'expo-location';
 import NavBar from '../components/NavBar';
 import Onboarding from './Onboarding';
 import Loader from './Loader';
+import LocationLoader from './LocationLoader';
 
 const QuicksandBold = require('../../assets/fonts/Quicksand-Bold.ttf');
 const QuicksandLight = require('../../assets/fonts/Quicksand-Light.ttf');
@@ -17,6 +19,9 @@ export default function Base() {
   const [loginToken, setLoginToken] = useState(null);
   const [fetchingToken, setFetchingToken] = useState(true);
   useSelector((state) => state.settings.reloadNeeded);
+  const [status, requestPermission] = Location.useForegroundPermissions();
+
+  LocationLoader({ status, requestPermission });
 
   const [loaded] = useFonts({
     QuicksandBold,
