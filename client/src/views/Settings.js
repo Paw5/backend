@@ -12,7 +12,7 @@ import lstyles, {
 import dstyles, {
   pawLightGrey,
 } from '../constants/DarkStyles';
-import { flipDarkMode } from '../redux/SettingsSlice';
+import { flipDarkMode, reload } from '../redux/SettingsSlice';
 
 /* GET LIGHT DARK START */
 const dlKey = '@darkLight';
@@ -71,8 +71,8 @@ export default function ServicesTab() {
     else setStyles(lstyles);
   }, [isDarkMode]);
 
-  const clearOnboarding = async () => {
-    await AsyncStorage.removeItem('@loginToken');
+  const clearOnboarding = () => {
+    AsyncStorage.removeItem('@loginToken', () => dispatch(reload()));
   };
 
   return (

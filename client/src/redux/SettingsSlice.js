@@ -13,13 +13,12 @@ const settingsSlice = createSlice({
     },
 
     reload: (state) => {
-      state.reloadNeeded = true;
-      state.reloadNeeded = false;
+      state.reloadNeeded = !state.reloadNeeded;
     },
   },
 
 });
 
-export const { flipDarkMode } = settingsSlice.actions;
+export const { flipDarkMode, reload } = settingsSlice.actions;
 
 export default settingsSlice.reducer;

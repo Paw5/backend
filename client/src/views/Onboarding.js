@@ -4,7 +4,7 @@ import {
   TextInput, Dimensions, FlatList,
   Animated, Platform, Modal, ScrollView,
 } from 'react-native';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import validator from 'validator';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
 import { Feather } from '@expo/vector-icons';
@@ -17,6 +17,7 @@ import lstyles, {
   pawGreen, pawPink, pawWhite,
 } from '../constants/Styles';
 import dstyles from '../constants/DarkStyles';
+import { reload } from '../redux/SettingsSlice';
 
 // const textInputWidth = Dimensions.get('window').width - 60;
 // const maxFontSize = 26;
@@ -27,6 +28,7 @@ export default function Onboarding({ setViewedOnboard }) {
   const [isSigninVisible, setSigninVisible] = useState(false);
   const [formEntry, setFormEntry] = useState({});
   const [isEmailValid, setEmailValid] = useState(false);
+  const dispatch = useDispatch();
   let dropdownAlert = useRef();
 
   const scrollX = new Animated.Value(0);
@@ -177,8 +179,8 @@ export default function Onboarding({ setViewedOnboard }) {
           />
           <Pressable
             onPress={() => {
-              setViewedOnboard(true);
-              AsyncStorage.setItem('@loginToken', 'debug');
+              AsyncStorage.setItem('@loginToken', 'debug', () => setViewedOnboard(true));
+              dispatch(reload());
             }}
             style={[styles.signinPrompt, { marginTop: 15 }]}
           >

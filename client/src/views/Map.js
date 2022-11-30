@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import MapView from 'react-native-maps';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
-import Location from 'expo-location';
+import * as Location from 'expo-location';
 import SearchBar from '../components/SearchBarServ';
 import lstyles from '../constants/Styles';
 import dstyles from '../constants/DarkStyles';
