@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
   View, Text, Pressable,
   TextInput, Dimensions, FlatList,
-  Animated, Platform, Modal, ScrollView,
+  Animated, Platform, ScrollView,
 } from 'react-native';
+import Modal from 'react-native-modal';
 import { useDispatch, useSelector } from 'react-redux';
 import validator from 'validator';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
