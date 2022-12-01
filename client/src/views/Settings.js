@@ -12,7 +12,8 @@ import lstyles, {
 import dstyles, {
   pawLightGrey,
 } from '../constants/DarkStyles';
-import { flipDarkMode } from '../redux/SettingsSlice';
+import { flipDarkMode, reload } from '../redux/SettingsSlice';
+import { resetLocation } from '../redux/LocationSlice';
 
 /* GET LIGHT DARK START */
 const dlKey = '@darkLight';
@@ -336,7 +337,16 @@ export default function ServicesTab() {
             />
           </Pressable>
 
-          <Pressable style={[styles.settingsItemOnboard, { justifyContent: 'center', marginRight: 20, width: Dimensions.get('window').width - 40 }]}>
+          <Pressable
+            style={[
+              styles.settingsItemOnboard,
+              { justifyContent: 'center', marginRight: 20, width: Dimensions.get('window').width - 40 }]}
+            onPress={() => {
+              AsyncStorage.removeItem('@loginToken');
+              dispatch(resetLocation());
+              dispatch(reload());
+            }}
+          >
             <Text
               adjustsFontSizeToFit
               numberOfLines={1}
