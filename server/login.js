@@ -12,17 +12,27 @@ const hashPassword = async (input) => {
   return hash;
 };
 
-const createUser = async (username, password) => {
+const createUser = async (data = {}) => {
+  const { username, password } = data;
+  const postedData = data;
   const hash = await hashPassword(`${username}:${password}`);
+  postedData.password = hash;
   return new Promise((resolve) => {
-    connection.query('INSERT INTO users (username, password) VALUES (?, ?)', [username, hash], (error, result) => resolve(error ? { error } : { data: result }));
+    const categories = `(${Object.keys({ ...data }).join(', ')})`;
+    const placeholders = categories.replaceAll(/\w+/g, '?');
+
+    connection.query(`INSERT INTO users ${categories} VALUES ${placeholders}`, [...Object.values(postedData)], (error, result) => {
+      resolve(error ? { error } : { data: result });
+    });
   });
 };
 
 const updateUserPassword = async (username, password) => {
   const hash = await hashPassword(`${username}:${password}`);
   return new Promise((resolve) => {
-    connection.query('UPDATE users SET password=? WHERE username=?', [hash, username], (error, result) => resolve(error ? { error } : { data: result }));
+    connection.query('UPDATE users SET password=? WHERE username=?', [hash, username], (error, result) => {
+      resolve(error ? { error } : { data: result });
+    });
   });
 };
 

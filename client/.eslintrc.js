@@ -14,12 +14,11 @@ module.exports = {
     },
     ecmaVersion: 'latest',
   },
-  plugins: [
-    'react',
-  ],
   rules: {
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx'] }],
     'linebreak-style': 'off',
     'react/prop-types': 'off',
+    'react/jsx-uses-vars': 'error',
+    'react/jsx-uses-react': 'error',
   },
 };

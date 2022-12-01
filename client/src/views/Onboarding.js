@@ -1,31 +1,66 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
-  View, Text, Pressable, TextInput, Dimensions, FlatList, Animated, Platform,
+  View, Text, Pressable,
+  TextInput, Dimensions, FlatList,
+  Animated, Platform, ScrollView,
 } from 'react-native';
-import { useSelector } from 'react-redux';
 import Modal from 'react-native-modal';
+import { useDispatch, useSelector } from 'react-redux';
+import validator from 'validator';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
 import { Feather } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import DropdownAlert from 'react-native-dropdownalert';
+import axios from 'axios';
 import slides from '../components/OnboardingSlides';
 import OnboardingItem from '../components/OnboardingItem';
 import lstyles, {
   pawGreen, pawPink, pawWhite,
 } from '../constants/Styles';
 import dstyles from '../constants/DarkStyles';
+import { reload } from '../redux/SettingsSlice';
 
 // const textInputWidth = Dimensions.get('window').width - 60;
 // const maxFontSize = 26;
 
-export default function Onboarding() {
+export default function Onboarding({ setViewedOnboard }) {
+  const [isRegisterVisible, setRegisterVisible] = useState(false);
+  const [styles, setStyles] = useState(lstyles);
+  const [isSigninVisible, setSigninVisible] = useState(false);
+  const [formEntry, setFormEntry] = useState({});
+  const [isEmailValid, setEmailValid] = useState(false);
+  const dispatch = useDispatch();
+  let dropdownAlert = useRef();
+
   const scrollX = new Animated.Value(0);
 
-  const endOnboarding = async (/* { navigation } */) => {
-    await AsyncStorage.setItem('@viewedOnboard', 'true');
-    // navigation.navigate('N');
+  const registerUser = async () => {
+    axios.post('https://www.paw-5.com/login', formEntry).then(async (res) => {
+      if (res.status === 200) {
+        return res.data;
+      }
+      if (res.status === 409) throw new Error('Conflict');
+      throw new Error('Bad Request');
+    })
+      .then(async (json) => {
+        AsyncStorage.setItem('@loginToken', json.data.attributes[0]);
+        setRegisterVisible(false);
+        setViewedOnboard(true);
+        setFormEntry({});
+      })
+      .catch((r) => {
+        if (r.message === 'Conflict') dropdownAlert.alertWithType('custom', 'Error', 'That username or email already exists');
+        else if (r.message === 'Bad Request') dropdownAlert.alertWithType('custom', 'Error', 'Something went wrong');
+        else dropdownAlert.alertWithType('custom', 'Error', r.message);
+      });
   };
 
-  const [styles, setStyles] = useState(lstyles);
+  const updateFormEntry = (key, value) => {
+    const newFormEntry = formEntry;
+    newFormEntry[key] = value;
+    setFormEntry(newFormEntry);
+  };
+
   const isDarkMode = useSelector((state) => state.settings.darkMode);
 
   useEffect(() => {
@@ -34,15 +69,23 @@ export default function Onboarding() {
   }, [isDarkMode]);
 
   /* toggle sigin section modal */
-  const [isSigninVisible, setSigninVisible] = useState(false);
   const toggleSignin = () => {
     setSigninVisible(!isSigninVisible);
   };
 
   /* toggle register section modal */
-  const [isRegisterVisible, setRegisterVisible] = useState(false);
   const toggleRegister = () => {
     setRegisterVisible(!isRegisterVisible);
+  };
+
+  const [hidePassword, setHidePassword] = useState(true);
+  const toggleHidePassword = () => {
+    setHidePassword(!hidePassword);
+  };
+
+  const [hideConfirmPassword, setHideConfirmPassword] = useState(true);
+  const toggleHideConfirmPassword = () => {
+    setHideConfirmPassword(!hideConfirmPassword);
   };
 
   /* const [fontSize, setFontSize] = React.useState(maxFontSize);
@@ -90,6 +133,7 @@ export default function Onboarding() {
           flex: 1,
         }}
       />
+
       <View style={[styles.background, { marginTop: 15 }]}>
         <View style={{
           flex: 1, justifyContent: 'center', flexDirection: 'row', alignContent: 'center', marginTop: 2,
@@ -112,10 +156,8 @@ export default function Onboarding() {
         </View>
 
         <Modal
-          isVisible={isSigninVisible}
-          animationIn="slideInRight"
-          animationOut="slideOutRight"
-          hasBackdrop={false}
+          visible={isSigninVisible}
+          animationType="slide"
           style={styles.signinModal}
         >
           <Pressable
@@ -141,96 +183,164 @@ export default function Onboarding() {
             textAlign="center"
             autoCapitalize="none"
           />
-          <TextInput
-            style={styles.signinField}
-            placeholder="password"
-            placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
-            secureTextEntry
-            textAlign="center"
-          />
-          <Pressable onPress={endOnboarding} style={[styles.signinPrompt, { marginTop: 15 }]}>
+          <View>
+            <TextInput
+              style={styles.signinField}
+              placeholder="password"
+              placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
+              secureTextEntry={hidePassword}
+              textAlign="center"
+            />
+            <Pressable style={[styles.signinField, { position: 'absolute', width: 50, right: 20 }]} onPress={toggleHidePassword}>
+              <Feather
+                name={hidePassword ? 'eye' : 'eye-off'}
+                size={30}
+                color="#333333"
+                style={{ }}
+              />
+            </Pressable>
+          </View>
+          <Pressable
+            onPress={() => {
+              AsyncStorage.setItem('@loginToken', 'debug', () => setViewedOnboard(true));
+              dispatch(reload());
+            }}
+            style={[styles.signinPrompt, { marginTop: 15 }]}
+          >
             <Text style={styles.signinPromptText}>Sign In</Text>
           </Pressable>
         </Modal>
 
         <Modal
-          isVisible={isRegisterVisible}
-          animationIn="slideInRight"
-          animationOut="slideOutRight"
-          hasBackdrop={false}
+          visible={isRegisterVisible}
+          animationType="modal"
           style={styles.signinModal}
         >
-          <Pressable
-            onPress={toggleRegister}
-            style={{ alignSelf: 'flex-start' }}
+          <ScrollView
+            alwaysBounceVertical={false}
+            showsVerticalScrollIndicator={false}
+            keyboardShouldPersistTaps="handled"
+            nestedScrollEnabled
           >
-            <Feather
-              name="chevron-left"
-              size={30}
-              color="#333333"
-              style={[styles.signinExitButton, { marginBottom: 30 }]}
+            <Pressable
+              onPress={toggleRegister}
+              style={{ alignSelf: 'flex-start' }}
+            >
+              <Feather
+                name="chevron-left"
+                size={30}
+                color="#333333"
+                style={[styles.signinExitButton, { marginBottom: 30 }]}
+              />
+
+            </Pressable>
+
+            <View style={styles.signinHead}>
+              <Text style={styles.signinPromptText}>Welcome to Paw5!</Text>
+            </View>
+            <TextInput
+              style={[styles.signinField/* , { fontSize } */]}
+              placeholder="email"
+              placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
+              textAlign="center"
+              keyboardType="email-address"
+              secureTextEntry={false}
+              autoCapitalize="none"
+              autoCorrect={false}
+              onChangeText={(text) => {
+                if (text) {
+                  setEmailValid(validator.isEmail(text));
+                  updateFormEntry('email', text);
+                }
+              }}
             />
+            <TextInput
+              style={styles.signinField}
+              placeholder="first name"
+              placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
+              textAlign="center"
+              onChangeText={(text) => updateFormEntry('firstname', text)}
+              autoCorrect={false}
+              autoCapitalize="none"
+              autoComplete="email"
+            />
+            <TextInput
+              style={styles.signinField}
+              placeholder="last name"
+              placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
+              textAlign="center"
+              autoCorrect={false}
+              onChangeText={(text) => updateFormEntry('lastname', text)}
+            />
+            <TextInput
+              style={styles.signinField}
+              placeholder="username"
+              placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
+              textAlign="center"
+              autoCapitalize="none"
+              autoCorrect={false}
+              onChangeText={(text) => updateFormEntry('username', text)}
+            />
+            <View>
+              <TextInput
+                style={styles.signinField}
+                placeholder="password"
+                placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
+                secureTextEntry={hidePassword}
+                textAlign="center"
+                autoCorrect={false}
+                onChangeText={(text) => updateFormEntry('password', text)}
+              />
+              <Pressable style={[styles.signinField, { position: 'absolute', width: 50, right: 20 }]} onPress={toggleHidePassword}>
+                <Feather
+                  name={hidePassword ? 'eye' : 'eye-off'}
+                  size={30}
+                  color="#333333"
+                  style={{ }}
+                />
+              </Pressable>
+            </View>
+            <View>
+              <TextInput
+                style={styles.signinField}
+                placeholder="retype password"
+                placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
+                secureTextEntry={hideConfirmPassword}
+                autoCorrect={false}
+                textAlign="center"
+              />
+              <Pressable style={[styles.signinField, { position: 'absolute', width: 50, right: 20 }]} onPress={toggleHideConfirmPassword}>
+                <Feather
+                  name={hideConfirmPassword ? 'eye' : 'eye-off'}
+                  size={30}
+                  color="#333333"
+                  style={{ }}
+                />
+              </Pressable>
+            </View>
+            <Pressable
+              onPress={() => {
+                if (formEntry.email && isEmailValid) registerUser();
+                else dropdownAlert.alertWithType('custom', 'Warning:', 'Invalid email');
+              }}
+              style={[styles.signinPrompt, { marginTop: 15 }]}
+            >
+              <Text style={styles.signinPromptText}>Submit</Text>
+            </Pressable>
 
-          </Pressable>
-
-          <View style={styles.signinHead}>
-            <Text style={styles.signinPromptText}>Welcome to Paw5!</Text>
-          </View>
-
-          <TextInput
-            style={[styles.signinField/* , { fontSize } */]}
-            placeholder="email"
-            placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
-            textAlign="center"
-            keyboardType="email-address"
-            secureTextEntry={false}
-            autoCapitalize="none"
-            // onContentSizeChange={onContentSizeChange}
+          </ScrollView>
+          <DropdownAlert
+            ref={(ref) => {
+              if (ref) {
+                dropdownAlert = ref;
+              }
+            }}
+            containerStyle={styles.dropDownPaw5}
           />
-          <TextInput
-            style={styles.signinField}
-            placeholder="first name"
-            placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
-            textAlign="center"
-            secureTextEntry={false}
-          />
-          <TextInput
-            style={styles.signinField}
-            placeholder="last name"
-            placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
-            textAlign="center"
-            secureTextEntry={false}
-          />
-          <TextInput
-            style={styles.signinField}
-            placeholder="username"
-            placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
-            textAlign="center"
-            secureTextEntry={false}
-            autoCapitalize="none"
-          />
-          <TextInput
-            style={styles.signinField}
-            placeholder="password"
-            placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
-            secureTextEntry
-            textAlign="center"
-          />
-          <TextInput
-            style={styles.signinField}
-            placeholder="retype password"
-            placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
-            secureTextEntry
-            textAlign="center"
-          />
-
-          <Pressable onPress={endOnboarding} style={[styles.signinPrompt, { marginTop: 15 }]}>
-            <Text style={styles.signinPromptText}>Submit</Text>
-          </Pressable>
-
         </Modal>
 
       </View>
+
     </View>
   );
 }

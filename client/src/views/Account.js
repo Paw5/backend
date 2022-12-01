@@ -3,14 +3,17 @@ import {
   View, Text, Dimensions, Pressable, Image, Animated,
 } from 'react-native';
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Feather } from '@expo/vector-icons';
 import Modal from 'react-native-modal';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators';
 import { getStatusBarHeight } from 'react-native-status-bar-height';
+import AwesomeAlert from 'react-native-awesome-alerts';
 import lstyles, { pawPink, pawGrey, pawWhite } from '../constants/Styles';
 import dstyles, { pawLightGrey, pawYellow } from '../constants/DarkStyles';
 import AccountCard from '../components/AccountCard';
+import { reload } from '../redux/SettingsSlice';
 
 const miso = require('../../assets/miso.jpg');
 
@@ -19,6 +22,7 @@ const StatusBarHeight = getStatusBarHeight();
 export default function AccountTab() {
   const [styles, setStyles] = useState(lstyles);
   const isDarkMode = useSelector((state) => state.settings.darkMode);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (isDarkMode === 'light') setStyles(dstyles);
@@ -37,6 +41,18 @@ export default function AccountTab() {
   const [isPetsVisible, setPetsVisible] = useState(false);
   const togglePets = () => {
     setPetsVisible(!isPetsVisible);
+  };
+
+  const [loggingOut, setLoggingOut] = useState(false);
+  const toggleLog = () => {
+    setLoggingOut(!loggingOut);
+  };
+
+  const logOut = () => {
+    toggleLog();
+    setTimeout(() => {
+      AsyncStorage.removeItem('@loginToken', () => dispatch(reload()));
+    }, 1000);
   };
 
   return (
@@ -309,6 +325,7 @@ export default function AccountTab() {
 
       <Pressable
         style={styles.menuItem}
+        onPress={logOut}
       >
         <Text
           adjustsFontSizeToFit
@@ -319,7 +336,14 @@ export default function AccountTab() {
         </Text>
 
       </Pressable>
-
+      <AwesomeAlert
+        show={loggingOut}
+        showProgress
+        title="See you next time!"
+        progressColor="#69a297"
+        progressSize="large"
+        titleStyle={styles.settingsText}
+      />
     </View>
   );
 }

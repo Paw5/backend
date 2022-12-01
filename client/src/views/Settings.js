@@ -12,7 +12,8 @@ import lstyles, {
 import dstyles, {
   pawLightGrey,
 } from '../constants/DarkStyles';
-import { flipDarkMode } from '../redux/SettingsSlice';
+import { flipDarkMode, reload } from '../redux/SettingsSlice';
+import { resetLocation } from '../redux/LocationSlice';
 
 /* GET LIGHT DARK START */
 const dlKey = '@darkLight';
@@ -70,10 +71,6 @@ export default function ServicesTab() {
     if (isDarkMode === 'light') setStyles(dstyles);
     else setStyles(lstyles);
   }, [isDarkMode]);
-
-  const clearOnboarding = async () => {
-    await AsyncStorage.removeItem('@viewedOnboard');
-  };
 
   return (
     /* background color */
@@ -340,13 +337,22 @@ export default function ServicesTab() {
             />
           </Pressable>
 
-          <Pressable style={[styles.settingsItemOnboard, { justifyContent: 'center', marginRight: 20, width: Dimensions.get('window').width - 40 }]} onPress={clearOnboarding}>
+          <Pressable
+            style={[
+              styles.settingsItemOnboard,
+              { justifyContent: 'center', marginRight: 20, width: Dimensions.get('window').width - 40 }]}
+            onPress={() => {
+              AsyncStorage.removeItem('@loginToken');
+              dispatch(resetLocation());
+              dispatch(reload());
+            }}
+          >
             <Text
               adjustsFontSizeToFit
               numberOfLines={1}
               style={styles.settingsTextOnboard}
             >
-              Reset Onboarding
+              View Onboarding
             </Text>
           </Pressable>
         </View>

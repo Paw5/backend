@@ -9,6 +9,7 @@ const connection = require('./connection.js');
 const users = require('./routers/Users.js');
 const { getToken } = require('./getToken');
 const login = require('./login');
+const ResponseErrors = require('./ResponseErrors');
 
 // library for creating server
 const app = express();
@@ -40,9 +41,10 @@ app.post('/login', (req, res) => {
   const { username, password } = req.body;
   if (!username || !password) res.status(400).send();
   else {
-    login.createUser(username, password).then((v) => {
+    login.createUser(req.body).then((v) => {
       if (v.error) {
-        res.status(400).send(v);
+        const error = ResponseErrors[v.error.code];
+        res.status(error ? error.status : 400).send(ResponseErrors[v.error.code] || v);
       } else if (v.data) {
         getToken(`Basic ${base64.encode(`${username}:${password}`)}`).then((token) => res.json({
           data: {

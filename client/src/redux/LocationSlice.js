@@ -10,6 +10,7 @@ const locationSlice = createSlice({
       latitudeDelta: 0,
       longitudeDelta: 0,
     },
+    loaded: false,
   },
   reducers: {
     setLocation: (state, action) => {
@@ -17,11 +18,15 @@ const locationSlice = createSlice({
       state.region.longitude = action.payload.coords.longitude;
       state.region.latitudeDelta = 0.2;
       state.region.longitudeDelta = 0.2;
+      state.loaded = true;
+    },
+    resetLocation: (state) => {
+      state.loaded = false;
     },
   },
 
 });
 
-export const { setLocation } = locationSlice.actions;
+export const { setLocation, resetLocation } = locationSlice.actions;
 
 export default locationSlice.reducer;
