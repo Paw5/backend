@@ -13,7 +13,7 @@ import dstyles, {
 } from '../constants/DarkStyles';
 import PawPostComment from './PawPostComment';
 
-const miso = require('../../assets/miso.jpg');
+const miso = require('../../assets/petPhotos/miso.jpg');
 
 export default function ProfilePhotoCard() {
   const [styles, setStyles] = useState(lstyles);

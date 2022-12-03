@@ -13,7 +13,7 @@ import dstyles, {
 import ProfilePhotoCard from '../components/ProfilePhotoCard';
 import ProfilePostCard from '../components/ProfilePostCard';
 
-const miso = require('../../assets/miso.jpg');
+const miso = require('../../assets/petPhotos/miso.jpg');
 
 export default function CommunityTab(bioUpdate) {
   const [styles, setStyles] = useState(lstyles);

@@ -11,7 +11,7 @@ import lstyles, {
 import dstyles, { pawYellow } from '../constants/DarkStyles';
 import PawPostComment from './PawPostComment';
 
-const miso = require('../../assets/miso.jpg');
+const miso = require('../../assets/petPhotos/miso.jpg');
 
 export default function PawPostPost() {
   const [styles, setStyles] = useState(lstyles);

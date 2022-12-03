@@ -10,7 +10,7 @@ import dstyles, { pawLightGrey, pawYellow } from '../constants/DarkStyles';
 import MessageSent from './MessageSent';
 import MessageReceived from './MessageReceived';
 
-const miso = require('../../assets/miso.jpg');
+const miso = require('../../assets/petPhotos/miso.jpg');
 
 export default function PMUserInteraction(replyText) {
   const [styles, setStyles] = useState(lstyles);
