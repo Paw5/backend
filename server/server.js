@@ -47,10 +47,7 @@ app.post('/login', (req, res) => {
         res.status(error ? error.status : 400).send(ResponseErrors[v.error.code] || v);
       } else if (v.data) {
         getToken(`Basic ${base64.encode(`${username}:${password}`)}`).then((token) => res.json({
-          data: {
-            type: 'token',
-            attributes: [token],
-          },
+          token,
         }));
       }
     });
@@ -63,24 +60,11 @@ app.use((req, res, next) => {
     if (token) {
       if (req.url === '/login') {
         res.json({
-          data: {
-            type: 'token',
-            attributes: [token],
-          },
+          token,
         });
       } else next();
     } else {
-      res.status(401).json({
-        links: {
-          self: req.originalUrl,
-        },
-        jsonapi: {
-          version: '1.1',
-        },
-        error: {
-          status: 401,
-        },
-      });
+      res.status(401).send();
     }
   });
 });
@@ -103,10 +87,7 @@ app.put('/login', (req, res) => {
     } else if (v.data) {
       res.status(200);
       getToken(`Basic ${base64.encode(`${username}:${password}`)}`).then((token) => res.json({
-        data: {
-          type: 'token',
-          attributes: [token],
-        },
+        token,
       }));
     }
   });

@@ -7,7 +7,7 @@ import { Feather } from '@expo/vector-icons';
 import lstyles from '../constants/Styles';
 import dstyles from '../constants/DarkStyles';
 
-const miso = require('../../assets/miso.jpg');
+const miso = require('../../assets/petPhotos/miso.jpg');
 
 export default function AccountCard() {
   const [styles, setStyles] = useState(lstyles);

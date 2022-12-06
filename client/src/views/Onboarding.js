@@ -11,7 +11,7 @@ import RNAnimatedScrollIndicators from 'react-native-animated-scroll-indicators'
 import { Feather } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DropdownAlert from 'react-native-dropdownalert';
-import axios from 'axios';
+import base64 from 'base-64';
 import slides from '../components/OnboardingSlides';
 import OnboardingItem from '../components/OnboardingItem';
 import lstyles, {
@@ -19,6 +19,9 @@ import lstyles, {
 } from '../constants/Styles';
 import dstyles from '../constants/DarkStyles';
 import { reload } from '../redux/SettingsSlice';
+import Network from '../util/Network';
+
+const _ = new Network();
 
 // const textInputWidth = Dimensions.get('window').width - 60;
 // const maxFontSize = 26;
@@ -39,25 +42,37 @@ export default function Onboarding({ setViewedOnboard }) {
 
   const scrollX = new Animated.Value(0);
 
+  const loginUser = async () => {
+    const networkResponse = await _.get('login', {
+      headers: {
+        Authorization: `Basic ${base64.encode(`${formEntry.username}:${formEntry.password}`)}`,
+      },
+    });
+    networkResponse.onSuccess((response) => {
+      AsyncStorage.setItem('@loginToken', response.data.token, () => setViewedOnboard(true));
+      dispatch(reload());
+    }).onClientError((response) => {
+      if (response.status === 401) dropdownAlert.alertWithType('custom', 'Error', 'That username or password is invalid.');
+      else dropdownAlert.alertWithType('custom', 'Error', 'An unexpected error occurred.');
+    });
+  };
+
   const registerUser = async () => {
-    axios.post('https://www.paw-5.com/login', formEntry).then(async (res) => {
-      if (res.status === 200) {
-        return res.data;
+    const networkResponse = await _.post('login', formEntry);
+    networkResponse.onSuccess((response) => {
+      AsyncStorage.setItem('@loginToken', response.data.token);
+      setRegisterVisible(false);
+      setViewedOnboard(true);
+      setFormEntry({});
+    }).onClientError((response) => {
+      switch (response.status) {
+        case 409: dropdownAlert.alertWithType('custom', 'Error', 'That username or email already exists');
+          break;
+        default: dropdownAlert.alertWithType('custom', 'Error', 'There was an unexpected error with your request.');
       }
-      if (res.status === 409) throw new Error('Conflict');
-      throw new Error('Bad Request');
-    })
-      .then(async (json) => {
-        AsyncStorage.setItem('@loginToken', json.data.attributes[0]);
-        setRegisterVisible(false);
-        setViewedOnboard(true);
-        setFormEntry({});
-      })
-      .catch((r) => {
-        if (r.message === 'Conflict') dropdownAlert.alertWithType('custom', 'Error', 'That username or email already exists');
-        else if (r.message === 'Bad Request') dropdownAlert.alertWithType('custom', 'Error', 'Something went wrong');
-        else dropdownAlert.alertWithType('custom', 'Error', r.message);
-      });
+    }).onServerError(() => {
+      dropdownAlert.alertWithType('custom', 'Error', 'There was an unexpected server error.');
+    });
   };
 
   const updateFormEntry = (key, value) => {
@@ -187,6 +202,8 @@ export default function Onboarding({ setViewedOnboard }) {
             placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
             textAlign="center"
             autoCapitalize="none"
+            onChangeText={(text) => updateFormEntry('username', text)}
+
           />
           <View>
             <TextInput
@@ -195,6 +212,7 @@ export default function Onboarding({ setViewedOnboard }) {
               placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
               secureTextEntry={hidePassword}
               textAlign="center"
+              onChangeText={(text) => updateFormEntry('password', text)}
             />
             <Pressable style={[styles.signinField, { position: 'absolute', width: 50, right: 20 }]} onPress={toggleHidePassword}>
               <Feather
@@ -207,13 +225,20 @@ export default function Onboarding({ setViewedOnboard }) {
           </View>
           <Pressable
             onPress={() => {
-              AsyncStorage.setItem('@loginToken', 'debug', () => setViewedOnboard(true));
-              dispatch(reload());
+              loginUser();
             }}
             style={[styles.signinPrompt, { marginTop: 15 }]}
           >
             <Text style={styles.signinPromptText}>Sign In</Text>
           </Pressable>
+          <DropdownAlert
+            ref={(ref) => {
+              if (ref) {
+                dropdownAlert = ref;
+              }
+            }}
+            containerStyle={styles.dropDownPaw5}
+          />
         </Modal>
 
         <Modal

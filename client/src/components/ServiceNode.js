@@ -7,7 +7,7 @@ import { Feather } from '@expo/vector-icons';
 import lstyles, { pawGreen, pawPink, pawGrey } from '../constants/Styles';
 import dstyles, { pawYellow } from '../constants/DarkStyles';
 
-const miso = require('../../assets/miso.jpg');
+const miso = require('../../assets/petPhotos/miso.jpg');
 
 export default function ServNode() {
   const [styles, setStyles] = useState(lstyles);

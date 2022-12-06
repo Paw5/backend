@@ -14,7 +14,7 @@ import dstyles, {
 import PawPostComment from './PawPostComment';
 import ProfileClick from './ProfileClick';
 
-const miso = require('../../assets/miso.jpg');
+const miso = require('../../assets/petPhotos/miso.jpg');
 
 export default function PawPostPost() {
   const [styles, setStyles] = useState(lstyles);

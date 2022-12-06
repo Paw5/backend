@@ -11,7 +11,7 @@ import dstyles, {
 import ProfilePhotoCard from './ProfilePhotoCard';
 import ProfilePostCard from './ProfilePostCard';
 
-const miso = require('../../assets/miso.jpg');
+const miso = require('../../assets/petPhotos/miso.jpg');
 
 export default function ProfileClick() {
   const [styles, setStyles] = useState(lstyles);
