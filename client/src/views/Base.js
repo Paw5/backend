@@ -31,9 +31,12 @@ export default function Base() {
     QuicksandSemiBold,
   });
 
+  if (!loginToken && viewedOnboard) setViewedOnboard(false);
+
   AsyncStorage.getItem('@loginToken').then((token) => {
     setFetchingToken(false);
     setLoginToken(token);
+    if (token) setViewedOnboard(true);
   });
 
   if (!loaded) {

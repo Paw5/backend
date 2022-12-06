@@ -1,5 +1,6 @@
-import axios, { AxiosError, AxiosRequestConfig } from 'axios';
+import axios, { AxiosBasicCredentials, AxiosError, AxiosRequestConfig } from 'axios';
 import NetworkResponse from './NetworkResponse';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const API_ENDPOINT = 'https://www.paw-5.com/';
 
@@ -15,10 +16,17 @@ class Network {
   response?: NetworkResponse;
 
   get = async (host: string, options: AxiosRequestConfig) => {
+    const loginToken = await AsyncStorage.getItem('@loginToken');
     this.request = {
       method: 'GET',
       host,
-      options,
+      options: {
+        headers: {
+          Authorization: loginToken ? `Bearer ${loginToken}` : undefined,
+          ...options.headers,
+        },
+        ...options,
+      },
     };
     try {
       const response = await axios.get(API_ENDPOINT + host, options);
@@ -33,7 +41,7 @@ class Network {
     }
   };
 
-  post = async (host, body, options) => {
+  post = async (host: string, body: {}, options: AxiosRequestConfig) => {
     this.request = {
       method: 'POST',
       host,
