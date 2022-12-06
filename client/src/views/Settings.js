@@ -12,8 +12,7 @@ import lstyles, {
 import dstyles, {
   pawLightGrey,
 } from '../constants/DarkStyles';
-import { flipDarkMode, reload } from '../redux/SettingsSlice';
-import { resetLocation } from '../redux/LocationSlice';
+import { flipDarkMode } from '../redux/SettingsSlice';
 
 /* GET LIGHT DARK START */
 const dlKey = '@darkLight';
@@ -341,11 +340,6 @@ export default function ServicesTab() {
             style={[
               styles.settingsItemOnboard,
               { justifyContent: 'center', marginRight: 20, width: Dimensions.get('window').width - 40 }]}
-            onPress={() => {
-              AsyncStorage.removeItem('@loginToken');
-              dispatch(resetLocation());
-              dispatch(reload());
-            }}
           >
             <Text
               adjustsFontSizeToFit

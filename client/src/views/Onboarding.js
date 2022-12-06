@@ -29,6 +29,11 @@ export default function Onboarding({ setViewedOnboard }) {
   const [isSigninVisible, setSigninVisible] = useState(false);
   const [formEntry, setFormEntry] = useState({});
   const [isEmailValid, setEmailValid] = useState(false);
+  const [isFNameValid, setFNameValid] = useState(false);
+  const [isLNameValid, setLNameValid] = useState(false);
+  const [isUNameValid, setUNameValid] = useState(false);
+  const [isPassValid, setPassValid] = useState(false);
+  const [isPasswordMatch, setPasswordMatch] = useState(false);
   const dispatch = useDispatch();
   let dropdownAlert = useRef();
 
@@ -259,9 +264,13 @@ export default function Onboarding({ setViewedOnboard }) {
               placeholder="first name"
               placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
               textAlign="center"
-              onChangeText={(text) => updateFormEntry('firstname', text)}
+              onChangeText={(text) => {
+                if (text) {
+                  setFNameValid(validator.isAlpha(text));
+                  updateFormEntry('firstname', text);
+                }
+              }}
               autoCorrect={false}
-              autoCapitalize="none"
               autoComplete="email"
             />
             <TextInput
@@ -270,7 +279,12 @@ export default function Onboarding({ setViewedOnboard }) {
               placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
               textAlign="center"
               autoCorrect={false}
-              onChangeText={(text) => updateFormEntry('lastname', text)}
+              onChangeText={(text) => {
+                if (text) {
+                  setLNameValid(validator.isAlpha(text));
+                  updateFormEntry('lastname', text);
+                }
+              }}
             />
             <TextInput
               style={styles.signinField}
@@ -279,7 +293,12 @@ export default function Onboarding({ setViewedOnboard }) {
               textAlign="center"
               autoCapitalize="none"
               autoCorrect={false}
-              onChangeText={(text) => updateFormEntry('username', text)}
+              onChangeText={(text) => {
+                if (text) {
+                  setUNameValid(validator.isAlphanumeric(text));
+                  updateFormEntry('username', text);
+                }
+              }}
             />
             <View>
               <TextInput
@@ -288,8 +307,14 @@ export default function Onboarding({ setViewedOnboard }) {
                 placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
                 secureTextEntry={hidePassword}
                 textAlign="center"
+                autoCapitalize="none"
                 autoCorrect={false}
-                onChangeText={(text) => updateFormEntry('password', text)}
+                onChangeText={(text) => {
+                  if (text) {
+                    setPassValid(validator.isAscii(text));
+                    updateFormEntry('password', text);
+                  }
+                }}
               />
               <Pressable style={[styles.signinField, { position: 'absolute', width: 50, right: 20 }]} onPress={toggleHidePassword}>
                 <Feather
@@ -306,8 +331,14 @@ export default function Onboarding({ setViewedOnboard }) {
                 placeholder="retype password"
                 placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
                 secureTextEntry={hideConfirmPassword}
+                autoCapitalize="none"
                 autoCorrect={false}
                 textAlign="center"
+                onChangeText={(text) => {
+                  if (text) {
+                    if (validator.equals(text, formEntry.password)) setPasswordMatch(true);
+                  }
+                }}
               />
               <Pressable style={[styles.signinField, { position: 'absolute', width: 50, right: 20 }]} onPress={toggleHideConfirmPassword}>
                 <Feather
@@ -320,8 +351,25 @@ export default function Onboarding({ setViewedOnboard }) {
             </View>
             <Pressable
               onPress={() => {
-                if (formEntry.email && isEmailValid) registerUser();
-                else dropdownAlert.alertWithType('custom', 'Warning:', 'Invalid email');
+                let alertStr = 'Invalid';
+                const eVal = (formEntry.email && isEmailValid);
+                const fVal = (formEntry.firstname && isFNameValid);
+                const lVal = (formEntry.lastname && isLNameValid);
+                const uVal = (formEntry.username && isUNameValid);
+                const pVal = (formEntry.password && isPassValid);
+                if (eVal && fVal && lVal && uVal && pVal && isPasswordMatch) registerUser();
+                if (!eVal) alertStr += ' Email';
+                if ((alertStr !== 'Invalid') && !fVal) alertStr += ' and';
+                if (!fVal) alertStr += ' First Name';
+                if ((alertStr !== 'Invalid') && !lVal) alertStr += ' and';
+                if (!lVal) alertStr += ' Last Name';
+                if ((alertStr !== 'Invalid') && !uVal) alertStr += ' and';
+                if (!uVal) alertStr += ' Username';
+                if ((alertStr !== 'Invalid') && !pVal) alertStr += ' and';
+                if (!pVal) alertStr += ' Password';
+                if ((alertStr !== 'Invalid') && !isPasswordMatch) alertStr += ' and';
+                if (!isPasswordMatch) alertStr += ' Passwords Do Not Match';
+                if (!(eVal && fVal && lVal && uVal && pVal && isPasswordMatch)) dropdownAlert.alertWithType('custom', 'Warning:', alertStr);
               }}
               style={[styles.signinPrompt, { marginTop: 15 }]}
             >
