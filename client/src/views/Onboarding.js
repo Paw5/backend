@@ -22,7 +22,7 @@ import dstyles from '../constants/DarkStyles';
 import { reload } from '../redux/SettingsSlice';
 import Network from '../util/Network';
 
-const _ = new Network();
+const _ = Network();
 
 // const textInputWidth = Dimensions.get('window').width - 60;
 // const maxFontSize = 26;
@@ -183,65 +183,71 @@ export default function Onboarding({ setViewedOnboard }) {
           animationType="slide"
           style={styles.signinModal}
         >
-          <Pressable
-            onPress={toggleSignin}
-            style={{ alignSelf: 'flex-start' }}
+          <KeyboardAwareScrollView
+            bounces={false}
+            showsVerticalScrollIndicator
+            keyboardShouldPersistTaps="handled"
+            nestedScrollEnabled
           >
-            <Feather
-              name="chevron-left"
-              size={30}
-              color="#333333"
-              style={styles.signinExitButton}
-            />
-
-          </Pressable>
-          <View style={styles.signinHead}>
-            <Text style={styles.signinPromptText}>Welcome Back!</Text>
-          </View>
-
-          <TextInput
-            style={styles.signinField}
-            placeholder="username"
-            placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
-            textAlign="center"
-            autoCapitalize="none"
-            onChangeText={(text) => updateFormEntry('username', text)}
-
-          />
-          <View>
-            <TextInput
-              style={styles.signinField}
-              placeholder="password"
-              placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
-              secureTextEntry={hidePassword}
-              textAlign="center"
-              onChangeText={(text) => updateFormEntry('password', text)}
-            />
-            <Pressable style={[styles.signinField, { position: 'absolute', width: 50, right: 20 }]} onPress={toggleHidePassword}>
+            <Pressable
+              onPress={toggleSignin}
+              style={{ alignSelf: 'flex-start' }}
+            >
               <Feather
-                name={hidePassword ? 'eye' : 'eye-off'}
+                name="chevron-left"
                 size={30}
                 color="#333333"
-                style={{ }}
+                style={styles.signinExitButton}
               />
+
             </Pressable>
-          </View>
-          <Pressable
-            onPress={() => {
-              loginUser();
-            }}
-            style={[styles.signinPrompt, { marginTop: 15 }]}
-          >
-            <Text style={styles.signinPromptText}>Sign In</Text>
-          </Pressable>
-          <DropdownAlert
-            ref={(ref) => {
-              if (ref) {
-                dropdownAlert = ref;
-              }
-            }}
-            containerStyle={styles.dropDownPaw5}
-          />
+            <View style={styles.signinHead}>
+              <Text style={styles.signinPromptText}>Welcome Back!</Text>
+            </View>
+
+            <TextInput
+              style={styles.signinField}
+              placeholder="username"
+              placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
+              textAlign="center"
+              autoCapitalize="none"
+              onChangeText={(text) => updateFormEntry('username', text)}
+            />
+            <View>
+              <TextInput
+                style={styles.signinField}
+                placeholder="password"
+                placeholderTextColor={isDarkMode === 'light' ? '#edae4985' : '#33333385'}
+                secureTextEntry={hidePassword}
+                textAlign="center"
+                onChangeText={(text) => updateFormEntry('password', text)}
+              />
+              <Pressable style={[styles.signinField, { position: 'absolute', width: 50, right: 20 }]} onPress={toggleHidePassword}>
+                <Feather
+                  name={hidePassword ? 'eye' : 'eye-off'}
+                  size={30}
+                  color="#333333"
+                  style={{ }}
+                />
+              </Pressable>
+            </View>
+            <Pressable
+              onPress={() => {
+                loginUser();
+              }}
+              style={[styles.signinPrompt, { marginTop: 15 }]}
+            >
+              <Text style={styles.signinPromptText}>Sign In</Text>
+            </Pressable>
+            <DropdownAlert
+              ref={(ref) => {
+                if (ref) {
+                  dropdownAlert = ref;
+                }
+              }}
+              containerStyle={styles.dropDownPaw5}
+            />
+          </KeyboardAwareScrollView>
         </Modal>
 
         <Modal
@@ -300,6 +306,7 @@ export default function Onboarding({ setViewedOnboard }) {
               }}
               autoCorrect={false}
               autoComplete="email"
+              autoCapitalize="words"
             />
             <TextInput
               style={styles.signinField}
@@ -313,6 +320,7 @@ export default function Onboarding({ setViewedOnboard }) {
                   updateFormEntry('lastname', text);
                 }
               }}
+              autoCapitalize="words"
             />
             <TextInput
               style={styles.signinField}
