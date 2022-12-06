@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
   View, Text, Pressable,
   TextInput, Dimensions, FlatList,
-  Animated, Platform, ScrollView,
+  Animated, Platform,
 } from 'react-native';
 import Modal from 'react-native-modal';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,6 +12,7 @@ import { Feather } from '@expo/vector-icons';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DropdownAlert from 'react-native-dropdownalert';
 import base64 from 'base-64';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import slides from '../components/OnboardingSlides';
 import OnboardingItem from '../components/OnboardingItem';
 import lstyles, {
@@ -248,9 +249,9 @@ export default function Onboarding({ setViewedOnboard }) {
           animationType="modal"
           style={styles.signinModal}
         >
-          <ScrollView
-            alwaysBounceVertical={false}
-            showsVerticalScrollIndicator={false}
+          <KeyboardAwareScrollView
+            bounces={false}
+            showsVerticalScrollIndicator
             keyboardShouldPersistTaps="handled"
             nestedScrollEnabled
           >
@@ -403,7 +404,7 @@ export default function Onboarding({ setViewedOnboard }) {
               <Text style={styles.signinPromptText}>Submit</Text>
             </Pressable>
 
-          </ScrollView>
+          </KeyboardAwareScrollView>
           <DropdownAlert
             ref={(ref) => {
               if (ref) {
