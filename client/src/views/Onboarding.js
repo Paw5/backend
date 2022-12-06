@@ -44,8 +44,10 @@ export default function Onboarding({ setViewedOnboard }) {
       },
     });
     networkResponse.onSuccess((response) => {
-      AsyncStorage.setItem('@loginToken', response.data.token, () => setViewedOnboard(true));
-      dispatch(reload());
+      AsyncStorage.setItem('@loginToken', response.data.token, () => {
+        setViewedOnboard(true);
+        dispatch(reload());
+      });
     }).onClientError((response) => {
       if (response.status === 401) dropdownAlert.alertWithType('custom', 'Error', 'That username or password is invalid.');
       else dropdownAlert.alertWithType('custom', 'Error', 'An unexpected error occurred.');
