@@ -110,7 +110,7 @@ app.get('/count/:table', (req, res) => {
   connection.query('SELECT COUNT(*) AS \'count\' FROM ?', [req.params.table], (error, values) => {
     if (error) {
       if (error.code === 'ER_NO_SUCH_TABLE') res.status(404);
-      else res.send(error);
+      else res.send('<h1>An unspecified error occurred.</h1>');
     } else {
       res.send(values[0]);
     }
