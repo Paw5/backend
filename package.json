@@ -20,7 +20,7 @@
     "service": "ssh -i ~/.ssh/paw5-kp.pem ubuntu@ec2-3-209-131-148.compute-1.amazonaws.com 'cd ~/capstone/server; npm i; sudo systemctl restart paw5.service'",
     "deploy": "npm run mkdir && npm run scp && npm run scp:pjs && npm run service",
     "start": "node server.js",
-    "test": "NODE_ENV=test jest --watchAll"
+    "test": "NODE_ENV=test jest --passWithNoTests"
   },
   "name": "server",
   "version": "1.0.0",
