@@ -1,5 +1,4 @@
 const express = require('express');
-const dotenv = require('dotenv'); // library for processing .env files
 const bodyParser = require('body-parser');
 const https = require('https');
 const http = require('http');
@@ -14,17 +13,15 @@ const ResponseErrors = require('./ResponseErrors');
 // library for creating server
 const app = express();
 
-dotenv.config();
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // Initialize SSL certificate for HTTPS connections
 https.createServer({
-  key: fs.readFileSync('./key.pem'),
-  cert: fs.readFileSync('./cert.pem'),
-  ca: fs.readFileSync('./ca.pem'),
+  key: fs.readFileSync('./secrets/key.pem'),
+  cert: fs.readFileSync('./secrets/cert.pem'),
+  ca: fs.readFileSync('./secrets/ca.pem'),
 }, app).listen(443, () => {
   console.log('server is running on port 3001');
 });
