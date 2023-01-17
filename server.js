@@ -4,6 +4,7 @@ const https = require('https');
 const http = require('http');
 const fs = require('fs');
 const base64 = require('base-64');
+const RateLimit = require('express-rate-limit');
 const connection = require('./connection.js');
 const users = require('./routers/Users.js');
 const { getToken } = require('./getToken');
@@ -12,6 +13,15 @@ const ResponseErrors = require('./ResponseErrors');
 
 // library for creating server
 const app = express();
+
+// set up rate limiter: maximum of five requests per minute
+const limiter = new RateLimit({
+  windowMs: 1 * 60 * 1000, // 1 minute
+  max: 5,
+});
+
+// apply rate limiter to all requests
+app.use(limiter);
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

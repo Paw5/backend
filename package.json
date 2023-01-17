@@ -8,11 +8,12 @@
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "express-rate-limit": "^6.7.0",
     "joi": "^17.7.0",
+    "json5": "^2.2.3",
     "jsonwebtoken": ">=9.0.0",
     "mysql": "^2.18.1",
-    "mysql2": "^2.3.3",
-    "json5": "^2.2.3"
+    "mysql2": "^2.3.3"
   },
   "scripts": {
     "mkdir": "find . -type d -not -path './node_modules/*' -a ! -name '.' | xargs -I% ssh -i ~/.ssh/paw5-kp.pem ubuntu@ec2-3-209-131-148.compute-1.amazonaws.com 'mkdir -p ~/capstone/server/%'",
