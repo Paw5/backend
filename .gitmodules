@@ -1,0 +1,6 @@
+[submodule "paw5-secrets"]
+	path = paw5-secrets
+	url = https://github.com/johnsnoa/paw5-secrets.git
+[submodule "secrets"]
+	path = secrets
+	url = https://github.com/johnsnoa/paw5-secrets.git
