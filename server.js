@@ -15,7 +15,7 @@ const ResponseErrors = require('./ResponseErrors');
 const app = express();
 
 // set up rate limiter: maximum of five requests per minute
-const limiter = new RateLimit({
+const limiter = RateLimit({
   windowMs: 1 * 60 * 1000, // 1 minute
   max: 5,
 });
