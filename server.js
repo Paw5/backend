@@ -4,7 +4,7 @@ import { createServer } from 'https';
 import { readFileSync } from 'fs';
 import { encode } from 'base-64';
 import RateLimit from 'express-rate-limit';
-import { query } from './connection.js';
+import getConnection from './connection.js';
 import users from './routers/Users.js';
 import { getToken } from './getToken';
 import { createUser, updateUserPassword } from './login';
@@ -12,6 +12,7 @@ import { MS_PER_MINUTE } from './util/constants';
 import middleware from './middleware.js';
 
 const app = express();
+const { query } = getConnection();
 
 app.use(RateLimit({
   windowMs: MS_PER_MINUTE,

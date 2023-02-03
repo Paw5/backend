@@ -14,6 +14,7 @@ const config = {
       statements: -10,
     },
   },
+  transform: {},
 };
 
 module.exports = config;

@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import { object, string } from 'joi';
 import connection from '../connection';
-import { GEN_ERR_BAD_REQUEST, ERR_NOT_FOUND } from '../ResponseErrors';
+import { ERR_NOT_FOUND } from '../ResponseErrors';
 import { getUsername } from '../getToken';
 
 const account = 'user_id, username, firstname, lastname, email, phone, profile_picture, birthdate, city, state';
