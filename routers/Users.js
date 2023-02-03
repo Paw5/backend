@@ -1,19 +1,20 @@
-const { Router } = require('express');
-const joi = require('joi');
-const connection = require('../connection');
-const { getUsername } = require('../getToken');
+import { Router } from 'express';
+import { object, string } from 'joi';
+import connection from '../connection';
+import { ERR_NOT_FOUND } from '../ResponseErrors';
+import { getUsername } from '../getToken';
 
 const account = 'user_id, username, firstname, lastname, email, phone, profile_picture, birthdate, city, state';
 const router = Router();
 
-const userSchema = joi.object({
-  username: joi.string().alphanum().min(3).max(16),
-  email: joi.string().email(),
-  phone: joi.string().length(10).regex(/[0-9]{10}/),
-  profileId: joi.string().regex(/[a-zA-Z0-9-](\.jpg|\.png|\.jpeg)?/),
-  birthdate: joi.string().regex(/[12][0-9]{3}-[0-1][0-9]-[0-3][0-9]/),
-  city: joi.string().regex(/[A-Za-z]+/),
-  state: joi.string().length(2).regex(/[A-Z]{2}/),
+const userSchema = object({
+  username: string().alphanum().min(3).max(16),
+  email: string().email(),
+  phone: string().length(10).regex(/[0-9]{10}/),
+  profileId: string().regex(/[a-zA-Z0-9-](\.jpg|\.png|\.jpeg)?/),
+  birthdate: string().regex(/[12][0-9]{3}-[0-1][0-9]-[0-3][0-9]/),
+  city: string().regex(/[A-Za-z]+/),
+  state: string().length(2).regex(/[A-Z]{2}/),
 });
 
 router.get('/', (req, res) => {
@@ -182,4 +183,4 @@ router.delete('/', (req, res) => {
     });
   });
 });
-module.exports = router;
+export default router;
