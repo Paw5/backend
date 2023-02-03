@@ -1,5 +1,4 @@
 const mysql = require('mysql2');
-
 require('dotenv').config({ path: './secrets/.env' });
 
 const port = process.env.AWS_PORT; // port to listen on
@@ -11,6 +10,10 @@ const connection = mysql.createConnection({
   database: 'dbadmin',
   port,
 });
-connection.connect((err) => console.log(err || 'Connected to DB'));
 
-module.exports = connection;
+const setupConnection = () => {
+  connection.connect();
+  return connection;
+};
+
+module.exports = setupConnection;

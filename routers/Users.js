@@ -1,7 +1,6 @@
 const { Router } = require('express');
 const joi = require('joi');
 const connection = require('../connection');
-const { GEN_ERR_BAD_REQUEST, ERR_NOT_FOUND } = require('../ResponseErrors');
 const { getUsername } = require('../getToken');
 
 const account = 'user_id, username, firstname, lastname, email, phone, profile_picture, birthdate, city, state';
@@ -90,11 +89,11 @@ router.get('/:userIdString', (req, res) => {
     connection.query(`SELECT ${columns} FROM users WHERE user_id=${userId}`, (err, result) => {
       if (err) {
         res.status(400);
-        jsonResponse.error = GEN_ERR_BAD_REQUEST({
+        jsonResponse.error = {
           code: err.errno,
           id: err.sqlState,
           message: err.message,
-        });
+        };
       } else if (!result.length) {
         res.status(404);
         jsonResponse.error = ERR_NOT_FOUND;

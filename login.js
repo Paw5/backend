@@ -1,21 +1,19 @@
 const bcrypt = require('bcrypt');
-const connection = require('./connection');
+const connection = require('./connection')();
 
 require('dotenv').config();
 
-const saltRounds = 10;
+const SALT_ROUNDS = 10;
 
-const hashPassword = async (input) => {
-  const salt = await bcrypt.genSalt(saltRounds, 'a');
-  const hash = await bcrypt.hash(input, salt);
-
+const hashPassword = (input) => {
+  const hash = bcrypt.hashSync(input, SALT_ROUNDS);
   return hash;
 };
 
 const createUser = async (data = {}) => {
-  const { username, password } = data;
+  const { password } = data;
   const postedData = data;
-  const hash = await hashPassword(`${username}:${password}`);
+  const hash = hashPassword(password);
   postedData.password = hash;
   return new Promise((resolve) => {
     const categories = `(${Object.keys({ ...data }).join(', ')})`;
@@ -39,6 +37,7 @@ const updateUserPassword = async (username, password) => {
 const comparePasswords = async (input, hash) => bcrypt.compare(input, hash);
 
 const getPasswordHash = async (username) => {
+  console.log(`Getting password hash for user ${username}`);
   const passwordHash = new Promise((resolve) => {
     connection.query('SELECT password FROM users WHERE username=?', [username], (err, results) => {
       if (!err && results && results.length) resolve(results[0].password);
