@@ -23,7 +23,7 @@ const GEN_ERR_NOT_FOUND = (extraDetails) => ({
   ...extraDetails,
 });
 
-module.exports = {
+export {
   ERR_BAD_REQUEST,
   ERR_NOT_FOUND,
   ER_DUP_ENTRY,

@@ -1,13 +1,14 @@
-const bcrypt = require('bcrypt');
-const connection = require('./connection');
+import { genSalt, hash as _hash, compare } from 'bcrypt';
+import dotenv from 'dotenv';
+import connection from './connection';
 
-require('dotenv').config();
+dotenv.config();
 
 const saltRounds = 10;
 
 const hashPassword = async (input) => {
-  const salt = await bcrypt.genSalt(saltRounds, 'a');
-  const hash = await bcrypt.hash(input, salt);
+  const salt = await genSalt(saltRounds, 'a');
+  const hash = await _hash(input, salt);
 
   return hash;
 };
@@ -19,7 +20,7 @@ const createUser = async (data = {}) => {
   postedData.password = hash;
   return new Promise((resolve) => {
     const categories = `(${Object.keys({ ...data }).join(', ')})`;
-    const placeholders = categories.replaceAll(/\w+/g, '?');
+    const placeholders = categories.replaceAll(/[^,]+/g, '?');
 
     connection.query(`INSERT INTO users ${categories} VALUES ${placeholders}`, [...Object.values(postedData)], (error, result) => {
       resolve(error ? { error } : { data: result });
@@ -36,7 +37,7 @@ const updateUserPassword = async (username, password) => {
   });
 };
 
-const comparePasswords = async (input, hash) => bcrypt.compare(input, hash);
+const comparePasswords = async (input, hash) => compare(input, hash);
 
 const getPasswordHash = async (username) => {
   const passwordHash = new Promise((resolve) => {
@@ -48,7 +49,7 @@ const getPasswordHash = async (username) => {
   return passwordHash;
 };
 
-module.exports = {
+export default {
   comparePasswords,
   getPasswordHash,
   hashPassword,
