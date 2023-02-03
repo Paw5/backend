@@ -25,28 +25,28 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/13</span>
+                <span class='fraction'>0/25</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/4</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>0/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/12</span>
+                <span class='fraction'>0/21</span>
             </div>
         
             
@@ -87,8 +87,28 @@
 <a name='L22'></a><a href='#L22'>22</a>
 <a name='L23'></a><a href='#L23'>23</a>
 <a name='L24'></a><a href='#L24'>24</a>
-<a name='L25'></a><a href='#L25'>25</a></td><td class="line-coverage quiet"><span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<a name='L25'></a><a href='#L25'>25</a>
+<a name='L26'></a><a href='#L26'>26</a>
+<a name='L27'></a><a href='#L27'>27</a>
+<a name='L28'></a><a href='#L28'>28</a>
+<a name='L29'></a><a href='#L29'>29</a>
+<a name='L30'></a><a href='#L30'>30</a>
+<a name='L31'></a><a href='#L31'>31</a>
+<a name='L32'></a><a href='#L32'>32</a>
+<a name='L33'></a><a href='#L33'>33</a>
+<a name='L34'></a><a href='#L34'>34</a>
+<a name='L35'></a><a href='#L35'>35</a>
+<a name='L36'></a><a href='#L36'>36</a>
+<a name='L37'></a><a href='#L37'>37</a>
+<a name='L38'></a><a href='#L38'>38</a>
+<a name='L39'></a><a href='#L39'>39</a>
+<a name='L40'></a><a href='#L40'>40</a>
+<a name='L41'></a><a href='#L41'>41</a>
+<a name='L42'></a><a href='#L42'>42</a>
+<a name='L43'></a><a href='#L43'>43</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -97,6 +117,29 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -104,37 +147,48 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const base64 = <span class="cstat-no" title="statement not covered" >require('base-64');</span>
-const login = <span class="cstat-no" title="statement not covered" >require('./login');</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { decode } from 'base-64';
+import { sign, verify, decode as _decode } from 'jsonwebtoken';
+import dotenv from 'dotenv';
+import { getPasswordHash, comparePasswords } from './login';
 &nbsp;
-<span class="cstat-no" title="statement not covered" >require('dotenv').config();</span>
+<span class="cstat-no" title="statement not covered" >dotenv.config();</span>
 &nbsp;
 async function <span class="fstat-no" title="function not covered" >getTokenFromBasicAuthorization(</span>authorization) {
-  const [, encodedAuth] = <span class="cstat-no" title="statement not covered" >authorization.split(' ');</span>
-  const [username, password] = <span class="cstat-no" title="statement not covered" >base64.decode(encodedAuth).split(':');</span>
-  const storedPasswordHash = <span class="cstat-no" title="statement not covered" >await login.getPasswordHash(username);</span>
-<span class="cstat-no" title="statement not covered" >  if (await login.comparePasswords(password, storedPasswordHash)) <span class="cstat-no" title="statement not covered" >return encodedAuth;</span></span>
-<span class="cstat-no" title="statement not covered" >  throw new Error('401');</span>
-}
+<span class="cstat-no" title="statement not covered" >  if (!authorization.match(/Basic .+/)) <span class="cstat-no" title="statement not covered" >return '';</span></span>
+  const [username, password] = <span class="cstat-no" title="statement not covered" >decode(authorization.split(' ')[1]).split(':');</span>
+<span class="cstat-no" title="statement not covered" >  if (!username || !password) <span class="cstat-no" title="statement not covered" >return '';</span></span>
+  const passwordHash = <span class="cstat-no" title="statement not covered" >await getPasswordHash(username);</span>
 &nbsp;
-function <span class="fstat-no" title="function not covered" >getToken(</span>authorization) {
-<span class="cstat-no" title="statement not covered" >  if (authorization.match(/Basic [^ ]+/)) {</span>
-<span class="cstat-no" title="statement not covered" >    return getTokenFromBasicAuthorization(authorization);</span>
+<span class="cstat-no" title="statement not covered" >  if (await comparePasswords(`${username}:${password}`, passwordHash)) {</span>
+    const jwtToken = <span class="cstat-no" title="statement not covered" >sign(username, process.env.JWT_SECRET);</span>
+<span class="cstat-no" title="statement not covered" >    return jwtToken;</span>
   }
 <span class="cstat-no" title="statement not covered" >  throw new Error('403');</span>
 }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >module.exports = {</span>
-  getToken,
-  getTokenFromBasicAuthorization,
-};
+async function <span class="fstat-no" title="function not covered" >getTokenFromBearerAuthorization(</span>authorization) {
+<span class="cstat-no" title="statement not covered" >  if (!authorization.match(/Bearer .+/)) <span class="cstat-no" title="statement not covered" >return '';</span></span>
+  const [, token] = <span class="cstat-no" title="statement not covered" >authorization.split(' ');</span>
+<span class="cstat-no" title="statement not covered" >  try {</span>
+<span class="cstat-no" title="statement not covered" >    verify(token, process.env.JWT_SECRET);</span>
+<span class="cstat-no" title="statement not covered" >    return token;</span>
+  } catch {
+<span class="cstat-no" title="statement not covered" >    return '';</span>
+  }
+}
+&nbsp;
+export async function <span class="fstat-no" title="function not covered" >getToken(</span>authorization) {
+<span class="cstat-no" title="statement not covered" >  if (!authorization) <span class="cstat-no" title="statement not covered" >return '';</span></span>
+  const basicAuth = <span class="cstat-no" title="statement not covered" >await getTokenFromBasicAuthorization(authorization);</span>
+  const bearerAuth = <span class="cstat-no" title="statement not covered" >await getTokenFromBearerAuthorization(authorization);</span>
+<span class="cstat-no" title="statement not covered" >  return basicAuth || bearerAuth;</span>
+}
+&nbsp;
+export async function <span class="fstat-no" title="function not covered" >getUsername(</span>authorization) {
+  const token = <span class="cstat-no" title="statement not covered" >await getToken(authorization);</span>
+<span class="cstat-no" title="statement not covered" >  return _decode(token);</span>
+}
 &nbsp;</pre></td></tr></table></pre>
 
                 <div class='push'></div><!-- for sticky footer -->
@@ -142,7 +196,7 @@ function <span class="fstat-no" title="function not covered" >getToken(</span>au
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-02-03T08:03:42.492Z
+                at 2023-02-03T08:23:27.703Z
             </div>
         <script src="../prettify.js"></script>
         <script>

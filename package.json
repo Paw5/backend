@@ -45,5 +45,5 @@
   "author": "",
   "license": "ISC",
   "description": "",
-  "type": "commonjs"
+  "type": "module"
 }
