@@ -1,8 +1,9 @@
 // Hack to make iconv load the encodings module, otherwise jest crashes. Compare
 // https://github.com/sidorares/node-mysql2/issues/489
-require('iconv-lite').encodingExists('foo');
+import iconv from 'iconv-lite';
+import setupConnection from '../connection';
 
-const setupConnection = require('../connection');
+iconv.encodingExists('foo');
 
 beforeEach(() => {
   setupConnection();

@@ -1,21 +1,17 @@
-import { genSalt, hash as _hash, compare } from 'bcrypt';
+import { hashSync, compare } from 'bcrypt';
 import dotenv from 'dotenv';
 import connection from './connection';
 
 dotenv.config();
 
-const saltRounds = 10;
+const SALT_ROUNDS = 10;
 
-const hashPassword = async (input) => {
-  const salt = await genSalt(saltRounds, 'a');
-  const hash = await _hash(input, salt);
-
-const hashPassword = (input) => {
-  const hash = bcrypt.hashSync(input, SALT_ROUNDS);
+export const hashPassword = (input) => {
+  const hash = hashSync(input, SALT_ROUNDS);
   return hash;
 };
 
-const createUser = async (data = {}) => {
+export const createUser = async (data = {}) => {
   const { password } = data;
   const postedData = data;
   const hash = hashPassword(password);
@@ -30,7 +26,7 @@ const createUser = async (data = {}) => {
   });
 };
 
-const updateUserPassword = async (username, password) => {
+export const updateUserPassword = async (username, password) => {
   const hash = await hashPassword(`${username}:${password}`);
   return new Promise((resolve) => {
     connection.query('UPDATE users SET password=? WHERE username=?', [hash, username], (error, result) => {
@@ -39,9 +35,9 @@ const updateUserPassword = async (username, password) => {
   });
 };
 
-const comparePasswords = async (input, hash) => compare(input, hash);
+export const comparePasswords = async (input, hash) => compare(input, hash);
 
-const getPasswordHash = async (username) => {
+export const getPasswordHash = async (username) => {
   console.log(`Getting password hash for user ${username}`);
   const passwordHash = new Promise((resolve) => {
     connection.query('SELECT password FROM users WHERE username=?', [username], (err, results) => {
@@ -50,12 +46,4 @@ const getPasswordHash = async (username) => {
     });
   });
   return passwordHash;
-};
-
-export default {
-  comparePasswords,
-  getPasswordHash,
-  hashPassword,
-  createUser,
-  updateUserPassword,
 };

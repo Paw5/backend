@@ -1,6 +1,7 @@
 import { createConnection } from 'mysql2';
+import dotenv from 'dotenv';
 
-require('dotenv').config({ path: './secrets/.env' });
+dotenv.config({ path: './secrets/.env' });
 
 const port = process.env.AWS_PORT; // port to listen on
 const uri = process.env.AWS_HOSTNAME; // connection string used to connect to AWS MySQL DB

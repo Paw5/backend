@@ -1,13 +1,13 @@
-const bcrypt = require('bcrypt');
-const setupConnection = require('../connection');
-const login = require('../login');
+import bcrypt from 'bcrypt';
+import iconv from 'iconv-lite';
+import setupConnection from '../connection';
+import { hashPassword } from '../login';
 
 // Hack to make iconv load the encodings module, otherwise jest crashes. Compare
 // https://github.com/sidorares/node-mysql2/issues/489
-require('iconv-lite').encodingExists('foo');
+iconv.encodingExists('foo');
 
 describe('hashPassword', () => {
-  const { hashPassword } = login;
   it('succeeds on matching passwords', () => {
     const actualValue = hashPassword('password');
     expect(bcrypt.compareSync('password', actualValue)).toBe(true);

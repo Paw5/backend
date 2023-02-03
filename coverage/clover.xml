@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1675412607714" clover="3.2.0">
-  <project timestamp="1675412607714" name="All files">
-    <metrics statements="166" coveredstatements="0" conditionals="82" coveredconditionals="0" methods="38" coveredmethods="0" elements="286" coveredelements="0" complexity="0" loc="166" ncloc="166" packages="3" files="8" classes="8"/>
+<coverage generated="1675412994315" clover="3.2.0">
+  <project timestamp="1675412994315" name="All files">
+    <metrics statements="194" coveredstatements="16" conditionals="92" coveredconditionals="0" methods="49" coveredmethods="2" elements="335" coveredelements="18" complexity="0" loc="194" ncloc="194" packages="3" files="9" classes="9"/>
     <package name="backend">
-      <metrics statements="93" coveredstatements="0" conditionals="42" coveredconditionals="0" methods="23" coveredmethods="0"/>
+      <metrics statements="121" coveredstatements="16" conditionals="52" coveredconditionals="0" methods="34" coveredmethods="2"/>
       <file name="ResponseErrors.js" path="/Users/noah/Documents/paw-5/backend/ResponseErrors.js">
         <metrics statements="5" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="2" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
@@ -13,14 +13,14 @@
         <line num="21" count="0" type="stmt"/>
       </file>
       <file name="connection.js" path="/Users/noah/Documents/paw-5/backend/connection.js">
-        <metrics statements="7" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="3" count="0" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="stmt"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="15" count="0" type="stmt"/>
-        <line num="16" count="0" type="stmt"/>
-        <line num="17" count="0" type="stmt"/>
+        <metrics statements="7" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
+        <line num="4" count="2" type="stmt"/>
+        <line num="6" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="8" count="2" type="stmt"/>
+        <line num="16" count="2" type="stmt"/>
+        <line num="17" count="8" type="stmt"/>
+        <line num="18" count="8" type="stmt"/>
       </file>
       <file name="featureFlags.js" path="/Users/noah/Documents/paw-5/backend/featureFlags.js">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
@@ -49,6 +49,37 @@
         <line num="36" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="40" count="0" type="stmt"/>
         <line num="41" count="0" type="stmt"/>
+      </file>
+      <file name="login.js" path="/Users/noah/Documents/paw-5/backend/login.js">
+        <metrics statements="28" coveredstatements="9" conditionals="10" coveredconditionals="0" methods="11" coveredmethods="1"/>
+        <line num="5" count="1" type="stmt"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="9" count="1" type="stmt"/>
+        <line num="10" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="14" count="1" type="cond" truecount="0" falsecount="1"/>
+        <line num="15" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="18" count="0" type="stmt"/>
+        <line num="19" count="0" type="stmt"/>
+        <line num="20" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
+        <line num="23" count="0" type="stmt"/>
+        <line num="24" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="29" count="1" type="stmt"/>
+        <line num="30" count="0" type="stmt"/>
+        <line num="31" count="0" type="stmt"/>
+        <line num="32" count="0" type="stmt"/>
+        <line num="33" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="38" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="41" count="0" type="stmt"/>
+        <line num="42" count="0" type="stmt"/>
+        <line num="43" count="0" type="stmt"/>
+        <line num="44" count="0" type="cond" truecount="0" falsecount="5"/>
+        <line num="45" count="0" type="stmt"/>
+        <line num="48" count="0" type="stmt"/>
       </file>
       <file name="middleware.js" path="/Users/noah/Documents/paw-5/backend/middleware.js">
         <metrics statements="29" coveredstatements="0" conditionals="10" coveredconditionals="0" methods="6" coveredmethods="0"/>
