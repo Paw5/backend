@@ -1,9 +1,10 @@
-const mysql = require('mysql2');
+import { createConnection } from 'mysql2';
+
 require('dotenv').config({ path: './secrets/.env' });
 
 const port = process.env.AWS_PORT; // port to listen on
 const uri = process.env.AWS_HOSTNAME; // connection string used to connect to AWS MySQL DB
-const connection = mysql.createConnection({
+const connection = createConnection({
   host: uri,
   user: process.env.AWS_USER,
   password: process.env.AWS_SECRET,
@@ -16,4 +17,4 @@ const setupConnection = () => {
   return connection;
 };
 
-module.exports = setupConnection;
+export default setupConnection;

@@ -28,5 +28,6 @@ module.exports = {
       },
     ],
     'linebreak-style': 'off',
+    'import/prefer-default-export': 'off',
   },
 };
