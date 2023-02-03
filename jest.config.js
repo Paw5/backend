@@ -8,12 +8,12 @@ const config = {
     '!**/jest.config.js',
     '!**/coverage/**',
   ],
-  // coverageThreshold: {
-  //   global: {
-  //     functions: 90,
-  //     statements: -10,
-  //   },
-  // },
+  coverageThreshold: {
+    global: {
+      functions: 90,
+      statements: -10,
+    },
+  },
 };
 
 module.exports = config;
