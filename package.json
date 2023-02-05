@@ -3,6 +3,7 @@
     "ajv": "^8.12.0",
     "aws-sdk": "^2.1247.0",
     "aws-serverless-express": "^3.4.0",
+    "babel-jest": "^29.4.1",
     "base-64": "^1.0.0",
     "bcrypt": "^5.1.0",
     "body-parser": "^1.20.1",
@@ -30,6 +31,7 @@
   "version": "1.0.0",
   "main": "server.js",
   "devDependencies": {
+    "@babel/preset-env": "^7.20.2",
     "@jest/globals": "^29.3.0",
     "eslint": "^8.26.0",
     "eslint-config-airbnb": "^19.0.4",
@@ -46,5 +48,5 @@
   "author": "",
   "license": "ISC",
   "description": "",
-  "type": "commonjs"
+  "type": "module"
 }
