@@ -1,14 +1,13 @@
-import setupConnection from './connection';
+import connection from './connection';
 
 export default class Database {
   constructor() {
-    this.setupConnection = setupConnection;
+    this.connection = connection;
   }
 
-  query(queryString, callback) {
-    const connection = this.setupConnection();
-    const query = connection.query(queryString, callback);
-    connection.end();
-    return query;
+  async query(queryString, placeholders) {
+    const query = await (await this.connection).query(queryString, placeholders);
+    const queryResults = query[0];
+    return queryResults;
   }
 }

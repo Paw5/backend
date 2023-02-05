@@ -1,21 +1,17 @@
 import Database from '../Database';
 
+const db = new Database();
+
 describe('query', () => {
-  const db = new Database();
-  it('gets users from table', () => {
-    db.query('SELECT * FROM users', (err, result) => {
-      expect(err).toBeNull();
-      expect(result).not.toHaveLength(0);
+  it('gets users from table', async () => {
+    expect(db.query('SELECT user_id, username FROM users')).resolves.toContainEqual({
+      user_id: 1,
+      username: 'jest',
     });
-    db.query('SELECT * FROM users', (err, result) => {
-      expect(err).toBeNull();
-      expect(result).not.toHaveLength(0);
-    });
+    expect(db.query('SELECT * FROM users')).resolves.not.toHaveLength(0);
   });
 
-  it('errors on nonexistent table', () => {
-    db.query('SELECT * FROM jskahfkljahf', (err) => {
-      expect(err).not.toBeNull();
-    });
+  it('errors on nonexistent table', async () => {
+    expect(db.query('SELECT * FROM jskahfkljahf')).rejects.toHaveProperty('errno');
   });
 });

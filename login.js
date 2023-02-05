@@ -1,47 +1,107 @@
 import bcrypt from 'bcrypt';
-import dotenv from 'dotenv';
-import connection from './connection';
+import crypto from 'crypto';
+import Database from './Database';
 
-dotenv.config();
+const db = new Database();
 
 export const hashPassword = (input) => {
   const hash = bcrypt.hashSync(input, 10);
   return hash;
 };
 
-export const createUser = async (data = {}) => {
-  const { password } = data;
-  const postedData = data;
+export const create = async (user) => {
+  const query = 'INSERT INTO users SET ?';
+  const accessTokenQuery = 'INSERT INTO access_tokens SET ?';
+
+  const hash = hashPassword(user.password);
+  const insert = {
+    password: hash,
+    username: user.username,
+  };
+  const res = await db.query('SELECT * FROM users WHERE username = ?', user.username);
+
+  if (res.length) {
+    throw new Error('User already exists');
+  }
+  const accessToken = crypto.randomBytes(32).toString('base64');
+  const expiryDate = new Date();
+  expiryDate.setDate(expiryDate.getDate() + 30);
+
+  db.query(query, insert);
+
+  db.query(accessTokenQuery, {
+    access_token: accessToken,
+    expiry: expiryDate,
+    username: user.username,
+  });
+
+  return accessToken;
+};
+
+export const login = async (username, password) => {
+  const query = 'SELECT password FROM users WHERE username = ?';
+
+  const results = await db.query(query, [username]);
+  if (results.length === 0) throw new Error(username);
+  const user = results[0];
+
+  const correctPassword = await bcrypt.compare(password, user.password);
+  if (!correctPassword) throw new Error(username);
+  await db.query('DELETE FROM access_tokens WHERE username = ?', [username]);
+
+  const expiry = new Date();
+  expiry.setDate(expiry.getDate() + 30);
+
+  const accessToken = crypto.randomBytes(32).toString('base64');
+
+  await db.query('INSERT INTO access_tokens SET ?', {
+    access_token: accessToken,
+    expiry,
+    username,
+  });
+
+  return accessToken;
+};
+
+export const loginWithAccessToken = async (token) => {
+  const query = 'SELECT username FROM access_tokens WHERE access_token = ?';
+
+  const results = await db.query(query, [token]);
+
+  if (results.length === 0) throw new Error(token);
+
+  const { username } = results[0];
+
+  await db.query('DELETE FROM access_tokens WHERE username = ?', [username]);
+
+  const expiry = new Date();
+  expiry.setDate(expiry.getDate() + 30);
+
+  const accessToken = crypto.randomBytes(32).toString('base64');
+
+  await db.query('INSERT INTO access_tokens SET ?', {
+    access_token: accessToken,
+    expiry,
+    username,
+  });
+
+  return accessToken;
+};
+
+export const changePassword = async (username, password) => {
+  const query = 'UPDATE users SET password = ? WHERE username = ?';
   const hash = hashPassword(password);
-  postedData.password = hash;
-  return new Promise((resolve) => {
-    const categories = `(${Object.keys({ ...data }).join(', ')})`;
-    const placeholders = categories.replaceAll(/[^,]+/g, '?');
 
-    connection.query(`INSERT INTO users ${categories} VALUES ${placeholders}`, [...Object.values(postedData)], (error, result) => {
-      resolve(error ? { error } : { data: result });
-    });
-  });
+  await db.query(query, [hash, username]);
+
+  await db.query('DELETE FROM access_tokens WHERE username = ?', [username]);
 };
 
-export const updateUserPassword = async (username, password) => {
-  const hash = hashPassword(`${username}:${password}`);
-  return new Promise((resolve) => {
-    connection.query('UPDATE users SET password=? WHERE username=?', [hash, username], (error, result) => {
-      resolve(error ? { error } : { data: result });
-    });
-  });
-};
+export const deleteUser = async (username) => {
+  const query = 'DELETE FROM users WHERE username = ?';
 
-export const comparePasswords = async (input, hash) => bcrypt.compare(input, hash);
+  await db.query('DELETE FROM access_tokens WHERE username = ?', [username]);
+  await db.query(query, [username]);
 
-export const getPasswordHash = async (username) => {
-  console.log(`Getting password hash for user ${username}`);
-  const passwordHash = new Promise((resolve) => {
-    connection.query('SELECT password FROM users WHERE username=?', [username], (err, results) => {
-      if (!err && results && results.length) resolve(results[0].password);
-      else resolve('');
-    });
-  });
-  return passwordHash;
+  return true;
 };

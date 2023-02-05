@@ -1,4 +1,4 @@
-import { createConnection } from 'mysql2';
+import { createConnection } from 'mysql2/promise';
 import dotenv from 'dotenv';
 
 dotenv.config({ path: './secrets/.env' });
@@ -13,4 +13,13 @@ const options = {
   port,
 };
 
-export default () => createConnection(options);
+export default createConnection(options);
+
+// export default {
+//   getConnection: () => new Promise((resolve, reject) => {
+//     createPool(options).getConnection((err, conn) => {
+//       if (err) reject(err);
+//       else resolve(conn);
+//     });
+//   }),
+// };

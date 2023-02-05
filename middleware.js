@@ -1,5 +1,6 @@
+import { decode } from 'base-64';
 import { endpoints } from './featureFlags';
-import { getToken } from './getToken';
+import { login, loginWithAccessToken } from './login';
 
 const requireHTTPS = (req, res, next) => {
   if (req.secure) {
@@ -40,17 +41,21 @@ const responseHeaders = (req, res, next) => {
 
 const requireAuthentication = (req, res, next) => {
   const { authorization } = req.headers;
-  getToken(authorization).then((token) => {
-    if (token) {
-      if (req.url === '/login') {
-        res.json({
-          token,
-        });
-      } else next();
-    } else {
-      res.status(401).send('<h1>401 Unauthorized</h1>');
-    }
-  });
+  let loginPromise;
+  if (authorization.match(/Basic [^ ]+/)) {
+    const [username, password] = decode(authorization.split(' ')[1]).split(':');
+    loginPromise = login(username, password);
+  } else if (authorization.match(/Bearer [^ ]+/)) {
+    const [, token] = authorization.split(' ');
+    loginPromise = loginWithAccessToken(token);
+  } else {
+    res.status(403).send();
+  }
+  loginPromise
+    .then(next)
+    .catch(() => {
+      res.status(403).send();
+    });
 };
 
 export default [
