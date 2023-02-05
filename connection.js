@@ -13,7 +13,13 @@ const options = {
   port,
 };
 
-export default createConnection(options);
+const connection = createConnection(options);
+
+export default connection;
+
+export const endConnection = async () => {
+  (await connection).end();
+};
 
 // export default {
 //   getConnection: () => new Promise((resolve, reject) => {

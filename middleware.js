@@ -1,6 +1,8 @@
-import { decode } from 'base-64';
-import { endpoints } from './featureFlags';
-import { login, loginWithAccessToken } from './login';
+import base64 from 'base-64';
+import { endpoints } from './featureFlags.js';
+import { login, loginWithAccessToken } from './login.js';
+
+const { decode } = base64;
 
 const requireHTTPS = (req, res, next) => {
   if (req.secure) {
@@ -13,21 +15,23 @@ const requireHTTPS = (req, res, next) => {
 
 const requireEnabledEndpoint = (req, res, next) => {
   const { url } = req;
-  const urlParts = url.split('?')[0].split('/').slice(1);
+  let urlParts = url.split('?')[0].split('/').slice(1);
   let scanEndpoints = endpoints;
-  urlParts.forEach((value, index) => {
-    if (index + 1 === urlParts.length) {
-      scanEndpoints = scanEndpoints[''];
-    } else {
-      scanEndpoints = scanEndpoints[value];
+  if (scanEndpoints[urlParts[0]]) {
+    while (urlParts[0]) {
+      scanEndpoints = scanEndpoints[urlParts[0]];
+      urlParts = urlParts.slice(1);
     }
-    if (scanEndpoints) {
+    if (scanEndpoints && scanEndpoints.verbs) {
       next();
     } else {
       console.error('Middleware requireEnabledEndpoint failed');
       res.status(405).send('<h1>405 Method Not Allowed</h1>');
     }
-  });
+  } else {
+    console.error('Middleware requireEnabledEndpoint failed');
+    res.status(405).send('<h1>405 Method Not Allowed</h1>');
+  }
 };
 
 const responseHeaders = (req, res, next) => {

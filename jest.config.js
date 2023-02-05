@@ -19,6 +19,7 @@ const config = {
     '^.+\\.(js|jsx)$': 'babel-jest',
   },
   setupFilesAfterEnv: ['./tests/setup'],
+  globalTeardown: './tests/teardown.js',
 };
 
 export default config;

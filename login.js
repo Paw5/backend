@@ -1,8 +1,8 @@
 import bcrypt from 'bcrypt';
 import crypto from 'crypto';
-import Database from './Database';
+import Database from './Database.js';
 
-const db = new Database();
+const db = Database();
 
 export const hashPassword = (input) => {
   const hash = bcrypt.hashSync(input, 10);

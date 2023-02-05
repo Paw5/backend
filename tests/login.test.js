@@ -1,6 +1,6 @@
 import {
   create, deleteUser,
-} from '../login';
+} from '../login.js';
 
 describe('deleteUser', () => {
   it('deletes user', () => {

@@ -1,6 +1,6 @@
-import Database from '../Database';
+import Database from '../Database.js';
 
-const db = new Database();
+const db = Database();
 
 describe('query', () => {
   it('gets users from table', async () => {

@@ -1,6 +1,8 @@
-import connection from './connection';
+import connection from './connection.js';
 
-export default class Database {
+class Database {
+  static instance = new Database();
+
   constructor() {
     this.connection = connection;
   }
@@ -11,3 +13,8 @@ export default class Database {
     return queryResults;
   }
 }
+
+export default () => {
+  if (!Database.instance) Database.instance = new Database();
+  return Database.instance;
+};
