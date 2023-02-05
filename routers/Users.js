@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import { object, string } from 'joi';
 import connection from '../connection';
-import { ERR_NOT_FOUND } from '../ResponseErrors';
 import { getUsername } from '../getToken';
 
 const account = 'user_id, username, firstname, lastname, email, phone, profile_picture, birthdate, city, state';
@@ -97,7 +96,9 @@ router.get('/:userIdString', (req, res) => {
         };
       } else if (!result.length) {
         res.status(404);
-        jsonResponse.error = ERR_NOT_FOUND;
+        jsonResponse.error = {
+          code: 404,
+        };
       } else if (result.length) {
         jsonResponse.data = {
           id: userId,

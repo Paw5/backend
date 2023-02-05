@@ -5,9 +5,7 @@ module.exports = {
     'jest/globals': true,
   },
   extends: [
-    'plugin:react/recommended',
     'airbnb',
-    'jest',
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -17,7 +15,7 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [
-    'react',
+    'jest',
   ],
   rules: {
     'no-console': 'off',

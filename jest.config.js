@@ -1,4 +1,5 @@
 const config = {
+  testEnvironment: 'node',
   verbose: true,
   collectCoverage: true,
   collectCoverageFrom: [
@@ -14,6 +15,10 @@ const config = {
       statements: -10,
     },
   },
+  transform: {
+    '^.+\\.(js|jsx)$': 'babel-jest',
+  },
+  setupFilesAfterEnv: ['./tests/setup'],
 };
 
-module.exports = config;
+export default config;
