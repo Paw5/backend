@@ -1,14 +1,18 @@
-import {
-  create, deleteUser,
-} from '../login.js';
+import { compare } from 'bcrypt';
+import { hashPassword } from '../login.js';
+import Database from '../Database.js';
 
-describe('deleteUser', () => {
-  it('deletes user', () => {
-    const user = {
-      username: 'jest-temp3',
-      password: 'password',
-    };
-    create(user);
-    expect(deleteUser('jest-temp3')).resolves.toBe(true);
+const db = Database();
+
+describe('hashPassword', () => {
+  const hashedValue = hashPassword('password');
+  it('returns expected value', () => {
+    expect(compare('password', hashedValue)).resolves.toBe(true);
+    return db.endConnection();
+  });
+
+  it('returns false value', () => {
+    expect(compare('passwordWrong', hashedValue)).resolves.toBe(false);
+    return db.endConnection();
   });
 });

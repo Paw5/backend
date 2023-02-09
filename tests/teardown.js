@@ -1,5 +1,5 @@
-import { endConnection } from '../connection.js';
+import Database from '../Database.js';
 
-export default async () => {
-  (await endConnection());
-};
+const db = Database();
+
+export default async () => db.endConnection();

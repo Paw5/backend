@@ -1,45 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1675631480081" clover="3.2.0">
-  <project timestamp="1675631480081" name="All files">
-    <metrics statements="126" coveredstatements="28" conditionals="34" coveredconditionals="1" methods="19" coveredmethods="6" elements="179" coveredelements="35" complexity="0" loc="126" ncloc="126" packages="3" files="8" classes="8"/>
+<coverage generated="1675961049079" clover="3.2.0">
+  <project timestamp="1675961049080" name="All files">
+    <metrics statements="125" coveredstatements="23" conditionals="34" coveredconditionals="1" methods="21" coveredmethods="7" elements="180" coveredelements="31" complexity="0" loc="125" ncloc="125" packages="3" files="8" classes="8"/>
     <package name="backend">
-      <metrics statements="111" coveredstatements="28" conditionals="22" coveredconditionals="1" methods="16" coveredmethods="6"/>
-      <file name="Database.js" path="C:\Users\johns\Documents\GitHub\backend\Database.js">
-        <metrics statements="7" coveredstatements="5" conditionals="2" coveredconditionals="1" methods="3" coveredmethods="3"/>
+      <metrics statements="110" coveredstatements="23" conditionals="22" coveredconditionals="1" methods="18" coveredmethods="7"/>
+      <file name="Database.js" path="/Users/noah/Documents/paw-5/backend/Database.js">
+        <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="1" methods="6" coveredmethods="6"/>
         <line num="4" count="2" type="stmt"/>
         <line num="7" count="2" type="stmt"/>
-        <line num="11" count="5" type="stmt"/>
-        <line num="12" count="0" type="stmt"/>
-        <line num="13" count="0" type="stmt"/>
-        <line num="18" count="2" type="cond" truecount="1" falsecount="1"/>
-        <line num="19" count="2" type="stmt"/>
+        <line num="11" count="1" type="stmt"/>
+        <line num="13" count="1" type="stmt"/>
+        <line num="20" count="3" type="stmt"/>
+        <line num="25" count="3" type="cond" truecount="1" falsecount="1"/>
+        <line num="26" count="3" type="stmt"/>
+        <line num="29" count="2" type="stmt"/>
       </file>
-      <file name="connection.js" path="C:\Users\johns\Documents\GitHub\backend\connection.js">
-        <metrics statements="7" coveredstatements="6" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
+      <file name="connection.js" path="/Users/noah/Documents/paw-5/backend/connection.js">
+        <metrics statements="5" coveredstatements="5" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="4" count="2" type="stmt"/>
         <line num="6" count="2" type="stmt"/>
         <line num="7" count="2" type="stmt"/>
         <line num="8" count="2" type="stmt"/>
         <line num="16" count="2" type="stmt"/>
-        <line num="20" count="2" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
       </file>
-      <file name="featureFlags.js" path="C:\Users\johns\Documents\GitHub\backend\featureFlags.js">
+      <file name="featureFlags.js" path="/Users/noah/Documents/paw-5/backend/featureFlags.js">
         <metrics statements="1" coveredstatements="1" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="1" type="stmt"/>
       </file>
-      <file name="login.js" path="C:\Users\johns\Documents\GitHub\backend\login.js">
-        <metrics statements="52" coveredstatements="16" conditionals="8" coveredconditionals="0" methods="6" coveredmethods="3"/>
+      <file name="login.js" path="/Users/noah/Documents/paw-5/backend/login.js">
+        <metrics statements="52" coveredstatements="9" conditionals="8" coveredconditionals="0" methods="6" coveredmethods="1"/>
         <line num="5" count="1" type="stmt"/>
         <line num="7" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
         <line num="9" count="1" type="stmt"/>
         <line num="12" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="16" count="1" type="stmt"/>
-        <line num="17" count="1" type="stmt"/>
-        <line num="21" count="1" type="stmt"/>
+        <line num="13" count="0" type="stmt"/>
+        <line num="14" count="0" type="stmt"/>
+        <line num="16" count="0" type="stmt"/>
+        <line num="17" count="0" type="stmt"/>
+        <line num="21" count="0" type="stmt"/>
         <line num="23" count="0" type="cond" truecount="0" falsecount="2"/>
         <line num="24" count="0" type="stmt"/>
         <line num="26" count="0" type="stmt"/>
@@ -78,12 +77,12 @@
         <line num="95" count="0" type="stmt"/>
         <line num="97" count="0" type="stmt"/>
         <line num="100" count="1" type="stmt"/>
-        <line num="101" count="1" type="stmt"/>
-        <line num="103" count="1" type="stmt"/>
+        <line num="101" count="0" type="stmt"/>
+        <line num="103" count="0" type="stmt"/>
         <line num="104" count="0" type="stmt"/>
         <line num="106" count="0" type="stmt"/>
       </file>
-      <file name="middleware.js" path="C:\Users\johns\Documents\GitHub\backend\middleware.js">
+      <file name="middleware.js" path="/Users/noah/Documents/paw-5/backend/middleware.js">
         <metrics statements="35" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="5" coveredmethods="0"/>
         <line num="5" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
@@ -121,7 +120,7 @@
         <line num="58" count="0" type="stmt"/>
         <line num="61" count="0" type="stmt"/>
       </file>
-      <file name="server.js" path="C:\Users\johns\Documents\GitHub\backend\server.js">
+      <file name="server.js" path="/Users/noah/Documents/paw-5/backend/server.js">
         <metrics statements="9" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
         <line num="10" count="0" type="stmt"/>
         <line num="12" count="0" type="stmt"/>
@@ -136,7 +135,7 @@
     </package>
     <package name="backend.routers">
       <metrics statements="14" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="3" coveredmethods="0"/>
-      <file name="Users.js" path="C:\Users\johns\Documents\GitHub\backend\routers\Users.js">
+      <file name="Users.js" path="/Users/noah/Documents/paw-5/backend/routers/Users.js">
         <metrics statements="14" coveredstatements="0" conditionals="12" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="5" count="0" type="stmt"/>
         <line num="7" count="0" type="stmt"/>
@@ -156,7 +155,7 @@
     </package>
     <package name="backend.util">
       <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
-      <file name="constants.js" path="C:\Users\johns\Documents\GitHub\backend\util\constants.js">
+      <file name="constants.js" path="/Users/noah/Documents/paw-5/backend/util/constants.js">
         <metrics statements="1" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
       </file>
