@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.36% </span>
+                <span class="strong">41.07% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>9/55</span>
+                <span class='fraction'>23/56</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>6/12</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">16.66% </span>
+                <span class="strong">42.85% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>1/6</span>
+                <span class='fraction'>3/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">17.3% </span>
+                <span class="strong">41.17% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>9/52</span>
+                <span class='fraction'>21/51</span>
             </div>
         
             
@@ -169,45 +169,43 @@
 <a name='L104'></a><a href='#L104'>104</a>
 <a name='L105'></a><a href='#L105'>105</a>
 <a name='L106'></a><a href='#L106'>106</a>
-<a name='L107'></a><a href='#L107'>107</a>
-<a name='L108'></a><a href='#L108'>108</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L107'></a><a href='#L107'>107</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -288,33 +286,32 @@ export const hashPassword = (input) =&gt; {
   return hash;
 };
 &nbsp;
-export const create = <span class="fstat-no" title="function not covered" >as</span>ync (user) =&gt; {
-  const query = <span class="cstat-no" title="statement not covered" >'INSERT INTO users SET ?';</span>
-  const accessTokenQuery = <span class="cstat-no" title="statement not covered" >'INSERT INTO access_tokens SET ?';</span>
+export const create = async (user) =&gt; {
+  const query = 'INSERT INTO users SET ?';
+  const accessTokenQuery = 'INSERT INTO access_tokens SET ?';
 &nbsp;
-  const hash = <span class="cstat-no" title="statement not covered" >hashPassword(user.password);</span>
-  const insert = <span class="cstat-no" title="statement not covered" >{</span>
+  if (!user.password || !user.username) throw new Error('Must specify username and password');
+  const hash = hashPassword(user.password);
+  const insert = {
     password: hash,
     username: user.username,
   };
-  const res = <span class="cstat-no" title="statement not covered" >await db.query('SELECT * FROM users WHERE username = ?', user.username);</span>
+  const res = await db
+    .query('SELECT * FROM users WHERE username = ?', [user.username]);
+  if (res[0].length) { throw new Error('User already exists'); }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  if (res.length) {</span>
-<span class="cstat-no" title="statement not covered" >    throw new Error('User already exists');</span>
-  }
-  const accessToken = <span class="cstat-no" title="statement not covered" >crypto.randomBytes(32).toString('base64');</span>
-  const expiryDate = <span class="cstat-no" title="statement not covered" >new Date();</span>
-<span class="cstat-no" title="statement not covered" >  expiryDate.setDate(expiryDate.getDate() + 30);</span>
+  const accessToken = crypto.randomBytes(32).toString('base64');
+  const expiryDate = new Date();
+  expiryDate.setDate(expiryDate.getDate() + 30);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  db.query(query, insert);</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >  db.query(accessTokenQuery, {</span>
-    access_token: accessToken,
-    expiry: expiryDate,
-    username: user.username,
-  });
-&nbsp;
-<span class="cstat-no" title="statement not covered" >  return accessToken;</span>
+  return Promise.all([
+    db.query(query, insert),
+    db.query(accessTokenQuery, {
+      access_token: accessToken,
+      expiry: expiryDate,
+      username: user.username,
+    }),
+  ]).then(() =&gt; accessToken);
 };
 &nbsp;
 export const login = <span class="fstat-no" title="function not covered" >as</span>ync (username, password) =&gt; {
@@ -391,7 +388,7 @@ export const deleteUser = <span class="fstat-no" title="function not covered" >a
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-02-09T16:44:09.063Z
+                at 2023-02-09T17:26:34.792Z
             </div>
         <script src="../prettify.js"></script>
         <script>

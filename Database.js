@@ -7,17 +7,17 @@ class Database {
     this.connection = connection;
   }
 
+  getConnection() {
+    return Promise.resolve(this.connection);
+  }
+
   async query(queryString, placeholders) {
-    return Promise
-      .resolve(this.connection)
+    return this.getConnection()
       .then((c) => c.query(queryString, placeholders));
-    // const query = await (await this.connection).query(queryString, placeholders);
-    // const queryResults = query[0];
-    // return queryResults;
   }
 
   async endConnection() {
-    return Promise.resolve(this.connection).then((c) => c.end());
+    return this.getConnection().then((c) => c.end());
   }
 }
 

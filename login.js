@@ -13,29 +13,28 @@ export const create = async (user) => {
   const query = 'INSERT INTO users SET ?';
   const accessTokenQuery = 'INSERT INTO access_tokens SET ?';
 
+  if (!user.password || !user.username) throw new Error('Must specify username and password');
   const hash = hashPassword(user.password);
   const insert = {
     password: hash,
     username: user.username,
   };
-  const res = await db.query('SELECT * FROM users WHERE username = ?', user.username);
+  const res = await db
+    .query('SELECT * FROM users WHERE username = ?', [user.username]);
+  if (res[0].length) { throw new Error('User already exists'); }
 
-  if (res.length) {
-    throw new Error('User already exists');
-  }
   const accessToken = crypto.randomBytes(32).toString('base64');
   const expiryDate = new Date();
   expiryDate.setDate(expiryDate.getDate() + 30);
 
-  db.query(query, insert);
-
-  db.query(accessTokenQuery, {
-    access_token: accessToken,
-    expiry: expiryDate,
-    username: user.username,
-  });
-
-  return accessToken;
+  return Promise.all([
+    db.query(query, insert),
+    db.query(accessTokenQuery, {
+      access_token: accessToken,
+      expiry: expiryDate,
+      username: user.username,
+    }),
+  ]).then(() => accessToken);
 };
 
 export const login = async (username, password) => {
