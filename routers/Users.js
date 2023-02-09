@@ -17,6 +17,17 @@ const router = Router();
 //   state: string().length(2).regex(/[A-Z]{2}/),
 // });
 
+// const res = {
+//   status: (statusCode) => {
+//     res.statusCode = statusCode;
+//     return res;
+//   },
+//   json: (data) => {
+//     res.data = data;
+//     return res;
+//   },
+// };
+
 router.get('/', (req, res) => {
   const {
     mode, offset, page, limit,

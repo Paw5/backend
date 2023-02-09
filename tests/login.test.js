@@ -24,7 +24,7 @@ describe('create', () => {
     const sqlSpy = jest
       .spyOn(await db.connection, 'query')
       .mockImplementation(jest.fn())
-      .mockImplementationOnce(() => [{}]);
+      .mockImplementationOnce(() => [[]]);
     jest.spyOn(bcrypt, 'hashSync').mockImplementation((p) => p);
     await create({
       username: 'jest-user',

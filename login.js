@@ -21,7 +21,7 @@ export const create = async (user) => {
   };
   const res = await db
     .query('SELECT * FROM users WHERE username = ?', [user.username]);
-  if (res[0].length) { throw new Error('User already exists'); }
+  if (res[0].length > 0) { throw new Error('User already exists'); }
 
   const accessToken = crypto.randomBytes(32).toString('base64');
   const expiryDate = new Date();
