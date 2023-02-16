@@ -90,20 +90,21 @@ export const loginWithAccessToken = async (token) => {
   return accessToken;
 };
 
-export const changePassword = async (username, password) => {
+export const changePassword = (username, password) => {
   const query = 'UPDATE users SET password = ? WHERE username = ?';
   const hash = hashPassword(password);
 
-  await db.query(query, [hash, username]);
-
-  await db.query('DELETE FROM access_tokens WHERE username = ?', [username]);
+  return Promise.all([
+    db.query(query, [hash, username]),
+    db.query('DELETE FROM access_tokens WHERE username = ?', [username]),
+  ]);
 };
 
-export const deleteUser = async (username) => {
+export const deleteUser = (username) => {
   const query = 'DELETE FROM users WHERE username = ?';
 
-  await db.query('DELETE FROM access_tokens WHERE username = ?', [username]);
-  await db.query(query, [username]);
-
-  return true;
+  return Promise.all([
+    db.query('DELETE FROM access_tokens WHERE username = ?', [username]),
+    db.query(query, [username]),
+  ]);
 };
