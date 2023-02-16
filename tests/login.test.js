@@ -1,5 +1,10 @@
+import '@jest/globals';
 import bcrypt, { compare } from 'bcrypt';
-import { create, hashPassword } from '../login.js';
+import {
+  create,
+  hashPassword,
+  login,
+} from '../login.js';
 import Database from '../Database.js';
 
 const db = Database();
@@ -48,8 +53,9 @@ describe('create', () => {
       .mockImplementation(jest.fn())
       .mockImplementationOnce(() => [[{}]]);
 
-    expect(create({})).rejects.toThrow('Must specify username and password');
-    expect(sqlSpy).not.toBeCalled();
+    return expect(create({}).then(() => {
+      expect(sqlSpy).not.toBeCalled();
+    })).rejects.toThrow('Must specify username and password');
   });
 
   it('errors with existing user', async () => {
@@ -58,10 +64,49 @@ describe('create', () => {
       .mockImplementation(jest.fn())
       .mockImplementationOnce(() => [[{ 'non-empty': 1 }]]);
 
-    await expect(create({ username: 'user', password: 'password' }))
+    expect(create({ username: 'user', password: 'password' })
+      .then(() => {
+        expect(sqlSpy).toBeCalled();
+      }))
       .rejects
       .toThrow('User already exists');
-    expect(sqlSpy).toBeCalled();
+  });
+});
+
+describe('login', () => {
+  it('errors without attempted authentication', async () => {
+    expect(login()).rejects.toThrow('Invalid username or password');
+    expect(login('username')).rejects.toThrow('Invalid username or password');
+    expect(login(undefined, 'password')).rejects.toThrow('Invalid username or password');
+  });
+
+  it('errors with non-existent user', async () => {
+    const sqlMock = jest.spyOn(await db.connection, 'query')
+      .mockImplementationOnce(() => [[]]);
+    expect(login('username', 'password').then(() => {
+      expect(sqlMock).toHaveBeenCalledTimes(1);
+    })).rejects.toThrow('That user does not exist');
+  });
+
+  it('errors with incorrect password', async () => {
+    const hashedPassword = hashPassword('password');
+    const sqlSpy = jest.spyOn(await db.connection, 'query')
+      .mockImplementationOnce(() => [[{
+        username: 'username',
+        password: hashedPassword,
+      }]]);
+    expect(login('username', 'wrong').then(() => {
+      expect(sqlSpy).toHaveBeenCalledTimes(1);
+    })).rejects.toThrow('Incorrect password');
+  });
+
+  it('logs in correctly', async () => {
+    const hashedPassword = hashPassword('password');
+    jest.spyOn(await db.connection, 'query')
+      .mockImplementationOnce(() => [[{
+        password: hashedPassword,
+      }]]);
+    await login('username', 'password');
   });
 });
 

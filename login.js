@@ -40,12 +40,13 @@ export const create = async (user) => {
 export const login = async (username, password) => {
   const query = 'SELECT password FROM users WHERE username = ?';
 
+  if (!username || !password) throw new Error('Invalid username or password');
   const results = await db.query(query, [username]);
-  if (results.length === 0) throw new Error(username);
-  const user = results[0];
+  if (results[0].length === 0) throw new Error('That user does not exist');
+  const user = results[0][0];
 
   const correctPassword = await bcrypt.compare(password, user.password);
-  if (!correctPassword) throw new Error(username);
+  if (!correctPassword) throw new Error(user.password);
   await db.query('DELETE FROM access_tokens WHERE username = ?', [username]);
 
   const expiry = new Date();
