@@ -9,14 +9,21 @@ const mockDB = {
   ],
 };
 
+beforeEach(async () => {
+  jest.resetAllMocks();
+  const connection = await db.getConnection();
+  connection.query = jest.fn();
+});
+
 describe('query', () => {
   it('gets users from table', async () => {
-    const sqlSpy = jest
-      .spyOn(await db.connection, 'query')
-      .mockImplementation(() => mockDB.users);
+    const connection = await db.getConnection();
+    connection.query.mockResolvedValue(mockDB.users);
     const queryResults = await db.query('SELECT * FROM users');
-    expect(sqlSpy).toBeCalledTimes(1);
-    expect(queryResults).not.toHaveLength(0);
-    return db.endConnection();
+    expect(connection.query).toBeCalledTimes(1);
+    expect(connection.query).toBeCalledWith('SELECT * FROM users', undefined);
+    expect(queryResults[0]).toHaveProperty('user_id', 1);
   });
 });
+
+afterAll(() => db.endConnection());

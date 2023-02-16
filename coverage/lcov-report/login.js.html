@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">41.07% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>23/56</span>
+                <span class='fraction'>40/60</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">85% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/12</span>
+                <span class='fraction'>17/20</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">42.85% </span>
+                <span class="strong">57.14% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/7</span>
+                <span class='fraction'>4/7</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">41.17% </span>
+                <span class="strong">66.03% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>21/51</span>
+                <span class='fraction'>35/53</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line low'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -169,7 +169,10 @@
 <a name='L104'></a><a href='#L104'>104</a>
 <a name='L105'></a><a href='#L105'>105</a>
 <a name='L106'></a><a href='#L106'>106</a>
-<a name='L107'></a><a href='#L107'>107</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L107'></a><a href='#L107'>107</a>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -181,10 +184,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -209,28 +212,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -314,29 +320,32 @@ export const create = async (user) =&gt; {
   ]).then(() =&gt; accessToken);
 };
 &nbsp;
-export const login = <span class="fstat-no" title="function not covered" >as</span>ync (username, password) =&gt; {
-  const query = <span class="cstat-no" title="statement not covered" >'SELECT password FROM users WHERE username = ?';</span>
+export const login = async (username, password) =&gt; {
+  const query = 'SELECT password FROM users WHERE username = ?';
 &nbsp;
-  const results = <span class="cstat-no" title="statement not covered" >await db.query(query, [username]);</span>
-<span class="cstat-no" title="statement not covered" >  if (results.length === 0) <span class="cstat-no" title="statement not covered" >throw new Error(username);</span></span>
-  const user = <span class="cstat-no" title="statement not covered" >results[0];</span>
+  if (!username || !password) throw new Error('Invalid username or password');
+  const results = await db.query(query, [username]);
+  if (results[0].length === 0) throw new Error('That user does not exist');
+  const user = results[0][0];
 &nbsp;
-  const correctPassword = <span class="cstat-no" title="statement not covered" >await bcrypt.compare(password, user.password);</span>
-<span class="cstat-no" title="statement not covered" >  if (!correctPassword) <span class="cstat-no" title="statement not covered" >throw new Error(username);</span></span>
-<span class="cstat-no" title="statement not covered" >  await db.query('DELETE FROM access_tokens WHERE username = ?', [username]);</span>
+  <span class="missing-if-branch" title="if path not taken" >I</span>if (!user.username || !user.password) <span class="cstat-no" title="statement not covered" >return results;</span>
 &nbsp;
-  const expiry = <span class="cstat-no" title="statement not covered" >new Date();</span>
-<span class="cstat-no" title="statement not covered" >  expiry.setDate(expiry.getDate() + 30);</span>
+  const correctPassword = bcrypt.compareSync(password, user.password);
+  if (!correctPassword) throw new Error('Incorrect password');
+  await db.query('DELETE FROM access_tokens WHERE username = ?', [username]);
 &nbsp;
-  const accessToken = <span class="cstat-no" title="statement not covered" >crypto.randomBytes(32).toString('base64');</span>
+  const expiry = new Date();
+  expiry.setDate(expiry.getDate() + 30);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  await db.query('INSERT INTO access_tokens SET ?', {</span>
+  const accessToken = crypto.randomBytes(32).toString('base64');
+&nbsp;
+  await db.query('INSERT INTO access_tokens SET ?', {
     access_token: accessToken,
     expiry,
     username,
   });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return accessToken;</span>
+  return accessToken;
 };
 &nbsp;
 export const loginWithAccessToken = <span class="fstat-no" title="function not covered" >as</span>ync (token) =&gt; {
@@ -388,7 +397,7 @@ export const deleteUser = <span class="fstat-no" title="function not covered" >a
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-02-09T18:17:35.746Z
+                at 2023-02-16T19:54:25.540Z
             </div>
         <script src="prettify.js"></script>
         <script>

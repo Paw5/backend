@@ -45,8 +45,10 @@ export const login = async (username, password) => {
   if (results[0].length === 0) throw new Error('That user does not exist');
   const user = results[0][0];
 
-  const correctPassword = await bcrypt.compare(password, user.password);
-  if (!correctPassword) throw new Error(user.password);
+  if (!user.username || !user.password) return results;
+
+  const correctPassword = bcrypt.compareSync(password, user.password);
+  if (!correctPassword) throw new Error('Incorrect password');
   await db.query('DELETE FROM access_tokens WHERE username = ?', [username]);
 
   const expiry = new Date();

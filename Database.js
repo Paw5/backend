@@ -1,7 +1,7 @@
 import connection from './connection.js';
 
 class Database {
-  static instance = new Database();
+  static instance;
 
   constructor() {
     this.connection = connection;

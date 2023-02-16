@@ -25,7 +25,7 @@
     "deploy": "npm run mkdir && npm run scp && npm run scp:pjs && npm run service",
     "start": "node server.js",
     "test": "NODE_ENV=test jest",
-    "test:watch": "NODE_ENV=test jest --watchAll",
+    "test:watch": "NODE_ENV=test jest --watch",
     "test:open": "NODE_ENV=test jest --detectOpenHandles"
   },
   "name": "server",
