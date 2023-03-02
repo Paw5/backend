@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">70.17% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>40/60</span>
+                <span class='fraction'>40/57</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.03% </span>
+                <span class="strong">70% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>35/53</span>
+                <span class='fraction'>35/50</span>
             </div>
         
             
@@ -61,7 +61,7 @@
             </div>
         </template>
     </div>
-    <div class='status-line high'></div>
+    <div class='status-line medium'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -172,7 +172,8 @@
 <a name='L107'></a><a href='#L107'>107</a>
 <a name='L108'></a><a href='#L108'>108</a>
 <a name='L109'></a><a href='#L109'>109</a>
-<a name='L110'></a><a href='#L110'>110</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -270,16 +271,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import bcrypt from 'bcrypt';
 import crypto from 'crypto';
@@ -373,22 +375,23 @@ export const loginWithAccessToken = <span class="fstat-no" title="function not c
 <span class="cstat-no" title="statement not covered" >  return accessToken;</span>
 };
 &nbsp;
-export const changePassword = <span class="fstat-no" title="function not covered" >as</span>ync (username, password) =&gt; {
+export const changePassword = <span class="fstat-no" title="function not covered" >(u</span>sername, password) =&gt; {
   const query = <span class="cstat-no" title="statement not covered" >'UPDATE users SET password = ? WHERE username = ?';</span>
   const hash = <span class="cstat-no" title="statement not covered" >hashPassword(password);</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  await db.query(query, [hash, username]);</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >  await db.query('DELETE FROM access_tokens WHERE username = ?', [username]);</span>
+<span class="cstat-no" title="statement not covered" >  return Promise.all([</span>
+    db.query(query, [hash, username]),
+    db.query('DELETE FROM access_tokens WHERE username = ?', [username]),
+  ]);
 };
 &nbsp;
-export const deleteUser = <span class="fstat-no" title="function not covered" >as</span>ync (username) =&gt; {
+export const deleteUser = <span class="fstat-no" title="function not covered" >(u</span>sername) =&gt; {
   const query = <span class="cstat-no" title="statement not covered" >'DELETE FROM users WHERE username = ?';</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  await db.query('DELETE FROM access_tokens WHERE username = ?', [username]);</span>
-<span class="cstat-no" title="statement not covered" >  await db.query(query, [username]);</span>
-&nbsp;
-<span class="cstat-no" title="statement not covered" >  return true;</span>
+<span class="cstat-no" title="statement not covered" >  return Promise.all([</span>
+    db.query('DELETE FROM access_tokens WHERE username = ?', [username]),
+    db.query(query, [username]),
+  ]);
 };
 &nbsp;</pre></td></tr></table></pre>
 
@@ -397,7 +400,7 @@ export const deleteUser = <span class="fstat-no" title="function not covered" >a
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-02-16T19:54:31.887Z
+                at 2023-03-02T17:14:59.633Z
             </div>
         <script src="../prettify.js"></script>
         <script>
