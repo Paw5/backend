@@ -1,5 +1,8 @@
-import { endpoints } from './featureFlags';
-import { getToken } from './getToken';
+import base64 from 'base-64';
+import { endpoints } from './featureFlags.js';
+import { login, loginWithAccessToken } from './login.js';
+
+const { decode } = base64;
 
 const requireHTTPS = (req, res, next) => {
   if (req.secure) {
@@ -12,21 +15,23 @@ const requireHTTPS = (req, res, next) => {
 
 const requireEnabledEndpoint = (req, res, next) => {
   const { url } = req;
-  const urlParts = url.split('?')[0].split('/').slice(1);
+  let urlParts = url.split('?')[0].split('/').slice(1);
   let scanEndpoints = endpoints;
-  urlParts.forEach((value, index) => {
-    if (index + 1 === urlParts.length) {
-      scanEndpoints = scanEndpoints[''];
-    } else {
-      scanEndpoints = scanEndpoints[value];
+  if (scanEndpoints[urlParts[0]]) {
+    while (urlParts[0]) {
+      scanEndpoints = scanEndpoints[urlParts[0]];
+      urlParts = urlParts.slice(1);
     }
-    if (scanEndpoints) {
+    if (scanEndpoints && scanEndpoints.verbs) {
       next();
     } else {
       console.error('Middleware requireEnabledEndpoint failed');
       res.status(405).send('<h1>405 Method Not Allowed</h1>');
     }
-  });
+  } else {
+    console.error('Middleware requireEnabledEndpoint failed');
+    res.status(405).send('<h1>405 Method Not Allowed</h1>');
+  }
 };
 
 const responseHeaders = (req, res, next) => {
@@ -40,17 +45,21 @@ const responseHeaders = (req, res, next) => {
 
 const requireAuthentication = (req, res, next) => {
   const { authorization } = req.headers;
-  getToken(authorization).then((token) => {
-    if (token) {
-      if (req.url === '/login') {
-        res.json({
-          token,
-        });
-      } else next();
-    } else {
-      res.status(401).send('<h1>401 Unauthorized</h1>');
-    }
-  });
+  let loginPromise;
+  if (authorization.match(/Basic [^ ]+/)) {
+    const [username, password] = decode(authorization.split(' ')[1]).split(':');
+    loginPromise = login(username, password);
+  } else if (authorization.match(/Bearer [^ ]+/)) {
+    const [, token] = authorization.split(' ');
+    loginPromise = loginWithAccessToken(token);
+  } else {
+    res.status(403).send();
+  }
+  loginPromise
+    .then(next)
+    .catch(() => {
+      res.status(403).send();
+    });
 };
 
 export default [
