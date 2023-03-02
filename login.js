@@ -1,58 +1,110 @@
-import { genSalt, hash as _hash, compare } from 'bcrypt';
-import dotenv from 'dotenv';
-import connection from './connection';
+import bcrypt from 'bcrypt';
+import crypto from 'crypto';
+import Database from './Database.js';
 
-dotenv.config();
+const db = Database();
 
-const saltRounds = 10;
-
-const hashPassword = async (input) => {
-  const salt = await genSalt(saltRounds, 'a');
-  const hash = await _hash(input, salt);
-
+export const hashPassword = (input) => {
+  const hash = bcrypt.hashSync(input, 10);
   return hash;
 };
 
-const createUser = async (data = {}) => {
-  const { username, password } = data;
-  const postedData = data;
-  const hash = await hashPassword(`${username}:${password}`);
-  postedData.password = hash;
-  return new Promise((resolve) => {
-    const categories = `(${Object.keys({ ...data }).join(', ')})`;
-    const placeholders = categories.replaceAll(/[^,]+/g, '?');
+export const create = async (user) => {
+  const query = 'INSERT INTO users SET ?';
+  const accessTokenQuery = 'INSERT INTO access_tokens SET ?';
 
-    connection.query(`INSERT INTO users ${categories} VALUES ${placeholders}`, [...Object.values(postedData)], (error, result) => {
-      resolve(error ? { error } : { data: result });
-    });
-  });
+  if (!user.password || !user.username) throw new Error('Must specify username and password');
+  const hash = hashPassword(user.password);
+  const insert = {
+    password: hash,
+    username: user.username,
+  };
+  const res = await db
+    .query('SELECT * FROM users WHERE username = ?', [user.username]);
+  if (res[0].length > 0) { throw new Error('User already exists'); }
+
+  const accessToken = crypto.randomBytes(32).toString('base64');
+  const expiryDate = new Date();
+  expiryDate.setDate(expiryDate.getDate() + 30);
+
+  return Promise.all([
+    db.query(query, insert),
+    db.query(accessTokenQuery, {
+      access_token: accessToken,
+      expiry: expiryDate,
+      username: user.username,
+    }),
+  ]).then(() => accessToken);
 };
 
-const updateUserPassword = async (username, password) => {
-  const hash = await hashPassword(`${username}:${password}`);
-  return new Promise((resolve) => {
-    connection.query('UPDATE users SET password=? WHERE username=?', [hash, username], (error, result) => {
-      resolve(error ? { error } : { data: result });
-    });
+export const login = async (username, password) => {
+  const query = 'SELECT password FROM users WHERE username = ?';
+
+  if (!username || !password) throw new Error('Invalid username or password');
+  const results = await db.query(query, [username]);
+  if (results[0].length === 0) throw new Error('That user does not exist');
+  const user = results[0][0];
+
+  if (!user.username || !user.password) return results;
+
+  const correctPassword = bcrypt.compareSync(password, user.password);
+  if (!correctPassword) throw new Error('Incorrect password');
+  await db.query('DELETE FROM access_tokens WHERE username = ?', [username]);
+
+  const expiry = new Date();
+  expiry.setDate(expiry.getDate() + 30);
+
+  const accessToken = crypto.randomBytes(32).toString('base64');
+
+  await db.query('INSERT INTO access_tokens SET ?', {
+    access_token: accessToken,
+    expiry,
+    username,
   });
+
+  return accessToken;
 };
 
-const comparePasswords = async (input, hash) => compare(input, hash);
+export const loginWithAccessToken = async (token) => {
+  const query = 'SELECT username FROM access_tokens WHERE access_token = ?';
 
-const getPasswordHash = async (username) => {
-  const passwordHash = new Promise((resolve) => {
-    connection.query('SELECT password FROM users WHERE username=?', [username], (err, results) => {
-      if (!err && results && results.length) resolve(results[0].password);
-      else resolve('');
-    });
+  const results = await db.query(query, [token]);
+
+  if (results.length === 0) throw new Error(token);
+
+  const { username } = results[0];
+
+  await db.query('DELETE FROM access_tokens WHERE username = ?', [username]);
+
+  const expiry = new Date();
+  expiry.setDate(expiry.getDate() + 30);
+
+  const accessToken = crypto.randomBytes(32).toString('base64');
+
+  await db.query('INSERT INTO access_tokens SET ?', {
+    access_token: accessToken,
+    expiry,
+    username,
   });
-  return passwordHash;
+
+  return accessToken;
 };
 
-export default {
-  comparePasswords,
-  getPasswordHash,
-  hashPassword,
-  createUser,
-  updateUserPassword,
+export const changePassword = (username, password) => {
+  const query = 'UPDATE users SET password = ? WHERE username = ?';
+  const hash = hashPassword(password);
+
+  return Promise.all([
+    db.query(query, [hash, username]),
+    db.query('DELETE FROM access_tokens WHERE username = ?', [username]),
+  ]);
+};
+
+export const deleteUser = (username) => {
+  const query = 'DELETE FROM users WHERE username = ?';
+
+  return Promise.all([
+    db.query('DELETE FROM access_tokens WHERE username = ?', [username]),
+    db.query(query, [username]),
+  ]);
 };

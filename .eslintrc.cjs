@@ -2,9 +2,9 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    'jest/globals': true,
   },
   extends: [
-    'plugin:react/recommended',
     'airbnb',
   ],
   parserOptions: {
@@ -15,7 +15,7 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: [
-    'react',
+    'jest',
   ],
   rules: {
     'no-console': 'off',
