@@ -72,6 +72,8 @@ export const loginWithAccessToken = async (token) => {
 
   if (results.length === 0) throw new Error(token);
 
+  if (!results[0].username) throw new Error(results[0]);
+
   const { username } = results[0];
 
   await db.query('DELETE FROM access_tokens WHERE username = ?', [username]);

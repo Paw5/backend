@@ -21,7 +21,6 @@ app.use(bodyParser.json());
 createServer({
   key: readFileSync('./secrets/key.pem'),
   cert: readFileSync('./secrets/cert.pem'),
-  ca: readFileSync('./secrets/ca.pem'),
 }, app).listen(443, () => {
   console.log('server is running on port 443');
 });

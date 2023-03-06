@@ -1,4 +1,5 @@
 import connection from './connection.js';
+import QueryBuilder from './QueryBuilder.js';
 
 class Database {
   static instance;
@@ -11,7 +12,11 @@ class Database {
     return Promise.resolve(this.connection);
   }
 
-  async query(queryString, placeholders) {
+  async query(queryInput, placeholders) {
+    let queryString;
+    if (queryInput instanceof QueryBuilder) {
+      queryString = queryInput.queryString;
+    } else { queryString = queryInput; }
     return this.getConnection()
       .then((c) => c.query(queryString, placeholders));
   }
