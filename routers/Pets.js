@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
   }
 
   connection.query(`SELECT ${columns} FROM pets ${limitSql}`)
-    .then((results) => res.json({ results }))
+    .then((results) => res.json({ results: results[0] }))
     .catch(() => res.status(400).json({ results: [] }));
 });
 
