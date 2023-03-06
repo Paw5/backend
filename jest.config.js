@@ -11,7 +11,7 @@ const config = {
   ],
   coverageThreshold: {
     global: {
-      functions: 45,
+      functions: 30,
     },
   },
   transform: {

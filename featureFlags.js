@@ -9,4 +9,9 @@ export const endpoints = {
       ],
     },
   },
+  login: {
+    verbs: [
+      'GET',
+    ],
+  },
 };

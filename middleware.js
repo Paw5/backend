@@ -1,6 +1,6 @@
 import base64 from 'base-64';
 import { endpoints } from './featureFlags.js';
-import { login, loginWithAccessToken } from './login.js';
+import { create, login, loginWithAccessToken } from './login.js';
 
 const { decode } = base64;
 
@@ -43,13 +43,25 @@ const responseHeaders = (req, res, next) => {
   next();
 };
 
-const requireAuthentication = (req, res, next) => {
+const requireAuthentication = async (req, res, next) => {
   const { authorization } = req.headers;
   let loginPromise;
-  if (authorization.match(/Basic [^ ]+/)) {
+  if (req.url === '/login' && req.method === 'POST') {
+    await create({ username: req.body.username, password: req.body.password }).then((token) => {
+      res.send(token);
+    });
+    return;
+  }
+
+  if (!authorization) {
+    res.status(403).send();
+    return;
+  }
+
+  if (authorization.match(/Basic [^ ]+/g)) {
     const [username, password] = decode(authorization.split(' ')[1]).split(':');
     loginPromise = login(username, password);
-  } else if (authorization.match(/Bearer [^ ]+/)) {
+  } else if (authorization.match(/Bearer [^ ]+/g)) {
     const [, token] = authorization.split(' ');
     loginPromise = loginWithAccessToken(token);
   } else {
@@ -57,8 +69,8 @@ const requireAuthentication = (req, res, next) => {
   }
   loginPromise
     .then(next)
-    .catch(() => {
-      res.status(403).send();
+    .catch((e) => {
+      res.status(403).send(e);
     });
 };
 

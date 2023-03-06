@@ -15,7 +15,7 @@ if [[ ${PACKAGES[@]} ]]; then
   done
 fi
 
-if [ ! -f "$(dirname "$0")/../secrets/.env"]; then
+if [ ! -f "$(dirname "$0")/../secrets/.env" ]; then
   echo "Submodules not initiated. Initiating submodules now..."
   git submodule init
   git submodule update
