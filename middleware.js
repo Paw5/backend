@@ -68,7 +68,7 @@ const requireAuthentication = async (req, res, next) => {
     res.status(403).send();
   }
   loginPromise
-    .then(next)
+    .then(() => next())
     .catch((e) => {
       res.status(403).send(e);
     });
