@@ -6,6 +6,7 @@ import RateLimit from 'express-rate-limit';
 import users from './routers/Users.js';
 import { MS_PER_MINUTE } from './util/constants.js';
 import middleware from './middleware.js';
+import pets from './routers/Pets.js';
 
 const app = express();
 
@@ -65,3 +66,5 @@ app.use(middleware);
 // });
 
 app.use('/users', users);
+
+app.use('/pets', pets) // pets router

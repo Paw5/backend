@@ -14,4 +14,14 @@ export const endpoints = {
       'GET',
     ],
   },
+  pets: {
+    verbs: [
+      'GET',
+    ],
+    '/': {
+      verbs: [
+        'GET',
+      ],
+    },
+  },
 };
