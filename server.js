@@ -67,4 +67,4 @@ app.use(middleware);
 
 app.use('/users', users);
 
-app.use('/pets', pets) // pets router
+app.use('/pets', pets);
