@@ -1,4 +1,5 @@
 import connection from './connection.js';
+import QueryBuilder from './QueryBuilder.js';
 
 class Database {
   static instance;
@@ -11,7 +12,11 @@ class Database {
     return Promise.resolve(this.connection);
   }
 
-  async query(queryString, placeholders) {
+  async query(queryInput, placeholders) {
+    let queryString;
+    if (queryInput instanceof QueryBuilder) {
+      queryString = queryInput.queryString;
+    } else { queryString = queryInput; }
     return this.getConnection()
       .then((c) => c.query(queryString, placeholders));
   }
@@ -23,7 +28,8 @@ class Database {
 
 export default () => {
   if (!Database.instance) Database.instance = new Database();
-  return Database.instance;
+  if (Database.instance instanceof Database) return Database.instance;
+  return new Database(); // Ensures fcn returns a Database object
 };
 
 export const { instance } = Database;

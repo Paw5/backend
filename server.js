@@ -6,6 +6,7 @@ import RateLimit from 'express-rate-limit';
 import users from './routers/Users.js';
 import { MS_PER_MINUTE } from './util/constants.js';
 import middleware from './middleware.js';
+import pets from './routers/Pets.js';
 
 const app = express();
 
@@ -21,7 +22,6 @@ app.use(bodyParser.json());
 createServer({
   key: readFileSync('./secrets/key.pem'),
   cert: readFileSync('./secrets/cert.pem'),
-  ca: readFileSync('./secrets/ca.pem'),
 }, app).listen(443, () => {
   console.log('server is running on port 443');
 });
@@ -66,3 +66,5 @@ app.use(middleware);
 // });
 
 app.use('/users', users);
+
+app.use('/pets', pets);
