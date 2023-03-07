@@ -29,4 +29,52 @@ router.get('/', (req, res) => {
     .catch(() => res.status(400).json({ results: [] }));
 });
 
+router.post('/:user_id', async (req, res) => {
+  const fields = [
+    'user_id',
+    'pet_id',
+    'pet_name',
+    'type',
+    'breed',
+    'fur_color',
+    'weight',
+    'microchip',
+    'custom_info',
+  ];
+
+  const userId = Number(req.params.user_id);
+
+  if (!userId || Number.isNaN(userId)) {
+    res.status(400).send('User ID must be a number');
+    return;
+  }
+
+  const requestFields = Object
+    .keys(req.body)
+    .filter((f) => fields.includes(f)) // Don't allow extra fields
+    .reduce((prev, curr) => {
+      const newVal = { ...prev };
+      newVal[curr] = req.body[curr];
+      return newVal;
+    }, { user_id: userId }); // Build an object of the filtered keys
+
+  try {
+    await connection.query('INSERT INTO pets '
+      + `(${Object.keys(requestFields).join(', ')}) `
+      + `VALUES (${Object.values(requestFields).map(() => '?').join(', ')})`, Object.values(requestFields));
+    connection
+      .query('SELECT * FROM pets WHERE user_id = ? AND pet_id = LAST_INSERT_ID()', userId)
+      .then(([results]) => {
+        res.json(results[0]);
+      });
+  } catch (e) {
+    console.error(e);
+    if (e.fatal) {
+      res.sendStatus(500);
+      throw e;
+    }
+    res.sendStatus(400);
+  }
+});
+
 export default router;

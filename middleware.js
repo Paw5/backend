@@ -50,6 +50,13 @@ const requireAuthentication = async (req, res, next) => {
   if (req.url === '/login' && req.method === 'POST') {
     await create({ username: req.body.username, password: req.body.password }).then((token) => {
       res.send(token);
+    }).catch((r) => {
+      console.error(r);
+      if (r.message === 'User already exists') {
+        res.sendStatus(409);
+      } else {
+        res.sendStatus(500);
+      }
     });
     return;
   }

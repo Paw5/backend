@@ -28,7 +28,8 @@ class Database {
 
 export default () => {
   if (!Database.instance) Database.instance = new Database();
-  return Database.instance;
+  if (Database.instance instanceof Database) return Database.instance;
+  return new Database(); // Ensures fcn returns a Database object
 };
 
 export const { instance } = Database;

@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for backend/routers/Users.js</title>
+    <title>Code coverage report for backend/routers/Pets.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,20 +19,20 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">backend/routers</a> Users.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">backend/routers</a> Pets.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>0/12</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/10</span>
+                <span class='fraction'>0/14</span>
             </div>
         
             
@@ -95,32 +95,11 @@
 <a name='L30'></a><a href='#L30'>30</a>
 <a name='L31'></a><a href='#L31'>31</a>
 <a name='L32'></a><a href='#L32'>32</a>
-<a name='L33'></a><a href='#L33'>33</a>
-<a name='L34'></a><a href='#L34'>34</a>
-<a name='L35'></a><a href='#L35'>35</a>
-<a name='L36'></a><a href='#L36'>36</a>
-<a name='L37'></a><a href='#L37'>37</a>
-<a name='L38'></a><a href='#L38'>38</a>
-<a name='L39'></a><a href='#L39'>39</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L33'></a><a href='#L33'>33</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -129,50 +108,53 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { Router } from 'express';
-// import { object, string } from 'joi';
+&nbsp;
 import Database from '../Database.js';
-import QueryBuilder from '../QueryBuilder.js';
 &nbsp;
 const connection = <span class="cstat-no" title="statement not covered" >Database();</span>
 &nbsp;
-const account = <span class="cstat-no" title="statement not covered" >[</span>
-  'user_id',
-  'username',
-  'firstname',
-  'lastname',
-  'email',
-  'phone',
-  'profile_picture', 'birthdate', 'city', 'state',
-];
+const pet = <span class="cstat-no" title="statement not covered" >'pet_id, user_id, pet_name, type, breed, weight, microchip_id, fur_color';</span> // listing of columns in pets schema
+&nbsp;
 const router = <span class="cstat-no" title="statement not covered" >Router();</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >router.get('/', <span class="fstat-no" title="function not covered" >(r</span>eq, res) =&gt; {</span>
   const {
     mode, offset, page, limit,
   } = <span class="cstat-no" title="statement not covered" >req.query;</span>
-&nbsp;
-  const adjustedOffset = <span class="cstat-no" title="statement not covered" >(offset || 0) + (page || 0) * (limit || 0);</span>
+  let sqlOffset = (<span class="cstat-no" title="statement not covered" >Number(offset) || 0)</span>;
+<span class="cstat-no" title="statement not covered" >  sqlOffset += ((Number(page) || 1) - 1) * (Number(limit) || 20);</span>
 &nbsp;
   const columns = <span class="cstat-no" title="statement not covered" >{</span>
-    account_details: account,
+    pet_details: pet,
   }[mode] || '*';
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  connection.query(new QueryBuilder()</span>
-    .select(columns)
-    .from('users')
-    .limit(limit)
-    .offset(adjustedOffset)).then(<span class="fstat-no" title="function not covered" >(r</span>esults) =&gt; <span class="cstat-no" title="statement not covered" >res.json({ results }))</span>
+  let limitSql = <span class="cstat-no" title="statement not covered" >`LIMIT ${Number(limit) || 20}`;</span>
+<span class="cstat-no" title="statement not covered" >  if (sqlOffset) {</span>
+<span class="cstat-no" title="statement not covered" >    limitSql += ` OFFSET ${sqlOffset}`;</span>
+  }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >  connection.query(`SELECT ${columns} FROM pets ${limitSql}`)</span>
+    .then(<span class="fstat-no" title="function not covered" >(r</span>esults) =&gt; <span class="cstat-no" title="statement not covered" >res.json({ results: results[0] }))</span>
     .catch(<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >res.status(400).json({ results: [] }))</span>;
 });
 &nbsp;

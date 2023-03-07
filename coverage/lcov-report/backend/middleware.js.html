@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/43</span>
+                <span class='fraction'>0/31</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>0/12</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">0% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/43</span>
+                <span class='fraction'>0/31</span>
             </div>
         
             
@@ -145,7 +145,8 @@
 <a name='L80'></a><a href='#L80'>80</a>
 <a name='L81'></a><a href='#L81'>81</a>
 <a name='L82'></a><a href='#L82'>82</a>
-<a name='L83'></a><a href='#L83'>83</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -162,22 +163,23 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -243,24 +245,25 @@ const requireHTTPS = <span class="cstat-no" title="statement not covered" ><span
 };
 &nbsp;
 const requireEnabledEndpoint = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(r</span>eq, res, next) =&gt; {</span>
-  const { url } = <span class="cstat-no" title="statement not covered" >req;</span>
-  let urlParts = <span class="cstat-no" title="statement not covered" >url.split('?')[0].split('/').slice(1);</span>
-  let scanEndpoints = <span class="cstat-no" title="statement not covered" >endpoints;</span>
-<span class="cstat-no" title="statement not covered" >  if (scanEndpoints[urlParts[0]]) {</span>
-<span class="cstat-no" title="statement not covered" >    while (urlParts[0]) {</span>
-<span class="cstat-no" title="statement not covered" >      scanEndpoints = scanEndpoints[urlParts[0]];</span>
-<span class="cstat-no" title="statement not covered" >      urlParts = urlParts.slice(1);</span>
-    }
-<span class="cstat-no" title="statement not covered" >    if (scanEndpoints &amp;&amp; scanEndpoints.verbs) {</span>
-<span class="cstat-no" title="statement not covered" >      next();</span>
-    } else {
-<span class="cstat-no" title="statement not covered" >      console.error('Middleware requireEnabledEndpoint failed');</span>
-<span class="cstat-no" title="statement not covered" >      res.status(405).send('&lt;h1&gt;405 Method Not Allowed&lt;/h1&gt;');</span>
-    }
-  } else {
-<span class="cstat-no" title="statement not covered" >    console.error('Middleware requireEnabledEndpoint failed');</span>
-<span class="cstat-no" title="statement not covered" >    res.status(405).send('&lt;h1&gt;405 Method Not Allowed&lt;/h1&gt;');</span>
-  }
+<span class="cstat-no" title="statement not covered" >  next();</span>
+  // const { url } = req;
+  // let urlParts = url.split('?')[0].split('/').slice(1);
+  // let scanEndpoints = endpoints;
+  // if (scanEndpoints[urlParts[0]]) {
+  //   while (urlParts[0]) {
+  //     scanEndpoints = scanEndpoints[urlParts[0]];
+  //     urlParts = urlParts.slice(1);
+  //   }
+  //   if (scanEndpoints &amp;&amp; scanEndpoints.verbs) {
+  //     next();
+  //   } else {
+  //     console.error('Middleware requireEnabledEndpoint failed');
+  //     res.status(405).send('&lt;h1&gt;405 Method Not Allowed&lt;/h1&gt;');
+  //   }
+  // } else {
+  //   console.error('Middleware requireEnabledEndpoint failed');
+  //   res.status(405).send('&lt;h1&gt;405 Method Not Allowed&lt;/h1&gt;');
+  // }
 };
 &nbsp;
 const responseHeaders = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(r</span>eq, res, next) =&gt; {</span>
@@ -316,7 +319,7 @@ export default [
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2023-03-06T01:40:16.838Z
+                at 2023-03-07T17:32:33.898Z
             </div>
         <script src="../prettify.js"></script>
         <script>
