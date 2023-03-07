@@ -4,27 +4,43 @@ import Database from '../Database.js';
 
 const connection = Database();
 
-const pet = 'pet_id, user_id, pet_name, type, breed, weight, microchip_id, fur_color'; // listing of columns in pets schema
-
 const router = Router();
 
-router.get('/', (req, res) => {
+export const prepareQuery = (req) => {
   const {
-    mode, offset, page, limit,
+    filterParams, fields, limit, page,
   } = req.query;
-  let sqlOffset = (Number(offset) || 0);
+  let sqlOffset = 0;
   sqlOffset += ((Number(page) || 1) - 1) * (Number(limit) || 20);
 
-  const columns = {
-    pet_details: pet,
-  }[mode] || '*';
+  // const columns = {
+  //   pet_details: pet,
+  // }[mode] || '*';
 
+  let sqlFields = fields;
+
+  if (fields === '') {
+    sqlFields = '*';
+  } 
+  
   let limitSql = `LIMIT ${Number(limit) || 20}`;
   if (sqlOffset) {
     limitSql += ` OFFSET ${sqlOffset}`;
   }
 
-  connection.query(`SELECT ${columns} FROM pets ${limitSql}`)
+  let filterSql = '';
+  if (filterParams !== '') {
+    filterSql = ` WHERE ${filterParams}`;
+  }
+
+  const query = `SELECT ${sqlFields} FROM pets ${filterSql} ${limitSql}`;
+  
+  return query;
+};
+
+router.get('/', (req, res) => {
+  const query = prepareQuery(req);
+  connection.query(query)
     .then((results) => res.json({ results: results[0] }))
     .catch(() => res.status(400).json({ results: [] }));
 });
