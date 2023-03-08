@@ -27,25 +27,25 @@ export const create = async (user) => {
   const expiryDate = new Date();
   expiryDate.setDate(expiryDate.getDate() + 30);
 
-  return Promise.all([
-    db.query(query, insert),
-    db.query(accessTokenQuery, {
-      access_token: accessToken,
-      expiry: expiryDate,
-      username: user.username,
-    }),
-  ]).then(() => accessToken);
+  await db.query(query, insert);
+  await db.query(accessTokenQuery, {
+    access_token: accessToken,
+    expiry: expiryDate,
+    username: user.username,
+  });
+  const [loginResults] = await db.query('SELECT users.*, access_tokens.access_token FROM users JOIN access_tokens ON access_tokens.username=users.username WHERE users.username=?', [user.username]);
+  return loginResults[0];
 };
 
 export const login = async (username, password) => {
-  const query = 'SELECT password FROM users WHERE username = ?';
+  const query = 'SELECT username, password FROM users WHERE username = ?';
 
   if (!username || !password) throw new Error('Invalid username or password');
   const results = await db.query(query, [username]);
   if (results[0].length === 0) throw new Error('That user does not exist');
   const user = results[0][0];
 
-  if (!user.username || !user.password) return results;
+  if (!user.username || !user.password) throw new Error('Username or password not specified');
 
   const correctPassword = bcrypt.compareSync(password, user.password);
   if (!correctPassword) throw new Error('Incorrect password');
@@ -62,7 +62,8 @@ export const login = async (username, password) => {
     username,
   });
 
-  return accessToken;
+  const [loginResults] = await db.query('SELECT * FROM users WHERE username=?', [username]);
+  return loginResults[0];
 };
 
 export const loginWithAccessToken = async (token) => {
@@ -89,7 +90,8 @@ export const loginWithAccessToken = async (token) => {
     username,
   });
 
-  return accessToken;
+  const [loginResults] = await db.query('SELECT * FROM users JOIN access_tokens ON access_tokens.username=users.username', username);
+  return loginResults[0];
 };
 
 export const changePassword = (username, password) => {

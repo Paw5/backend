@@ -76,7 +76,14 @@ const requireAuthentication = async (req, res, next) => {
     res.status(403).send();
   }
   loginPromise
-    .then(() => next())
+    .then((user) => {
+      if (req.url === '/login' && req.method === 'GET') {
+        // console.log(user);
+        res.json(user);
+        return;
+      }
+      next();
+    })
     .catch((e) => {
       res.status(403).send(e);
     });
