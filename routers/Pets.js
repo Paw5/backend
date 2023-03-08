@@ -1,8 +1,6 @@
 import { Router } from 'express';
 
-import { check } from 'express-validator';
-
-import validator from 'validator';
+import { escapeId } from 'mysql2';
 
 import Database from '../Database.js';
 
@@ -14,10 +12,9 @@ export const prepareQuery = (fields, limit, page, filterParams) => {
   let sqlOffset = 0;
   sqlOffset += ((Number(page) || 1) - 1) * (Number(limit) || 20);
 
-  validator.escape(fields);
-  //check(fields).escape();
   //console.log(fields);
-  let sqlFields = fields;
+  let sqlFields = escapeId(fields);
+  sqlFields = sqlFields.slice(1, -1);
 
   if (fields === '') {
     sqlFields = '*';
@@ -47,9 +44,13 @@ router.get('/', (req, res) => {
   const query = prepareQuery(fields, limit, page, filterParams);
   //console.log(query);
 
+  //const columns = fields.split(',');
+
+  //console.log(columns);
+
   const combinedValues = Object.entries(filterParams).map(([field, value]) => value);
   //console.log(combinedValues);
-  connection.query(query, combinedValues)
+  connection.query(query, [combinedValues])
     .then((results) => res.json({ results: results[0] }))
     .catch(() => res.status(400).json({ results: [] }));
 });
