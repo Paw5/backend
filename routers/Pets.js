@@ -8,33 +8,41 @@ const connection = Database();
 
 const router = Router();
 
+// this function prepares the query used in the get routes. Useful for jest tests also
 export const prepareQuery = (fields, limit, page, filterParams) => {
   let sqlOffset = 0;
   sqlOffset += ((Number(page) || 1) - 1) * (Number(limit) || 20);
 
-  //console.log(fields);
-  let sqlFields = escapeId(fields);
-  sqlFields = sqlFields.slice(1, -1);
 
+  const fields1 = fields.split(','); // splits the single string with all the fields into multiple strings for each field held in an array
+  const fields2 = fields1.map(field => field.trim()); // removes whitespace from the front of each field (neccessary when having more than one field)
+  const fields3 = fields2.map(field => escapeId(field)); // escapes each field
+  
+  let sqlFields = fields3.join(); // combines escaped fields back into one string to be used for query
+
+  // checks if there are no fields given. if so, it just selects all columns
   if (fields === '') {
     sqlFields = '*';
   }
   
-  let limitSql = `LIMIT ${Number(limit) || 20}`;
+  let limitSql = `LIMIT ${Number(limit) || 20}`; // sets the limit to be either what the client specifies or 20
+  
+  // if there is an offset provided by the client, add it to the query
   if (sqlOffset) {
     limitSql += ` OFFSET ${sqlOffset}`;
   }
 
-  let whereQuery = '';
+  let whereQuery = ''; // holds the where part of the query
+  
+  // if there are filter parameters given then go through and form a where query using placeholder notation
   if (Object.keys(filterParams).length > 0) {
     const combinedEntries = Object.entries(filterParams).map(([field, value]) => `${field}=?`).join(' AND ');
     whereQuery = `WHERE ${combinedEntries}`;
-  };
-  // console.log(sqlFields);
+  }
 
-  const query = `SELECT ${sqlFields} FROM pets ${whereQuery} ${limitSql}`;
+  const query = `SELECT ${sqlFields} FROM pets ${whereQuery} ${limitSql}`; // assemble the query together
   
-  return query;
+  return query; // return the query
 };
 
 router.get('/', (req, res) => {
@@ -43,10 +51,6 @@ router.get('/', (req, res) => {
   } = req.query;
   const query = prepareQuery(fields, limit, page, filterParams);
   //console.log(query);
-
-  //const columns = fields.split(',');
-
-  //console.log(columns);
 
   const combinedValues = Object.entries(filterParams).map(([field, value]) => value);
   //console.log(combinedValues);
