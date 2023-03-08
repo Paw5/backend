@@ -69,29 +69,29 @@ export const login = async (username, password) => {
 export const loginWithAccessToken = async (token) => {
   const query = 'SELECT username FROM access_tokens WHERE access_token = ?';
 
-  const results = await db.query(query, [token]);
+  const [results] = await db.query(query, [token]);
 
-  if (results.length === 0) throw new Error(token);
+  if (results.length === 0) throw new Error('User not found');
 
   if (!results[0].username) throw new Error(results[0]);
 
   const { username } = results[0];
 
-  await db.query('DELETE FROM access_tokens WHERE username = ?', [username]);
+  // await db.query('DELETE FROM access_tokens WHERE username = ?', [username]);
 
-  const expiry = new Date();
-  expiry.setDate(expiry.getDate() + 30);
+  // const expiry = new Date();
+  // expiry.setDate(expiry.getDate() + 30);
 
-  const accessToken = crypto.randomBytes(32).toString('base64');
+  // const accessToken = crypto.randomBytes(32).toString('base64');
 
-  await db.query('INSERT INTO access_tokens SET ?', {
-    access_token: accessToken,
-    expiry,
-    username,
-  });
+  // await db.query('INSERT INTO access_tokens SET ?', {
+  //   access_token: accessToken,
+  //   expiry,
+  //   username,
+  // });
 
-  const [loginResults] = await db.query('SELECT * FROM users JOIN access_tokens ON access_tokens.username=users.username', username);
-  return { access_token: accessToken, ...loginResults[0] };
+  const [loginResults] = await db.query('SELECT access_token, users.* FROM users JOIN access_tokens ON access_tokens.username=users.username WHERE users.username=?', username);
+  return loginResults[0];
 };
 
 export const changePassword = (username, password) => {

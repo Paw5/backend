@@ -73,7 +73,7 @@ const requireAuthentication = async (req, res, next) => {
     const [, token] = authorization.split(' ');
     loginPromise = loginWithAccessToken(token);
   } else {
-    res.status(403).send();
+    res.status(403).send(`Invalid authentication string ${authorization}`);
   }
   loginPromise
     .then((user) => {
@@ -85,7 +85,8 @@ const requireAuthentication = async (req, res, next) => {
       next();
     })
     .catch((e) => {
-      res.status(403).send(e);
+      console.error(e);
+      res.status(403).send(`Error ${e}`);
     });
 };
 
