@@ -1,5 +1,7 @@
 import { Router } from 'express';
 
+import { check } from 'express-validator';
+
 import Database from '../Database.js';
 
 const connection = Database();
@@ -10,6 +12,8 @@ export const prepareQuery = (fields, limit, page, filterParams) => {
   let sqlOffset = 0;
   sqlOffset += ((Number(page) || 1) - 1) * (Number(limit) || 20);
 
+  check(fields).escape();
+  //console.log(fields);
   let sqlFields = fields;
 
   if (fields === '') {
@@ -26,6 +30,7 @@ export const prepareQuery = (fields, limit, page, filterParams) => {
     const combinedEntries = Object.entries(filterParams).map(([field, value]) => `${field}=?`).join(' AND ');
     whereQuery = `WHERE ${combinedEntries}`;
   };
+  // console.log(sqlFields);
 
   const query = `SELECT ${sqlFields} FROM pets ${whereQuery} ${limitSql}`;
   
