@@ -63,7 +63,7 @@ export const login = async (username, password) => {
   });
 
   const [loginResults] = await db.query('SELECT * FROM users WHERE username=?', [username]);
-  return loginResults[0];
+  return { access_token: accessToken, ...loginResults[0] };
 };
 
 export const loginWithAccessToken = async (token) => {
@@ -91,7 +91,7 @@ export const loginWithAccessToken = async (token) => {
   });
 
   const [loginResults] = await db.query('SELECT * FROM users JOIN access_tokens ON access_tokens.username=users.username', username);
-  return loginResults[0];
+  return { access_token: accessToken, ...loginResults[0] };
 };
 
 export const changePassword = (username, password) => {
