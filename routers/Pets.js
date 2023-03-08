@@ -2,6 +2,8 @@ import { Router } from 'express';
 
 import { check } from 'express-validator';
 
+import validator from 'validator';
+
 import Database from '../Database.js';
 
 const connection = Database();
@@ -12,7 +14,8 @@ export const prepareQuery = (fields, limit, page, filterParams) => {
   let sqlOffset = 0;
   sqlOffset += ((Number(page) || 1) - 1) * (Number(limit) || 20);
 
-  check(fields).escape();
+  validator.escape(fields);
+  //check(fields).escape();
   //console.log(fields);
   let sqlFields = fields;
 
