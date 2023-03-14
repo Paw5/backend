@@ -132,6 +132,11 @@ router.patch('/:user_id/:pet_id', async (req, res) => {
     res.status(400).send('Pet ID must be an integer');
     return;
   }
+  const matchingNumber = await connection.query('SELECT COUNT(*) FROM pets WHERE user_id=? AND pet_id=?', [params.user_id, params.pet_id]);
+  if (matchingNumber[0][0]['COUNT(*)'] === 0) {
+    res.sendStatus(404);
+    return;
+  }
 
   const requestFields = Object.entries(req.body)
     .filter((entry) => fields.includes(entry[0]));
@@ -145,7 +150,7 @@ router.patch('/:user_id/:pet_id', async (req, res) => {
     connection
       .query('SELECT * FROM pets WHERE user_id = ? AND pet_id = ?', [params.user_id, params.pet_id])
       .then(([results]) => {
-        res.json(results[0][0]);
+        res.json(results[0]);
       });
   } catch (e) {
     console.error(e);
