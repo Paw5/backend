@@ -1,27 +1,15 @@
 export const endpoints = {
-  users: {
-    verbs: [
-      'GET',
-    ],
-    '/': {
-      verbs: [
-        'GET',
-      ],
-    },
-  },
-  login: {
-    verbs: [
-      'GET',
-    ],
-  },
-  pets: {
-    verbs: [
-      'GET',
-    ],
-    '/': {
-      verbs: [
-        'GET',
-      ],
-    },
-  },
+  users: ['GET'],
+  pets: ['GET'],
+  'pets/\\d+': ['POST'],
+  'pets/\\d+/\\d+': ['PATCH'],
+};
+
+export const checkEndpoints = (url, method) => {
+  if (endpoints[url] && endpoints[url].includes(method)) return true;
+  const matching = Object
+    .keys(endpoints)
+    .filter((endpoint) => url.match(RegExp(`^${endpoint}$`, 'g')) && endpoints[endpoint].includes(method));
+  console.log(matching.length);
+  return matching.length > 0;
 };
