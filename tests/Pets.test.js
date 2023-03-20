@@ -1,12 +1,12 @@
-import { describe, expect, jest } from '@jest/globals';
+import { describe, expect } from '@jest/globals';
 
-//import Database from '../Database.js';
+// import Database from '../Database.js';
 
 import { prepareQuery } from '../routers/Pets.js';
 
-//const db = Database();
+// const db = Database();
 
-//const mockDB = [[]];
+// const mockDB = [[]];
 
 describe('test GET /pets queries', () => {
   const req1 = {
@@ -17,7 +17,7 @@ describe('test GET /pets queries', () => {
       page: '0',
     },
   };
-  
+
   test('prepare query: specific user', () => {
     const {
       fields, limit, page, ...filterParams
@@ -25,7 +25,7 @@ describe('test GET /pets queries', () => {
     const query = prepareQuery(fields, limit, page, filterParams);
     expect(query).toEqual('SELECT * FROM pets WHERE user_id=? LIMIT 20');
   });
-  
+
   const req2 = {
     query: {
       fields: '',
@@ -33,7 +33,7 @@ describe('test GET /pets queries', () => {
       page: '',
     },
   };
-  
+
   test('prepare query: no params', () => {
     const {
       fields, limit, page, ...filterParams
@@ -41,7 +41,7 @@ describe('test GET /pets queries', () => {
     const query = prepareQuery(fields, limit, page, filterParams);
     expect(query).toEqual('SELECT * FROM pets  LIMIT 20');
   });
-  
+
   const req3 = {
     query: {
       fields: '',
@@ -49,7 +49,7 @@ describe('test GET /pets queries', () => {
       page: '',
     },
   };
-  
+
   test('prepare query: specifc limit', () => {
     const {
       fields, limit, page, ...filterParams
@@ -57,7 +57,7 @@ describe('test GET /pets queries', () => {
     const query = prepareQuery(fields, limit, page, filterParams);
     expect(query).toEqual('SELECT * FROM pets  LIMIT 4');
   });
-  
+
   const req4 = {
     query: {
       fields: 'pet_id',
@@ -65,7 +65,7 @@ describe('test GET /pets queries', () => {
       page: '',
     },
   };
-  
+
   test('prepare query: specifc field', () => {
     const {
       fields, limit, page, ...filterParams
@@ -73,7 +73,7 @@ describe('test GET /pets queries', () => {
     const query = prepareQuery(fields, limit, page, filterParams);
     expect(query).toEqual('SELECT `pet_id` FROM pets  LIMIT 20');
   });
-  
+
   const req5 = {
     query: {
       fields: '',
@@ -81,7 +81,7 @@ describe('test GET /pets queries', () => {
       page: '2',
     },
   };
-  
+
   test('prepare query: specifc page', () => {
     const {
       fields, limit, page, ...filterParams
@@ -89,7 +89,7 @@ describe('test GET /pets queries', () => {
     const query = prepareQuery(fields, limit, page, filterParams);
     expect(query).toEqual('SELECT * FROM pets  LIMIT 20 OFFSET 20');
   });
-  
+
   const req6 = {
     query: {
       user_id: '183',
@@ -98,7 +98,7 @@ describe('test GET /pets queries', () => {
       page: '',
     },
   };
-  
+
   test('prepare query: specifc params and fields', () => {
     const {
       fields, limit, page, ...filterParams
@@ -106,7 +106,7 @@ describe('test GET /pets queries', () => {
     const query = prepareQuery(fields, limit, page, filterParams);
     expect(query).toEqual('SELECT `pet_id`,`user_id` FROM pets WHERE user_id=? LIMIT 20');
   });
-  
+
   const req7 = {
     query: {
       user_id: '183',
@@ -115,7 +115,7 @@ describe('test GET /pets queries', () => {
       page: '',
     },
   };
-  
+
   test('prepare query: specifc params and limit', () => {
     const {
       fields, limit, page, ...filterParams
@@ -123,7 +123,7 @@ describe('test GET /pets queries', () => {
     const query = prepareQuery(fields, limit, page, filterParams);
     expect(query).toEqual('SELECT * FROM pets WHERE user_id=? LIMIT 3');
   });
-  
+
   const req8 = {
     query: {
       user_id: '183',
@@ -132,7 +132,7 @@ describe('test GET /pets queries', () => {
       page: '2',
     },
   };
-  
+
   test('prepare query: specifc params and page', () => {
     const {
       fields, limit, page, ...filterParams
@@ -140,7 +140,7 @@ describe('test GET /pets queries', () => {
     const query = prepareQuery(fields, limit, page, filterParams);
     expect(query).toEqual('SELECT * FROM pets WHERE user_id=? LIMIT 20 OFFSET 20');
   });
-  
+
   const req9 = {
     query: {
       user_id: '183',
@@ -149,7 +149,7 @@ describe('test GET /pets queries', () => {
       page: '3',
     },
   };
-  
+
   test('prepare query: all options used', () => {
     const {
       fields, limit, page, ...filterParams
