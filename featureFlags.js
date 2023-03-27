@@ -3,6 +3,8 @@ export const endpoints = {
   pets: ['GET'],
   'pets/\\d+': ['POST'],
   'pets/\\d+/\\d+': ['PATCH'],
+  meals: ['GET'],
+  'meals/\\d+': ['GET'],
 };
 
 export const checkEndpoints = (url, method) => {
