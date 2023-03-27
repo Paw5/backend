@@ -15,6 +15,7 @@ const router = Router();
 - limit - number; how many results to return
 - page - number; what page of results to return
 - filterParams - Object; what columns and values to filter by
+- fieldsAllowed - array; what columns are allowed to be returned
 */
 export const prepareQuery = (fields, limit, page, filterParams, fieldsAllowed) => {
   let sqlOffset = 0;
