@@ -8,8 +8,15 @@ const connection = Database();
 
 const router = Router();
 
-// this function prepares the query used in the get routes. Useful for jest tests also
-export const prepareQuery = (fields, limit, page, filterParams) => {
+// function: prepareQuery
+// Description: this function prepares the query used in the get routes. Useful for jest tests also
+/* PARAMETERS:
+- fields - string; what columns to return
+- limit - number; how many results to return
+- page - number; what page of results to return
+- filterParams - Object; what columns and values to filter by
+*/
+export const prepareQuery = (fields, limit, page, filterParams, fieldsAllowed) => {
   let sqlOffset = 0;
   sqlOffset += ((Number(page) || 1) - 1) * (Number(limit) || 20);
 
@@ -18,9 +25,23 @@ export const prepareQuery = (fields, limit, page, filterParams) => {
   if (fields) {
     if (typeof (fields) !== 'string') throw new TypeError('Invalid fields type');
     const fieldsArray = fields.split(','); // splits the single string with all the fields into multiple strings for each field held in an array
-    const fieldsEscaped = fieldsArray.map((field) => escapeId(field.trim()));
+    const fieldsEscaped = fieldsArray.map((field) => escapeId(field.trim())); // escape each field
+    
+    // if there is a restriction on what fields are allowed, filter out fields that are not allowed
+    if (fieldsAllowed.length > 0) {
+      const processedFields = [];
+      for (let i = 0; i < fieldsEscaped.length; i++) {
+        for (let j = 0; j < fieldsAllowed.length; j++) {
+          if (fieldsEscaped.at(i) === fieldsAllowed.at(j)) {
+            processedFields.push(fieldsEscaped.at(i)); // add column if allowed
+          }
+        }
+      }
 
-    sqlFields = fieldsEscaped.join();
+      sqlFields = processedFields.join(); // combine array elements into a single string
+    } else {
+      sqlFields = fieldsEscaped.join(); // combine array elements into a single string
+    }
   }
 
   let limitSql = `LIMIT ${Number(limit) || 20}`; // sets the limit to be either what the client specifies or 20
@@ -43,6 +64,35 @@ export const prepareQuery = (fields, limit, page, filterParams) => {
 };
 
 router.get('/', (req, res) => {
+  const fieldsAllowed = [
+    '`user_id`',
+    '`pet_id`',
+    '`pet_name`',
+    '`type`',
+    '`breed`',
+    '`fur_color`',
+  ];
+
+  // pull out the query params from the client request
+  const {
+    fields, limit, page, ...filterParams
+  } = req.query;
+  
+  // construct the query
+  const query = prepareQuery(fields, limit, page, filterParams, fieldsAllowed);
+  // console.log(query);
+
+  // if there is escaping with '?', combinedValues will hold the values that will replace the '?'s
+  const combinedValues = Object.entries(filterParams).map(([, value]) => value);
+  // console.log(combinedValues);
+
+  // sends a query to the database and returns either the requested item or a 400 status
+  connection.query(query, [combinedValues])
+    .then((results) => res.json({ results: results[0] }))
+    .catch(() => res.status(400).json({ results: [] }));
+});
+
+router.get('/:user_id', async (req, res) => {
   const {
     fields, limit, page, ...filterParams
   } = req.query;
