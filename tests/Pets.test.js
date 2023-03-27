@@ -9,6 +9,15 @@ import { prepareQuery } from '../routers/Pets.js';
 // const mockDB = [[]];
 
 describe('test GET /pets queries', () => {
+  const fieldsAllowed = [
+    '`user_id`',
+    '`pet_id`',
+    '`pet_name`',
+    '`type`',
+    '`breed`',
+    '`fur_color`',
+  ];
+
   const req1 = {
     query: {
       user_id: 183,
@@ -22,7 +31,7 @@ describe('test GET /pets queries', () => {
     const {
       fields, limit, page, ...filterParams
     } = req1.query;
-    const query = prepareQuery(fields, limit, page, filterParams);
+    const query = prepareQuery(fields, limit, page, filterParams, fieldsAllowed);
     expect(query).toEqual('SELECT * FROM pets WHERE user_id=? LIMIT 20');
   });
 
@@ -38,7 +47,7 @@ describe('test GET /pets queries', () => {
     const {
       fields, limit, page, ...filterParams
     } = req2.query;
-    const query = prepareQuery(fields, limit, page, filterParams);
+    const query = prepareQuery(fields, limit, page, filterParams, fieldsAllowed);
     expect(query).toEqual('SELECT * FROM pets  LIMIT 20');
   });
 
@@ -54,7 +63,7 @@ describe('test GET /pets queries', () => {
     const {
       fields, limit, page, ...filterParams
     } = req3.query;
-    const query = prepareQuery(fields, limit, page, filterParams);
+    const query = prepareQuery(fields, limit, page, filterParams, fieldsAllowed);
     expect(query).toEqual('SELECT * FROM pets  LIMIT 4');
   });
 
@@ -70,7 +79,7 @@ describe('test GET /pets queries', () => {
     const {
       fields, limit, page, ...filterParams
     } = req4.query;
-    const query = prepareQuery(fields, limit, page, filterParams);
+    const query = prepareQuery(fields, limit, page, filterParams, fieldsAllowed);
     expect(query).toEqual('SELECT `pet_id` FROM pets  LIMIT 20');
   });
 
@@ -86,7 +95,7 @@ describe('test GET /pets queries', () => {
     const {
       fields, limit, page, ...filterParams
     } = req5.query;
-    const query = prepareQuery(fields, limit, page, filterParams);
+    const query = prepareQuery(fields, limit, page, filterParams, fieldsAllowed);
     expect(query).toEqual('SELECT * FROM pets  LIMIT 20 OFFSET 20');
   });
 
@@ -103,7 +112,7 @@ describe('test GET /pets queries', () => {
     const {
       fields, limit, page, ...filterParams
     } = req6.query;
-    const query = prepareQuery(fields, limit, page, filterParams);
+    const query = prepareQuery(fields, limit, page, filterParams, fieldsAllowed);
     expect(query).toEqual('SELECT `pet_id`,`user_id` FROM pets WHERE user_id=? LIMIT 20');
   });
 
@@ -120,7 +129,7 @@ describe('test GET /pets queries', () => {
     const {
       fields, limit, page, ...filterParams
     } = req7.query;
-    const query = prepareQuery(fields, limit, page, filterParams);
+    const query = prepareQuery(fields, limit, page, filterParams, fieldsAllowed);
     expect(query).toEqual('SELECT * FROM pets WHERE user_id=? LIMIT 3');
   });
 
@@ -137,7 +146,7 @@ describe('test GET /pets queries', () => {
     const {
       fields, limit, page, ...filterParams
     } = req8.query;
-    const query = prepareQuery(fields, limit, page, filterParams);
+    const query = prepareQuery(fields, limit, page, filterParams, fieldsAllowed);
     expect(query).toEqual('SELECT * FROM pets WHERE user_id=? LIMIT 20 OFFSET 20');
   });
 
@@ -154,7 +163,7 @@ describe('test GET /pets queries', () => {
     const {
       fields, limit, page, ...filterParams
     } = req9.query;
-    const query = prepareQuery(fields, limit, page, filterParams);
+    const query = prepareQuery(fields, limit, page, filterParams, fieldsAllowed);
     expect(query).toEqual('SELECT `pet_id`,`user_id` FROM pets WHERE user_id=? LIMIT 3 OFFSET 6');
   });
 });
