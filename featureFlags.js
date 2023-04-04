@@ -6,6 +6,8 @@ export const endpoints = {
   exercise: ['GET'],
   meals: ['GET'],
   'meals/\\d+': ['GET'],
+  'vaccinations/\\d+': ['POST'],
+  login: ['GET', 'POST'],
 };
 
 export const checkEndpoints = (url, method) => {
@@ -13,6 +15,5 @@ export const checkEndpoints = (url, method) => {
   const matching = Object
     .keys(endpoints)
     .filter((endpoint) => url.match(RegExp(`^${endpoint}$`, 'g')) && endpoints[endpoint].includes(method));
-  console.log(matching.length);
   return matching.length > 0;
 };

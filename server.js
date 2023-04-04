@@ -9,6 +9,7 @@ import middleware from './middleware.js';
 import pets from './routers/Pets.js';
 import exercise from './routers/Exercise.js';
 import meals from './routers/Meals.js';
+import vaccinations from './routers/Vaccinations.js';
 
 const app = express();
 
@@ -30,43 +31,6 @@ createServer({
 
 app.use(middleware);
 
-// app.post('/login', (req, res) => {
-//   const { username, password } = req.body;
-//   if (!username || !password) res.status(400).send();
-//   else {
-//     createUser(req.body).then((v) => {
-//       if (v.error) {
-//         res.status(v.error.code).send(v);
-//       } else if (v.data) {
-//         getToken(`Basic ${encode(`${username}:${password}`)}`).then((token) => res.json({
-//           token,
-//         }));
-//       }
-//     });
-//   }
-// });
-
-// app.put('/login', (req, res) => {
-//   const { username, password } = req.body;
-//   if (!username || !password) res.status(400).send();
-//   updateUserPassword(username, password).then((v) => {
-//     if (v.error) {
-//       res.status(400).send(v);
-//     } else if (v.data) {
-//       res.status(200);
-//       getToken(`Basic ${encode(`${username}:${password}`)}`).then((token) => res.json({
-//         token,
-//       }));
-//     }
-//   });
-// });
-
-// app.get('/', (req, res) => {
-//   query('SHOW tables', (error, values) => {
-//     res.send(error || values.map((ea) => Object.values(ea)[0]));
-//   });
-// });
-
 app.use('/users', users);
 
 app.use('/pets', pets);
@@ -74,3 +38,5 @@ app.use('/pets', pets);
 app.use('/exercise', exercise);
 
 app.use('/meals', meals);
+
+app.use('/vaccinations', vaccinations);
