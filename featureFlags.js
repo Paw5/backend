@@ -8,6 +8,8 @@ export const endpoints = {
   'meals/\\d+': ['GET'],
   'vaccinations/\\d+': ['POST'],
   login: ['GET', 'POST'],
+  reminders: ['GET'],
+  'reminders/\\d+': ['GET'],
 };
 
 export const checkEndpoints = (url, method) => {
