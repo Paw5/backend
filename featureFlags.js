@@ -10,6 +10,7 @@ export const endpoints = {
   login: ['GET', 'POST'],
   reminders: ['GET'],
   'reminders/\\d+': ['GET'],
+  records: ['GET'],
   'records/\\d+': ['POST'],
 };
 
