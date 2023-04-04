@@ -3,6 +3,7 @@ export const endpoints = {
   pets: ['GET'],
   'pets/\\d+': ['POST'],
   'pets/\\d+/\\d+': ['PATCH'],
+  exercise: ['GET'],
   meals: ['GET'],
   'meals/\\d+': ['GET'],
 };
