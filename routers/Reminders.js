@@ -43,7 +43,7 @@ export const prepareQuery = (fields, limit, page, filterParams) => {
     whereQuery = `WHERE ${combinedEntries}`;
   }
 
-  const query = `SELECT ${sqlFields} FROM exercise_data ${whereQuery} ${limitSql}`; // assemble the query together
+  const query = `SELECT ${sqlFields} FROM reminders ${whereQuery} ${limitSql}`; // assemble the query together
 
   return query; // return the query
 };

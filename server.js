@@ -9,6 +9,7 @@ import middleware from './middleware.js';
 import pets from './routers/Pets.js';
 import exercise from './routers/Exercise.js';
 import meals from './routers/Meals.js';
+import reminders from './routers/Reminders.js';
 
 const app = express();
 
@@ -74,3 +75,5 @@ app.use('/pets', pets);
 app.use('/exercise', exercise);
 
 app.use('/meals', meals);
+
+app.use('/reminders', reminders);
