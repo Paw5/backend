@@ -10,6 +10,7 @@ import pets from './routers/Pets.js';
 import exercise from './routers/Exercise.js';
 import meals from './routers/Meals.js';
 import reminders from './routers/Reminders.js';
+import records from './routers/Records.js';
 
 const app = express();
 
@@ -77,3 +78,5 @@ app.use('/exercise', exercise);
 app.use('/meals', meals);
 
 app.use('/reminders', reminders);
+
+app.use('/records', records);
