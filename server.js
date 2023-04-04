@@ -8,6 +8,7 @@ import { MS_PER_MINUTE } from './util/constants.js';
 import middleware from './middleware.js';
 import pets from './routers/Pets.js';
 import exercise from './routers/Exercise.js';
+import meals from './routers/Meals.js';
 
 const app = express();
 
@@ -71,3 +72,5 @@ app.use('/users', users);
 app.use('/pets', pets);
 
 app.use('/exercise', exercise);
+
+app.use('/meals', meals);
