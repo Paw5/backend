@@ -1,4 +1,4 @@
-import { createConnection } from 'mysql2/promise';
+import mysql from 'mysql2';
 import dotenv from 'dotenv';
 
 dotenv.config({ path: './secrets/.env' });
@@ -10,18 +10,14 @@ const options = {
   user: process.env.AWS_USER,
   password: process.env.AWS_SECRET,
   database: 'dbadmin',
-  port,
+  port: Number(port),
+  waitForConnections: true,
+  connectionLimit: 20,
+  maxIdle: 20,
+  idleTimeout: 60000,
+  queueLimit: 0,
 };
 
-const connection = createConnection(options);
+const pool = mysql.createPool(options).promise();
 
-export default connection;
-
-// export default {
-//   getConnection: () => new Promise((resolve, reject) => {
-//     createPool(options).getConnection((err, conn) => {
-//       if (err) reject(err);
-//       else resolve(conn);
-//     });
-//   }),
-// };
+export default pool;

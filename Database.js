@@ -1,28 +1,28 @@
-import connection from './connection.js';
 import QueryBuilder from './QueryBuilder.js';
+import pool from './connection.js';
 
 class Database {
   static instance;
 
   constructor() {
-    this.connection = connection;
-  }
-
-  getConnection() {
-    return Promise.resolve(this.connection);
+    this.pool = pool;
   }
 
   async query(queryInput, placeholders) {
+    const connection = await this.pool.getConnection();
     let queryString;
     if (queryInput instanceof QueryBuilder) {
       queryString = queryInput.queryString;
-    } else { queryString = queryInput; }
-    return this.getConnection()
-      .then((c) => c.query(queryString, placeholders));
-  }
-
-  async endConnection() {
-    return this.getConnection().then((c) => c.end());
+    } else {
+      queryString = queryInput;
+    }
+    let queryResults;
+    try {
+      queryResults = await connection.query(queryString, placeholders);
+    } finally {
+      connection.release();
+    }
+    return queryResults;
   }
 }
 

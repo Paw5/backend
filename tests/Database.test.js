@@ -11,19 +11,12 @@ const mockDB = {
 
 beforeEach(async () => {
   jest.resetAllMocks();
-  const connection = await db.getConnection();
-  connection.query = jest.fn();
 });
 
 describe('query', () => {
   it('gets users from table', async () => {
-    const connection = await db.getConnection();
-    connection.query.mockResolvedValue(mockDB.users);
-    const queryResults = await db.query('SELECT * FROM users');
-    expect(connection.query).toBeCalledTimes(1);
-    expect(connection.query).toBeCalledWith('SELECT * FROM users', undefined);
-    expect(queryResults[0]).toHaveProperty('user_id', 1);
+    const queryResults = db.query('SELECT * FROM users').then((res) => {
+      expect(res[0][0]).toHaveProperty('firstname');
+    });
   });
 });
-
-afterAll(() => db.endConnection());

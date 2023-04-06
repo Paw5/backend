@@ -91,5 +91,3 @@ describe('login', () => {
   //   expect(accessToken).toHaveProperty('username', 'username');
   // });
 });
-
-afterAll(async () => db.endConnection());

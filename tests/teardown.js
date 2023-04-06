@@ -2,4 +2,4 @@ import Database from '../Database.js';
 
 const db = Database();
 
-export default async () => db.endConnection();
+export default async () => (await db.pool).end();
