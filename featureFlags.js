@@ -6,6 +6,7 @@ export const endpoints = {
   exercise: ['GET'],
   meals: ['GET'],
   'meals/\\d+': ['GET'],
+  vaccinations: ['GET'],
   'vaccinations/\\d+': ['POST'],
   login: ['GET', 'POST'],
   reminders: ['GET'],
