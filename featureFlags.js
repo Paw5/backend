@@ -1,8 +1,8 @@
 export const endpoints = {
   users: ['GET'],
   pets: ['GET'],
-  'pets/\\d+': ['POST'],
-  'pets/\\d+/\\d+': ['PATCH'],
+  'pets/\\d+': ['POST', 'GET'],
+  'pets/\\d+/\\d+': ['PATCH', 'DELETE'],
   exercise: ['GET'],
   meals: ['GET'],
   'meals/\\d+': ['GET'],

@@ -27,12 +27,12 @@ export const prepareQuery = (fields, limit, page, filterParams, fieldsAllowed) =
     if (typeof (fields) !== 'string') throw new TypeError('Invalid fields type');
     const fieldsArray = fields.split(','); // splits the single string with all the fields into multiple strings for each field held in an array
     const fieldsEscaped = fieldsArray.map((field) => escapeId(field.trim())); // escape each field
-    
+
     // if there is a restriction on what fields are allowed, filter out fields that are not allowed
     if (fieldsAllowed.length > 0) {
       const processedFields = [];
-      for (let i = 0; i < fieldsEscaped.length; i++) {
-        for (let j = 0; j < fieldsAllowed.length; j++) {
+      for (let i = 0; i < fieldsEscaped.length; i += 1) {
+        for (let j = 0; j < fieldsAllowed.length; j += 1) {
           if (fieldsEscaped.at(i) === fieldsAllowed.at(j)) {
             processedFields.push(fieldsEscaped.at(i)); // add column if allowed
           }
@@ -78,7 +78,7 @@ router.get('/', (req, res) => {
   const {
     fields, limit, page, ...filterParams
   } = req.query;
-  
+
   // construct the query
   const query = prepareQuery(fields, limit, page, filterParams, fieldsAllowed);
   // console.log(query);
@@ -211,6 +211,24 @@ router.patch('/:user_id/:pet_id', async (req, res) => {
     }
     res.sendStatus(400);
   }
+});
+
+router.delete('/:user_id/:pet_id', async (req, res) => {
+  const { params } = req;
+  params.user_id = Number(params.user_id);
+  params.pet_id = Number(params.pet_id);
+  if (!Number.isSafeInteger(params.user_id)) {
+    res.status(400).send('User ID must be an integer');
+    return;
+  }
+  if (!Number.isSafeInteger(params.pet_id)) {
+    res.status(400).send('Pet ID must be an integer');
+    return;
+  }
+
+  connection.query('DELETE FROM pets WHERE user_id=? AND pet_id=?', [params.user_id, params.pet_id]).then((body) => {
+    res.send(body);
+  }).catch((r) => res.status(400).send(r));
 });
 
 export default router;
