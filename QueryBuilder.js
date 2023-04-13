@@ -23,6 +23,12 @@ export default class QueryBuilder {
     return this;
   }
 
+  delete() {
+    this.queryString = 'DELETE ';
+    this.method = 'DELETE';
+    return this;
+  }
+
   from(table) {
     if (this.method === 'SELECT' || this.method === 'DELETE') {
       this.queryString += `FROM ${table} `;
