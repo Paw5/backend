@@ -13,6 +13,7 @@ export const endpoints = {
   'reminders/\\d+': ['GET'],
   records: ['GET'],
   'records/\\d+': ['POST'],
+  reviews: ['GET'],
 };
 
 export const checkEndpoints = (url, method) => {
