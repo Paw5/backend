@@ -15,17 +15,17 @@ const vaccination = [
 ];
 
 Vaccinations.post('/:petId', (req, res) => {
-  const query = 'INSERT INTO vaccinations (medical_record_id, vaccine_name, time, frequency) VALUES ((SELECT medical_record_id FROM medical_records WHERE pet_id=?), ?, ?, ?);';
+  const query = 'INSERT INTO vaccinations (vaccine_name, time, frequency, event_id) SET ?;';
   const { petId } = req.params;
   if (!Number(petId)) {
     res.sendStatus(400);
   } else {
-    const { vaccine_name: vaccineName, time, frequency } = Object.fromEntries(
+    const objectSet = Object.fromEntries(
       Object.entries(req.body)
         .filter(([key]) => vaccination.includes(key)),
     );
     connection
-      .query(query, [petId, vaccineName || '', time || 0, frequency || 0])
+      .query(query, [objectSet])
       .then((results) => {
         console.log(results);
         connection
