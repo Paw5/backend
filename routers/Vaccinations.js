@@ -15,7 +15,7 @@ const vaccination = [
 ];
 
 Vaccinations.post('/:petId', (req, res) => {
-  const query = 'INSERT INTO vaccinations (vaccine_name, time, frequency, event_id) SET ?;';
+  const query = 'INSERT INTO vaccinations SET ?;';
   const { petId } = req.params;
   if (!Number(petId)) {
     res.sendStatus(400);
@@ -24,6 +24,7 @@ Vaccinations.post('/:petId', (req, res) => {
       Object.entries(req.body)
         .filter(([key]) => vaccination.includes(key)),
     );
+    objectSet['pet_id'] = petId;
     connection
       .query(query, [objectSet])
       .then((results) => {
