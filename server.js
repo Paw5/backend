@@ -12,6 +12,7 @@ import meals from './routers/Meals.js';
 import vaccinations from './routers/Vaccinations.js';
 import reminders from './routers/Reminders.js';
 import records from './routers/Records.js';
+import reviews from './routers/Reviews.js';
 import locations from './routers/Locations.js';
 
 const app = express();
@@ -47,5 +48,7 @@ app.use('/vaccinations', vaccinations);
 app.use('/reminders', reminders);
 
 app.use('/records', records);
+
+app.use('/reviews', reviews);
 
 app.use('/locations', locations);
