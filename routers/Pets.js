@@ -72,6 +72,7 @@ router.get('/', (req, res) => {
     '`type`',
     '`breed`',
     '`fur_color`',
+    '`event_id`',
   ];
 
   // pull out the query params from the client request
@@ -118,6 +119,7 @@ router.post('/:user_id', async (req, res) => {
     'weight',
     'microchip',
     'custom_info',
+    'event_id',
   ];
 
   const userId = Number(req.params.user_id);
@@ -164,6 +166,7 @@ router.patch('/:user_id/:pet_id', async (req, res) => {
     'weight',
     'microchip',
     'custom_info',
+    'event_id',
   ];
   const { params } = req;
 

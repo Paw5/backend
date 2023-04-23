@@ -11,6 +11,7 @@ const vaccination = [
   'vaccine_name',
   'time',
   'frequency',
+  'event_id',
 ];
 
 Vaccinations.post('/:petId', (req, res) => {
