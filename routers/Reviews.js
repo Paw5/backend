@@ -5,42 +5,8 @@ import { escapeId } from 'mysql2';
 import Database from '../Database.js';
 
 const connection = Database();
-const Vaccinations = Router();
 
-const vaccination = [
-  'vaccine_name',
-  'time',
-  'frequency',
-  'event_id',
-];
-
-Vaccinations.post('/:petId', (req, res) => {
-  const query = 'INSERT INTO vaccinations SET ?;';
-  const { petId } = req.params;
-  if (!Number(petId)) {
-    res.sendStatus(400);
-  } else {
-    const objectSet = Object.fromEntries(
-      Object.entries(req.body)
-        .filter(([key]) => vaccination.includes(key)),
-    );
-    objectSet['pet_id'] = petId;
-    connection
-      .query(query, [objectSet])
-      .then((results) => {
-        console.log(results);
-        connection
-          .query('SELECT * FROM vaccinations WHERE vaccination_id=last_insert_id()')
-          .then(([rows]) => {
-            res.status(200).send(rows[0]);
-          });
-      })
-      .catch((reason) => {
-        console.log(reason);
-        res.sendStatus(400);
-      });
-  }
-});
+const router = Router();
 
 // function: prepareQuery
 // Description: this function prepares the query used in the get routes. Useful for jest tests also
@@ -77,12 +43,12 @@ export const prepareQuery = (fields, limit, page, filterParams) => {
     whereQuery = `WHERE ${combinedEntries}`;
   }
 
-  const query = `SELECT ${sqlFields} FROM vaccinations ${whereQuery} ${limitSql}`; // assemble the query together
+  const query = `SELECT ${sqlFields} FROM reviews ${whereQuery} ${limitSql}`; // assemble the query together
 
   return query; // return the query
 };
 
-Vaccinations.get('/', (req, res) => {
+router.get('/', (req, res) => {
   // pull out the query params from the client request
   const {
     fields, limit, page, ...filterParams
@@ -102,4 +68,4 @@ Vaccinations.get('/', (req, res) => {
     .catch(() => res.status(400).json({ results: [] }));
 });
 
-export default Vaccinations;
+export default router;

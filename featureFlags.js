@@ -6,6 +6,7 @@ export const endpoints = {
   exercise: ['GET'],
   meals: ['GET'],
   'meals/\\d+': ['GET'],
+  vaccinations: ['GET'],
   'vaccinations/\\d+': ['POST'],
   login: ['GET', 'POST'],
   reminders: ['GET'],
@@ -14,6 +15,8 @@ export const endpoints = {
   'records/\\d+': ['POST'],
   'pics/[^/]+': ['POST', 'GET'],
   'pics/[^/]+/[^/]+/[^/]+': ['POST', 'GET'],
+  locations: ['GET', 'POST'],
+  reviews: ['GET'],
 };
 
 export const checkEndpoints = (url, method) => {
