@@ -1,5 +1,4 @@
-import express, { json, urlencoded } from 'express';
-import bodyParser from 'body-parser';
+import express, { json, raw, urlencoded } from 'express';
 import { createServer } from 'https';
 import { readFileSync } from 'fs';
 import RateLimit from 'express-rate-limit';
@@ -12,6 +11,8 @@ import meals from './routers/Meals.js';
 import vaccinations from './routers/Vaccinations.js';
 import reminders from './routers/Reminders.js';
 import records from './routers/Records.js';
+import pics from './routers/Pics.js';
+import reviews from './routers/Reviews.js';
 import locations from './routers/Locations.js';
 import events from './routers/Events.js';
 
@@ -22,9 +23,11 @@ app.use(RateLimit({
   max: 100,
 }));
 
-app.use(json());
+// app.use(json());
+// app.use(bodyParser.raw());
 app.use(urlencoded({ extended: true }));
-app.use(bodyParser.json());
+app.use(raw({ type: 'image/*' }));
+app.use(json({ type: 'application/*' }));
 
 createServer({
   key: readFileSync('./secrets/key.pem'),
@@ -52,3 +55,9 @@ app.use('/records', records);
 app.use('/locations', locations);
 
 app.use('/events', events);
+
+app.use('/pics', pics);
+
+app.use('/reviews', reviews);
+
+app.use('/locations', locations);

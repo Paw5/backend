@@ -14,6 +14,10 @@ export const endpoints = {
   records: ['GET'],
   'records/\\d+': ['POST'],
   events: ['GET'],
+  'pics/[^/]+': ['POST', 'GET'],
+  'pics/[^/]+/[^/]+/[^/]+': ['POST', 'GET'],
+  locations: ['GET', 'POST'],
+  reviews: ['GET'],
 };
 
 export const checkEndpoints = (url, method) => {
