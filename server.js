@@ -13,6 +13,7 @@ import vaccinations from './routers/Vaccinations.js';
 import reminders from './routers/Reminders.js';
 import records from './routers/Records.js';
 import locations from './routers/Locations.js';
+import events from './routers/Events.js';
 
 const app = express();
 
@@ -49,3 +50,5 @@ app.use('/reminders', reminders);
 app.use('/records', records);
 
 app.use('/locations', locations);
+
+app.use('/events', events);
