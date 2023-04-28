@@ -20,6 +20,7 @@ export const endpoints = {
   reviews: ['GET'],
   posts: ['GET'],
   'posts/\\d+': ['POST', 'DELETE'],
+  tags: ['GET'],
 };
 
 export const checkEndpoints = (url, method) => {
