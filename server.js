@@ -15,6 +15,7 @@ import pics from './routers/Pics.js';
 import reviews from './routers/Reviews.js';
 import locations from './routers/Locations.js';
 import events from './routers/Events.js';
+import posts from './routers/Posts.js';
 
 const app = express();
 
@@ -61,3 +62,5 @@ app.use('/pics', pics);
 app.use('/reviews', reviews);
 
 app.use('/locations', locations);
+
+app.use('/posts', posts);
