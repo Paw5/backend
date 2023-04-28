@@ -14,6 +14,7 @@ import records from './routers/Records.js';
 import pics from './routers/Pics.js';
 import reviews from './routers/Reviews.js';
 import locations from './routers/Locations.js';
+import events from './routers/Events.js';
 import posts from './routers/Posts.js';
 
 const app = express();
@@ -51,6 +52,10 @@ app.use('/vaccinations', vaccinations);
 app.use('/reminders', reminders);
 
 app.use('/records', records);
+
+app.use('/locations', locations);
+
+app.use('/events', events);
 
 app.use('/pics', pics);
 
