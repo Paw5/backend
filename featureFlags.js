@@ -14,7 +14,7 @@ export const endpoints = {
   records: ['GET'],
   'records/\\d+': ['POST'],
   events: ['GET'],
-  'events/\\d+': ['POST'],
+  'events/\\d+': ['POST', 'DELETE'],
   'pics/[^/]+': ['POST', 'GET'],
   'pics/[^/]+/[^/]+/[^/]+': ['POST', 'GET'],
   locations: ['GET', 'POST'],

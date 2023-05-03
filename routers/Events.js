@@ -101,4 +101,17 @@ router.post('/:userId', (req, res) => {
   }
 });
 
+router.delete('/:event_id', async (req, res) => {
+  const { params } = req;
+  params.event_id = Number(params.event_id);
+  if (!Number.isSafeInteger(params.event_id)) {
+    res.status(400).send('Event ID must be an integer');
+    return;
+  }
+
+  connection.query('DELETE FROM events WHERE event_id=?', [params.event_id]).then((body) => {
+    res.send(body);
+  }).catch((r) => res.status(400).send(r));
+});
+
 export default router;
