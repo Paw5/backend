@@ -101,4 +101,17 @@ router.post('/:userId', (req, res) => {
   }
 });
 
+router.delete('/:reminder_id', async (req, res) => {
+  const { params } = req;
+  params.reminder_id = Number(params.reminder_id);
+  if (!Number.isSafeInteger(params.reminder_id)) {
+    res.status(400).send('Reminder ID must be an integer');
+    return;
+  }
+
+  connection.query('DELETE FROM reminders WHERE reminder_id=?', [params.reminder_id]).then((body) => {
+    res.send(body);
+  }).catch((r) => res.status(400).send(r));
+});
+
 export default router;

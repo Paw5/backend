@@ -11,7 +11,7 @@ export const endpoints = {
   'vaccinations/\\d+': ['POST'],
   login: ['GET', 'POST'],
   reminders: ['GET'],
-  'reminders/\\d+': ['POST'],
+  'reminders/\\d+': ['POST', 'DELETE'],
   records: ['GET'],
   'records/\\d+': ['POST'],
   events: ['GET'],
