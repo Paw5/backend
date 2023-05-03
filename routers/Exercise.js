@@ -101,4 +101,17 @@ router.post('/:petId', (req, res) => {
   }
 });
 
+router.delete('/:exercise_data_id', async (req, res) => {
+  const { params } = req;
+  params.exercise_data_id = Number(params.exercise_data_id);
+  if (!Number.isSafeInteger(params.exercise_data_id)) {
+    res.status(400).send('Exercise Data ID must be an integer');
+    return;
+  }
+
+  connection.query('DELETE FROM exercise_data WHERE exercise_data_id=?', [params.exercise_data_id]).then((body) => {
+    res.send(body);
+  }).catch((r) => res.status(400).send(r));
+});
+
 export default router;
