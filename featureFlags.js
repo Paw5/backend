@@ -21,7 +21,7 @@ export const endpoints = {
   posts: ['GET'],
   'posts/\\d+': ['POST', 'DELETE'],
   tags: ['GET'],
-  'tags/\\d+': ['POST'],
+  'tags/\\d+': ['POST', 'DELETE'],
 };
 
 export const checkEndpoints = (url, method) => {

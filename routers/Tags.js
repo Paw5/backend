@@ -101,17 +101,17 @@ router.post('/:postId', (req, res) => {
   }
 });
 
-// router.delete('/:post_id', async (req, res) => {
-//   const { params } = req;
-//   params.post_id = Number(params.post_id);
-//   if (!Number.isSafeInteger(params.post_id)) {
-//     res.status(400).send('Post ID must be an integer');
-//     return;
-//   }
+router.delete('/:tag_id', async (req, res) => {
+  const { params } = req;
+  params.tag_id = Number(params.tag_id);
+  if (!Number.isSafeInteger(params.tag_id)) {
+    res.status(400).send('Tag ID must be an integer');
+    return;
+  }
 
-//   connection.query('DELETE FROM posts WHERE post_id=?', [params.post_id]).then((body) => {
-//     res.send(body);
-//   }).catch((r) => res.status(400).send(r));
-// });
+  connection.query('DELETE FROM tags WHERE tag_id=?', [params.tag_id]).then((body) => {
+    res.send(body);
+  }).catch((r) => res.status(400).send(r));
+});
 
 export default router;
