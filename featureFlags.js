@@ -4,7 +4,7 @@ export const endpoints = {
   'pets/\\d+': ['POST', 'GET'],
   'pets/\\d+/\\d+': ['PATCH', 'DELETE'],
   exercise: ['GET'],
-  'exercise/\\d+': ['POST'],
+  'exercise/\\d+': ['POST', 'DELETE'],
   meals: ['GET'],
   'meals/\\d+': ['GET'],
   vaccinations: ['GET'],
