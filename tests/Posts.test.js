@@ -8,7 +8,7 @@ import { prepareQuery } from '../routers/Posts.js';
 
 // const mockDB = [[]];
 
-describe('test GET /reminders queries', () => {
+describe('test GET /posts queries', () => {
   const req1 = {
     query: {
       post_id: 183,

@@ -43,7 +43,7 @@ export const prepareQuery = (fields, limit, page, filterParams) => {
     whereQuery = `WHERE ${combinedEntries}`;
   }
 
-  const query = `SELECT ${sqlFields} FROM posts ${whereQuery} ${limitSql}`; // assemble the query together
+  const query = `SELECT ${sqlFields} FROM tags ${whereQuery} ${limitSql}`; // assemble the query together
 
   return query; // return the query
 };
@@ -68,50 +68,50 @@ router.get('/', (req, res) => {
     .catch(() => res.status(400).json({ results: [] }));
 });
 
-router.post('/:userId', (req, res) => {
-  const query = 'INSERT INTO posts SET ?';
-  const { userId } = req.params; // pull out user id
-  if (!Number(userId)) { // if a not a number return error
-    res.sendStatus(400);
-  } else { // if a number, created new body object that filters out keys that are not valid db cols
-    const filteredBody = Object
-      .fromEntries(
-        Object
-          .entries(req.body)
-          .filter(([key]) => key === 'body'),
-      );
-    filteredBody.user_id = userId;
-    // create a new record in table
-    connection.query(query, filteredBody).then(() => {
-      connection.query('SELECT * FROM posts WHERE post_id=last_insert_id()').then(([rows]) => { // return new addition
-        res.status(200).send(rows[0]);
-      });
-    }).catch((reason) => {
-      console.log(reason);
-      let errorCode;
-      switch (reason.code) {
-        case 'ER_DUP_ENTRY': errorCode = 409;
-          break;
-        case 'ER_NO_REFERENCED_ROW_2': errorCode = 404;
-          break;
-        default: errorCode = 400;
-      }
-      res.sendStatus(errorCode);
-    });
-  }
-});
+// router.post('/:userId', (req, res) => {
+//   const query = 'INSERT INTO posts SET ?';
+//   const { userId } = req.params; // pull out user id
+//   if (!Number(userId)) { // if a not a number return error
+//     res.sendStatus(400);
+//   } else { // if a number, created new body object that filters out keys that are not valid db cols
+//     const filteredBody = Object
+//       .fromEntries(
+//         Object
+//           .entries(req.body)
+//           .filter(([key]) => key === 'body'),
+//       );
+//     filteredBody.user_id = userId;
+//     // create a new record in table
+//     connection.query(query, filteredBody).then(() => {
+//       connection.query('SELECT * FROM posts WHERE post_id=last_insert_id()').then(([rows]) => { // return new addition
+//         res.status(200).send(rows[0]);
+//       });
+//     }).catch((reason) => {
+//       console.log(reason);
+//       let errorCode;
+//       switch (reason.code) {
+//         case 'ER_DUP_ENTRY': errorCode = 409;
+//           break;
+//         case 'ER_NO_REFERENCED_ROW_2': errorCode = 404;
+//           break;
+//         default: errorCode = 400;
+//       }
+//       res.sendStatus(errorCode);
+//     });
+//   }
+// });
 
-router.delete('/:post_id', async (req, res) => {
-  const { params } = req;
-  params.post_id = Number(params.post_id);
-  if (!Number.isSafeInteger(params.post_id)) {
-    res.status(400).send('Post ID must be an integer');
-    return;
-  }
+// router.delete('/:post_id', async (req, res) => {
+//   const { params } = req;
+//   params.post_id = Number(params.post_id);
+//   if (!Number.isSafeInteger(params.post_id)) {
+//     res.status(400).send('Post ID must be an integer');
+//     return;
+//   }
 
-  connection.query('DELETE FROM posts WHERE post_id=?', [params.post_id]).then((body) => {
-    res.send(body);
-  }).catch((r) => res.status(400).send(r));
-});
+//   connection.query('DELETE FROM posts WHERE post_id=?', [params.post_id]).then((body) => {
+//     res.send(body);
+//   }).catch((r) => res.status(400).send(r));
+// });
 
 export default router;
