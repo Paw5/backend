@@ -101,4 +101,17 @@ router.post('/:locationId', (req, res) => {
   }
 });
 
+router.delete('/:review_id', async (req, res) => {
+  const { params } = req;
+  params.review_id = Number(params.review_id);
+  if (!Number.isSafeInteger(params.review_id)) {
+    res.status(400).send('Review ID must be an integer');
+    return;
+  }
+
+  connection.query('DELETE FROM reviews WHERE review_id=?', [params.review_id]).then((body) => {
+    res.send(body);
+  }).catch((r) => res.status(400).send(r));
+});
+
 export default router;
