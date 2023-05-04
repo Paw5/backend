@@ -19,6 +19,7 @@ export const endpoints = {
   'pics/[^/]+': ['POST', 'GET'],
   'pics/[^/]+/[^/]+/[^/]+': ['POST', 'GET'],
   locations: ['GET', 'POST'],
+  'locations/\\d+': ['DELETE'],
   reviews: ['GET'],
   'reviews/\\d+': ['POST', 'DELETE'],
   posts: ['GET'],
